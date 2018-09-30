@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'StreamApiCore_Example' do
+  pod 'StreamApiCore', :path => '../'
+
+  target 'StreamApiCore_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
