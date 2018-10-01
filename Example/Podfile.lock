@@ -8,9 +8,14 @@ PODS:
 DEPENDENCIES:
   - StreamApiCore (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - JWTDecode
+
 EXTERNAL SOURCES:
   StreamApiCore:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -19,4 +24,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e4f74d864dac1094207739c05ce0381c59cf6961
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
