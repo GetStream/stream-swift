@@ -11,24 +11,18 @@ Pod::Spec.new do |s|
   s.version          = '0.1.0'
   s.summary          = 'A short description of StreamApiCore.'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+API Client for Stream (getstream.io)
                        DESC
-
-  s.homepage         = 'https://github.com/tbarbugli/StreamApiCore'
+  s.swift_version    = '4.0'
+  s.homepage         = 'https://github.com/GetStream/stream-swift'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'tbarbugli' => 'tbarbugli@gmail.com' }
-  s.source           = { :git => 'https://github.com/tbarbugli/StreamApiCore.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'Tommaso Barbugli' => 'tommaso@getstream.io' }
+  s.source           = { :git => 'https://github.com/GetStream/stream-swift.git', :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/tbarbugli'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.4'
 
   s.source_files = 'StreamApiCore/Classes/**/*'
   
@@ -40,6 +34,5 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
 
   s.dependency 'JWTDecode', '~> 2.1'
-
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Alamofire', '~> 4.7'
 end
