@@ -17,16 +17,18 @@ public class Feed {
         self.userId = userId
     }
 
-    public func addActivity() {}
+    public func addActivity(_ activity : Activity) {}
     
-    public func addActivities() {}
+    public func addActivities(_ activities : [Activity]) {}
     
     public func removeActivity(byID id:String) {}
 
     public func removeActivity(byForeignId id:String) {}
 
-    public func follow(_ target : String) {}
+    public func get() {}
+
+    public func follow(_ target : String, withCopyLimit : Int = 100) {}
     
-    public func unfollow(_ target : String) {}
+    public func unfollow(_ target : String, andKeepHistory : Bool = false) {}
 
 }
