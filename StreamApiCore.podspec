@@ -22,7 +22,7 @@ API Client for Stream (getstream.io)
   s.source           = { :git => 'https://github.com/GetStream/stream-swift.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/tbarbugli'
 
-  s.ios.deployment_target = '9.4'
+  s.ios.deployment_target = '9.3'
 
   s.source_files = 'StreamApiCore/Classes/**/*'
   
