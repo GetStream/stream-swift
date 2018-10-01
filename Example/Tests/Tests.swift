@@ -13,9 +13,9 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testUserToken() {
+        let client = try! StreamApiCore.Client(apiKey: "", authToken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNlci1vbmUifQ.3H6xN0ApMOmCqpRd-r0Ej4pum3cfPIirnXMITRNJdTk")
+        XCTAssert(client.currentUser == "user-one")
     }
     
     func testPerformanceExample() {

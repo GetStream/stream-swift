@@ -1,0 +1,19 @@
+PODS:
+  - JWTDecode (2.1.1)
+  - StreamApiCore (0.1.0):
+    - JWTDecode (~> 2.1)
+
+DEPENDENCIES:
+  - StreamApiCore (from `../`)
+
+EXTERNAL SOURCES:
+  StreamApiCore:
+    :path: ../
+
+SPEC CHECKSUMS:
+  JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
+  StreamApiCore: 357e75236b851fc909c5e7b3343f12dc10b25341
+
+PODFILE CHECKSUM: e4f74d864dac1094207739c05ce0381c59cf6961
+
+COCOAPODS: 1.4.0
