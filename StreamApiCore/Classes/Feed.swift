@@ -16,4 +16,17 @@ public class Feed {
         self.group = group
         self.userId = userId
     }
+
+    public func addActivity() {}
+    
+    public func addActivities() {}
+    
+    public func removeActivity(byID id:String) {}
+
+    public func removeActivity(byForeignId id:String) {}
+
+    public func follow(_ target : String) {}
+    
+    public func unfollow(_ target : String) {}
+
 }
