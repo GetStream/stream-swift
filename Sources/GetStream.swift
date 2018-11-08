@@ -20,37 +20,36 @@ public final class Client {
     
     private let moyaProvider: MoyaProvider<MultiTarget>
     
+    /// Create a GetStream client for making network requests.
+    ///
+    /// - parameters:
+    ///     - apiKey: 
     public init(apiKey: String, appId: String, secretKey: String? = nil, location: Client.Location = .usEast) {
-        let appKeyParameters = ["api_key": apiKey]
+        let appKeyParameter = ["api_key": apiKey]
         
-        func mergeAppKeyParameters(with parameters: [String: Any]) -> [String: Any] {
-            var parameters = parameters
-            parameters.merge(appKeyParameters) { current, _ -> Any in current }
-            return parameters
-        }
-        
+        // Add the app key parameter as an URL parameter for each request.
         func endpointMapping(for target: MultiTarget) -> Endpoint {
             let task: Task
             
             switch target.task {
             case .requestPlain:
-                task = .requestParameters(parameters: appKeyParameters, encoding: URLEncoding.default)
+                task = .requestParameters(parameters: appKeyParameter, encoding: URLEncoding.default)
                 
             case .requestParameters(let parameters, let encoding):
                 task = .requestCompositeParameters(bodyParameters: parameters,
                                                    bodyEncoding: encoding,
-                                                   urlParameters: appKeyParameters)
+                                                   urlParameters: appKeyParameter)
                 
             case .requestCompositeData(let bodyData, let urlParameters):
-                task = .requestCompositeData(bodyData: bodyData, urlParameters: mergeAppKeyParameters(with: urlParameters))
+                task = .requestCompositeData(bodyData: bodyData, urlParameters: urlParameters.mergeFirst(with: appKeyParameter) )
                 
             case .requestCompositeParameters(let bodyParameters, let bodyEncoding, let urlParameters):
                 task = .requestCompositeParameters(bodyParameters: bodyParameters,
                                                    bodyEncoding: bodyEncoding,
-                                                   urlParameters: mergeAppKeyParameters(with: urlParameters))
+                                                   urlParameters: urlParameters.mergeFirst(with: appKeyParameter))
                 
             case let .uploadCompositeMultipart(data, urlParameters):
-                task = .uploadCompositeMultipart(data, urlParameters: mergeAppKeyParameters(with: urlParameters))
+                task = .uploadCompositeMultipart(data, urlParameters: urlParameters.mergeFirst(with: appKeyParameter))
                 
             default:
                 task = target.task
@@ -96,5 +95,15 @@ extension Client {
         moyaProvider.request(MultiTarget(FeedEndpoint.feed(feedId, pagination: pagination))) { result in
             debugPrint(result)
         }
+    }
+}
+
+// MARK: - Extensions
+
+fileprivate extension Dictionary {
+    func mergeFirst(with other: Dictionary) -> Dictionary {
+        var dict = self
+        dict.merge(other) { first, _ in first }
+        return dict
     }
 }
