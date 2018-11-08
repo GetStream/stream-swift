@@ -13,6 +13,7 @@ import Moya
 
 enum FeedEndpoint {
     case feed(_ feedId: FeedId, pagination: FeedPagination)
+    case add(activity: Activity, toFeed: FeedId)
 }
 
 extension FeedEndpoint: TargetType {
@@ -23,7 +24,9 @@ extension FeedEndpoint: TargetType {
     var path: String {
         switch self {
         case .feed(let feedId, _):
-            return "/feed/\(feedId.feedSlug)/\(feedId.userId)"
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
+        case .add(activity: _, toFeed: let feedId):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
         }
     }
     
@@ -31,6 +34,8 @@ extension FeedEndpoint: TargetType {
         switch self {
         case .feed:
             return .get
+        case .add:
+            return .post
         }
     }
     
@@ -41,11 +46,14 @@ extension FeedEndpoint: TargetType {
     var task: Task {
         switch self {
         case .feed(_, let pagination):
-            if case .none = pagination {
-                return .requestPlain
-            }
+//            if case .none = pagination {
+//                return .requestPlain
+//            }
             
             return .requestParameters(parameters: pagination.parameters, encoding: JSONEncoding.default)
+            
+        case .add(activity: let activity, toFeed: _):
+            return .requestPlain
         }
     }
     
@@ -56,7 +64,7 @@ extension FeedEndpoint: TargetType {
 
 // MARK: - FeedId
 
-public struct FeedId: CustomStringConvertible {
+public struct FeedId {
     
     /// The name of the feed group, for instance user, trending, flat, timeline etc.
     /// For example: flat
@@ -73,7 +81,9 @@ public struct FeedId: CustomStringConvertible {
         self.feedSlug = feedSlug
         self.userId = userId
     }
-    
+}
+
+extension FeedId: CustomStringConvertible {
     public var description: String {
         return "\(feedSlug):\(userId)"
     }
@@ -84,17 +94,23 @@ public struct FeedId: CustomStringConvertible {
 public enum FeedPagination {
     /// Default limit is 25.
     case none
+    
     /// The amount of activities requested from the APIs.
     case limit(_ limit: Int)
+    
     /// The offset of requesting activities.
     /// - note: Using `lessThan` or `lessThanOrEqual` for pagination is preferable to using `offset`.
     case offset(_ offset: Int, limit: Int)
+    
     /// Filter the feed on ids greater than the given value.
     case greaterThan(id: String, limit: Int)
+    
     /// Filter the feed on ids greater than or equal to the given value.
     case greaterThanOrEqual(id: String, limit: Int)
+    
     /// Filter the feed on ids smaller than the given value.
     case lessThan(id: String, limit: Int)
+    
     /// Filter the feed on ids smaller than or equal to the given value.
     case lessThanOrEqual(id: String, limit: Int)
     

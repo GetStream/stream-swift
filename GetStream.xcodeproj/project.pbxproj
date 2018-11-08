@@ -15,6 +15,14 @@
 		8933C78E1EB5B82C000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
 		8933C7901EB5B82D000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
+		8A08EEC32194450B006BB9B8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08EEC22194450B006BB9B8 /* Activity.swift */; };
+		8A08EEC42194450B006BB9B8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08EEC22194450B006BB9B8 /* Activity.swift */; };
+		8A08EEC52194450B006BB9B8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08EEC22194450B006BB9B8 /* Activity.swift */; };
+		8A08EEC62194450B006BB9B8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08EEC22194450B006BB9B8 /* Activity.swift */; };
+		8A21E43D2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */; };
+		8A21E43E2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */; };
+		8A21E43F2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */; };
+		8A21E4402194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */; };
 		8AA8D7612193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
 		8AA8D7622193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
 		8AA8D7632193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
@@ -59,6 +67,8 @@
 		52D6DA0F1BF000BD002C0205 /* GetStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GetStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8933C7841EB5B820000D00A4 /* GetStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStream.swift; sourceTree = "<group>"; };
 		8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStreamTests.swift; sourceTree = "<group>"; };
+		8A08EEC22194450B006BB9B8 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationMoyaPlugin.swift; sourceTree = "<group>"; };
 		8AA8D7602193299C008AB02E /* FeedEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedEndpoint.swift; path = Sources/Feed/FeedEndpoint.swift; sourceTree = SOURCE_ROOT; };
 		8AA8D765219329EF008AB02E /* GetStream.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetStream.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AD2FAA261CD0B6D800659CF4 /* GetStream.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStream.plist; sourceTree = "<group>"; };
@@ -162,6 +172,7 @@
 			children = (
 				8933C7841EB5B820000D00A4 /* GetStream.swift */,
 				8AA8D76A21932A1F008AB02E /* Feed */,
+				8A21E43B2194643B00339B0A /* Moya */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -175,10 +186,19 @@
 			path = Tests/GetStreamTests;
 			sourceTree = "<group>";
 		};
+		8A21E43B2194643B00339B0A /* Moya */ = {
+			isa = PBXGroup;
+			children = (
+				8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */,
+			);
+			path = Moya;
+			sourceTree = "<group>";
+		};
 		8AA8D76A21932A1F008AB02E /* Feed */ = {
 			isa = PBXGroup;
 			children = (
 				8AA8D7602193299C008AB02E /* FeedEndpoint.swift */,
+				8A08EEC22194450B006BB9B8 /* Activity.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -483,7 +503,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A08EEC32194450B006BB9B8 /* Activity.swift in Sources */,
 				8AA8D7612193299C008AB02E /* FeedEndpoint.swift in Sources */,
+				8A21E43D2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* GetStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,7 +522,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A08EEC52194450B006BB9B8 /* Activity.swift in Sources */,
 				8AA8D7632193299C008AB02E /* FeedEndpoint.swift in Sources */,
+				8A21E43F2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */,
 				8933C7871EB5B820000D00A4 /* GetStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,7 +533,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A08EEC62194450B006BB9B8 /* Activity.swift in Sources */,
 				8AA8D7642193299C008AB02E /* FeedEndpoint.swift in Sources */,
+				8A21E4402194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */,
 				8933C7881EB5B820000D00A4 /* GetStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,7 +544,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A08EEC42194450B006BB9B8 /* Activity.swift in Sources */,
 				8AA8D7622193299C008AB02E /* FeedEndpoint.swift in Sources */,
+				8A21E43E2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */,
 				8933C7861EB5B820000D00A4 /* GetStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
