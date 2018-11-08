@@ -15,6 +15,14 @@
 		8933C78E1EB5B82C000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
 		8933C7901EB5B82D000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
+		8AA8D7612193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
+		8AA8D7622193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
+		8AA8D7632193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
+		8AA8D7642193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
+		8AA8D766219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
+		8AA8D767219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
+		8AA8D768219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
+		8AA8D769219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
 		DD7502881C68FEDE006590AF /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* GetStream.framework */; };
 		DD7502921C690C7A006590AF /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* GetStream.framework */; };
 /* End PBXBuildFile section */
@@ -51,6 +59,8 @@
 		52D6DA0F1BF000BD002C0205 /* GetStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GetStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8933C7841EB5B820000D00A4 /* GetStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStream.swift; sourceTree = "<group>"; };
 		8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStreamTests.swift; sourceTree = "<group>"; };
+		8AA8D7602193299C008AB02E /* FeedEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedEndpoint.swift; path = Sources/Feed/FeedEndpoint.swift; sourceTree = SOURCE_ROOT; };
+		8AA8D765219329EF008AB02E /* GetStream.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetStream.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AD2FAA261CD0B6D800659CF4 /* GetStream.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStream.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* GetStreamTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStreamTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* GetStream-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GetStream-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +129,7 @@
 				8933C7811EB5B7E0000D00A4 /* Sources */,
 				8933C7831EB5B7EB000D00A4 /* Tests */,
 				52D6D99C1BEFF38C002C0205 /* Configs */,
+				8AA8D765219329EF008AB02E /* GetStream.podspec */,
 				52D6D97D1BEFF229002C0205 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -150,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				8933C7841EB5B820000D00A4 /* GetStream.swift */,
+				8AA8D76A21932A1F008AB02E /* Feed */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -161,6 +173,14 @@
 			);
 			name = Tests;
 			path = Tests/GetStreamTests;
+			sourceTree = "<group>";
+		};
+		8AA8D76A21932A1F008AB02E /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				8AA8D7602193299C008AB02E /* FeedEndpoint.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		DD7502721C68FC1B006590AF /* Frameworks */ = {
@@ -407,6 +427,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA8D766219329EF008AB02E /* GetStream.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA8D768219329EF008AB02E /* GetStream.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +450,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA8D769219329EF008AB02E /* GetStream.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +458,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA8D767219329EF008AB02E /* GetStream.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA8D7612193299C008AB02E /* FeedEndpoint.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* GetStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA8D7632193299C008AB02E /* FeedEndpoint.swift in Sources */,
 				8933C7871EB5B820000D00A4 /* GetStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +509,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA8D7642193299C008AB02E /* FeedEndpoint.swift in Sources */,
 				8933C7881EB5B820000D00A4 /* GetStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA8D7622193299C008AB02E /* FeedEndpoint.swift in Sources */,
 				8933C7861EB5B820000D00A4 /* GetStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,7 +686,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GetStream.GetStream-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = io.getstream.GetStream;
 				PRODUCT_NAME = GetStream;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -680,7 +708,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GetStream.GetStream-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = io.getstream.GetStream;
 				PRODUCT_NAME = GetStream;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
