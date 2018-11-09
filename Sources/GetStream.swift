@@ -133,6 +133,7 @@ extension BaseURL {
     public enum Service: String {
         case api
         case personalization
+        case analytics
     }
     
     public enum Location: String {
