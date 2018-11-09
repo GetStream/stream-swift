@@ -18,7 +18,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let feedId = FeedId(feedSlug: "user", userId: "eric")
-        print(client)
+        let feedId = FeedId(feedSlug: "user", userId: "eric")
+        var feed = Feed(feedId, client: client)
+        
+        feed.feed { result in
+            print(result)
+        }
     }
 }

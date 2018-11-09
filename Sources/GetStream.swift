@@ -9,8 +9,15 @@
 import Foundation
 import Moya
 import Require
+import Result
 
 public typealias Token = String
+public typealias CompletionResult<T> = Result<[T], ClientError>
+public typealias Completion<T> = (_ result: CompletionResult<T>) -> Void
+public typealias Cancellable = Moya.Cancellable
+
+typealias JSON = [String: Any]
+typealias ClientCompletion = (_ result: Result<JSON, ClientError>) -> Void
 
 public final class Client {
     private let moyaProvider: MoyaProvider<MultiTarget>
@@ -106,8 +113,28 @@ fileprivate extension Dictionary {
 
 extension Client {
     /// Make a request with a given endpoint.
-    func request(endpoint: TargetType, completion: @escaping Moya.Completion) -> Moya.Cancellable {
-        return moyaProvider.request(MultiTarget(endpoint), completion: completion)
+    func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Moya.Cancellable {
+        return moyaProvider.request(MultiTarget(endpoint)) { result in
+            if case .success(let response) = result {
+                do {
+                    if let json = try response.mapJSON() as? JSON {
+                        if let statusCode = json["status_code"] as? Int, statusCode == 200 {
+                            completion(.success(json))
+                        } else {
+                            completion(.failure(ClientError(json: json)))
+                        }
+                    } else {
+                        completion(.failure(.jsonInvalid))
+                    }
+                } catch let error as MoyaError {
+                    completion(.failure(error.clientError))
+                } catch {
+                    completion(.failure(.unknown))
+                }
+            } else if case .failure(let moyaError) = result {
+                completion(.failure(moyaError.clientError))
+            }
+        }
     }
 }
 
