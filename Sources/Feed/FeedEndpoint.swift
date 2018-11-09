@@ -9,15 +9,6 @@
 import Foundation
 import Moya
 
-// MARK: - Feed Error
-
-enum FeedError: Error {
-    case notAllowed(description: String)
-    case feedDoesNotExists(description: String)
-}
-
-// MARK: - Feed Endpoints
-
 enum FeedEndpoint {
     case feed(_ feedId: FeedId, pagination: FeedPagination)
     case add(activity: Activity, toFeed: FeedId)
@@ -68,12 +59,6 @@ extension FeedEndpoint: TargetType {
         return nil
     }
 }
-
-// MARK: - FeedId
-
-/// - feedSlug: the name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline
-/// - userId: the owner of the given feed.
-public typealias FeedId = (feedSlug: String, userId: String)
 
 // MARK: - Feed Pagination
 
