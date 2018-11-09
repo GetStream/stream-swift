@@ -9,6 +9,13 @@
 import Foundation
 import Moya
 
+// MARK: - Feed Error
+
+enum FeedError: Error {
+    case notAllowed(description: String)
+    case feedDoesNotExists(description: String)
+}
+
 // MARK: - Feed Endpoints
 
 enum FeedEndpoint {
@@ -18,7 +25,7 @@ enum FeedEndpoint {
 
 extension FeedEndpoint: TargetType {
     var baseURL: URL {
-        return Client.baseURL
+        return Client.placeholderURL
     }
     
     var path: String {
@@ -46,9 +53,9 @@ extension FeedEndpoint: TargetType {
     var task: Task {
         switch self {
         case .feed(_, let pagination):
-//            if case .none = pagination {
-//                return .requestPlain
-//            }
+            if case .none = pagination {
+                return .requestPlain
+            }
             
             return .requestParameters(parameters: pagination.parameters, encoding: JSONEncoding.default)
             
@@ -64,30 +71,9 @@ extension FeedEndpoint: TargetType {
 
 // MARK: - FeedId
 
-public struct FeedId {
-    
-    /// The name of the feed group, for instance user, trending, flat, timeline etc.
-    /// For example: flat
-    fileprivate let feedSlug: String
-    
-    /// The owner of the given feed.
-    fileprivate let userId: String
-    
-    /// Create an instance of a feed id.
-    ///
-    /// - feedSlug: the name of the feed group, for instance user, trending, flat, timeline etc.
-    /// - userId: The owner of the given feed.
-    public init(feedSlug: String, userId: String) {
-        self.feedSlug = feedSlug
-        self.userId = userId
-    }
-}
-
-extension FeedId: CustomStringConvertible {
-    public var description: String {
-        return "\(feedSlug):\(userId)"
-    }
-}
+/// - feedSlug: the name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline
+/// - userId: the owner of the given feed.
+public typealias FeedId = (feedSlug: String, userId: String)
 
 // MARK: - Feed Pagination
 

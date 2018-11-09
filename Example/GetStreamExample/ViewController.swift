@@ -9,12 +9,16 @@
 import UIKit
 import GetStream
 
+let streamToken: Token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6ImZlZWQiLCJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InRpbWVsaW5lX2FnZ3JlZ2F0ZWQxMjMifQ.K2cJAMhj1B3RQng-6LjyyMcIEnl3NRAi60etSwvy6zA"
+
 class ViewController: UIViewController {
-    let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44223")
+    
+    let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44223", token: streamToken, baseURL: BaseURL(location: .europeWest))
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let feedId = FeedId(feedSlug: "timeline_aggregated", userId: "123")
-        client.feed(with: feedId)
+        
+//        let feedId = FeedId(feedSlug: "user", userId: "eric")
+        print(client)
     }
 }

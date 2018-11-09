@@ -10,95 +10,89 @@ import Foundation
 import Moya
 import Require
 
+public typealias Token = String
+
 public final class Client {
-    
-    open static var location: Client.Location = .usEast
-    
-    public static var baseURL: URL {
-        return URL(string: "https://\(location.rawValue)api.stream-io-api.com/api/v1.0/").require()
-    }
-    
     private let moyaProvider: MoyaProvider<MultiTarget>
+    private let apiKey: String
+    private let appId: String
+    private let token: Token
+    private let baseURL: BaseURL
     
     /// Create a GetStream client for making network requests.
     ///
     /// - parameters:
-    ///     - apiKey: 
-    public init(apiKey: String, appId: String, secretKey: String? = nil, location: Client.Location = .usEast) {
-        let appKeyParameter = ["api_key": apiKey]
+    ///     - apiKey: the Stream API key
+    ///     - appId: the Stream APP id
+    ///     - token: the client token
+    ///     - baseURL: the client URL
+    ///     - callbackQueue: propagated to Alamofire as callback queue. If nil the GetStream default queue will be used.
+    public init(apiKey: String, appId: String, token: Token, baseURL: BaseURL = BaseURL(), callbackQueue: DispatchQueue? = nil) {
+        self.apiKey = apiKey
+        self.appId = appId
+        self.token = token
+        self.baseURL = baseURL
+        let callbackQueue = callbackQueue ?? DispatchQueue(label: "\(baseURL.url.host ?? "io.getstream").Client")
+        let moyaPlugins: [PluginType] = [NetworkLoggerPlugin(verbose: true, cURL: true), AuthorizationMoyaPlugin(token: token)]
         
-        // Add the app key parameter as an URL parameter for each request.
-        func endpointMapping(for target: MultiTarget) -> Endpoint {
-            let task: Task
-            
-            switch target.task {
-            case .requestPlain:
-                task = .requestParameters(parameters: appKeyParameter, encoding: URLEncoding.default)
-                
-            case .requestParameters(let parameters, let encoding):
-                task = .requestCompositeParameters(bodyParameters: parameters,
-                                                   bodyEncoding: encoding,
-                                                   urlParameters: appKeyParameter)
-                
-            case .requestCompositeData(let bodyData, let urlParameters):
-                task = .requestCompositeData(bodyData: bodyData, urlParameters: urlParameters.mergeFirst(with: appKeyParameter) )
-                
-            case .requestCompositeParameters(let bodyParameters, let bodyEncoding, let urlParameters):
-                task = .requestCompositeParameters(bodyParameters: bodyParameters,
-                                                   bodyEncoding: bodyEncoding,
-                                                   urlParameters: urlParameters.mergeFirst(with: appKeyParameter))
-                
-            case let .uploadCompositeMultipart(data, urlParameters):
-                task = .uploadCompositeMultipart(data, urlParameters: urlParameters.mergeFirst(with: appKeyParameter))
-                
-            default:
-                task = target.task
-            }
-            
-            return Endpoint(
-                url: URL(target: target).absoluteString,
-                sampleResponseClosure: { .networkResponse(200, target.sampleData) },
-                method: target.method,
-                task: task,
-                httpHeaderFields: target.headers
-            )
-        }
-        
-        let moyaPlugins: [PluginType] = [NetworkLoggerPlugin(verbose: true),
-                                         AuthorizationMoyaPlugin(apiKey: apiKey, appId: appId, secretKey: secretKey)]
-        
-        moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: endpointMapping,
-                                                 callbackQueue: DispatchQueue(label: "io.getstream.Client"),
+        moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) },
+                                                 callbackQueue: callbackQueue,
                                                  plugins: moyaPlugins)
+    }
+}
+
+extension Client {
+    /// GetStream version number.
+    public static let version: String = Bundle(for: Client.self).infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
+}
+
+extension Client: CustomStringConvertible {
+    public var description: String {
+        return "GetStream Client v.\(Client.version):\napiKey: \(apiKey)\nappId: \(appId)\nbaseURL: \(baseURL)\ntoken: \(token)"
+    }
+}
+
+// MARK: - Endpoint Mapping
+
+extension Client {
+    /// Add the app key parameter as an URL parameter for each request.
+    private static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
+        let appKeyParameter = ["api_key": apiKey]
+        let task: Task
         
-        Client.location = location
-    }
-}
-
-// MARK: - Client Location
-
-extension Client {
-    public enum Location: String {
-        case usEast = "us-east-"
-        case europeWest = "eu-west-"
-        case singapore = "singapore-"
-    }
-}
-
-extension Client {
-    /// Retrieve activities in a feed.
-    ///
-    /// - parameters:
-    ///     - feedId: a feed id.
-    ///     - pagination: specify a pagination options. Default is limit activities with 25.
-    public func feed(with feedId: FeedId, pagination: FeedPagination = .none) {
-        moyaProvider.request(MultiTarget(FeedEndpoint.feed(feedId, pagination: pagination))) { result in
-            debugPrint(result)
+        switch target.task {
+        case .requestPlain:
+            task = .requestParameters(parameters: appKeyParameter, encoding: URLEncoding.default)
+            
+        case .requestParameters(let parameters, let encoding):
+            task = .requestCompositeParameters(bodyParameters: parameters,
+                                               bodyEncoding: encoding,
+                                               urlParameters: appKeyParameter)
+            
+        case .requestCompositeData(let bodyData, let urlParameters):
+            task = .requestCompositeData(bodyData: bodyData, urlParameters: urlParameters.mergeFirst(with: appKeyParameter) )
+            
+        case .requestCompositeParameters(let bodyParameters, let bodyEncoding, let urlParameters):
+            task = .requestCompositeParameters(bodyParameters: bodyParameters,
+                                               bodyEncoding: bodyEncoding,
+                                               urlParameters: urlParameters.mergeFirst(with: appKeyParameter))
+            
+        case let .uploadCompositeMultipart(data, urlParameters):
+            task = .uploadCompositeMultipart(data, urlParameters: urlParameters.mergeFirst(with: appKeyParameter))
+            
+        default:
+            task = target.task
         }
+        
+        return Endpoint(
+            url: baseURL.endpointURLString(targetPath: target.path),
+            sampleResponseClosure: { .networkResponse(200, target.sampleData) },
+            method: target.method,
+            task: task,
+            httpHeaderFields: target.headers
+        )
     }
 }
-
-// MARK: - Extensions
 
 fileprivate extension Dictionary {
     func mergeFirst(with other: Dictionary) -> Dictionary {
@@ -106,4 +100,55 @@ fileprivate extension Dictionary {
         dict.merge(other) { first, _ in first }
         return dict
     }
+}
+
+// MARK: - Requests
+
+extension Client {
+    /// Make a request with a given endpoint.
+    func request(endpoint: TargetType, completion: @escaping Moya.Completion) -> Moya.Cancellable {
+        return moyaProvider.request(MultiTarget(endpoint), completion: completion)
+    }
+}
+
+// MARK: - Base URL
+
+public struct BaseURL {
+    let url: URL
+    
+    public init(location: Location = .default, service: Service = .api, version: String = "1.0") {
+        url = URL(string: "https://\(location.rawValue)\(service.rawValue).stream-io-api.com/api/\(version)/").require()
+    }
+    
+    public init(customURL: URL) {
+        url = customURL
+    }
+    
+    fileprivate func endpointURLString(targetPath: String) -> String {
+        return (targetPath.isEmpty ? url : url.appendingPathComponent(targetPath)).absoluteString
+    }
+}
+
+extension BaseURL {
+    public enum Service: String {
+        case api
+        case personalization
+    }
+    
+    public enum Location: String {
+        case `default` = ""
+        case usEast = "us-east-"
+        case europeWest = "eu-west-"
+        case singapore = "singapore-"
+    }
+}
+
+extension BaseURL: CustomStringConvertible {
+    public var description: String {
+        return url.absoluteString
+    }
+}
+
+extension Client {
+    static let placeholderURL = URL(string: "https://getstream.io").require()
 }
