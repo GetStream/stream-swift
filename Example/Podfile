@@ -4,11 +4,17 @@ inhibit_all_warnings!
 
 target 'GetStreamExample' do
   use_frameworks!
-  
-  pod 'GetStream', :path => '../'
-  
-  target 'GetStreamExampleTests' do
-    inherit! :search_paths
+  pod 'GetStream', :path => '..'
+  pod 'SwiftyJWT'
+end
+
+# For Swift 4.0 pods.
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == 'SwiftyCrypto' && target.name == 'SwiftyJWT'
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '4.0'
+      end
+    end
   end
-  
 end

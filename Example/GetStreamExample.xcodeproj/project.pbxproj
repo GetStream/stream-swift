@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3EDEE51E8BE89EDBD7060B70 /* Pods_GetStreamExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E913716C9ACCD484A58D213F /* Pods_GetStreamExampleTests.framework */; };
 		8AA8D73821931DDE008AB02E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D73721931DDE008AB02E /* AppDelegate.swift */; };
 		8AA8D73A21931DDE008AB02E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D73921931DDE008AB02E /* ViewController.swift */; };
 		8AA8D73D21931DDE008AB02E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D73B21931DDE008AB02E /* Main.storyboard */; };
@@ -29,7 +28,6 @@
 
 /* Begin PBXFileReference section */
 		05F3A64CF5519772138F8C76 /* Pods-GetStreamExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetStreamExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetStreamExample/Pods-GetStreamExample.release.xcconfig"; sourceTree = "<group>"; };
-		2746DEE8D5EAD18658275883 /* Pods-GetStreamExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetStreamExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetStreamExampleTests/Pods-GetStreamExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		8AA8D73421931DDE008AB02E /* GetStreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetStreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA8D73721931DDE008AB02E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AA8D73921931DDE008AB02E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +38,6 @@
 		8AA8D74821931DE0008AB02E /* GetStreamExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetStreamExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA8D74C21931DE0008AB02E /* GetStreamExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStreamExampleTests.swift; sourceTree = "<group>"; };
 		8AA8D74E21931DE0008AB02E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		92BFAB38AC36ECE6B796A618 /* Pods-GetStreamExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetStreamExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GetStreamExampleTests/Pods-GetStreamExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A457BC90953D8AEE12A83C30 /* Pods_GetStreamExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetStreamExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E913716C9ACCD484A58D213F /* Pods_GetStreamExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetStreamExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06FE4EDB539DC3BA6108E3A /* Pods-GetStreamExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetStreamExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GetStreamExample/Pods-GetStreamExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -59,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EDEE51E8BE89EDBD7060B70 /* Pods_GetStreamExampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,8 +118,6 @@
 			children = (
 				F06FE4EDB539DC3BA6108E3A /* Pods-GetStreamExample.debug.xcconfig */,
 				05F3A64CF5519772138F8C76 /* Pods-GetStreamExample.release.xcconfig */,
-				92BFAB38AC36ECE6B796A618 /* Pods-GetStreamExampleTests.debug.xcconfig */,
-				2746DEE8D5EAD18658275883 /* Pods-GetStreamExampleTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -154,7 +148,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8AA8D75421931DE0008AB02E /* Build configuration list for PBXNativeTarget "GetStreamExampleTests" */;
 			buildPhases = (
-				4980F04CBB39AFF8B1E6EB1E /* [CP] Check Pods Manifest.lock */,
 				8AA8D74421931DE0008AB02E /* Sources */,
 				8AA8D74521931DE0008AB02E /* Frameworks */,
 				8AA8D74621931DE0008AB02E /* Resources */,
@@ -228,28 +221,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4980F04CBB39AFF8B1E6EB1E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GetStreamExampleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		899EE50B003D8DB33DDBC4C9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,6 +235,8 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Require/Require.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyCrypto/SwiftyCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJWT/SwiftyJWT.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -274,6 +247,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Require.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJWT.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -510,7 +485,6 @@
 		};
 		8AA8D75521931DE0008AB02E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92BFAB38AC36ECE6B796A618 /* Pods-GetStreamExampleTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -531,7 +505,6 @@
 		};
 		8AA8D75621931DE0008AB02E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2746DEE8D5EAD18658275883 /* Pods-GetStreamExampleTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

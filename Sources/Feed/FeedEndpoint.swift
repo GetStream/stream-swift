@@ -16,7 +16,7 @@ enum FeedEndpoint {
 
 extension FeedEndpoint: TargetType {
     var baseURL: URL {
-        return Client.placeholderURL
+        return BaseURL.placeholderURL
     }
     
     var path: String {
@@ -48,7 +48,7 @@ extension FeedEndpoint: TargetType {
                 return .requestPlain
             }
             
-            return .requestParameters(parameters: pagination.parameters, encoding: JSONEncoding.default)
+            return .requestParameters(parameters: pagination.parameters, encoding: URLEncoding.default)
             
         case .add(activity: let activity, toFeed: _):
             return .requestPlain
@@ -63,7 +63,9 @@ extension FeedEndpoint: TargetType {
 // MARK: - Feed Pagination
 
 public enum FeedPagination {
-    /// Default limit is 25.
+    public static let defaultLimit = 25
+    
+    /// Default limit is 25. (Defined in `FeedPagination.defaultLimit`)
     case none
     
     /// The amount of activities requested from the APIs.
@@ -87,21 +89,35 @@ public enum FeedPagination {
     
     /// Parameters for a request.
     fileprivate var parameters: [String: Any] {
+        var addLimit: Int = FeedPagination.defaultLimit
+        var params: [String: Any] = [:]
+        
         switch self {
         case .none:
             return [:]
         case .limit(let limit):
-            return ["limit": limit]
+            addLimit = limit
         case let .offset(offset, limit):
-            return ["limit": limit, "offset": offset]
+            params["offset"] = offset
+            addLimit = limit
         case let .greaterThan(id, limit):
-            return ["limit": limit, "id_gt": id]
+            params["id_gt"] = id
+            addLimit = limit
         case let .greaterThanOrEqual(id, limit):
-            return ["limit": limit, "id_gte": id]
+            params["id_gte"] = id
+            addLimit = limit
         case let .lessThan(id, limit):
-            return ["limit": limit, "id_lt": id]
+            params["id_lt"] = id
+            addLimit = limit
         case let .lessThanOrEqual(id, limit):
-            return ["limit": limit, "id_lte": id]
+            params["id_lte"] = id
+            addLimit = limit
         }
+        
+        if addLimit != FeedPagination.defaultLimit {
+            params["limit"] = addLimit
+        }
+        
+        return params
     }
 }

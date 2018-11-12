@@ -42,8 +42,8 @@ extension Feed {
         }
         
         let cancelling = client.request(endpoint: FeedEndpoint.feed(feedId, pagination: pagination)) { [self] result in
-            if case .success(let json) = result {
-                self.parseFeed(json, completion: completion)
+            if case .success(let data) = result {
+                self.parseFeed(data, completion: completion)
             } else if case .failure(let error) = result {
                 completion(.failure(error))
             }
@@ -53,8 +53,45 @@ extension Feed {
         
         return cancelling
     }
+}
+
+// MARK: - Parsing
+
+extension Feed {
+    private func parseFeed(_ data: Data, completion: @escaping Completion<Activity>) {
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+            let container = try decoder.decode(FeedResultsContainer.self, from: data)
+            completion(.success(container.results))
+        } catch {
+            completion(.failure(.jsonDecode(error)))
+        }
+    }
+}
+
+extension DateFormatter {
+    static let iso8601Full: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+}
+
+fileprivate struct FeedResultsContainer: Decodable {
+    enum CodingKey: String, Swift.CodingKey {
+        case results
+        case next
+        case duration
+    }
     
-    private func parseFeed(_ json: JSON, completion: @escaping Completion<Activity>) {
-        
+    let results: [Activity]
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKey.self)
+        results = try container.decode([Activity].self, forKey: .results)
     }
 }
