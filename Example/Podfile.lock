@@ -10,9 +10,13 @@ PODS:
     - Result (~> 3.0)
   - Require (2.0.0)
   - Result (3.2.4)
+  - SwiftyCrypto (0.0.1)
+  - SwiftyJWT (0.0.3):
+    - SwiftyCrypto (~> 0.0.1)
 
 DEPENDENCIES:
-  - GetStream (from `../`)
+  - GetStream (from `..`)
+  - SwiftyJWT
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -20,10 +24,12 @@ SPEC REPOS:
     - Moya
     - Require
     - Result
+    - SwiftyCrypto
+    - SwiftyJWT
 
 EXTERNAL SOURCES:
   GetStream:
-    :path: "../"
+    :path: ".."
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -31,7 +37,9 @@ SPEC CHECKSUMS:
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Require: f93abc18dda985f665465cf027cea7166455fb28
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  SwiftyCrypto: ab59cdb153a7ca99b657fa8d9ebd2ebbd7694bbe
+  SwiftyJWT: e46e8457138c6567a1a9ff05a6efc8ef678c1187
 
-PODFILE CHECKSUM: 3af22fae3f4f727a1703ea1dca7e9364ffc61afd
+PODFILE CHECKSUM: 10fad368215e0838a8d89e904c917874eecfe6c4
 
 COCOAPODS: 1.5.3

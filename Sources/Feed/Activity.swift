@@ -8,7 +8,17 @@
 
 import Foundation
 
-open class Activity {
+open class Activity: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case actor
+        case verb
+        case object
+        case foreignId = "foreign_id"
+        case time
+    }
+    /// The Stream id of the activity.
+    let id: String?
     /// The actor performing the activity.
     let actor: String
     /// The verb of the activity.
@@ -22,7 +32,7 @@ open class Activity {
     
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
-    let feeds: [FeedId]
+//    let feeds: [FeedId]
     
     /// Create an activity.
     ///
@@ -34,12 +44,13 @@ open class Activity {
     ///     - time: a time of the activity, isoformat. Default is the current time.
     ///     - toFeeds: an array allows you to specify a list of feeds to which the activity should be copied.
     public init(actor: String, verb: String, object: String, foreignId: String? = nil, time: Date? = nil, toFeeds: [FeedId] = []) {
+        id = nil
         self.actor = actor
         self.verb = verb
         self.object = object
         self.foreignId = foreignId
         self.time = time
-        feeds = toFeeds
+//        feeds = toFeeds
     }
 }
 

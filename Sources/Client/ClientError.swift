@@ -11,13 +11,9 @@ import Foundation
 public enum ClientError: Error {
     case unknown
     case jsonInvalid
+    case jsonDecode(_ error: Error)
     case network(_ description: String)
-    
-    // Server side errors and warnings:
-    
-    case serverUnknown(_ info: Info)
-    case notAllowed(_ info: Info)
-    case feedDoesNotExists(_ info: Info)
+    case server(_ info: Info)
     
     init(json: JSON) {
         guard let detail = json["detail"] as? String,
@@ -30,13 +26,7 @@ public enum ClientError: Error {
         }
         
         let info = Info(info: detail, code: code, statusCode: statusCode, exception: exception, duration: duration)
-        
-        switch code {
-        case 16:
-            self = .feedDoesNotExists(info)
-        default:
-            self = .serverUnknown(info)
-        }
+        self = .server(info)
     }
 }
 
