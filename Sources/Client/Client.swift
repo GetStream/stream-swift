@@ -20,6 +20,9 @@ public final class Client {
     private let token: Token
     private let baseURL: BaseURL
     
+    /// The last rate limit response.
+    public var rateLimit: RateLimit?
+    
     /// Create a GetStream client for making network requests.
     ///
     /// - Parameters:
@@ -104,8 +107,10 @@ extension Client {
 extension Client {
     /// Make a request with a given endpoint.
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Moya.Cancellable {
-        return moyaProvider.request(MultiTarget(endpoint)) { result in
+        return moyaProvider.request(MultiTarget(endpoint)) { [weak self] result in
             if case .success(let response) = result {
+                self?.rateLimit = RateLimit(response: response)
+                
                 do {
                     if let json = try response.mapJSON() as? JSON {
                         if json["exception"] != nil {
@@ -121,9 +126,42 @@ extension Client {
                 } catch {
                     completion(.failure(.unknown))
                 }
+                
             } else if case .failure(let moyaError) = result {
                 completion(.failure(moyaError.clientError))
             }
         }
+    }
+}
+
+// MARK: - Rate Limit
+
+extension Client {
+    public struct RateLimit {
+        public let limit: Int
+        public let remaining: Int
+        public let resetDate: Date
+        
+        init?(response: Response) {
+            guard let headers = response.response?.allHeaderFields as? [String : Any],
+                let limitString = headers["x-ratelimit-limit"] as? String,
+                let limit = Int(limitString),
+                let remainingString = headers["x-ratelimit-remaining"] as? String,
+                let remaining = Int(remainingString),
+                let resetString = headers["x-ratelimit-reset"] as? String,
+                let resetTimeInterval = TimeInterval(resetString) else {
+                return nil
+            }
+            
+            self.limit = limit
+            self.remaining = remaining
+            resetDate = Date(timeIntervalSince1970: resetTimeInterval)
+        }
+    }
+}
+
+extension Client.RateLimit: CustomStringConvertible {
+    public var description: String {
+        return "Limit rate: \(remaining)/\(limit). Reset at \(resetDate)"
     }
 }
