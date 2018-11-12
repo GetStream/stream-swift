@@ -59,6 +59,10 @@
 		8A6284102199B4630002913D /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
 		8A6284112199B4630002913D /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
 		8A6284122199B4630002913D /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
+		8A6284142199CF9C0002913D /* FeedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedGroup.swift */; };
+		8A6284152199CF9C0002913D /* FeedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedGroup.swift */; };
+		8A6284162199CF9C0002913D /* FeedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedGroup.swift */; };
+		8A6284172199CF9C0002913D /* FeedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedGroup.swift */; };
 		8AA8D766219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
 		8AA8D767219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
 		8AA8D768219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
@@ -110,6 +114,7 @@
 		8A6283DF2199AEE20002913D /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		8A6283E02199AEE20002913D /* ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		8A62840E2199B4630002913D /* Token+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+Generator.swift"; sourceTree = "<group>"; };
+		8A6284132199CF9C0002913D /* FeedGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedGroup.swift; sourceTree = "<group>"; };
 		8AA8D765219329EF008AB02E /* GetStream.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetStream.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AD2FAA261CD0B6D800659CF4 /* GetStream.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStream.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* GetStreamTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStreamTests.plist; sourceTree = "<group>"; };
@@ -261,6 +266,7 @@
 				8A6283DA2199AEE20002913D /* FeedEndpoint.swift */,
 				8A6283DB2199AEE20002913D /* Activity.swift */,
 				8A6283DC2199AEE20002913D /* Feed.swift */,
+				8A6284132199CF9C0002913D /* FeedGroup.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -583,6 +589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A6284142199CF9C0002913D /* FeedGroup.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
@@ -610,6 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A6284162199CF9C0002913D /* FeedGroup.swift in Sources */,
 				8A6283F72199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8A6283FF2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283EB2199AEE20002913D /* Codable+Extensions.swift in Sources */,
@@ -629,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A6284172199CF9C0002913D /* FeedGroup.swift in Sources */,
 				8A6283F82199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8A6284002199AEE20002913D /* Feed.swift in Sources */,
 				8A6283EC2199AEE20002913D /* Codable+Extensions.swift in Sources */,
@@ -648,6 +657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A6284152199CF9C0002913D /* FeedGroup.swift in Sources */,
 				8A6283F62199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8A6283FE2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283EA2199AEE20002913D /* Codable+Extensions.swift in Sources */,

@@ -17,12 +17,12 @@ class ViewController: UIViewController {
         guard let token = Token(secret: "wwzpjxsththuh56373u65rnw9bcjqxb6jxfhu5ux33b6xzyuw6vrdp9bjxg247u6") else {
             return
         }
-        
+
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token)
-        let feedId = FeedId(feedSlug: "user", userId: "eric")
-        var feed = Feed(feedId, client: client)
+        let feedGroup = FeedGroup(feedSlug: "user", userId: "eric")
+        var feed = Feed(feedGroup, client: client)
         
-        feed.feed(pagination: .limit(2)) {
+        feed.feed {
             print($0)
         }
     }

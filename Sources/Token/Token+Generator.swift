@@ -11,13 +11,13 @@ import SwiftyJWT
 
 extension Token {
     /// Generate the Stream token with a given secret.
-    public init?(secret: String, resource: String = "*", permission: Permission = .all, feedId: FeedId? = nil) {
+    public init?(secret: String, resource: String = "*", permission: Permission = .all, feedGroup: FeedGroup? = nil) {
         let algorithm = JWTAlgorithm.hs256(secret)
         var payload = JWTPayload()
         
         payload.customFields = ["resource": EncodableValue(value: resource),
                                 "action": EncodableValue(value: permission.rawValue),
-                                "feed_id": EncodableValue(value: feedId?.feedSlug.appending(feedId?.userId ?? "") ?? "*")]
+                                "feed_id": EncodableValue(value: feedGroup?.feedSlug.appending(feedGroup?.userId ?? "") ?? "*")]
         
         let jwt = JWT(payload: payload, algorithm: algorithm)
         
