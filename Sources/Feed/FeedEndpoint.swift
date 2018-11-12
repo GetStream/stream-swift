@@ -72,7 +72,7 @@ public enum FeedPagination {
     case limit(_ limit: Int)
     
     /// The offset of requesting activities.
-    /// - note: Using `lessThan` or `lessThanOrEqual` for pagination is preferable to using `offset`.
+    /// - Note: Using `lessThan` or `lessThanOrEqual` for pagination is preferable to using `offset`.
     case offset(_ offset: Int, limit: Int)
     
     /// Filter the feed on ids greater than the given value.

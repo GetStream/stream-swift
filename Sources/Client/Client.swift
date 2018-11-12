@@ -22,7 +22,7 @@ public final class Client {
     
     /// Create a GetStream client for making network requests.
     ///
-    /// - parameters:
+    /// - Parameters:
     ///     - apiKey: the Stream API key
     ///     - appId: the Stream APP id
     ///     - token: the client token
@@ -67,7 +67,7 @@ extension Client {
             
         case .requestParameters(let parameters, let encoding):
             if encoding is URLEncoding {
-                task = .requestParameters(parameters: parameters.mergeFirst(with: appKeyParameter), encoding: encoding)
+                task = .requestParameters(parameters: parameters.merged(with: appKeyParameter), encoding: encoding)
             } else {
                 task = .requestCompositeParameters(bodyParameters: parameters,
                                                    bodyEncoding: encoding,
@@ -75,15 +75,15 @@ extension Client {
             }
             
         case .requestCompositeData(let bodyData, let parameters):
-            task = .requestCompositeData(bodyData: bodyData, urlParameters: parameters.mergeFirst(with: appKeyParameter) )
+            task = .requestCompositeData(bodyData: bodyData, urlParameters: parameters.merged(with: appKeyParameter) )
             
         case .requestCompositeParameters(let bodyParameters, let bodyEncoding, let parameters):
             task = .requestCompositeParameters(bodyParameters: bodyParameters,
                                                bodyEncoding: bodyEncoding,
-                                               urlParameters: parameters.mergeFirst(with: appKeyParameter))
+                                               urlParameters: parameters.merged(with: appKeyParameter))
             
         case let .uploadCompositeMultipart(data, parameters):
-            task = .uploadCompositeMultipart(data, urlParameters: parameters.mergeFirst(with: appKeyParameter))
+            task = .uploadCompositeMultipart(data, urlParameters: parameters.merged(with: appKeyParameter))
             
         default:
             task = target.task
@@ -96,14 +96,6 @@ extension Client {
             task: task,
             httpHeaderFields: target.headers
         )
-    }
-}
-
-fileprivate extension Dictionary {
-    func mergeFirst(with other: Dictionary) -> Dictionary {
-        var dict = self
-        dict.merge(other) { first, _ in first }
-        return dict
     }
 }
 

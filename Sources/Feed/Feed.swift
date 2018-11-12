@@ -31,10 +31,11 @@ public struct Feed {
 extension Feed {
     /// Retrieve feed activities.
     ///
-    /// - parameters:
+    /// - Parameters:
     ///     - pagination: a pagination options
     ///     - completion: a completion handler
-    /// - returns: a cancellable object to cancel the request
+    /// - Returns:
+    ///     - a cancellable object to cancel the request
     @discardableResult
     public mutating func feed(pagination: FeedPagination = .none, completion: @escaping Completion<Activity>) -> Cancellable {
         if let feedCancelling = feedCancelling, !feedCancelling.isCancelled {

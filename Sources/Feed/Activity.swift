@@ -36,7 +36,7 @@ open class Activity: Codable {
     
     /// Create an activity.
     ///
-    /// - parameters:
+    /// - Parameters:
     ///     - actor: the actor performing the activity.
     ///     - verb: the verb of the activity.
     ///     - object: the object of the activity.

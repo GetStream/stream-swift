@@ -15,7 +15,8 @@ public struct BaseURL {
     let url: URL
     
     public init(location: Location = .default, service: Service = .api, version: String = "1.0") {
-        url = URL(string: "https://\(location)\(service).stream-io-api.com/\(service)/v\(version)/").require()
+        url = URL(string: "https://\(location.rawValue)\(service.rawValue).stream-io-api.com/\(service.rawValue)/v\(version)/")
+            .require()
     }
     
     public init(customURL: URL) {
