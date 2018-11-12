@@ -10,8 +10,8 @@ import Foundation
 import Moya
 
 enum FeedEndpoint {
-    case feed(_ feedId: FeedId, pagination: FeedPagination)
-    case add(activity: Activity, toFeed: FeedId)
+    case feed(_ feedGroup: FeedGroup, pagination: FeedPagination)
+    case add(activity: Activity, toFeed: FeedGroup)
 }
 
 extension FeedEndpoint: TargetType {
@@ -21,10 +21,10 @@ extension FeedEndpoint: TargetType {
     
     var path: String {
         switch self {
-        case .feed(let feedId, _):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
-        case .add(activity: _, toFeed: let feedId):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
+        case .feed(let feedGroup, _):
+            return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/"
+        case .add(activity: _, toFeed: let feedGroup):
+            return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/"
         }
     }
     

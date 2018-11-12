@@ -10,26 +10,14 @@ import Foundation
 import Moya
 import Result
 
-public struct FeedId {
-    /// The name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline.
-    let feedSlug: String
-    /// The owner of the given feed.
-    let userId: String
-    
-    public init(feedSlug: String, userId: String) {
-        self.feedSlug = feedSlug
-        self.userId = userId
-    }
-}
-
 public struct Feed {
-    private let feedId: FeedId
+    private let feedGroup: FeedGroup
     private let client: Client
     
     private var feedCancelling: Moya.Cancellable?
     
-    public init(_ feedId: FeedId, client: Client) {
-        self.feedId = feedId
+    public init(_ feedGroup: FeedGroup, client: Client) {
+        self.feedGroup = feedGroup
         self.client = client
     }
 }
@@ -50,7 +38,7 @@ extension Feed {
             feedCancelling.cancel()
         }
         
-        let cancelling = client.request(endpoint: FeedEndpoint.feed(feedId, pagination: pagination)) { [self] result in
+        let cancelling = client.request(endpoint: FeedEndpoint.feed(feedGroup, pagination: pagination)) { [self] result in
             if case .success(let data) = result {
                 self.parseFeed(data, completion: completion)
             } else if case .failure(let error) = result {
@@ -67,7 +55,8 @@ extension Feed {
 // MARK: - Parsing
 
 extension Feed {
-    private func parseFeed(_ data: Data, completion: @escaping Completion<Activity>) {
+    // FIXME: private
+    public func parseFeed(_ data: Data, completion: @escaping Completion<Activity>) {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .stream
