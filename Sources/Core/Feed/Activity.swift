@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class Activity: Codable {
+open class Activity: Codable, CustomStringConvertible {
     private enum CodingKeys: String, CodingKey {
         case id
         case actor
@@ -19,7 +19,7 @@ open class Activity: Codable {
     }
     
     /// The Stream id of the activity.
-    let id: UUID?
+    let id: UUID
     /// The actor performing the activity.
     let actor: String
     /// The verb of the activity.
@@ -45,7 +45,7 @@ open class Activity: Codable {
     ///     - time: a time of the activity, isoformat. Default is the current time.
     ///     - toFeeds: an array allows you to specify a list of feeds to which the activity should be copied.
     public init(actor: String, verb: String, object: String, foreignId: String? = nil, time: Date? = nil, toFeeds: [FeedGroup] = []) {
-        id = nil
+        id = UUID()
         self.actor = actor
         self.verb = verb
         self.object = object
@@ -53,10 +53,8 @@ open class Activity: Codable {
         self.time = time
         feeds = toFeeds
     }
-}
-
-extension Activity: CustomStringConvertible {
-    public var description: String {
-        return "\(id) \(actor) \(verb) \(object) (\(foreignId ?? "No foreignId")) at \(time?.description ?? "now")"
+    
+    open var description: String {
+        return "\(type(of: self))<\(id)> foreignId: \(foreignId), \(actor) \(verb) \(object) at \(time?.description ?? "n/a")"
     }
 }

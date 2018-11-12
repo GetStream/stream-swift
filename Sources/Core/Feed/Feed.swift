@@ -33,7 +33,9 @@ extension Feed {
     /// - Returns:
     ///     - a cancellable object to cancel the request
     @discardableResult
-    public mutating func feed(pagination: FeedPagination = .none, completion: @escaping Completion<Activity>) -> Cancellable {
+    public mutating func feed<T: Activity>(of type: T.Type,
+                                           pagination: FeedPagination = .none,
+                                           completion: @escaping Completion<T>) -> Cancellable {
         if let feedCancelling = feedCancelling, !feedCancelling.isCancelled {
             feedCancelling.cancel()
         }
@@ -55,12 +57,11 @@ extension Feed {
 // MARK: - Parsing
 
 extension Feed {
-    // FIXME: private
-    public func parseFeed(_ data: Data, completion: @escaping Completion<Activity>) {
+    private func parseFeed<T: Decodable>(_ data: Data, completion: @escaping Completion<T>) {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .stream
-            let container = try decoder.decode(FeedResultsContainer.self, from: data)
+            let container = try decoder.decode(FeedResultsContainer<T>.self, from: data)
             completion(.success(container.results))
         } catch {
             completion(.failure(.jsonDecode(error)))
@@ -68,17 +69,17 @@ extension Feed {
     }
 }
 
-fileprivate struct FeedResultsContainer: Decodable {
+fileprivate struct FeedResultsContainer<T: Decodable>: Decodable {
     enum CodingKey: String, Swift.CodingKey {
         case results
         case next
         case duration
     }
     
-    let results: [Activity]
+    let results: [T]
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKey.self)
-        results = try container.decode([Activity].self, forKey: .results)
+        results = try container.decode([T].self, forKey: .results)
     }
 }
