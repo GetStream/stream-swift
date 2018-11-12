@@ -22,8 +22,10 @@ class ViewController: UIViewController {
         let feedGroup = FeedGroup(feedSlug: "user", userId: "eric")
         var feed = Feed(feedGroup, client: client)
         
-        feed.feed {
-            print($0)
+        feed.feed(of: ExampleActivity.self) { result in
+            if case .success(let activities) = result {
+                print(activities)
+            }
         }
     }
 }
