@@ -8,49 +8,57 @@
 
 /* Begin PBXBuildFile section */
 		52D6D9871BEFF229002C0205 /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* GetStream.framework */; };
-		8933C7851EB5B820000D00A4 /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* GetStream.swift */; };
-		8933C7861EB5B820000D00A4 /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* GetStream.swift */; };
-		8933C7871EB5B820000D00A4 /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* GetStream.swift */; };
-		8933C7881EB5B820000D00A4 /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* GetStream.swift */; };
 		8933C78E1EB5B82C000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
 		8933C7901EB5B82D000D00A4 /* GetStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */; };
-		8A08EEC32194450B006BB9B8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08EEC22194450B006BB9B8 /* Activity.swift */; };
-		8A08EEC42194450B006BB9B8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08EEC22194450B006BB9B8 /* Activity.swift */; };
-		8A08EEC52194450B006BB9B8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08EEC22194450B006BB9B8 /* Activity.swift */; };
-		8A08EEC62194450B006BB9B8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A08EEC22194450B006BB9B8 /* Activity.swift */; };
-		8A21E43D2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */; };
-		8A21E43E2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */; };
-		8A21E43F2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */; };
-		8A21E4402194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */; };
-		8A3B316B2195B55E0010EE18 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B316A2195B55E0010EE18 /* ClientError.swift */; };
-		8A3B316C2195B55E0010EE18 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B316A2195B55E0010EE18 /* ClientError.swift */; };
-		8A3B316D2195B55E0010EE18 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B316A2195B55E0010EE18 /* ClientError.swift */; };
-		8A3B316E2195B55E0010EE18 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B316A2195B55E0010EE18 /* ClientError.swift */; };
-		8A3B31702195B59B0010EE18 /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B316F2195B59B0010EE18 /* MoyaError+ClientError.swift */; };
-		8A3B31712195B59B0010EE18 /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B316F2195B59B0010EE18 /* MoyaError+ClientError.swift */; };
-		8A3B31722195B59B0010EE18 /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B316F2195B59B0010EE18 /* MoyaError+ClientError.swift */; };
-		8A3B31732195B59B0010EE18 /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B316F2195B59B0010EE18 /* MoyaError+ClientError.swift */; };
-		8A3B3176219973220010EE18 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3175219973220010EE18 /* BaseURL.swift */; };
-		8A3B3177219973220010EE18 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3175219973220010EE18 /* BaseURL.swift */; };
-		8A3B3178219973220010EE18 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3175219973220010EE18 /* BaseURL.swift */; };
-		8A3B3179219973220010EE18 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B3175219973220010EE18 /* BaseURL.swift */; };
-		8A3B317B219973840010EE18 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B317A219973840010EE18 /* Client.swift */; };
-		8A3B317C219973840010EE18 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B317A219973840010EE18 /* Client.swift */; };
-		8A3B317D219973840010EE18 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B317A219973840010EE18 /* Client.swift */; };
-		8A3B317E219973840010EE18 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B317A219973840010EE18 /* Client.swift */; };
-		8A6E0B51219984D90039A14F /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6E0B50219984D90039A14F /* Dictionary+Extensions.swift */; };
-		8A6E0B52219984D90039A14F /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6E0B50219984D90039A14F /* Dictionary+Extensions.swift */; };
-		8A6E0B53219984D90039A14F /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6E0B50219984D90039A14F /* Dictionary+Extensions.swift */; };
-		8A6E0B54219984D90039A14F /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6E0B50219984D90039A14F /* Dictionary+Extensions.swift */; };
-		8A82518721959EC700DEE424 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A82518621959EC700DEE424 /* Feed.swift */; };
-		8A82518821959EC700DEE424 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A82518621959EC700DEE424 /* Feed.swift */; };
-		8A82518921959EC700DEE424 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A82518621959EC700DEE424 /* Feed.swift */; };
-		8A82518A21959EC700DEE424 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A82518621959EC700DEE424 /* Feed.swift */; };
-		8AA8D7612193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
-		8AA8D7622193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
-		8AA8D7632193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
-		8AA8D7642193299C008AB02E /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D7602193299C008AB02E /* FeedEndpoint.swift */; };
+		8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */; };
+		8A6283E22199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */; };
+		8A6283E32199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */; };
+		8A6283E42199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */; };
+		8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */; };
+		8A6283E62199AEE20002913D /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */; };
+		8A6283E72199AEE20002913D /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */; };
+		8A6283E82199AEE20002913D /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */; };
+		8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D62199AEE20002913D /* Codable+Extensions.swift */; };
+		8A6283EA2199AEE20002913D /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D62199AEE20002913D /* Codable+Extensions.swift */; };
+		8A6283EB2199AEE20002913D /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D62199AEE20002913D /* Codable+Extensions.swift */; };
+		8A6283EC2199AEE20002913D /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D62199AEE20002913D /* Codable+Extensions.swift */; };
+		8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */; };
+		8A6283EE2199AEE20002913D /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */; };
+		8A6283EF2199AEE20002913D /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */; };
+		8A6283F02199AEE20002913D /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */; };
+		8A6283F12199AEE20002913D /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D82199AEE20002913D /* GetStream.swift */; };
+		8A6283F22199AEE20002913D /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D82199AEE20002913D /* GetStream.swift */; };
+		8A6283F32199AEE20002913D /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D82199AEE20002913D /* GetStream.swift */; };
+		8A6283F42199AEE20002913D /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D82199AEE20002913D /* GetStream.swift */; };
+		8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DA2199AEE20002913D /* FeedEndpoint.swift */; };
+		8A6283F62199AEE20002913D /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DA2199AEE20002913D /* FeedEndpoint.swift */; };
+		8A6283F72199AEE20002913D /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DA2199AEE20002913D /* FeedEndpoint.swift */; };
+		8A6283F82199AEE20002913D /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DA2199AEE20002913D /* FeedEndpoint.swift */; };
+		8A6283F92199AEE20002913D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DB2199AEE20002913D /* Activity.swift */; };
+		8A6283FA2199AEE20002913D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DB2199AEE20002913D /* Activity.swift */; };
+		8A6283FB2199AEE20002913D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DB2199AEE20002913D /* Activity.swift */; };
+		8A6283FC2199AEE20002913D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DB2199AEE20002913D /* Activity.swift */; };
+		8A6283FD2199AEE20002913D /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DC2199AEE20002913D /* Feed.swift */; };
+		8A6283FE2199AEE20002913D /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DC2199AEE20002913D /* Feed.swift */; };
+		8A6283FF2199AEE20002913D /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DC2199AEE20002913D /* Feed.swift */; };
+		8A6284002199AEE20002913D /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DC2199AEE20002913D /* Feed.swift */; };
+		8A6284012199AEE20002913D /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DE2199AEE20002913D /* BaseURL.swift */; };
+		8A6284022199AEE20002913D /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DE2199AEE20002913D /* BaseURL.swift */; };
+		8A6284032199AEE20002913D /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DE2199AEE20002913D /* BaseURL.swift */; };
+		8A6284042199AEE20002913D /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DE2199AEE20002913D /* BaseURL.swift */; };
+		8A6284052199AEE20002913D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DF2199AEE20002913D /* Client.swift */; };
+		8A6284062199AEE20002913D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DF2199AEE20002913D /* Client.swift */; };
+		8A6284072199AEE20002913D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DF2199AEE20002913D /* Client.swift */; };
+		8A6284082199AEE20002913D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DF2199AEE20002913D /* Client.swift */; };
+		8A6284092199AEE20002913D /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283E02199AEE20002913D /* ClientError.swift */; };
+		8A62840A2199AEE20002913D /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283E02199AEE20002913D /* ClientError.swift */; };
+		8A62840B2199AEE20002913D /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283E02199AEE20002913D /* ClientError.swift */; };
+		8A62840C2199AEE20002913D /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283E02199AEE20002913D /* ClientError.swift */; };
+		8A62840F2199B4630002913D /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
+		8A6284102199B4630002913D /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
+		8A6284112199B4630002913D /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
+		8A6284122199B4630002913D /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
 		8AA8D766219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
 		8AA8D767219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
 		8AA8D768219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
@@ -89,17 +97,19 @@
 		52D6D9E21BEFFF6E002C0205 /* GetStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GetStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9F01BEFFFBE002C0205 /* GetStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GetStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6DA0F1BF000BD002C0205 /* GetStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GetStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8933C7841EB5B820000D00A4 /* GetStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStream.swift; sourceTree = "<group>"; };
 		8933C7891EB5B82A000D00A4 /* GetStreamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStreamTests.swift; sourceTree = "<group>"; };
-		8A08EEC22194450B006BB9B8 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
-		8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationMoyaPlugin.swift; sourceTree = "<group>"; };
-		8A3B316A2195B55E0010EE18 /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
-		8A3B316F2195B59B0010EE18 /* MoyaError+ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaError+ClientError.swift"; sourceTree = "<group>"; };
-		8A3B3175219973220010EE18 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
-		8A3B317A219973840010EE18 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
-		8A6E0B50219984D90039A14F /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
-		8A82518621959EC700DEE424 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
-		8AA8D7602193299C008AB02E /* FeedEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedEndpoint.swift; path = Sources/Feed/FeedEndpoint.swift; sourceTree = SOURCE_ROOT; };
+		8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationMoyaPlugin.swift; sourceTree = "<group>"; };
+		8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaError+ClientError.swift"; sourceTree = "<group>"; };
+		8A6283D62199AEE20002913D /* Codable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
+		8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
+		8A6283D82199AEE20002913D /* GetStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStream.swift; sourceTree = "<group>"; };
+		8A6283DA2199AEE20002913D /* FeedEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedEndpoint.swift; sourceTree = "<group>"; };
+		8A6283DB2199AEE20002913D /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		8A6283DC2199AEE20002913D /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		8A6283DE2199AEE20002913D /* BaseURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		8A6283DF2199AEE20002913D /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		8A6283E02199AEE20002913D /* ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
+		8A62840E2199B4630002913D /* Token+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+Generator.swift"; sourceTree = "<group>"; };
 		8AA8D765219329EF008AB02E /* GetStream.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetStream.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AD2FAA261CD0B6D800659CF4 /* GetStream.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStream.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* GetStreamTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStreamTests.plist; sourceTree = "<group>"; };
@@ -200,11 +210,8 @@
 		8933C7811EB5B7E0000D00A4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8933C7841EB5B820000D00A4 /* GetStream.swift */,
-				8A3B31742199730F0010EE18 /* Client */,
-				8AA8D76A21932A1F008AB02E /* Feed */,
-				8A21E43B2194643B00339B0A /* Moya */,
-				8A6E0B4F219984B50039A14F /* Extensions */,
+				8A6283D12199AEE20002913D /* Core */,
+				8A62840D2199B43F0002913D /* Token */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -218,41 +225,62 @@
 			path = Tests/GetStreamTests;
 			sourceTree = "<group>";
 		};
-		8A21E43B2194643B00339B0A /* Moya */ = {
+		8A6283D12199AEE20002913D /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8A21E43C2194645200339B0A /* AuthorizationMoyaPlugin.swift */,
-				8A3B316F2195B59B0010EE18 /* MoyaError+ClientError.swift */,
+				8A6283D82199AEE20002913D /* GetStream.swift */,
+				8A6283DD2199AEE20002913D /* Client */,
+				8A6283D92199AEE20002913D /* Feed */,
+				8A6283D22199AEE20002913D /* Moya */,
+				8A6283D52199AEE20002913D /* Extensions */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8A6283D22199AEE20002913D /* Moya */ = {
+			isa = PBXGroup;
+			children = (
+				8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */,
+				8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */,
 			);
 			path = Moya;
 			sourceTree = "<group>";
 		};
-		8A3B31742199730F0010EE18 /* Client */ = {
+		8A6283D52199AEE20002913D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8A3B317A219973840010EE18 /* Client.swift */,
-				8A3B316A2195B55E0010EE18 /* ClientError.swift */,
-				8A3B3175219973220010EE18 /* BaseURL.swift */,
-			);
-			path = Client;
-			sourceTree = "<group>";
-		};
-		8A6E0B4F219984B50039A14F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8A6E0B50219984D90039A14F /* Dictionary+Extensions.swift */,
+				8A6283D62199AEE20002913D /* Codable+Extensions.swift */,
+				8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8AA8D76A21932A1F008AB02E /* Feed */ = {
+		8A6283D92199AEE20002913D /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				8A82518621959EC700DEE424 /* Feed.swift */,
-				8AA8D7602193299C008AB02E /* FeedEndpoint.swift */,
-				8A08EEC22194450B006BB9B8 /* Activity.swift */,
+				8A6283DA2199AEE20002913D /* FeedEndpoint.swift */,
+				8A6283DB2199AEE20002913D /* Activity.swift */,
+				8A6283DC2199AEE20002913D /* Feed.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		8A6283DD2199AEE20002913D /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				8A6283DE2199AEE20002913D /* BaseURL.swift */,
+				8A6283DF2199AEE20002913D /* Client.swift */,
+				8A6283E02199AEE20002913D /* ClientError.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		8A62840D2199B43F0002913D /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				8A62840E2199B4630002913D /* Token+Generator.swift */,
+			);
+			path = Token;
 			sourceTree = "<group>";
 		};
 		DD7502721C68FC1B006590AF /* Frameworks */ = {
@@ -555,16 +583,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3B31702195B59B0010EE18 /* MoyaError+ClientError.swift in Sources */,
-				8A08EEC32194450B006BB9B8 /* Activity.swift in Sources */,
-				8A82518721959EC700DEE424 /* Feed.swift in Sources */,
-				8AA8D7612193299C008AB02E /* FeedEndpoint.swift in Sources */,
-				8A3B316B2195B55E0010EE18 /* ClientError.swift in Sources */,
-				8A21E43D2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */,
-				8A3B3176219973220010EE18 /* BaseURL.swift in Sources */,
-				8A6E0B51219984D90039A14F /* Dictionary+Extensions.swift in Sources */,
-				8933C7851EB5B820000D00A4 /* GetStream.swift in Sources */,
-				8A3B317B219973840010EE18 /* Client.swift in Sources */,
+				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
+				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
+				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
+				8A62840F2199B4630002913D /* Token+Generator.swift in Sources */,
+				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
+				8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
+				8A6284092199AEE20002913D /* ClientError.swift in Sources */,
+				8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */,
+				8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
+				8A6283F12199AEE20002913D /* GetStream.swift in Sources */,
+				8A6284052199AEE20002913D /* Client.swift in Sources */,
+				8A6284012199AEE20002913D /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,16 +610,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3B31722195B59B0010EE18 /* MoyaError+ClientError.swift in Sources */,
-				8A08EEC52194450B006BB9B8 /* Activity.swift in Sources */,
-				8A82518921959EC700DEE424 /* Feed.swift in Sources */,
-				8AA8D7632193299C008AB02E /* FeedEndpoint.swift in Sources */,
-				8A3B316D2195B55E0010EE18 /* ClientError.swift in Sources */,
-				8A21E43F2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */,
-				8A3B3178219973220010EE18 /* BaseURL.swift in Sources */,
-				8A6E0B53219984D90039A14F /* Dictionary+Extensions.swift in Sources */,
-				8933C7871EB5B820000D00A4 /* GetStream.swift in Sources */,
-				8A3B317D219973840010EE18 /* Client.swift in Sources */,
+				8A6283F72199AEE20002913D /* FeedEndpoint.swift in Sources */,
+				8A6283FF2199AEE20002913D /* Feed.swift in Sources */,
+				8A6283EB2199AEE20002913D /* Codable+Extensions.swift in Sources */,
+				8A6284112199B4630002913D /* Token+Generator.swift in Sources */,
+				8A6283FB2199AEE20002913D /* Activity.swift in Sources */,
+				8A6283E72199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
+				8A62840B2199AEE20002913D /* ClientError.swift in Sources */,
+				8A6283E32199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */,
+				8A6283EF2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
+				8A6283F32199AEE20002913D /* GetStream.swift in Sources */,
+				8A6284072199AEE20002913D /* Client.swift in Sources */,
+				8A6284032199AEE20002913D /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,16 +629,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3B31732195B59B0010EE18 /* MoyaError+ClientError.swift in Sources */,
-				8A08EEC62194450B006BB9B8 /* Activity.swift in Sources */,
-				8A82518A21959EC700DEE424 /* Feed.swift in Sources */,
-				8AA8D7642193299C008AB02E /* FeedEndpoint.swift in Sources */,
-				8A3B316E2195B55E0010EE18 /* ClientError.swift in Sources */,
-				8A21E4402194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */,
-				8A3B3179219973220010EE18 /* BaseURL.swift in Sources */,
-				8A6E0B54219984D90039A14F /* Dictionary+Extensions.swift in Sources */,
-				8933C7881EB5B820000D00A4 /* GetStream.swift in Sources */,
-				8A3B317E219973840010EE18 /* Client.swift in Sources */,
+				8A6283F82199AEE20002913D /* FeedEndpoint.swift in Sources */,
+				8A6284002199AEE20002913D /* Feed.swift in Sources */,
+				8A6283EC2199AEE20002913D /* Codable+Extensions.swift in Sources */,
+				8A6284122199B4630002913D /* Token+Generator.swift in Sources */,
+				8A6283FC2199AEE20002913D /* Activity.swift in Sources */,
+				8A6283E82199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
+				8A62840C2199AEE20002913D /* ClientError.swift in Sources */,
+				8A6283E42199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */,
+				8A6283F02199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
+				8A6283F42199AEE20002913D /* GetStream.swift in Sources */,
+				8A6284082199AEE20002913D /* Client.swift in Sources */,
+				8A6284042199AEE20002913D /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,16 +648,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3B31712195B59B0010EE18 /* MoyaError+ClientError.swift in Sources */,
-				8A08EEC42194450B006BB9B8 /* Activity.swift in Sources */,
-				8A82518821959EC700DEE424 /* Feed.swift in Sources */,
-				8AA8D7622193299C008AB02E /* FeedEndpoint.swift in Sources */,
-				8A3B316C2195B55E0010EE18 /* ClientError.swift in Sources */,
-				8A21E43E2194645200339B0A /* AuthorizationMoyaPlugin.swift in Sources */,
-				8A3B3177219973220010EE18 /* BaseURL.swift in Sources */,
-				8A6E0B52219984D90039A14F /* Dictionary+Extensions.swift in Sources */,
-				8933C7861EB5B820000D00A4 /* GetStream.swift in Sources */,
-				8A3B317C219973840010EE18 /* Client.swift in Sources */,
+				8A6283F62199AEE20002913D /* FeedEndpoint.swift in Sources */,
+				8A6283FE2199AEE20002913D /* Feed.swift in Sources */,
+				8A6283EA2199AEE20002913D /* Codable+Extensions.swift in Sources */,
+				8A6284102199B4630002913D /* Token+Generator.swift in Sources */,
+				8A6283FA2199AEE20002913D /* Activity.swift in Sources */,
+				8A6283E62199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
+				8A62840A2199AEE20002913D /* ClientError.swift in Sources */,
+				8A6283E22199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */,
+				8A6283EE2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
+				8A6283F22199AEE20002913D /* GetStream.swift in Sources */,
+				8A6284062199AEE20002913D /* Client.swift in Sources */,
+				8A6284022199AEE20002913D /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,6 +859,7 @@
 		52D6D9941BEFF229002C0205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Configs/GetStreamTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -836,6 +873,7 @@
 		52D6D9951BEFF229002C0205 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Configs/GetStreamTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -986,6 +1024,7 @@
 		DD7502831C68FCFC006590AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Configs/GetStreamTests.plist;
@@ -1001,6 +1040,7 @@
 		DD7502841C68FCFC006590AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Configs/GetStreamTests.plist;
@@ -1017,6 +1057,7 @@
 		DD7502961C690C7A006590AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Configs/GetStreamTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GetStream.GetStream-tvOS-Tests";
@@ -1030,6 +1071,7 @@
 		DD7502971C690C7A006590AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Configs/GetStreamTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GetStream.GetStream-tvOS-Tests";

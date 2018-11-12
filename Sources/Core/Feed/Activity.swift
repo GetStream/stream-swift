@@ -18,7 +18,7 @@ open class Activity: Codable {
         case time
     }
     /// The Stream id of the activity.
-    let id: String?
+    let id: UUID?
     /// The actor performing the activity.
     let actor: String
     /// The verb of the activity.
@@ -56,6 +56,6 @@ open class Activity: Codable {
 
 extension Activity: CustomStringConvertible {
     public var description: String {
-        return "\(actor) \(verb) \(object) [\(foreignId ?? "")] at \(time?.description ?? "now")"
+        return "\(id) \(actor) \(verb) \(object) (\(foreignId ?? "No foreignId")) at \(time?.description ?? "now")"
     }
 }

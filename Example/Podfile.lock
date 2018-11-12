@@ -1,8 +1,14 @@
 PODS:
   - Alamofire (4.7.3)
   - GetStream (0.1):
+    - GetStream/Core (= 0.1)
+  - GetStream/Core (0.1):
     - Moya (~> 11.0)
     - Require
+    - Result (~> 3.0)
+  - GetStream/Token (0.1):
+    - GetStream/Core
+    - SwiftyJWT
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
   - Moya/Core (11.0.2):
@@ -16,7 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - GetStream (from `..`)
-  - SwiftyJWT
+  - GetStream/Token (from `..`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -33,13 +39,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  GetStream: 1da25d7e3c7a3fe42ae26ee875f60da9c0d7d6c0
+  GetStream: ed8eddfe32cad9ef9bc882e7ed3d2317c760b656
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Require: f93abc18dda985f665465cf027cea7166455fb28
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SwiftyCrypto: ab59cdb153a7ca99b657fa8d9ebd2ebbd7694bbe
   SwiftyJWT: e46e8457138c6567a1a9ff05a6efc8ef678c1187
 
-PODFILE CHECKSUM: ca964815428206138f4a62ed87aba29b0921f0e3
+PODFILE CHECKSUM: 477ac1e48a2e96c712020abd4a1599609d149cd4
 
 COCOAPODS: 1.5.3

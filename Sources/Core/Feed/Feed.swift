@@ -10,9 +10,17 @@ import Foundation
 import Moya
 import Result
 
-/// - feedSlug: the name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline
-/// - userId: the owner of the given feed.
-public typealias FeedId = (feedSlug: String, userId: String)
+public struct FeedId {
+    /// The name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline.
+    let feedSlug: String
+    /// The owner of the given feed.
+    let userId: String
+    
+    public init(feedSlug: String, userId: String) {
+        self.feedSlug = feedSlug
+        self.userId = userId
+    }
+}
 
 public struct Feed {
     private let feedId: FeedId
@@ -62,24 +70,13 @@ extension Feed {
     private func parseFeed(_ data: Data, completion: @escaping Completion<Activity>) {
         do {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+            decoder.dateDecodingStrategy = .stream
             let container = try decoder.decode(FeedResultsContainer.self, from: data)
             completion(.success(container.results))
         } catch {
             completion(.failure(.jsonDecode(error)))
         }
     }
-}
-
-extension DateFormatter {
-    static let iso8601Full: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter
-    }()
 }
 
 fileprivate struct FeedResultsContainer: Decodable {

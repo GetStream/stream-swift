@@ -5,7 +5,7 @@ inhibit_all_warnings!
 target 'GetStreamExample' do
   use_frameworks!
   pod 'GetStream', :path => '..'
-  pod 'SwiftyJWT'
+  pod 'GetStream/Token', :path => '..'
 end
 
 # For Swift 4.0 pods.
