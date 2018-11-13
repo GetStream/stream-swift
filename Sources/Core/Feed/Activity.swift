@@ -27,9 +27,9 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     /// The object of the activity.
     public let object: String
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
-    public let foreignId: String?
+    public var foreignId: String?
     /// The optional time of the activity, isoformat. Default is the current time.
-    public let time: Date?
+    public var time: Date?
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
     public var feeds = [FeedGroup]()

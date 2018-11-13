@@ -34,6 +34,26 @@ extension Feed {
     }
 }
 
+// MARK: - Delete a new Activity
+
+extension Feed {
+    /// Remove an activity by the activityId.
+    @discardableResult
+    public func remove(by activityId: UUID, feedGroup: FeedGroup, completion: @escaping RemovedCompletion) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedGroup: feedGroup)) { [self] result in
+            self.parseRemovedResponse(result, completion: completion)
+        }
+    }
+    
+    /// Remove an activity by the foreignId.
+    @discardableResult
+    public func remove(by foreignId: String, feedGroup: FeedGroup, completion: @escaping RemovedCompletion) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedGroup: feedGroup)) { [self] result in
+            self.parseRemovedResponse(result, completion: completion)
+        }
+    }
+}
+
 // MARK: - Receive Feed Activities
 
 extension Feed {
@@ -58,8 +78,8 @@ extension Feed {
     ///     - a cancellable object to cancel the request.
     @discardableResult
     public func feed<T: ActivityProtocol>(of type: T.Type,
-                                                   pagination: FeedPagination = .none,
-                                                   completion: @escaping Completion<T>) -> Cancellable {
+                                          pagination: FeedPagination = .none,
+                                          completion: @escaping Completion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.feed(feedGroup, pagination: pagination)) { [self] result in
             self.parseResponse(result, inContainer: true, completion: completion)
         }
@@ -69,21 +89,29 @@ extension Feed {
 // MARK: - Parsing
 
 extension Feed {
-    private func parseResponse<T: Decodable>(_ result: Result<Data, ClientError>,
+    private func parseResponse<T: Decodable>(_ result: ClientCompletionResult,
                                              inContainer: Bool = false,
                                              completion: @escaping Completion<T>) {
-        if case .success(let data) = result {
+        if case .success(let response) = result {
             do {
                 if inContainer {
-                    let container = try JSONDecoder.stream.decode(ResultsContainer<T>.self, from: data)
+                    let container = try JSONDecoder.stream.decode(ResultsContainer<T>.self, from: response.data)
                     completion(.success(container.results))
                 } else {
-                    let object = try JSONDecoder.stream.decode(T.self, from: data)
+                    let object = try JSONDecoder.stream.decode(T.self, from: response.data)
                     completion(.success([object]))
                 }
             } catch {
                 completion(.failure(.jsonDecode(error)))
             }
+        } else if case .failure(let error) = result {
+            completion(.failure(error))
+        }
+    }
+    
+    private func parseRemovedResponse(_ result: ClientCompletionResult, completion: @escaping RemovedCompletion) {
+        if case .success(let response) = result {
+            completion(.success(response.json["removed"] as? String))
         } else if case .failure(let error) = result {
             completion(.failure(error))
         }

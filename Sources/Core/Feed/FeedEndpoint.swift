@@ -12,6 +12,8 @@ import Moya
 enum FeedEndpoint {
     case feed(_ feedGroup: FeedGroup, pagination: FeedPagination)
     case add(_ activity: ActivityProtocol, feedGroup: FeedGroup)
+    case deleteById(_ id: UUID, feedGroup: FeedGroup)
+    case deleteByForeignId(_ foreignId: String, feedGroup: FeedGroup)
 }
 
 extension FeedEndpoint: TargetType {
@@ -25,6 +27,10 @@ extension FeedEndpoint: TargetType {
             return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/"
         case .add(_, let feedGroup):
             return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/"
+        case let .deleteById(activityId, feedGroup):
+            return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/\(activityId.uuidString.lowercased())/"
+        case let .deleteByForeignId(foreignId, feedGroup):
+            return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/\(foreignId)/"
         }
     }
     
@@ -34,6 +40,10 @@ extension FeedEndpoint: TargetType {
             return .get
         case .add:
             return .post
+        case .deleteById:
+            return .delete
+        case .deleteByForeignId:
+            return .delete
         }
     }
     
@@ -52,6 +62,12 @@ extension FeedEndpoint: TargetType {
             
         case .add(let activity, feedGroup: _):
             return .requestCustomJSONEncodable(activity, encoder: .stream)
+            
+        case .deleteById:
+            return .requestPlain
+            
+        case .deleteByForeignId(let foreignId, feedGroup: _):
+            return .requestParameters(parameters: ["foreign_id": 1], encoding: URLEncoding.default)
         }
     }
     
