@@ -11,7 +11,8 @@ import Moya
 import Result
 
 typealias JSON = [String: Any]
-typealias ClientCompletion = (_ result: Result<Data, ClientError>) -> Void
+typealias ClientCompletionResult = Result<(data: Data, json: JSON), ClientError>
+typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
 
 public final class Client {
     private let moyaProvider: MoyaProvider<MultiTarget>
@@ -136,7 +137,7 @@ extension Client {
                         if json["exception"] != nil {
                             completion(.failure(ClientError(json: json)))
                         } else {
-                            completion(.success(response.data))
+                            completion(.success((response.data, json)))
                         }
                     } else {
                         completion(.failure(.jsonInvalid))

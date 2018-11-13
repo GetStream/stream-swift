@@ -23,23 +23,37 @@ class ViewController: UIViewController {
         let feed = Feed(feedGroup, client: client)
         
         let activity = Activity(actor: "eric", verb: "tweet", object: "test\(arc4random_uniform(100))")
-        activity.tweet = "Test!"
+        activity.foreignId = "6"
+        activity.tweet = "Please, Delete me!"
         
+        print("Adding...")
         feed.add(activity, to: feedGroup) { result in
             if case .success(let activities) = result {
-                activities.forEach { print($0) }
+                activities.forEach {
+                    print($0)
+                }
+                
                 self.fetchFeed(with: feed)
             } else {
                 print(result)
             }
         }
-        
     }
     
     private func fetchFeed(with feed: Feed) {
+        print("Feed requesting...")
+        
         feed.feed(of: Activity.self) { result in
             if case .success(let activities) = result {
                 activities.forEach { print($0) }
+                
+                if let first = activities.first, let foreignId = first.foreignId {
+                    print("Deleting...", first)
+                    
+                    feed.remove(by: foreignId, feedGroup: self.feedGroup) { result in
+                        print(result)
+                    }
+                }
             } else {
                 print(result)
             }
