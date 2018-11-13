@@ -16,6 +16,10 @@ final class Activity: GetStream.Activity {
     
     var tweet: String?
     
+    init(actor: String, verb: String, object: String, foreignId: String? = nil, time: Date? = nil) {
+        super.init(actor: actor, verb: verb, object: object, foreignId: foreignId)
+    }
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.tweet = try container.decode(String.self, forKey: .tweet)

@@ -11,7 +11,7 @@ import Moya
 
 enum FeedEndpoint {
     case feed(_ feedGroup: FeedGroup, pagination: FeedPagination)
-    case add(activity: Activity, toFeed: FeedGroup)
+    case add(_ activity: ActivityProtocol, feedGroup: FeedGroup)
 }
 
 extension FeedEndpoint: TargetType {
@@ -23,7 +23,7 @@ extension FeedEndpoint: TargetType {
         switch self {
         case .feed(let feedGroup, _):
             return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/"
-        case .add(activity: _, toFeed: let feedGroup):
+        case .add(_, let feedGroup):
             return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/"
         }
     }
@@ -50,8 +50,8 @@ extension FeedEndpoint: TargetType {
             
             return .requestParameters(parameters: pagination.parameters, encoding: URLEncoding.default)
             
-        case .add(activity: let activity, toFeed: _):
-            return .requestPlain
+        case .add(let activity, feedGroup: _):
+            return .requestCustomJSONEncodable(activity, encoder: .stream)
         }
     }
     
