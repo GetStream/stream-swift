@@ -13,6 +13,10 @@ public struct FeedGroup {
     let feedSlug: String
     /// The owner of the given feed.
     let userId: String
+    /// The feed group id. E.g. `timeline:123`
+    var id: String {
+        return feedSlug.appending(":").appending(userId)
+    }
     
     public init(feedSlug: String, userId: String) {
         self.feedSlug = feedSlug

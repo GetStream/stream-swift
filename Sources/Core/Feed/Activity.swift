@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class Activity: Codable, CustomStringConvertible {
+open class Activity: ActivityProtocol, CustomStringConvertible {
     private enum CodingKeys: String, CodingKey {
         case id
         case actor
@@ -19,21 +19,20 @@ open class Activity: Codable, CustomStringConvertible {
     }
     
     /// The Stream id of the activity.
-    let id: UUID
+    public let id: UUID
     /// The actor performing the activity.
-    let actor: String
+    public let actor: String
     /// The verb of the activity.
-    let verb: String
+    public let verb: String
     /// The object of the activity.
-    let object: String
+    public let object: String
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
-    let foreignId: String?
+    public let foreignId: String?
     /// The optional time of the activity, isoformat. Default is the current time.
-    let time: Date?
-    
+    public let time: Date?
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
-    var feeds: [FeedGroup] = []
+    public var feeds = [FeedGroup]()
     
     /// Create an activity.
     ///

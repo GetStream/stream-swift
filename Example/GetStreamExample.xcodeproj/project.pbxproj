@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A8AABEC2199DA22007DE642 /* ExampleActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AABEB2199DA22007DE642 /* ExampleActivity.swift */; };
+		8A8AABEC2199DA22007DE642 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AABEB2199DA22007DE642 /* Activity.swift */; };
 		8AA8D73821931DDE008AB02E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D73721931DDE008AB02E /* AppDelegate.swift */; };
 		8AA8D73A21931DDE008AB02E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D73921931DDE008AB02E /* ViewController.swift */; };
 		8AA8D73D21931DDE008AB02E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D73B21931DDE008AB02E /* Main.storyboard */; };
@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		05F3A64CF5519772138F8C76 /* Pods-GetStreamExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetStreamExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetStreamExample/Pods-GetStreamExample.release.xcconfig"; sourceTree = "<group>"; };
-		8A8AABEB2199DA22007DE642 /* ExampleActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleActivity.swift; sourceTree = "<group>"; };
+		8A8AABEB2199DA22007DE642 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8AA8D73421931DDE008AB02E /* GetStreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetStreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA8D73721931DDE008AB02E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AA8D73921931DDE008AB02E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		8A8AABEA2199DA0D007DE642 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8A8AABEB2199DA22007DE642 /* ExampleActivity.swift */,
+				8A8AABEB2199DA22007DE642 /* Activity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -329,7 +329,7 @@
 			files = (
 				8AA8D73A21931DDE008AB02E /* ViewController.swift in Sources */,
 				8AA8D73821931DDE008AB02E /* AppDelegate.swift in Sources */,
-				8A8AABEC2199DA22007DE642 /* ExampleActivity.swift in Sources */,
+				8A8AABEC2199DA22007DE642 /* Activity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

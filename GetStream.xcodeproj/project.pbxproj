@@ -63,6 +63,10 @@
 		8A6284152199CF9C0002913D /* FeedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedGroup.swift */; };
 		8A6284162199CF9C0002913D /* FeedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedGroup.swift */; };
 		8A6284172199CF9C0002913D /* FeedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedGroup.swift */; };
+		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
+		8A92B1E1219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
+		8A92B1E2219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
+		8A92B1E3219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
 		8AA8D766219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
 		8AA8D767219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
 		8AA8D768219329EF008AB02E /* GetStream.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8AA8D765219329EF008AB02E /* GetStream.podspec */; };
@@ -115,6 +119,7 @@
 		8A6283E02199AEE20002913D /* ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		8A62840E2199B4630002913D /* Token+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+Generator.swift"; sourceTree = "<group>"; };
 		8A6284132199CF9C0002913D /* FeedGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedGroup.swift; sourceTree = "<group>"; };
+		8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProtocol.swift; sourceTree = "<group>"; };
 		8AA8D765219329EF008AB02E /* GetStream.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetStream.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AD2FAA261CD0B6D800659CF4 /* GetStream.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStream.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* GetStreamTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStreamTests.plist; sourceTree = "<group>"; };
@@ -263,10 +268,11 @@
 		8A6283D92199AEE20002913D /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				8A6283DA2199AEE20002913D /* FeedEndpoint.swift */,
-				8A6283DB2199AEE20002913D /* Activity.swift */,
-				8A6283DC2199AEE20002913D /* Feed.swift */,
 				8A6284132199CF9C0002913D /* FeedGroup.swift */,
+				8A6283DC2199AEE20002913D /* Feed.swift */,
+				8A6283DA2199AEE20002913D /* FeedEndpoint.swift */,
+				8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */,
+				8A6283DB2199AEE20002913D /* Activity.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -601,6 +607,7 @@
 				8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
 				8A6283F12199AEE20002913D /* GetStream.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,
+				8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,
 				8A6284012199AEE20002913D /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,6 +636,7 @@
 				8A6283EF2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
 				8A6283F32199AEE20002913D /* GetStream.swift in Sources */,
 				8A6284072199AEE20002913D /* Client.swift in Sources */,
+				8A92B1E2219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,
 				8A6284032199AEE20002913D /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +657,7 @@
 				8A6283F02199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
 				8A6283F42199AEE20002913D /* GetStream.swift in Sources */,
 				8A6284082199AEE20002913D /* Client.swift in Sources */,
+				8A92B1E3219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,
 				8A6284042199AEE20002913D /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,6 +678,7 @@
 				8A6283EE2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
 				8A6283F22199AEE20002913D /* GetStream.swift in Sources */,
 				8A6284062199AEE20002913D /* Client.swift in Sources */,
+				8A92B1E1219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,
 				8A6284022199AEE20002913D /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
