@@ -19,7 +19,7 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     }
     
     /// The Stream id of the activity.
-    public let id: UUID
+    public var id: UUID?
     /// The actor performing the activity.
     public let actor: String
     /// The verb of the activity.
@@ -44,7 +44,7 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     ///     - time: a time of the activity, isoformat. Default is the current time.
     ///     - toFeeds: an array allows you to specify a list of feeds to which the activity should be copied.
     public init(actor: String, verb: String, object: String, foreignId: String? = nil, time: Date? = nil, toFeeds: [FeedGroup] = []) {
-        id = UUID()
+        id = nil
         self.actor = actor
         self.verb = verb
         self.object = object

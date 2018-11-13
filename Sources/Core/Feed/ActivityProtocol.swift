@@ -10,7 +10,7 @@ import Foundation
 
 public protocol ActivityProtocol: Codable {
     /// The Stream id of the activity.
-    var id: UUID { get }
+    var id: UUID? { get }
     /// The actor performing the activity.
     var actor: String { get }
     /// The verb of the activity.

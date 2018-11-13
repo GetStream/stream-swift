@@ -37,7 +37,7 @@ public final class Client {
         self.token = token
         self.baseURL = baseURL
         let callbackQueue = callbackQueue ?? DispatchQueue(label: "\(baseURL.url.host ?? "io.getstream").Client")
-        let moyaPlugins: [PluginType] = [NetworkLoggerPlugin(verbose: true), AuthorizationMoyaPlugin(token: token)]
+        let moyaPlugins: [PluginType] = [NetworkLoggerPlugin(verbose: true, cURL: true), AuthorizationMoyaPlugin(token: token)]
         
         moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) },
                                                  callbackQueue: callbackQueue,
@@ -60,15 +60,17 @@ extension Client: CustomStringConvertible {
 
 extension Client {
     /// Add the app key parameter as an URL parameter for each request.
+    /// - Throws:
+    ///     can throw ClientError
     private static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
         let appKeyParameter = ["api_key": apiKey]
-        let task: Task
+        var task: Task = target.task
         
         switch target.task {
         case .requestPlain:
             task = .requestParameters(parameters: appKeyParameter, encoding: URLEncoding.default)
             
-        case .requestParameters(let parameters, let encoding):
+        case let .requestParameters(parameters, encoding):
             if encoding is URLEncoding {
                 task = .requestParameters(parameters: parameters.merged(with: appKeyParameter), encoding: encoding)
             } else {
@@ -77,19 +79,37 @@ extension Client {
                                                    urlParameters: appKeyParameter)
             }
             
-        case .requestCompositeData(let bodyData, let parameters):
-            task = .requestCompositeData(bodyData: bodyData, urlParameters: parameters.merged(with: appKeyParameter) )
-            
-        case .requestCompositeParameters(let bodyParameters, let bodyEncoding, let parameters):
+        case let .requestCompositeParameters(bodyParameters, bodyEncoding, parameters):
             task = .requestCompositeParameters(bodyParameters: bodyParameters,
                                                bodyEncoding: bodyEncoding,
                                                urlParameters: parameters.merged(with: appKeyParameter))
+            
+        case let .requestJSONEncodable(encodable):
+            if let data = try? JSONEncoder().encode(AnyEncodable(encodable)) {
+                task = .requestCompositeData(bodyData: data, urlParameters: appKeyParameter)
+            } else {
+                print("⚠️", #function, "Can't encode object", encodable)
+            }
+            
+        case let .requestCustomJSONEncodable(encodable, encoder: encoder):
+            if let data = try? encoder.encode(AnyEncodable(encodable)) {
+                task = .requestCompositeData(bodyData: data, urlParameters: appKeyParameter)
+            } else {
+                print("⚠️", #function, "Can't encode object \(encodable)")
+            }
+            
+        case let .requestData(data):
+            task = .requestCompositeData(bodyData: data, urlParameters: appKeyParameter)
+            
+        case let .requestCompositeData(bodyData, parameters):
+            task = .requestCompositeData(bodyData: bodyData, urlParameters: parameters.merged(with: appKeyParameter) )
             
         case let .uploadCompositeMultipart(data, parameters):
             task = .uploadCompositeMultipart(data, urlParameters: parameters.merged(with: appKeyParameter))
             
         default:
-            task = target.task
+            print("⚠️", #function, "Can't map the appKey parameter to the request", target.task)
+            break
         }
         
         return Endpoint(
@@ -150,7 +170,7 @@ extension Client {
                 let remaining = Int(remainingString),
                 let resetString = headers["x-ratelimit-reset"] as? String,
                 let resetTimeInterval = TimeInterval(resetString) else {
-                return nil
+                    return nil
             }
             
             self.limit = limit

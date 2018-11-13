@@ -20,6 +20,20 @@ public struct Feed {
     }
 }
 
+// MARK: - Add a new Activity
+
+extension Feed {
+    /// Add a new activity.
+    @discardableResult
+    public func add<T: ActivityProtocol>(_ activity: T,
+                                         to feedGroup: FeedGroup,
+                                         completion: @escaping Completion<T>) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.add(activity, feedGroup: feedGroup)) { [self] result in
+            self.parseResponse(with: result, completion: completion)
+        }
+    }
+}
+
 // MARK: - Receive Feed Activities
 
 extension Feed {
@@ -35,23 +49,19 @@ extension Feed {
         return feed(of: Activity.self, pagination: pagination, completion: completion)
     }
     
-    /// Receive feed activities with custom subclass of Activity.
+    /// Receive feed activities with a custom activity type.
     ///
     /// - Parameters:
     ///     - pagination: a pagination options.
-    ///     - completion: a completion handler with Result of custom subclass of Activity.
+    ///     - completion: a completion handler with Result of a custom activity type.
     /// - Returns:
     ///     - a cancellable object to cancel the request.
     @discardableResult
-    public mutating func feed<T: ActivityProtocol>(of type: T.Type,
+    public func feed<T: ActivityProtocol>(of type: T.Type,
                                                    pagination: FeedPagination = .none,
                                                    completion: @escaping Completion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.feed(feedGroup, pagination: pagination)) { [self] result in
-            if case .success(let data) = result {
-                self.parseFeed(data, completion: completion)
-            } else if case .failure(let error) = result {
-                completion(.failure(error))
-            }
+            self.parseResponse(with: result, completion: completion)
         }
     }
 }
@@ -59,14 +69,16 @@ extension Feed {
 // MARK: - Parsing
 
 extension Feed {
-    private func parseFeed<T: Decodable>(_ data: Data, completion: @escaping Completion<T>) {
-        do {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .stream
-            let container = try decoder.decode(FeedResultsContainer<T>.self, from: data)
-            completion(.success(container.results))
-        } catch {
-            completion(.failure(.jsonDecode(error)))
+    private func parseResponse<T: Decodable>(with result: Result<Data, ClientError>, completion: @escaping Completion<T>) {
+        if case .success(let data) = result {
+            do {
+                let container = try JSONDecoder.stream.decode(FeedResultsContainer<T>.self, from: data)
+                completion(.success(container.results))
+            } catch {
+                completion(.failure(.jsonDecode(error)))
+            }
+        } else if case .failure(let error) = result {
+            completion(.failure(error))
         }
     }
 }

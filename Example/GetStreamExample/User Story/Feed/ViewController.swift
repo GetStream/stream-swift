@@ -10,6 +10,7 @@ import UIKit
 import GetStream
 
 class ViewController: UIViewController {
+    let feedGroup = FeedGroup(feedSlug: "user", userId: "eric")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,18 +20,28 @@ class ViewController: UIViewController {
         }
 
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token)
-        let feedGroup = FeedGroup(feedSlug: "user", userId: "eric")
-        var feed = Feed(feedGroup, client: client)
+        let feed = Feed(feedGroup, client: client)
         
-        feed.feed(of: Activity.self) { result in
+        let activity = Activity(actor: "eric", verb: "tweet", object: "test\(arc4random_uniform(100))")
+        activity.tweet = "Test!"
+        
+        feed.add(activity, to: feedGroup) { result in
             if case .success(let activities) = result {
                 activities.forEach { print($0) }
+                self.fetchFeed(with: feed)
+            } else {
+                print(result)
             }
         }
         
-        feed.feed { result in
+    }
+    
+    private func fetchFeed(with feed: Feed) {
+        feed.feed(of: Activity.self) { result in
             if case .success(let activities) = result {
                 activities.forEach { print($0) }
+            } else {
+                print(result)
             }
         }
     }

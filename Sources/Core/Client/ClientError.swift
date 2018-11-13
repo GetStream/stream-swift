@@ -12,6 +12,7 @@ public enum ClientError: Error {
     case unknown
     case jsonInvalid
     case jsonDecode(_ error: Error)
+    case jsonEncode(_ error: Error)
     case network(_ description: String)
     case server(_ info: Info)
     
