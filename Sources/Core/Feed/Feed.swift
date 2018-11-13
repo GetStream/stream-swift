@@ -29,7 +29,7 @@ extension Feed {
                                          to feedGroup: FeedGroup,
                                          completion: @escaping Completion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.add(activity, feedGroup: feedGroup)) { [self] result in
-            self.parseResponse(with: result, completion: completion)
+            self.parseResponse(result, completion: completion)
         }
     }
 }
@@ -61,7 +61,7 @@ extension Feed {
                                                    pagination: FeedPagination = .none,
                                                    completion: @escaping Completion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.feed(feedGroup, pagination: pagination)) { [self] result in
-            self.parseResponse(with: result, completion: completion)
+            self.parseResponse(result, inContainer: true, completion: completion)
         }
     }
 }
@@ -69,11 +69,18 @@ extension Feed {
 // MARK: - Parsing
 
 extension Feed {
-    private func parseResponse<T: Decodable>(with result: Result<Data, ClientError>, completion: @escaping Completion<T>) {
+    private func parseResponse<T: Decodable>(_ result: Result<Data, ClientError>,
+                                             inContainer: Bool = false,
+                                             completion: @escaping Completion<T>) {
         if case .success(let data) = result {
             do {
-                let container = try JSONDecoder.stream.decode(FeedResultsContainer<T>.self, from: data)
-                completion(.success(container.results))
+                if inContainer {
+                    let container = try JSONDecoder.stream.decode(ResultsContainer<T>.self, from: data)
+                    completion(.success(container.results))
+                } else {
+                    let object = try JSONDecoder.stream.decode(T.self, from: data)
+                    completion(.success([object]))
+                }
             } catch {
                 completion(.failure(.jsonDecode(error)))
             }
@@ -83,7 +90,7 @@ extension Feed {
     }
 }
 
-fileprivate struct FeedResultsContainer<T: Decodable>: Decodable {
+fileprivate struct ResultsContainer<T: Decodable>: Decodable {
     private enum CodingKey: String, Swift.CodingKey {
         case results
         case next

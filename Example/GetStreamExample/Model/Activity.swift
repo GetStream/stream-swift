@@ -22,11 +22,17 @@ final class Activity: GetStream.Activity {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.tweet = try container.decode(String.self, forKey: .tweet)
+        self.tweet = try container.decodeIfPresent(String.self, forKey: .tweet)
         try super.init(from: decoder)
     }
     
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(tweet, forKey: .tweet)
+        try super.encode(to: encoder)
+    }
+    
     override var description: String {
-        return super.description.appending(" tweet: \(tweet ?? "no value")")
+        return super.description.appending(" tweet: \(tweet ?? "<no value>")")
     }
 }
