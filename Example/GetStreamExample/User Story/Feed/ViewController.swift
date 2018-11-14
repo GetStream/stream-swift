@@ -19,7 +19,7 @@ class ViewController: UIViewController {
             return
         }
 
-        let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token)
+        let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
         let feed = Feed(feedGroup, client: client)
         
         let activity = Activity(actor: "eric",
