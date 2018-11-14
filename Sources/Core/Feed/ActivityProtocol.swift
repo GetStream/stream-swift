@@ -17,11 +17,13 @@ public protocol ActivityProtocol: Codable {
     var verb: String { get }
     /// The object of the activity.
     var object: String { get }
+    /// The optional target of the activity.
+    var target: String? { get }
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
     var foreignId: String? { get }
     /// The optional time of the activity, isoformat. Default is the current time.
     var time: Date? { get }
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
-    var feeds: [FeedGroup] { get }
+    var feedGroups: [FeedGroup] { get }
 }
