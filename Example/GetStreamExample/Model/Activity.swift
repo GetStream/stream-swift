@@ -16,8 +16,9 @@ final class Activity: GetStream.Activity {
     
     var tweet: String?
     
-    init(actor: String, verb: String, object: String, foreignId: String? = nil, time: Date? = nil) {
-        super.init(actor: actor, verb: verb, object: object, foreignId: foreignId)
+    init(actor: String, tweet: String, foreignId: String? = nil, time: Date? = nil) {
+        super.init(actor: actor, verb: "tweet", object: "1", foreignId: foreignId, time: time)
+        self.tweet = tweet
     }
     
     required init(from decoder: Decoder) throws {

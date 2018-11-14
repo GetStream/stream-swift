@@ -22,17 +22,16 @@ class ViewController: UIViewController {
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token)
         let feed = Feed(feedGroup, client: client)
         
-        let activity = Activity(actor: "eric", verb: "tweet", object: "test\(arc4random_uniform(100))")
-        activity.foreignId = "6"
-        activity.tweet = "Please, Delete me!"
+        let activity = Activity(actor: "eric",
+                                tweet: "Hello world!",
+                                foreignId: UUID().uuidString,
+                                time: Date())
         
         print("Adding...")
+        
         feed.add(activity, to: feedGroup) { result in
             if case .success(let activities) = result {
-                activities.forEach {
-                    print($0)
-                }
-                
+                activities.forEach { print($0) }
                 self.fetchFeed(with: feed)
             } else {
                 print(result)
@@ -51,7 +50,15 @@ class ViewController: UIViewController {
                     print("Deleting...", first)
                     
                     feed.remove(by: foreignId, feedGroup: self.feedGroup) { result in
-                        print(result)
+                        print("Deleted by foreignId", result)
+                    }
+                }
+                
+                if let last = activities.last, let activityId = last.id {
+                    print("Deleting...", last)
+                    
+                    feed.remove(by: activityId, feedGroup: self.feedGroup) { result in
+                        print("Deleted by activityId", result)
                     }
                 }
             } else {
