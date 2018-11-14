@@ -176,6 +176,7 @@
 				8AA8D73021931DDE008AB02E /* Sources */,
 				8AA8D73121931DDE008AB02E /* Frameworks */,
 				8AA8D73221931DDE008AB02E /* Resources */,
+				8A6DE4D7219C34E9001DF2A8 /* [FIX CP] Fix Xcode 10 for development pods */,
 				899EE50B003D8DB33DDBC4C9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -297,6 +298,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GetStreamExample/Pods-GetStreamExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8A6DE4D7219C34E9001DF2A8 /* [FIX CP] Fix Xcode 10 for development pods */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[FIX CP] Fix Xcode 10 for development pods";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find \"${SRCROOT}/Pods\" -type f -name *frameworks.sh -exec bash -c \"touch \\\"{}\\\"\" \\;\n";
 		};
 		8B21A6AB835DE8626AED73B5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
