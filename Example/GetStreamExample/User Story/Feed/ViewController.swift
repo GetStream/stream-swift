@@ -59,6 +59,7 @@ class ViewController: UIViewController {
         feed.feed(of: Activity.self) { result in
             if case .success(let activities) = result {
                 activities.forEach { print($0) }
+                self.removeFirstAndLastActivities(activities, in: feed)
             } else {
                 print(result)
             }
