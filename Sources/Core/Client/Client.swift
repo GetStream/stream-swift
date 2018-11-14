@@ -20,6 +20,7 @@ public final class Client {
     private let appId: String
     private let token: Token
     private let baseURL: BaseURL
+    private let logsEnabled: Bool
     
     /// The last rate limit response.
     public var rateLimit: RateLimit?
@@ -32,13 +33,23 @@ public final class Client {
     ///     - token: the client token
     ///     - baseURL: the client URL
     ///     - callbackQueue: propagated to Alamofire as callback queue. If nil the GetStream default queue will be used.
-    public init(apiKey: String, appId: String, token: Token, baseURL: BaseURL = BaseURL(), callbackQueue: DispatchQueue? = nil) {
+    public init(apiKey: String,
+                appId: String,
+                token: Token,
+                baseURL: BaseURL = BaseURL(),
+                callbackQueue: DispatchQueue? = nil,
+                logsEnabled: Bool = false) {
         self.apiKey = apiKey
         self.appId = appId
         self.token = token
         self.baseURL = baseURL
+        self.logsEnabled = logsEnabled
         let callbackQueue = callbackQueue ?? DispatchQueue(label: "\(baseURL.url.host ?? "io.getstream").Client")
-        let moyaPlugins: [PluginType] = [NetworkLoggerPlugin(verbose: true, cURL: true), AuthorizationMoyaPlugin(token: token)]
+        var moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
+        
+        if logsEnabled {
+            moyaPlugins.append(NetworkLoggerPlugin(verbose: true))
+        }
         
         moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) },
                                                  callbackQueue: callbackQueue,
@@ -61,8 +72,6 @@ extension Client: CustomStringConvertible {
 
 extension Client {
     /// Add the app key parameter as an URL parameter for each request.
-    /// - Throws:
-    ///     can throw ClientError
     private static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
         let appKeyParameter = ["api_key": apiKey]
         var task: Task = target.task
@@ -110,7 +119,6 @@ extension Client {
             
         default:
             print("⚠️", #function, "Can't map the appKey parameter to the request", target.task)
-            break
         }
         
         return Endpoint(
