@@ -48,7 +48,20 @@ extension FeedEndpoint: TargetType {
     }
     
     var sampleData: Data {
-        return Data()
+        switch self {
+        case .feed:
+            return """
+            {"results":[
+                {"actor":"eric","foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D","id":"9b5b3540-e825-11e8-8080-800016ff21e4","object":"Hello world 3","origin":null,"target":"","time":"2018-11-14T15:54:45.268000","to":["timeline:jessica"],"verb":"tweet"},
+                {"actor":"eric","foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6","id":"815b4fa0-e7fc-11e8-8080-80007911093a","object":"Hello world 2","origin":null,"target":"","time":"2018-11-14T11:00:32.282000","verb":"tweet"},
+                {"actor":"eric","foreign_id":"FFBE449A-54B1-4701-A1E1-79E5DD5AF4BD","id":"2737dc60-e7fb-11e8-8080-80014193e462","object":"Hello world 1","origin":null,"target":"","time":"2018-11-14T10:50:51.558000","verb":"tweet"}],
+            "next":"",
+            "duration":"15.73ms"}
+            """.data(using: .utf8) ?? Data()
+            
+        default:
+                return Data()
+        }
     }
     
     var task: Task {
@@ -66,7 +79,7 @@ extension FeedEndpoint: TargetType {
         case .deleteById:
             return .requestPlain
             
-        case .deleteByForeignId(let foreignId, feedGroup: _):
+        case .deleteByForeignId:
             return .requestParameters(parameters: ["foreign_id": 1], encoding: URLEncoding.default)
         }
     }
