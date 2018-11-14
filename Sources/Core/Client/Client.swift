@@ -16,11 +16,6 @@ typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
 
 public final class Client {
     private let moyaProvider: MoyaProvider<MultiTarget>
-    private let apiKey: String
-    private let appId: String
-    private let token: Token
-    private let baseURL: BaseURL
-    private let logsEnabled: Bool
     
     /// The last rate limit response.
     public var rateLimit: RateLimit?
@@ -33,17 +28,12 @@ public final class Client {
     ///     - token: the client token
     ///     - baseURL: the client URL
     ///     - callbackQueue: propagated to Alamofire as callback queue. If nil the GetStream default queue will be used.
-    public init(apiKey: String,
+    public convenience init(apiKey: String,
                 appId: String,
                 token: Token,
                 baseURL: BaseURL = BaseURL(),
                 callbackQueue: DispatchQueue? = nil,
                 logsEnabled: Bool = false) {
-        self.apiKey = apiKey
-        self.appId = appId
-        self.token = token
-        self.baseURL = baseURL
-        self.logsEnabled = logsEnabled
         let callbackQueue = callbackQueue ?? DispatchQueue(label: "\(baseURL.url.host ?? "io.getstream").Client")
         var moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
         
@@ -51,9 +41,15 @@ public final class Client {
             moyaPlugins.append(NetworkLoggerPlugin(verbose: true))
         }
         
-        moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) },
-                                                 callbackQueue: callbackQueue,
-                                                 plugins: moyaPlugins)
+        let moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) },
+                                                     callbackQueue: callbackQueue,
+                                                     plugins: moyaPlugins)
+        
+        self.init(moyaProvider: moyaProvider)
+    }
+    
+    init(moyaProvider: MoyaProvider<MultiTarget>) {
+        self.moyaProvider = moyaProvider
     }
 }
 
@@ -64,7 +60,7 @@ extension Client {
 
 extension Client: CustomStringConvertible {
     public var description: String {
-        return "GetStream Client v.\(Client.version):\napiKey: \(apiKey)\nappId: \(appId)\nbaseURL: \(baseURL)\ntoken: \(token)"
+        return "GetStream Client v.\(Client.version)"
     }
 }
 
@@ -72,7 +68,7 @@ extension Client: CustomStringConvertible {
 
 extension Client {
     /// Add the app key parameter as an URL parameter for each request.
-    private static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
+    static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
         let appKeyParameter = ["api_key": apiKey]
         var task: Task = target.task
         
@@ -135,6 +131,7 @@ extension Client {
 
 extension Client {
     /// Make a request with a given endpoint.
+    @discardableResult
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Moya.Cancellable {
         return moyaProvider.request(MultiTarget(endpoint)) { [weak self] result in
             if case .success(let response) = result {
