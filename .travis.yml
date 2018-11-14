@@ -5,7 +5,7 @@ sudo: required
 cache: cocoapods
 podfile: Example/Podfile
 before_install:
-  - gem install cocoapods
+  - gem install cocoapods --pre
   - pod repo update
   - pod install --project-directory=Example
 script:

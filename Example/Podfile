@@ -18,3 +18,5 @@ post_install do |installer|
     end
   end
 end
+
+install! 'cocoapods', :disable_input_output_paths => true
