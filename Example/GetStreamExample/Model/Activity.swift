@@ -17,7 +17,7 @@ final class Activity: GetStream.Activity {
     var tweet: String?
     
     init(actor: String, tweet: String, foreignId: String? = nil, time: Date? = nil) {
-        super.init(actor: actor, verb: "tweet", object: "1", foreignId: foreignId, time: time)
+        super.init(actor: actor, verb: "tweet", object: String(arc4random_uniform(100)), foreignId: foreignId, time: time)
         self.tweet = tweet
     }
     
