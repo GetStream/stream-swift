@@ -25,5 +25,5 @@ public protocol ActivityProtocol: Codable {
     var time: Date? { get }
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
-    var feedGroups: [FeedGroup] { get }
+    var feedGroups: [FeedGroup]? { get }
 }
