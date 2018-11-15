@@ -11,14 +11,11 @@ import Moya
 import Result
 
 typealias JSON = [String: Any]
-typealias ClientCompletionResult = Result<(data: Data, json: JSON), ClientError>
+typealias ClientCompletionResult = Result<Response, ClientError>
 typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
 
 public final class Client {
     private let moyaProvider: MoyaProvider<MultiTarget>
-    
-    /// The last rate limit response.
-    public var rateLimit: RateLimit?
     
     /// Create a GetStream client for making network requests.
     ///
@@ -133,17 +130,15 @@ extension Client {
 extension Client {
     /// Make a request with a given endpoint.
     @discardableResult
-    func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Moya.Cancellable {
-        return moyaProvider.request(MultiTarget(endpoint)) { [weak self] result in
+    func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
+        return moyaProvider.request(MultiTarget(endpoint)) { result in
             if case .success(let response) = result {
-                self?.rateLimit = RateLimit(response: response)
-                
                 do {
                     if let json = try response.mapJSON() as? JSON {
                         if json["exception"] != nil {
                             completion(.failure(ClientError(json: json)))
                         } else {
-                            completion(.success((response.data, json)))
+                            completion(.success(response))
                         }
                     } else {
                         completion(.failure(.jsonInvalid))

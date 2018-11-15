@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum FeedEndpoint {
-    case feed(_ feedId: FeedId, pagination: FeedPagination)
+    case get(_ feedId: FeedId, pagination: FeedPagination)
     case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
@@ -23,7 +23,7 @@ extension FeedEndpoint: TargetType {
     
     var path: String {
         switch self {
-        case .feed(let feedId, _):
+        case .get(let feedId, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
         case .add(_, let feedId):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
@@ -36,7 +36,7 @@ extension FeedEndpoint: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .feed:
+        case .get:
             return .get
         case .add:
             return .post
@@ -49,24 +49,79 @@ extension FeedEndpoint: TargetType {
     
     var sampleData: Data {
         switch self {
-        case .feed:
+        case let .get(_, pagination: pagination):
+            let json: String
+            
+            if case .limit(let limit) = pagination, limit == 1 {
+                json = """
+                {"results":[
+                {"actor":"eric",
+                "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+                "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
+                "object":"Hello world 3",
+                "origin":null,
+                "target":"",
+                "time":"2018-11-14T15:54:45.268000",
+                "to":["timeline:jessica"],
+                "verb":"tweet"}],
+                "next":"",
+                "duration":"2.31ms"}
+                """
+            } else {
+                json = """
+                {"results":[
+                {"actor":"eric",
+                "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+                "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
+                "object":"Hello world 3",
+                "origin":null,
+                "target":"",
+                "time":"2018-11-14T15:54:45.268000",
+                "to":["timeline:jessica"],
+                "verb":"tweet"},
+                {"actor":"eric",
+                "foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
+                "id":"815b4fa0-e7fc-11e8-8080-80007911093a",
+                "object":"Hello world 2",
+                "origin":null,
+                "target":"",
+                "time":"2018-11-14T11:00:32.282000",
+                "verb":"tweet"},
+                {"actor":"eric",
+                "foreign_id":"FFBE449A-54B1-4701-A1E1-79E5DD5AF4BD",
+                "id":"2737dc60-e7fb-11e8-8080-80014193e462",
+                "object":"Hello world 1",
+                "origin":null,
+                "target":"",
+                "time":"2018-11-14T10:50:51.558000",
+                "verb":"tweet"}],
+                "next":"",
+                "duration":"15.73ms"}
+                """
+            }
+            
+            return json.data(using: .utf8) ?? Data()
+        case .add(let activity, feedId: _):
             return """
-            {"results":[
-                {"actor":"eric","foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D","id":"9b5b3540-e825-11e8-8080-800016ff21e4","object":"Hello world 3","origin":null,"target":"","time":"2018-11-14T15:54:45.268000","to":["timeline:jessica"],"verb":"tweet"},
-                {"actor":"eric","foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6","id":"815b4fa0-e7fc-11e8-8080-80007911093a","object":"Hello world 2","origin":null,"target":"","time":"2018-11-14T11:00:32.282000","verb":"tweet"},
-                {"actor":"eric","foreign_id":"FFBE449A-54B1-4701-A1E1-79E5DD5AF4BD","id":"2737dc60-e7fb-11e8-8080-80014193e462","object":"Hello world 1","origin":null,"target":"","time":"2018-11-14T10:50:51.558000","verb":"tweet"}],
-            "next":"",
-            "duration":"15.73ms"}
+            {"actor":"\(activity.actor)",
+            "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+            "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
+            "object":"\(activity.object)",
+            "origin":null,
+            "target":"\(activity.target ?? "")",
+            "time":"2018-11-14T15:54:45.268000",
+            "to":["timeline:jessica"],
+            "verb":"\(activity.verb)"}
             """.data(using: .utf8) ?? Data()
             
         default:
-                return Data()
+            return Data()
         }
     }
     
     var task: Task {
         switch self {
-        case .feed(_, let pagination):
+        case .get(_, let pagination):
             if case .none = pagination {
                 return .requestPlain
             }

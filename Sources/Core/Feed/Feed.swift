@@ -88,7 +88,7 @@ extension Feed {
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
                                          pagination: FeedPagination = .none,
                                          completion: @escaping Completion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.feed(feedId, pagination: pagination)) { [self] result in
+        return client.request(endpoint: FeedEndpoint.get(feedId, pagination: pagination)) { [self] result in
             self.parseResponse(result, inContainer: true, completion: completion)
         }
     }
@@ -118,8 +118,8 @@ extension Feed {
     }
     
     private func parseRemovedResponse(_ result: ClientCompletionResult, completion: @escaping RemovedCompletion) {
-        if case .success(let response) = result {
-            completion(.success(response.json["removed"] as? String))
+        if case .success(let response) = result, let json = (try? response.mapJSON()) as? JSON {
+            completion(.success(json["removed"] as? String))
         } else if case .failure(let error) = result {
             completion(.failure(error))
         }
