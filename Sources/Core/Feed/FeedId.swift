@@ -17,8 +17,12 @@ public struct FeedId: CustomStringConvertible, Codable {
     /// The owner of the given feed.
     let userId: String
     
-    /// The feed group id. E.g. `timeline:123`
+    /// The feed group id, e.g. `timeline:123`
     public var description: String {
+        if userId.isEmpty {
+            return feedSlug
+        }
+        
         return feedSlug.appending(String(FeedId.separator)).appending(userId)
     }
     
