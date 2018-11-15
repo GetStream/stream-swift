@@ -27,13 +27,14 @@ public final class Client {
     ///     - appId: the Stream APP id
     ///     - token: the client token
     ///     - baseURL: the client URL
-    ///     - callbackQueue: propagated to Alamofire as callback queue. If nil the GetStream default queue will be used.
+    ///     - callbackQueue: propagated to Alamofire as callback queue. If nil a GetStream default queue will be used.
+    ///     - logsEnabled: if enabled the client will show logs for requests.
     public convenience init(apiKey: String,
-                appId: String,
-                token: Token,
-                baseURL: BaseURL = BaseURL(),
-                callbackQueue: DispatchQueue? = nil,
-                logsEnabled: Bool = false) {
+                            appId: String,
+                            token: Token,
+                            baseURL: BaseURL = BaseURL(),
+                            callbackQueue: DispatchQueue? = nil,
+                            logsEnabled: Bool = false) {
         let callbackQueue = callbackQueue ?? DispatchQueue(label: "\(baseURL.url.host ?? "io.getstream").Client")
         var moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
         
