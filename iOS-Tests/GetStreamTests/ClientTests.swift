@@ -12,29 +12,98 @@ import Moya
 
 class ClientTests: XCTestCase {
     
-    func testClient() {
-        let baseURL = BaseURL(location: .europeWest)
+    let baseURL = BaseURL(location: .europeWest)
+    let feedId = FeedId(feedSlug: "test", userId: "123")
+    
+    lazy var moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0,
+                                                                                                apiKey: "testAPIKey",
+                                                                                                baseURL: self.baseURL) },
+                                                      stubClosure: MoyaProvider.immediatelyStub,
+                                                      plugins: [AuthorizationMoyaPlugin(token: "test.token"),
+                                                                NetworkLoggerPlugin(verbose: true)])
+    
+    lazy var client = Client(moyaProvider: moyaProvider)
+    
+    func testGetEndpoint() {
+        let expectFeed = expectation(description: "expecting a feed response")
         
-        let moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: "testAPIKey", baseURL: baseURL) },
-                                                     stubClosure: MoyaProvider.immediatelyStub,
-                                                     plugins: [AuthorizationMoyaPlugin(token: "test.token"),
-                                                               NetworkLoggerPlugin(verbose: true)])
-        
-        let client = Client(moyaProvider: moyaProvider)
-        let feedId = FeedId(feedSlug: "test", userId: "123")
-        
-        let expectFeed = expectation(description: "expecting a feed received")
-        
-        client.request(endpoint: FeedEndpoint.feed(feedId, pagination: .none)) { result in
-            if case .success(let data) = result, let activities = data.json["results"] as? [String: Any] {
+        client.request(endpoint: FeedEndpoint.get(feedId, pagination: .none)) { result in
+            if case .success(let response) = result,
+                let json = (try? response.mapJSON()) as? JSON,
+                let activities = json["results"] as? [Any] {
                 XCTAssertEqual(activities.count, 3)
             } else if case .failure(let error) = result {
-                XCTFail(error.localizedDescription)
+                XCTFail("❌ \(error.localizedDescription)")
+            } else {
+                XCTFail("❌ Bad data")
+            }
+
+            expectFeed.fulfill()
+        }
+        
+        wait(for: [expectFeed], timeout: TimeInterval(1))
+    }
+    
+    func testAddActivity() {
+        let expectFeed = expectation(description: "expecting a feed response")
+        let activity = Activity(actor: "tester", verb: "test", object: "add activity")
+        
+        client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
+            if case .success(let response) = result,
+                let json = (try? response.mapJSON()) as? JSON {
+                XCTAssertEqual(json["actor"] as! String, activity.actor)
+                XCTAssertEqual(json["verb"] as! String, activity.verb)
+                XCTAssertEqual(json["object"] as! String, activity.object)
+            } else if case .failure(let error) = result {
+                XCTFail("❌ \(error.localizedDescription)")
+            } else {
+                XCTFail("❌ Bad data")
             }
             
             expectFeed.fulfill()
         }
         
         wait(for: [expectFeed], timeout: TimeInterval(1))
+    }
+    
+    func testFeedPagination() {
+        var endpoint = FeedEndpoint.get(feedId, pagination: .none)
+        
+        guard case .requestPlain = endpoint.task else {
+            XCTFail("❌")
+            return
+        }
+        
+        // with limit 5.
+        endpoint = FeedEndpoint.get(feedId, pagination: .limit(5))
+        
+        guard case .requestParameters(let limitParameters, _) = endpoint.task else {
+            XCTFail("❌")
+            return
+        }
+        
+        XCTAssertEqual(limitParameters as! [String: Int], ["limit": 5])
+        
+        // with offset and limit
+        endpoint = FeedEndpoint.get(feedId, pagination: .offset(1, limit: 1))
+        
+        guard case .requestParameters(let offsetParameters, _) = endpoint.task else {
+            XCTFail("❌")
+            return
+        }
+        
+        XCTAssertEqual(offsetParameters as! [String: Int], ["offset": 1, "limit": 1])
+        
+        // with great then id and limit
+        let someId = "someId"
+        endpoint = FeedEndpoint.get(feedId, pagination: .greaterThan(id: someId, limit: 3))
+        
+        guard case .requestParameters(let idParameters, _) = endpoint.task else {
+            XCTFail("❌")
+            return
+        }
+        
+        XCTAssertEqual(idParameters["id_gt"] as! String, someId)
+        XCTAssertEqual(idParameters["limit"] as! Int, 3)
     }
 }
