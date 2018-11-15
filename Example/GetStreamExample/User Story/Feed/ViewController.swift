@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         let feed = client.feed(feedSlug: "user", userId: "eric")
         let activity = Activity(actor: "eric", tweet: "Hello world!")
         activity.feedIds = [FeedId(feedSlug: "timeline", userId: "jessica")]
-        
         add(activity: activity, to: feed)
     }
     
