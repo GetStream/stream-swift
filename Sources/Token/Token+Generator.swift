@@ -47,6 +47,7 @@ extension Token {
         case follower
     }
 }
+
 extension Token {
     public enum Permission: String {
         case all = "*"

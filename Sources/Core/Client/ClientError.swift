@@ -20,23 +20,41 @@ public enum ClientError: Error {
         guard let detail = json["detail"] as? String,
             let code = json["code"] as? Int,
             let statusCode = json["status_code"] as? Int,
-            let exception = json["exception"] as? String,
-            let duration = json["duration"] as? String else {
+            let exception = json["exception"] as? String else {
                 self = .unknown
                 return
         }
         
-        let info = Info(info: detail, code: code, statusCode: statusCode, exception: exception, duration: duration)
-        self = .server(info)
+        self = .server(Info(info: detail, code: code, statusCode: statusCode, exception: exception))
+    }
+    
+    public var localizedDescription: String {
+        switch self {
+        case .unknown:
+            return "Unexpected behaviour"
+        case .jsonInvalid:
+            return "A server response is not a JSON"
+        case .jsonDecode(let error):
+            return "JSON decoding error: \(error)"
+        case .jsonEncode(let error):
+            return "JSON encoding error: \(error)"
+        case .network(let description):
+            return "Moya error: \(description)"
+        case .server(let info):
+            return info.description
+        }
     }
 }
 
 extension ClientError {
-    public struct Info {
+    public struct Info: CustomStringConvertible {
         let info: String
         let code: Int
         let statusCode: Int
         let exception: String
-        let duration: String
+        
+        public var description: String {
+            return "\(exception)[\(code)] Status Code: \(statusCode), \(info)"
+        }
     }
 }
