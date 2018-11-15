@@ -14,9 +14,8 @@ class ClientTests: XCTestCase {
     
     func testClient() {
         let baseURL = BaseURL(location: .europeWest)
-        let moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0,
-                                                                                               apiKey: "testAPIKey",
-                                                                                               baseURL: baseURL) },
+        
+        let moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: "testAPIKey", baseURL: baseURL) },
                                                      stubClosure: MoyaProvider.immediatelyStub,
                                                      plugins: [AuthorizationMoyaPlugin(token: "test.token"),
                                                                NetworkLoggerPlugin(verbose: true)])
