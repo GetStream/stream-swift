@@ -1,5 +1,5 @@
 //
-//  FeedGroup.swift
+//  FeedId.swift
 //  GetStream
 //
 //  Created by Alexey Bukhtin on 12/11/2018.
@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct FeedGroup: CustomStringConvertible, Codable {
+// TODO: rename to FeedId
+public struct FeedId: CustomStringConvertible, Codable {
     private static let separator: Character = ":"
     
     /// The name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline.
@@ -18,7 +19,7 @@ public struct FeedGroup: CustomStringConvertible, Codable {
     
     /// The feed group id. E.g. `timeline:123`
     public var description: String {
-        return feedSlug.appending(String(FeedGroup.separator)).appending(userId)
+        return feedSlug.appending(String(FeedId.separator)).appending(userId)
     }
     
     public init(feedSlug: String, userId: String) {
@@ -32,14 +33,14 @@ public struct FeedGroup: CustomStringConvertible, Codable {
         
         if id.isEmpty {
             throw DecodingError.dataCorruptedError(in: container,
-                                                   debugDescription: "Cannot initialize FeedGroup from an empty string")
+                                                   debugDescription: "Cannot initialize FeedId from an empty string")
         }
         
-        let pair = id.split(separator: FeedGroup.separator).map { String($0) }
+        let pair = id.split(separator: FeedId.separator).map { String($0) }
         
         if pair.count != 2 {
             throw DecodingError.dataCorruptedError(in: container,
-                                                   debugDescription: "Cannot initialize FeedGroup from a currupted string: \(id)")
+                                                   debugDescription: "Cannot initialize FeedId from a currupted string: \(id)")
         }
         
         self.init(feedSlug: pair[0], userId: pair[1])

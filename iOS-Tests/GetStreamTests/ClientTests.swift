@@ -21,11 +21,11 @@ class ClientTests: XCTestCase {
                                                                NetworkLoggerPlugin(verbose: true)])
         
         let client = Client(moyaProvider: moyaProvider)
-        let feedGroup = FeedGroup(feedSlug: "test", userId: "123")
+        let feedId = FeedId(feedSlug: "test", userId: "123")
         
         let expectFeed = expectation(description: "expecting a feed received")
         
-        client.request(endpoint: FeedEndpoint.feed(feedGroup, pagination: .none)) { result in
+        client.request(endpoint: FeedEndpoint.feed(feedId, pagination: .none)) { result in
             if case .success(let data) = result, let activities = data.json["results"] as? [String: Any] {
                 XCTAssertEqual(activities.count, 3)
             } else if case .failure(let error) = result {

@@ -17,7 +17,7 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
         case target
         case foreignId = "foreign_id"
         case time
-        case feedGroups = "to"
+        case feedIds = "to"
     }
     
     /// The Stream id of the activity.
@@ -36,7 +36,7 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     public var time: Date?
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
-    public var feedGroups: [FeedGroup]?
+    public var feedIds: [FeedId]?
     
     /// Create an activity.
     ///
@@ -47,25 +47,25 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     ///     - target: the optional target of the activity.
     ///     - foreignId: a unique ID from your application for this activity.
     ///     - time: a time of the activity, isoformat. Default is the current time.
-    ///     - feedGroups: an array allows you to specify a list of feeds to which the activity should be copied.
+    ///     - feedIds: an array allows you to specify a list of feeds to which the activity should be copied.
     public init(actor: String,
                 verb: String,
                 object: String,
                 target: String? = nil,
                 foreignId: String? = nil,
                 time: Date? = nil,
-                feedGroups: [FeedGroup]? = nil) {
+                feedIds: [FeedId]? = nil) {
         self.actor = actor
         self.verb = verb
         self.object = object
         self.target = target
         self.foreignId = foreignId
         self.time = time
-        self.feedGroups = feedGroups
+        self.feedIds = feedIds
     }
     
     open var description: String {
         return "\(type(of: self))<\(id?.uuidString ?? "<no id>")> foreignId: <\(foreignId ?? "n/a")>, "
-            + "\(actor) \(verb) \(object) \(target ?? "") at \(time?.description ?? "<n/a>") to: \(feedGroups?.description ?? "[]")"
+            + "\(actor) \(verb) \(object) \(target ?? "") at \(time?.description ?? "<n/a>") to: \(feedIds?.description ?? "[]")"
     }
 }
