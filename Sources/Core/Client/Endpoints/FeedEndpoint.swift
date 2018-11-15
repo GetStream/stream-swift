@@ -10,10 +10,10 @@ import Foundation
 import Moya
 
 enum FeedEndpoint {
-    case feed(_ feedGroup: FeedGroup, pagination: FeedPagination)
-    case add(_ activity: ActivityProtocol, feedGroup: FeedGroup)
-    case deleteById(_ id: UUID, feedGroup: FeedGroup)
-    case deleteByForeignId(_ foreignId: String, feedGroup: FeedGroup)
+    case feed(_ feedId: FeedId, pagination: FeedPagination)
+    case add(_ activity: ActivityProtocol, feedId: FeedId)
+    case deleteById(_ id: UUID, feedId: FeedId)
+    case deleteByForeignId(_ foreignId: String, feedId: FeedId)
 }
 
 extension FeedEndpoint: TargetType {
@@ -23,14 +23,14 @@ extension FeedEndpoint: TargetType {
     
     var path: String {
         switch self {
-        case .feed(let feedGroup, _):
-            return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/"
-        case .add(_, let feedGroup):
-            return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/"
-        case let .deleteById(activityId, feedGroup):
-            return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/\(activityId.uuidString.lowercased())/"
-        case let .deleteByForeignId(foreignId, feedGroup):
-            return "feed/\(feedGroup.feedSlug)/\(feedGroup.userId)/\(foreignId)/"
+        case .feed(let feedId, _):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
+        case .add(_, let feedId):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
+        case let .deleteById(activityId, feedId):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/\(activityId.uuidString.lowercased())/"
+        case let .deleteByForeignId(foreignId, feedId):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/\(foreignId)/"
         }
     }
     
@@ -73,7 +73,7 @@ extension FeedEndpoint: TargetType {
             
             return .requestParameters(parameters: pagination.parameters, encoding: URLEncoding.default)
             
-        case .add(let activity, feedGroup: _):
+        case .add(let activity, feedId: _):
             return .requestCustomJSONEncodable(activity, encoder: .stream)
             
         case .deleteById:

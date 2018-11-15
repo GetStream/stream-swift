@@ -10,7 +10,6 @@ import UIKit
 import GetStream
 
 class ViewController: UIViewController {
-    let feedGroup = FeedGroup(feedSlug: "user", userId: "eric")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +19,9 @@ class ViewController: UIViewController {
         }
         
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
-        print(client)
-        let feed = Feed(feedGroup, client: client)
-        
-        let activity = Activity(actor: "eric",
-                                tweet: "Hello world!",
-                                foreignId: UUID().uuidString,
-                                time: Date())
-        activity.feedGroups = [FeedGroup(feedSlug: "timeline", userId: "jessica")]
+        let feed = client.feed(feedSlug: "user", userId: "eric")
+        let activity = Activity(actor: "eric", tweet: "Hello world!")
+        activity.feedIds = [FeedId(feedSlug: "timeline", userId: "jessica")]
         
         add(activity: activity, to: feed)
     }
@@ -43,7 +37,7 @@ class ViewController: UIViewController {
     private func add(activity: Activity, to feed: Feed) {
         print("Adding...", activity)
         
-        feed.add(activity, to: feedGroup) { result in
+        feed.add(activity) { result in
             if case .success(let activities) = result {
                 activities.forEach { print($0) }
                 self.fetch(feed)
@@ -56,7 +50,7 @@ class ViewController: UIViewController {
     private func fetch(_ feed: Feed) {
         print("Feed requesting...")
         
-        feed.feed(of: Activity.self) { result in
+        feed.get(typeOf: Activity.self) { result in
             if case .success(let activities) = result {
                 activities.forEach { print($0) }
                 self.removeFirstAndLastActivities(activities, in: feed)
@@ -70,7 +64,7 @@ class ViewController: UIViewController {
         if let first = activities.first, let foreignId = first.foreignId {
             print("Deleting...", first)
             
-            feed.remove(by: foreignId, feedGroup: self.feedGroup) { result in
+            feed.remove(by: foreignId) { result in
                 print("Deleted by foreignId", result)
             }
         }
@@ -78,7 +72,7 @@ class ViewController: UIViewController {
         if let last = activities.last, let activityId = last.id {
             print("Deleting...", last)
             
-            feed.remove(by: activityId, feedGroup: self.feedGroup) { result in
+            feed.remove(by: activityId) { result in
                 print("Deleted by activityId", result)
             }
         }

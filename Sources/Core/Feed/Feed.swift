@@ -11,12 +11,22 @@ import Moya
 import Result
 
 public struct Feed {
-    private let feedGroup: FeedGroup
+    private let feedId: FeedId
     private let client: Client
     
-    public init(_ feedGroup: FeedGroup, client: Client) {
-        self.feedGroup = feedGroup
+    public init(_ feedId: FeedId, client: Client) {
+        self.feedId = feedId
         self.client = client
+    }
+}
+
+extension Client {
+    public func feed(feedSlug: String, userId: String) -> Feed {
+        return feed(FeedId(feedSlug: feedSlug, userId: userId))
+    }
+    
+    public func feed(_ feedIf: FeedId) -> Feed {
+        return Feed(feedIf, client: self)
     }
 }
 
@@ -25,10 +35,8 @@ public struct Feed {
 extension Feed {
     /// Add a new activity.
     @discardableResult
-    public func add<T: ActivityProtocol>(_ activity: T,
-                                         to feedGroup: FeedGroup,
-                                         completion: @escaping Completion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.add(activity, feedGroup: feedGroup)) { [self] result in
+    public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping Completion<T>) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { [self] result in
             self.parseResponse(result, completion: completion)
         }
     }
@@ -39,16 +47,16 @@ extension Feed {
 extension Feed {
     /// Remove an activity by the activityId.
     @discardableResult
-    public func remove(by activityId: UUID, feedGroup: FeedGroup, completion: @escaping RemovedCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedGroup: feedGroup)) { [self] result in
+    public func remove(by activityId: UUID, completion: @escaping RemovedCompletion) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) { [self] result in
             self.parseRemovedResponse(result, completion: completion)
         }
     }
     
     /// Remove an activity by the foreignId.
     @discardableResult
-    public func remove(by foreignId: String, feedGroup: FeedGroup, completion: @escaping RemovedCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedGroup: feedGroup)) { [self] result in
+    public func remove(by foreignId: String, completion: @escaping RemovedCompletion) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) { [self] result in
             self.parseRemovedResponse(result, completion: completion)
         }
     }
@@ -65,8 +73,8 @@ extension Feed {
     /// - Returns:
     ///     - a cancellable object to cancel the request.
     @discardableResult
-    public mutating func feed(pagination: FeedPagination = .none, completion: @escaping Completion<Activity>) -> Cancellable {
-        return feed(of: Activity.self, pagination: pagination, completion: completion)
+    public func get(pagination: FeedPagination = .none, completion: @escaping Completion<Activity>) -> Cancellable {
+        return get(typeOf: Activity.self, pagination: pagination, completion: completion)
     }
     
     /// Receive feed activities with a custom activity type.
@@ -77,10 +85,10 @@ extension Feed {
     /// - Returns:
     ///     - a cancellable object to cancel the request.
     @discardableResult
-    public func feed<T: ActivityProtocol>(of type: T.Type,
-                                          pagination: FeedPagination = .none,
-                                          completion: @escaping Completion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.feed(feedGroup, pagination: pagination)) { [self] result in
+    public func get<T: ActivityProtocol>(typeOf type: T.Type,
+                                         pagination: FeedPagination = .none,
+                                         completion: @escaping Completion<T>) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.feed(feedId, pagination: pagination)) { [self] result in
             self.parseResponse(result, inContainer: true, completion: completion)
         }
     }
