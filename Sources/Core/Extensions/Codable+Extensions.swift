@@ -63,7 +63,7 @@ struct AnyEncodable: Encodable {
 // MARK: - Date Formatter Helper
 
 extension DateFormatter {
-    fileprivate static let stream: DateFormatter = {
+    public static let stream: DateFormatter = {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_US_POSIX")

@@ -12,7 +12,7 @@ public enum ClientError: Error {
     case unknown
     case unknownError(_ error: Error)
     case jsonInvalid
-    case jsonDecode(_ error: Error)
+    case jsonDecode(_ error: Error, data: Data)
     case jsonEncode(_ error: Error)
     case network(_ description: String)
     case server(_ info: Info)
@@ -37,8 +37,8 @@ public enum ClientError: Error {
             return "Unexpected behaviour with error: \(error)"
         case .jsonInvalid:
             return "A server response is not a JSON"
-        case .jsonDecode(let error):
-            return "JSON decoding error: \(error)"
+        case let .jsonDecode(error, data):
+            return "JSON decoding error: \(error). Data: \(data.count) bytes"
         case .jsonEncode(let error):
             return "JSON encoding error: \(error)"
         case .network(let description):

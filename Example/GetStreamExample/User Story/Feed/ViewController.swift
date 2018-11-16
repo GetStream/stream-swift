@@ -18,8 +18,48 @@ class ViewController: UIViewController {
             return
         }
         
-        let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token)
-        follow(client: client)
+        let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
+        fetchActivities(client)
+    }
+    
+    private func fetchActivities(_ client: Client) {
+        let activityIds = [UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0").require(),
+                           UUID(uuidString: "815B4FA0-E7FC-11E8-8080-80007911093A").require()]
+        
+        client.get(typeOf: Activity.self, activityIds: activityIds) { result in
+            print(result)
+        }
+        
+        let foreignIds = ["D05B0F4D-4DDB-4154-9565-DD424CC70A67",
+                          "1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6"]
+        
+        let times = [DateFormatter.stream.date(from: "2018-11-16T12:58:06.664400").require(),
+                     DateFormatter.stream.date(from: "2018-11-14T11:00:32.282000").require()]
+        
+        client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
+            print(result)
+        }
+    }
+    
+    private func updateActivity(client: Client) {
+        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
+        
+        ericFeed.get(typeOf: Activity.self) { result in
+            if case .success(let activities) = result, let first = activities.first {
+                print(first)
+                
+                guard let foreignId = first.foreignId, !foreignId.isEmpty else {
+                    ericFeed.remove(by: first.id.require(), completion: { result in
+                        print(result)
+                    })
+                    return
+                }
+                
+                client.update(activities: [first], completion: { result in
+                    print(result)
+                })
+            }
+        }
     }
     
     private func follow(client: Client) {

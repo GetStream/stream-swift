@@ -32,12 +32,14 @@ public final class Client {
                             baseURL: BaseURL = BaseURL(),
                             callbackQueue: DispatchQueue? = nil,
                             logsEnabled: Bool = false) {
-        let callbackQueue = callbackQueue ?? DispatchQueue(label: "\(baseURL.url.host ?? "io.getstream").Client")
         var moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
         
         if logsEnabled {
             moyaPlugins.append(NetworkLoggerPlugin(verbose: true))
         }
+        
+        let callbackQueue = callbackQueue
+            ?? DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
         
         let moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) },
                                                      callbackQueue: callbackQueue,
@@ -54,6 +56,9 @@ public final class Client {
 extension Client {
     /// GetStream version number.
     public static let version: String = Bundle(for: Client.self).infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
+    
+    /// Default headers.
+    static let headers: [String : String] = ["X-Stream-Client": "stream-swift-client-\(Client.version)"]
 }
 
 extension Client: CustomStringConvertible {

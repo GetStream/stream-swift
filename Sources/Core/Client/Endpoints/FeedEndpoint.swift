@@ -89,7 +89,7 @@ extension FeedEndpoint: TargetType {
     }
     
     var headers: [String : String]? {
-        return ["X-Stream-Client": "stream-swift-client-\(Client.version)"]
+        return Client.headers
     }
     
     var sampleData: Data {
