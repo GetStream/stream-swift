@@ -10,9 +10,13 @@ import Foundation
 import Moya
 import Result
 
-public struct Feed {
+public struct Feed: CustomStringConvertible {
     private let feedId: FeedId
     private let client: Client
+    
+    public var description: String {
+        return feedId.description
+    }
     
     public init(_ feedId: FeedId, client: Client) {
         self.feedId = feedId
@@ -118,13 +122,68 @@ extension Feed {
     }
     
     private func parseRemovedResponse(_ result: ClientCompletionResult, completion: @escaping RemovedCompletion) {
-        if case .success(let response) = result, let json = (try? response.mapJSON()) as? JSON {
-            completion(.success(json["removed"] as? String))
+        if case .success(let response) = result {
+            do {
+                let json = try response.mapJSON()
+                
+                if let json = json as? [String: Any], let removedId = json["removed"] as? String {
+                    completion(.success(removedId))
+                } else {
+                    ClientError.warning(for: json, missedParameter: "removed")
+                    completion(.success(nil))
+                }
+            } catch {
+                completion(.failure(ClientError.jsonEncode(error)))
+            }
         } else if case .failure(let error) = result {
             completion(.failure(error))
         }
     }
 }
+
+// MARK: - Following
+
+extension Feed {
+    /// Follows a target feed.
+    ///
+    /// - Parameters:
+    ///     - target: the target feed this feed should follow, e.g. user:44.
+    ///     - activityCopyLimit: how many activities should be copied from the target feed, max 1000, default 100.
+    @discardableResult
+    public func follow(to target: FeedId, activityCopyLimit: Int = 100, completion: @escaping StatusCodeCompletion) -> Cancellable {
+        let activityCopyLimit = max(0, min(1000, activityCopyLimit))
+        let endpoint = FeedEndpoint.follow(feedId: feedId, target: target, activityCopyLimit: activityCopyLimit)
+        
+        return client.request(endpoint: endpoint) { result in
+            do {
+                let response = try result.dematerialize()
+                completion(.success(response.statusCode))
+                
+            } catch let error as ClientError {
+                completion(.failure(error))
+            } catch {
+                completion(.failure(.unknownError(error)))
+            }
+        }
+    }
+    
+    @discardableResult
+    public func unfollow(from target: FeedId, keepHistory: Bool = false, completion: @escaping StatusCodeCompletion) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.unfollow(feedId: feedId, target: target, keepHistory: keepHistory)) { result in
+            do {
+                let response = try result.dematerialize()
+                completion(.success(response.statusCode))
+                
+            } catch let error as ClientError {
+                completion(.failure(error))
+            } catch {
+                completion(.failure(.unknownError(error)))
+            }
+        }
+    }
+}
+
+// MARK: - Results Container
 
 fileprivate struct ResultsContainer<T: Decodable>: Decodable {
     private enum CodingKey: String, Swift.CodingKey {

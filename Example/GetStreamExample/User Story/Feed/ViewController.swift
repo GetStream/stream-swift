@@ -18,23 +18,33 @@ class ViewController: UIViewController {
             return
         }
         
-        let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
-        let feed = client.feed(feedSlug: "user", userId: "eric")
-        let activity = Activity(actor: "eric", tweet: "Hello world!")
-        activity.feedIds = [FeedId(feedSlug: "timeline", userId: "jessica")]
-        add(activity: activity, to: feed)
+        let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token)
+        follow(client: client)
     }
     
-    private func codable(_ activity: Activity) {
-        let data = try! JSONEncoder.stream.encode(activity)
-        print(String(data: data, encoding: .utf8)!)
+    private func follow(client: Client) {
+        let ericFeedId = FeedId(feedSlug: "user", userId: "eric")
+        let jessicaFeedId = FeedId(feedSlug: "timeline", userId: "jessica")
+        let ericFeed = client.feed(ericFeedId)
+        let jessicaFeed = client.feed(jessicaFeedId)
         
-        let decodedActivity = try! JSONDecoder.stream.decode(Activity.self, from: data)
-        print(decodedActivity)
+        print("Following...")
+        ericFeed.follow(to: jessicaFeedId) { result in
+            self.fetch(ericFeed) {
+                self.fetch(jessicaFeed) {
+                    print("Unfollowing...")
+                    ericFeed.unfollow(from: jessicaFeedId) { _ in
+                        self.fetch(ericFeed) {
+                            self.fetch(jessicaFeed) {}
+                        }
+                    }
+                }
+            }
+        }
     }
     
     private func add(activity: Activity, to feed: Feed) {
-        print("Adding...", activity)
+        print("Adding to \(feed)...", activity)
         
         feed.add(activity) { result in
             if case .success(let activities) = result {
@@ -46,13 +56,13 @@ class ViewController: UIViewController {
         }
     }
     
-    private func fetch(_ feed: Feed) {
-        print("Feed requesting...")
+    private func fetch(_ feed: Feed, completion: (() -> Void)? = nil) {
+        print("Fetching feed \(feed)...")
         
         feed.get(typeOf: Activity.self) { result in
             if case .success(let activities) = result {
                 activities.forEach { print($0) }
-                self.removeFirstAndLastActivities(activities, in: feed)
+                completion?()
             } else {
                 print(result)
             }
@@ -61,7 +71,7 @@ class ViewController: UIViewController {
     
     private func removeFirstAndLastActivities(_ activities: [Activity], in feed: Feed) {
         if let first = activities.first, let foreignId = first.foreignId {
-            print("Deleting...", first)
+            print("Deleting from \(feed)...", first)
             
             feed.remove(by: foreignId) { result in
                 print("Deleted by foreignId", result)
@@ -69,11 +79,19 @@ class ViewController: UIViewController {
         }
         
         if let last = activities.last, let activityId = last.id {
-            print("Deleting...", last)
+            print("Deleting from \(feed)...", last)
             
             feed.remove(by: activityId) { result in
                 print("Deleted by activityId", result)
             }
         }
+    }
+    
+    private func codable(_ activity: Activity) {
+        let data = try! JSONEncoder.stream.encode(activity)
+        print(String(data: data, encoding: .utf8)!)
+        
+        let decodedActivity = try! JSONDecoder.stream.decode(Activity.self, from: data)
+        print(decodedActivity)
     }
 }

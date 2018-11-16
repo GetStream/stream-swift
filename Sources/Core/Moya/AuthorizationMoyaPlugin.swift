@@ -16,7 +16,6 @@ struct AuthorizationMoyaPlugin: PluginType {
         var request = request
         request.addValue("jwt", forHTTPHeaderField: "Stream-Auth-Type")
         request.addValue(token, forHTTPHeaderField: "Authorization")
-        request.addValue("stream-swift-client-\(Client.version)", forHTTPHeaderField: "X-Stream-Client")
         
         return request
     }
