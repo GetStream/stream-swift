@@ -14,6 +14,8 @@ enum FeedEndpoint {
     case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
+    case follow(feedId: FeedId, target: FeedId, activityCopyLimit: Int)
+    case unfollow(feedId: FeedId, target: FeedId, keepHistory: Bool)
 }
 
 extension FeedEndpoint: TargetType {
@@ -31,6 +33,10 @@ extension FeedEndpoint: TargetType {
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/\(activityId.uuidString.lowercased())/"
         case let .deleteByForeignId(foreignId, feedId):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/\(foreignId)/"
+        case let .follow(feedId, _, _):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/"
+        case let .unfollow(feedId, target, _):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/\(target.description)/"
         }
     }
     
@@ -44,7 +50,46 @@ extension FeedEndpoint: TargetType {
             return .delete
         case .deleteByForeignId:
             return .delete
+        case .follow:
+            return .post
+        case .unfollow:
+            return .delete
         }
+    }
+    
+    var task: Task {
+        switch self {
+        case .get(_, let pagination):
+            if case .none = pagination {
+                return .requestPlain
+            }
+            
+            return .requestParameters(parameters: pagination.parameters, encoding: URLEncoding.default)
+            
+        case .add(let activity, feedId: _):
+            return .requestCustomJSONEncodable(activity, encoder: .stream)
+            
+        case .deleteById:
+            return .requestPlain
+            
+        case .deleteByForeignId:
+            return .requestParameters(parameters: ["foreign_id": 1], encoding: URLEncoding.default)
+            
+        case let .follow(_, target, activityCopyLimit):
+            return .requestParameters(parameters: ["target": target.description,
+                                                   "activity_copy_limit": activityCopyLimit], encoding: JSONEncoding.default)
+            
+        case .unfollow(_, _, let keepHistory):
+            if keepHistory {
+                return .requestParameters(parameters: ["keep_history": "1"], encoding: URLEncoding.default)
+            }
+            
+            return .requestPlain
+        }
+    }
+    
+    var headers: [String : String]? {
+        return ["X-Stream-Client": "stream-swift-client-\(Client.version)"]
     }
     
     var sampleData: Data {
@@ -103,44 +148,20 @@ extension FeedEndpoint: TargetType {
             return json.data(using: .utf8) ?? Data()
         case .add(let activity, feedId: _):
             return """
-            {"actor":"\(activity.actor)",
-            "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
-            "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
-            "object":"\(activity.object)",
-            "origin":null,
-            "target":"\(activity.target ?? "")",
-            "time":"2018-11-14T15:54:45.268000",
-            "to":["timeline:jessica"],
-            "verb":"\(activity.verb)"}
-            """.data(using: .utf8) ?? Data()
+                {"actor":"\(activity.actor)",
+                "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+                "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
+                "object":"\(activity.object)",
+                "origin":null,
+                "target":"\(activity.target ?? "")",
+                "time":"2018-11-14T15:54:45.268000",
+                "to":["timeline:jessica"],
+                "verb":"\(activity.verb)"}
+                """.data(using: .utf8) ?? Data()
             
         default:
             return Data()
         }
-    }
-    
-    var task: Task {
-        switch self {
-        case .get(_, let pagination):
-            if case .none = pagination {
-                return .requestPlain
-            }
-            
-            return .requestParameters(parameters: pagination.parameters, encoding: URLEncoding.default)
-            
-        case .add(let activity, feedId: _):
-            return .requestCustomJSONEncodable(activity, encoder: .stream)
-            
-        case .deleteById:
-            return .requestPlain
-            
-        case .deleteByForeignId:
-            return .requestParameters(parameters: ["foreign_id": 1], encoding: URLEncoding.default)
-        }
-    }
-    
-    var headers: [String : String]? {
-        return nil
     }
 }
 

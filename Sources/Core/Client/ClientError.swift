@@ -10,6 +10,7 @@ import Foundation
 
 public enum ClientError: Error {
     case unknown
+    case unknownError(_ error: Error)
     case jsonInvalid
     case jsonDecode(_ error: Error)
     case jsonEncode(_ error: Error)
@@ -32,6 +33,8 @@ public enum ClientError: Error {
         switch self {
         case .unknown:
             return "Unexpected behaviour"
+        case .unknownError(let error):
+            return "Unexpected behaviour with error: \(error)"
         case .jsonInvalid:
             return "A server response is not a JSON"
         case .jsonDecode(let error):
@@ -43,6 +46,10 @@ public enum ClientError: Error {
         case .server(let info):
             return info.description
         }
+    }
+    
+    static func warning(for json: Any, missedParameter parameter: String, from: String = #function) {
+        print("⚠️", from, "JSON does not have a parameter \"\(parameter)\" in:", json)
     }
 }
 
