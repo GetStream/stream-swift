@@ -40,8 +40,8 @@ extension Feed {
     /// Add a new activity.
     @discardableResult
     public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping Completion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { [self] result in
-            self.parseResponse(result, completion: completion)
+        return client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) {
+            Client.parseResultsResponse($0, completion: completion)
         }
     }
 }
@@ -52,16 +52,16 @@ extension Feed {
     /// Remove an activity by the activityId.
     @discardableResult
     public func remove(by activityId: UUID, completion: @escaping RemovedCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) { [self] result in
-            self.parseRemovedResponse(result, completion: completion)
+        return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) {
+            Client.parseRemovedResponse($0, completion: completion)
         }
     }
     
     /// Remove an activity by the foreignId.
     @discardableResult
     public func remove(by foreignId: String, completion: @escaping RemovedCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) { [self] result in
-            self.parseRemovedResponse(result, completion: completion)
+        return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) {
+            Client.parseRemovedResponse($0, completion: completion)
         }
     }
 }
@@ -92,51 +92,8 @@ extension Feed {
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
                                          pagination: FeedPagination = .none,
                                          completion: @escaping Completion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.get(feedId, pagination: pagination)) { [self] result in
-            self.parseResponse(result, inContainer: true, completion: completion)
-        }
-    }
-}
-
-// MARK: - Parsing
-
-extension Feed {
-    private func parseResponse<T: Decodable>(_ result: ClientCompletionResult,
-                                             inContainer: Bool = false,
-                                             completion: @escaping Completion<T>) {
-        if case .success(let response) = result {
-            do {
-                if inContainer {
-                    let container = try JSONDecoder.stream.decode(ResultsContainer<T>.self, from: response.data)
-                    completion(.success(container.results))
-                } else {
-                    let object = try JSONDecoder.stream.decode(T.self, from: response.data)
-                    completion(.success([object]))
-                }
-            } catch {
-                completion(.failure(.jsonDecode(error)))
-            }
-        } else if case .failure(let error) = result {
-            completion(.failure(error))
-        }
-    }
-    
-    private func parseRemovedResponse(_ result: ClientCompletionResult, completion: @escaping RemovedCompletion) {
-        if case .success(let response) = result {
-            do {
-                let json = try response.mapJSON()
-                
-                if let json = json as? [String: Any], let removedId = json["removed"] as? String {
-                    completion(.success(removedId))
-                } else {
-                    ClientError.warning(for: json, missedParameter: "removed")
-                    completion(.success(nil))
-                }
-            } catch {
-                completion(.failure(ClientError.jsonEncode(error)))
-            }
-        } else if case .failure(let error) = result {
-            completion(.failure(error))
+        return client.request(endpoint: FeedEndpoint.get(feedId, pagination: pagination)) {
+            Client.parseResultsResponse($0, inContainer: true, completion: completion)
         }
     }
 }
@@ -154,48 +111,13 @@ extension Feed {
         let activityCopyLimit = max(0, min(1000, activityCopyLimit))
         let endpoint = FeedEndpoint.follow(feedId: feedId, target: target, activityCopyLimit: activityCopyLimit)
         
-        return client.request(endpoint: endpoint) { result in
-            do {
-                let response = try result.dematerialize()
-                completion(.success(response.statusCode))
-                
-            } catch let error as ClientError {
-                completion(.failure(error))
-            } catch {
-                completion(.failure(.unknownError(error)))
-            }
-        }
+        return client.request(endpoint: endpoint) { Client.parseStatusCodeResponse($0, completion: completion) }
     }
     
     @discardableResult
     public func unfollow(from target: FeedId, keepHistory: Bool = false, completion: @escaping StatusCodeCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.unfollow(feedId: feedId, target: target, keepHistory: keepHistory)) { result in
-            do {
-                let response = try result.dematerialize()
-                completion(.success(response.statusCode))
-                
-            } catch let error as ClientError {
-                completion(.failure(error))
-            } catch {
-                completion(.failure(.unknownError(error)))
-            }
+        return client.request(endpoint: FeedEndpoint.unfollow(feedId: feedId, target: target, keepHistory: keepHistory)) {
+            Client.parseStatusCodeResponse($0, completion: completion)
         }
-    }
-}
-
-// MARK: - Results Container
-
-fileprivate struct ResultsContainer<T: Decodable>: Decodable {
-    private enum CodingKey: String, Swift.CodingKey {
-        case results
-        case next
-        case duration
-    }
-    
-    let results: [T]
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKey.self)
-        results = try container.decode([T].self, forKey: .results)
     }
 }
