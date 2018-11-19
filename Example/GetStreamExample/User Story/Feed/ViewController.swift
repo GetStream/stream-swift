@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         }
         
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
-        setUnsetProperties(client)
+        updateActivity(client)
     }
     
     private func setUnsetProperties(_ client: Client) {
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateActivity(client: Client) {
+    private func updateActivity(_ client: Client) {
         let ericFeed = client.feed(feedSlug: "user", userId: "eric")
         
         ericFeed.get(typeOf: Activity.self) { result in
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
                     return
                 }
                 
-                client.update(activities: [first], typeOf: Activity.self) { result in
+                client.update(activities: [first]) { result in
                     print(result)
                 }
             }
