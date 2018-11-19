@@ -73,3 +73,15 @@ extension DateFormatter {
         return formatter
     }()
 }
+
+extension Date {
+    public var stream: String {
+        return DateFormatter.stream.string(from: self)
+    }
+}
+
+extension String {
+    public var streamDate: Date? {
+        return DateFormatter.stream.date(from: self)
+    }
+}
