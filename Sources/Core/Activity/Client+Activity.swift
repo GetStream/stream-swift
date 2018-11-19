@@ -65,6 +65,22 @@ extension Client {
         }
     }
     
+    /// Update an activity fields by `activityId`.
+    /// It is possible to update only a part of an activity with the partial update request.
+    /// You can think of it as a quick "patching operation".
+    ///
+    /// - Note: Note: it is not possible to include the following reserved fields in a partial update request (set or unset):
+    ///     - id
+    ///     - actor
+    ///     - verb
+    ///     - object
+    ///     - time
+    ///     - target
+    ///     - foreign_id
+    ///     - to
+    ///     - origin
+    /// - Note: Note: the size of an activity's payload must be less than 10KB after all set and unset operations are applied.
+    ///         The size is based on the size of the JSON-encoded activity.
     @discardableResult
     public func updateActivity<T: ActivityProtocol>(typeOf type: T.Type,
                                                     setProperties properties: Properties? = nil,
@@ -78,6 +94,23 @@ extension Client {
         }
     }
     
+    
+    /// Update an activity fields by `foreignId` and `time`.
+    /// It is possible to update only a part of an activity with the partial update request.
+    /// You can think of it as a quick "patching operation".
+    ///
+    /// - Note: Note: it is not possible to include the following reserved fields in a partial update request (set or unset):
+    ///     - id
+    ///     - actor
+    ///     - verb
+    ///     - object
+    ///     - time
+    ///     - target
+    ///     - foreign_id
+    ///     - to
+    ///     - origin
+    /// - Note: Note: the size of an activity's payload must be less than 10KB after all set and unset operations are applied.
+    ///         The size is based on the size of the JSON-encoded activity.
     @discardableResult
     public func updateActivity<T: ActivityProtocol>(typeOf type: T.Type,
                                                     setProperties properties: Properties? = nil,
