@@ -17,6 +17,7 @@ enum FeedEndpoint {
     case follow(_ feedId: FeedId, target: FeedId, activityCopyLimit: Int)
     case unfollow(_ feedId: FeedId, target: FeedId, keepHistory: Bool)
     case followers(_ feedId: FeedId, limit: Int, offset: Int)
+    case following(_ feedId: FeedId, filter: [FeedId], limit: Int, offset: Int)
 }
 
 extension FeedEndpoint: TargetType {
@@ -40,6 +41,8 @@ extension FeedEndpoint: TargetType {
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/\(target.description)/"
         case .followers(let feedId, _, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/followers/"
+        case .following(let feedId, _, _, _):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/"
         }
     }
     
@@ -58,6 +61,8 @@ extension FeedEndpoint: TargetType {
         case .unfollow:
             return .delete
         case .followers:
+            return .get
+        case .following:
             return .get
         }
     }
@@ -93,6 +98,15 @@ extension FeedEndpoint: TargetType {
             
         case let .followers(_, limit, offset):
             return .requestParameters(parameters: ["limit": limit, "offset": offset], encoding: URLEncoding.default)
+            
+        case let .following(_, filter, limit, offset):
+            var parameters: [String: Any] = ["limit": limit, "offset": offset]
+            
+            if !filter.isEmpty {
+                parameters["filter"] = filter.map { $0.description }.joined(separator: ",")
+            }
+            
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
     

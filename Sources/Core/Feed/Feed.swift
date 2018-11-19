@@ -133,17 +133,26 @@ extension Feed {
         let limit = max(0, min(500, limit))
         let offset = max(0, min(400, offset))
         
-        return client.request(endpoint: FeedEndpoint.followers(feedId, limit: limit, offset: offset)) { result in
-            do {
-                let response = try result.dematerialize()
-                let container = try JSONDecoder.Stream.iso8601.decode(ResultsContainer<Follower>.self, from: response.data)
-                completion(.success(container.results))
-                
-            } catch let error as ClientError {
-                completion(.failure(error))
-            } catch {
-                completion(.failure(.unknownError(error)))
-            }
+        return client.request(endpoint: FeedEndpoint.followers(feedId, limit: limit, offset: offset)) {
+            Client.parseFollowersResponse($0, completion: completion)
+        }
+    }
+    
+    /// Returns a paginated list of the feeds which are followed by the feed.
+    ///
+    /// - Parameters:
+    ///     - filter: list of feeds to filter results on.
+    ///     - limit: amount of results per request, max 500, default 25.
+    ///     - offset: number of followers to skip before returning results, max 400.
+    ///     - completion: a result with `Follower`'s or an error.
+    /// - Note: the number of followers that can be retrieved is limited to 1000.
+    @discardableResult
+    public func following(filter: [FeedId] = [],
+                          limit: Int = 25,
+                          offset: Int = 0,
+                          completion: @escaping FollowerCompletion) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.following(feedId, filter: filter, limit: limit, offset: offset)) {
+            Client.parseFollowersResponse($0, completion: completion)
         }
     }
 }
