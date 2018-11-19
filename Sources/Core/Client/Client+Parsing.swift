@@ -67,7 +67,7 @@ extension Client {
 // MARK: - Results Container
 
 fileprivate struct ResultsContainer<T: Decodable>: Decodable {
-    private enum CodingKey: String, Swift.CodingKey {
+    private enum CodingKeys: String, Swift.CodingKey {
         case results
         case next
         case duration
@@ -76,7 +76,7 @@ fileprivate struct ResultsContainer<T: Decodable>: Decodable {
     let results: [T]
     
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKey.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         results = try container.decode([T].self, forKey: .results)
     }
 }

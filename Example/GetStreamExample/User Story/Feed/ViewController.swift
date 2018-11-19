@@ -19,7 +19,24 @@ class ViewController: UIViewController {
         }
         
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
-        fetchActivities(client)
+        setUnsetProperties(client)
+    }
+    
+    private func setUnsetProperties(_ client: Client) {
+        client.updateActivity(typeOf: Activity.self,
+                              setProperties: ["tweet": "new"],
+                              activityId: UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0").require()) {
+                                print($0)
+                                self.fetchActivities(client)
+        }
+        
+        client.updateActivity(typeOf: Activity.self,
+                              setProperties: ["tweet": "new2"],
+                              foreignId: "D05B0F4D-4DDB-4154-9565-DD424CC70A67",
+                              time: "2018-11-16T12:58:06.664401".streamDate.require()) {
+                                print($0)
+                                self.fetchActivities(client)
+        }
     }
     
     private func fetchActivities(_ client: Client) {
@@ -33,10 +50,10 @@ class ViewController: UIViewController {
         let foreignIds = ["D05B0F4D-4DDB-4154-9565-DD424CC70A67",
                           "1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6"]
         
-        let times = [DateFormatter.stream.date(from: "2018-11-16T12:58:06.664400").require(),
-                     DateFormatter.stream.date(from: "2018-11-14T11:00:32.282000").require()]
+        let times = ["2018-11-16T12:58:06.664401".streamDate.require(),
+                     "2018-11-14T11:00:32.282000".streamDate.require()]
         
-        client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
+        client.get(typeOf: Activity.self, for: foreignIds, times: times) { result in
             print(result)
         }
     }
@@ -55,9 +72,9 @@ class ViewController: UIViewController {
                     return
                 }
                 
-                client.update(activities: [first], completion: { result in
+                client.update(activities: [first], typeOf: Activity.self) { result in
                     print(result)
-                })
+                }
             }
         }
     }

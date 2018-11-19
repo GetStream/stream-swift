@@ -9,6 +9,8 @@
 import Foundation
 
 open class Activity: ActivityProtocol, CustomStringConvertible {
+    /// - Note: These reserved words must not be used as field names:
+    ///         activity_id, activity, analytics, extra_context, id, is_read, is_seen, origin, score, site_id, to
     private enum CodingKeys: String, CodingKey {
         case id
         case actor

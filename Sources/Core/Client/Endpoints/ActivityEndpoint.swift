@@ -9,19 +9,38 @@
 import Foundation
 import Moya
 
-enum ActivityEndpoint {
-    case getByIds(_ ids: [UUID])
+/// Properties where keys are the target fields and the values are the values to be set.
+///
+/// - Note: It's possible to reference the target fields directly
+///         or using the dotted notation `grandfather.father.child`, given that it respects the existing hierarchy.
+public typealias Properties = [String: Encodable]
+
+enum ActivityEndpoint<T: ActivityProtocol> {
+    case getByIds(_ activitiesIds: [UUID])
     case get(foreignIds: [String], times: [Date])
-    case update(_ activities: ActivitiesContainer)
+    case update(_ activities: [T])
+    case updateActivityById(setProperties: Properties?, unsetPropertiesNames: [String]?, activityId: UUID)
+    case updateActivity(setProperties: Properties?, unsetPropertiesNames: [String]?, foreignId: String, time: Date)
 }
 
 extension ActivityEndpoint: TargetType {
     var baseURL: URL {
         return BaseURL.placeholderURL
     }
-
+    
     var path: String {
-        return "activities/"
+        switch self {
+        case .getByIds:
+            return "activities/"
+        case .get:
+            return "activities/"
+        case .update:
+            return "activities/"
+        case .updateActivityById:
+            return "activity/"
+        case .updateActivity:
+            return "activity/"
+        }
     }
     
     var method: Moya.Method {
@@ -31,6 +50,10 @@ extension ActivityEndpoint: TargetType {
         case .get:
             return .get
         case .update:
+            return .post
+        case .updateActivityById:
+            return .post
+        case .updateActivity:
             return .post
         }
     }
@@ -42,12 +65,20 @@ extension ActivityEndpoint: TargetType {
             return .requestParameters(parameters: ["ids" : ids], encoding: URLEncoding.default)
             
         case let .get(foreignIds: foreignIds, times: times):
-            let foreignIds = foreignIds.joined(separator: ",")
-            let times = times.map { DateFormatter.stream.string(from: $0) }.joined(separator: ",")
-            return .requestParameters(parameters: ["foreign_ids": foreignIds, "timestamps": times], encoding: URLEncoding.default)
+            return .requestParameters(parameters: idParameters(with: foreignIds, times: times), encoding: URLEncoding.default)
             
         case .update(let activities):
             return .requestCustomJSONEncodable(activities, encoder: .stream)
+            
+        case let .updateActivityById(setProperties, unsetPropertiesNames, activityId):
+            let parameters: [String: Any] = ["id": activityId.uuidString.lowercased()]
+                .merged(with: setUnsetParameters(setProperties: setProperties, unsetPropertiesNames: unsetPropertiesNames))
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            
+        case let .updateActivity(setProperties, unsetPropertiesNames, foreignId, time):
+            let parameters: [String: Any] = ["foreign_id": foreignId, "time": time.stream]
+                .merged(with: setUnsetParameters(setProperties: setProperties, unsetPropertiesNames: unsetPropertiesNames))
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
     
@@ -60,23 +91,43 @@ extension ActivityEndpoint: TargetType {
     }
 }
 
+extension ActivityEndpoint {
+    private func setUnsetParameters(setProperties properties: Properties?, unsetPropertiesNames names: [String]?) -> [String: Any] {
+        var parameters: [String: Any] = [:]
+        
+        if let properties = properties {
+            parameters["set"] = properties
+        }
+        
+        if let names = names {
+            parameters["unset"] = names
+        }
+        
+        return parameters
+    }
+    
+    private func idParameters(with foreignIds: [String], times: [Date]) -> [String: Any] {
+        let foreignIds = foreignIds.joined(separator: ",")
+        let times = times.map { $0.stream }.joined(separator: ",")
+        return ["foreign_ids": foreignIds, "timestamps": times]
+    }
+}
+
 // MARK: - Activities Container
 
-open class ActivitiesContainer: Encodable {
-    typealias ActivityType = Activity
-    
-    private enum CodingKey: String, Swift.CodingKey {
+open class ActivitiesContainer<T: ActivityProtocol>: Encodable {
+    private enum CodingKeys: String, Swift.CodingKey {
         case activities
     }
     
-    var activities: [ActivityType] = []
+    var activities: [T] = []
     
-    init(_ activities: [ActivityType]) {
+    init(_ activities: [T]) {
         self.activities = activities
     }
     
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKey.self)
+        var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(activities, forKey: .activities)
     }
 }
