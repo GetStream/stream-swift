@@ -11,39 +11,55 @@ import Foundation
 // MARK: - JSONDecoder
 
 extension JSONDecoder {
-    public static let stream: JSONDecoder = {
-        let decoder = JSONDecoder()
-        
-        /// A custom decoding for the custom ISO8601 date.
-        decoder.dateDecodingStrategy = .custom { decoder throws -> Date in
-            let container = try decoder.singleValueContainer()
-            var string: String = try container.decode(String.self)
+    public struct Stream {
+        public static let `default`: JSONDecoder = {
+            let decoder = JSONDecoder()
             
-            if let date = DateFormatter.stream.date(from: string) {
-                return date
+            /// A custom decoding for the custom ISO8601 date.
+            decoder.dateDecodingStrategy = .custom { decoder throws -> Date in
+                let container = try decoder.singleValueContainer()
+                let string: String = try container.decode(String.self)
+                
+                if let date = string.streamDate {
+                    return date
+                }
+                
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date: \(string)")
             }
             
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date: \(string)")
-        }
+            return decoder
+        }()
         
-        return decoder
-    }()
+        public static let iso8601: JSONDecoder = {
+            let decoder  = JSONDecoder()
+            
+            decoder.dateDecodingStrategy = .custom { decoder -> Date in
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                return DateFormatter.Stream.iso8601Date(from: string) ?? Date()
+            }
+            
+            return decoder
+        }()
+    }
 }
 
 // MARK: - JSONEncoder
 
 extension JSONEncoder {
-    public static let stream: JSONEncoder = {
-        let encoder = JSONEncoder()
-        
-        /// A custom encoding for the custom ISO8601 date.
-        encoder.dateEncodingStrategy = .custom { date, encoder throws in
-            var container = encoder.singleValueContainer()
-            try container.encode(DateFormatter.stream.string(from: date))
-        }
-        
-        return encoder
-    }()
+    public struct Stream {
+        public static let `default`: JSONEncoder = {
+            let encoder = JSONEncoder()
+            
+            /// A custom encoding for the custom ISO8601 date.
+            encoder.dateEncodingStrategy = .custom { date, encoder throws in
+                var container = encoder.singleValueContainer()
+                try container.encode(DateFormatter.Stream.default.string(from: date))
+            }
+            
+            return encoder
+        }()
+    }
 }
 
 // MARK: - JSON Encoder Helper
@@ -63,25 +79,43 @@ struct AnyEncodable: Encodable {
 // MARK: - Date Formatter Helper
 
 extension DateFormatter {
-    public static let stream: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+    public struct Stream {
+        public static let `default`: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .iso8601)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+            
+            return formatter
+        }()
         
-        return formatter
-    }()
+        public static func iso8601Date(from string: String) -> Date? {
+            if #available(iOS 11, *) {
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+                return formatter.date(from: string)
+            }
+            
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .iso8601)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+            
+            return formatter.date(from: string)
+        }
+    }
 }
 
 extension Date {
     public var stream: String {
-        return DateFormatter.stream.string(from: self)
+        return DateFormatter.Stream.default.string(from: self)
     }
 }
 
 extension String {
     public var streamDate: Date? {
-        return DateFormatter.stream.date(from: self)
+        return DateFormatter.Stream.default.date(from: self)
     }
 }

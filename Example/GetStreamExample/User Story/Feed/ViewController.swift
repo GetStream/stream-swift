@@ -19,7 +19,14 @@ class ViewController: UIViewController {
         }
         
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
-        updateActivity(client)
+        
+//        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
+        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
+        
+//        jessicaFeed.follow(to: ericFeed.feedId) {
+//            print($0)
+            ericFeed.followers { print($0) }
+//        }
     }
     
     private func setUnsetProperties(_ client: Client) {
@@ -145,10 +152,10 @@ class ViewController: UIViewController {
     }
     
     private func codable(_ activity: Activity) {
-        let data = try! JSONEncoder.stream.encode(activity)
+        let data = try! JSONEncoder.Stream.default.encode(activity)
         print(String(data: data, encoding: .utf8)!)
         
-        let decodedActivity = try! JSONDecoder.stream.decode(Activity.self, from: data)
+        let decodedActivity = try! JSONDecoder.Stream.default.decode(Activity.self, from: data)
         print(decodedActivity)
     }
 }

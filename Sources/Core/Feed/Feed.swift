@@ -11,7 +11,7 @@ import Moya
 import Result
 
 public struct Feed: CustomStringConvertible {
-    private let feedId: FeedId
+    public let feedId: FeedId
     private let client: Client
     
     public var description: String {
@@ -109,15 +109,41 @@ extension Feed {
     @discardableResult
     public func follow(to target: FeedId, activityCopyLimit: Int = 100, completion: @escaping StatusCodeCompletion) -> Cancellable {
         let activityCopyLimit = max(0, min(1000, activityCopyLimit))
-        let endpoint = FeedEndpoint.follow(feedId: feedId, target: target, activityCopyLimit: activityCopyLimit)
+        let endpoint = FeedEndpoint.follow(feedId, target: target, activityCopyLimit: activityCopyLimit)
         
         return client.request(endpoint: endpoint) { Client.parseStatusCodeResponse($0, completion: completion) }
     }
     
     @discardableResult
     public func unfollow(from target: FeedId, keepHistory: Bool = false, completion: @escaping StatusCodeCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.unfollow(feedId: feedId, target: target, keepHistory: keepHistory)) {
+        return client.request(endpoint: FeedEndpoint.unfollow(feedId, target: target, keepHistory: keepHistory)) {
             Client.parseStatusCodeResponse($0, completion: completion)
+        }
+    }
+    
+    /// Returns a paginated list of followers.
+    ///
+    /// - Parameters:
+    ///     - limit: amount of results per request, max 500, default 25.
+    ///     - offset: number of followers to skip before returning results, max 400.
+    ///     - completion: a result with `Follower`'s or an error.
+    /// - Note: the number of followers that can be retrieved is limited to 1000.
+    @discardableResult
+    public func followers(limit: Int = 25, offset: Int = 0, completion: @escaping FollowerCompletion) -> Cancellable {
+        let limit = max(0, min(500, limit))
+        let offset = max(0, min(400, offset))
+        
+        return client.request(endpoint: FeedEndpoint.followers(feedId, limit: limit, offset: offset)) { result in
+            do {
+                let response = try result.dematerialize()
+                let container = try JSONDecoder.Stream.iso8601.decode(ResultsContainer<Follower>.self, from: response.data)
+                completion(.success(container.results))
+                
+            } catch let error as ClientError {
+                completion(.failure(error))
+            } catch {
+                completion(.failure(.unknownError(error)))
+            }
         }
     }
 }

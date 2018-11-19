@@ -14,8 +14,9 @@ enum FeedEndpoint {
     case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
-    case follow(feedId: FeedId, target: FeedId, activityCopyLimit: Int)
-    case unfollow(feedId: FeedId, target: FeedId, keepHistory: Bool)
+    case follow(_ feedId: FeedId, target: FeedId, activityCopyLimit: Int)
+    case unfollow(_ feedId: FeedId, target: FeedId, keepHistory: Bool)
+    case followers(_ feedId: FeedId, limit: Int, offset: Int)
 }
 
 extension FeedEndpoint: TargetType {
@@ -37,6 +38,8 @@ extension FeedEndpoint: TargetType {
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/"
         case let .unfollow(feedId, target, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/\(target.description)/"
+        case .followers(let feedId, _, _):
+            return "feed/\(feedId.feedSlug)/\(feedId.userId)/followers/"
         }
     }
     
@@ -54,6 +57,8 @@ extension FeedEndpoint: TargetType {
             return .post
         case .unfollow:
             return .delete
+        case .followers:
+            return .get
         }
     }
     
@@ -67,7 +72,7 @@ extension FeedEndpoint: TargetType {
             return .requestParameters(parameters: pagination.parameters, encoding: URLEncoding.default)
             
         case .add(let activity, feedId: _):
-            return .requestCustomJSONEncodable(activity, encoder: .stream)
+            return .requestCustomJSONEncodable(activity, encoder: JSONEncoder.Stream.default)
             
         case .deleteById:
             return .requestPlain
@@ -85,6 +90,9 @@ extension FeedEndpoint: TargetType {
             }
             
             return .requestPlain
+            
+        case let .followers(_, limit, offset):
+            return .requestParameters(parameters: ["limit": limit, "offset": offset], encoding: URLEncoding.default)
         }
     }
     
