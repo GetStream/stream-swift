@@ -20,5 +20,5 @@ public struct Follower: Decodable {
     public let feedId: FeedId
     public let targetFeedId: FeedId
     public let created: Date
-    public let updated: Date
+    public let updated: Date?
 }

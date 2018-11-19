@@ -20,12 +20,13 @@ class ViewController: UIViewController {
         
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
         
-//        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
+        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
         let ericFeed = client.feed(feedSlug: "user", userId: "eric")
         
 //        jessicaFeed.follow(to: ericFeed.feedId) {
 //            print($0)
-            ericFeed.followers { print($0) }
+        ericFeed.following() { print($0) }
+        ericFeed.followers { print($0) }
 //        }
     }
     

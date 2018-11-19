@@ -32,6 +32,19 @@ extension Client {
         }
     }
     
+    static func parseFollowersResponse(_ result: ClientCompletionResult, completion: @escaping FollowerCompletion) {
+        do {
+            let response = try result.dematerialize()
+            let container = try JSONDecoder.Stream.iso8601.decode(ResultsContainer<Follower>.self, from: response.data)
+            completion(.success(container.results))
+            
+        } catch let error as ClientError {
+            completion(.failure(error))
+        } catch {
+            completion(.failure(.unknownError(error)))
+        }
+    }
+    
     static func parseRemovedResponse(_ result: ClientCompletionResult, completion: @escaping RemovedCompletion) {
         if case .success(let response) = result {
             do {
