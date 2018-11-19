@@ -68,7 +68,7 @@ extension ActivityEndpoint: TargetType {
             return .requestParameters(parameters: idParameters(with: foreignIds, times: times), encoding: URLEncoding.default)
             
         case .update(let activities):
-            return .requestCustomJSONEncodable(activities, encoder: .stream)
+            return .requestCustomJSONEncodable(["activities": activities], encoder: .stream)
             
         case let .updateActivityById(setProperties, unsetPropertiesNames, activityId):
             let parameters: [String: Any] = ["id": activityId.uuidString.lowercased()]

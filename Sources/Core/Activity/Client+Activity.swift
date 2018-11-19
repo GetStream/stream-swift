@@ -59,9 +59,7 @@ extension Client {
     /// - Note: It is not possible to update more than 100 activities per request with this method.
     /// - Note: When updating an activity any changes to the `feedIds` property are ignored.
     @discardableResult
-    public func update<T: ActivityProtocol>(activities: [T],
-                                            typeOf type: T.Type,
-                                            completion: @escaping StatusCodeCompletion) -> Cancellable {
+    public func update<T: ActivityProtocol>(activities: [T], completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.update(activities)) {
             Client.parseStatusCodeResponse($0, completion: completion)
         }
