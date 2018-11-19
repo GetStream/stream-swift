@@ -18,10 +18,10 @@ extension Client {
         if case .success(let response) = result {
             do {
                 if inContainer {
-                    let container = try JSONDecoder.stream.decode(ResultsContainer<T>.self, from: response.data)
+                    let container = try JSONDecoder.Stream.default.decode(ResultsContainer<T>.self, from: response.data)
                     completion(.success(container.results))
                 } else {
-                    let object = try JSONDecoder.stream.decode(T.self, from: response.data)
+                    let object = try JSONDecoder.Stream.default.decode(T.self, from: response.data)
                     completion(.success([object]))
                 }
             } catch {
@@ -66,7 +66,7 @@ extension Client {
 
 // MARK: - Results Container
 
-fileprivate struct ResultsContainer<T: Decodable>: Decodable {
+struct ResultsContainer<T: Decodable>: Decodable {
     private enum CodingKeys: String, Swift.CodingKey {
         case results
         case next
