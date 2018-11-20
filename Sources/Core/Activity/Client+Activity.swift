@@ -10,14 +10,6 @@ import Foundation
 
 extension Client {
     
-    /// Receive activities by activity ids.
-    ///
-    /// - Note: A maximum length of list of activityIds is 100.
-    @discardableResult
-    public func get(activityIds: [UUID], completion: @escaping Completion<Activity>) -> Cancellable {
-        return get(typeOf: Activity.self, activityIds: activityIds, completion: completion)
-    }
-    
     /// Receive activities by activity ids with a custom activity type.
     ///
     /// - Note: A maximum length of list of activityIds is 100.
@@ -28,14 +20,6 @@ extension Client {
         return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) {
             Client.parseResultsResponse($0, inContainer: true, completion: completion)
         }
-    }
-    
-    /// Receive activities by pairs of `foreignId` and `time`.
-    ///
-    /// - Note: A maximum length of list of foreignIds and times is 100.
-    @discardableResult
-    public func get(foreignIds: [String], times: [Date], completion: @escaping Completion<Activity>) -> Cancellable {
-        return get(typeOf: Activity.self, for: foreignIds, times: times, completion: completion)
     }
     
     /// Receive activities by pairs of `foreignId` and `time` with a custom activity type.

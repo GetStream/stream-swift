@@ -8,7 +8,6 @@
 
 import Foundation
 
-// TODO: rename to FeedId
 public struct FeedId: CustomStringConvertible, Codable {
     private static let separator: Character = ":"
     
@@ -53,5 +52,15 @@ public struct FeedId: CustomStringConvertible, Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(description)
+    }
+}
+
+// MARK: - FeedIds
+
+public typealias FeedIds = [FeedId]
+
+extension Array where Element == FeedId {
+    var value: String {
+        return map { $0.description }.joined(separator: ",")
     }
 }

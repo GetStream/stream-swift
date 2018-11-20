@@ -10,14 +10,14 @@ import Foundation
 import Moya
 
 enum FeedEndpoint {
-    case get(_ feedId: FeedId, pagination: FeedPagination, ranking: String)
+    case get(_ feedId: FeedId, pagination: FeedPagination, ranking: String, markOption: FeedMarkOption)
     case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
     case follow(_ feedId: FeedId, target: FeedId, activityCopyLimit: Int)
     case unfollow(_ feedId: FeedId, target: FeedId, keepHistory: Bool)
     case followers(_ feedId: FeedId, offset: Int, limit: Int)
-    case following(_ feedId: FeedId, filter: [FeedId], offset: Int, limit: Int)
+    case following(_ feedId: FeedId, filter: FeedIds, offset: Int, limit: Int)
 }
 
 extension FeedEndpoint: TargetType {
@@ -27,7 +27,7 @@ extension FeedEndpoint: TargetType {
     
     var path: String {
         switch self {
-        case .get(let feedId, _, _):
+        case .get(let feedId, _, _, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
         case .add(_, let feedId):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
@@ -69,12 +69,12 @@ extension FeedEndpoint: TargetType {
     
     var task: Task {
         switch self {
-        case let .get(_, pagination, ranking):
-            if case .none = pagination, ranking.isEmpty {
+        case let .get(_, pagination, ranking, markOption):
+            if case .none = pagination, ranking.isEmpty, case .none = markOption {
                 return .requestPlain
             }
             
-            var parameters = pagination.parameters
+            var parameters = pagination.parameters.merged(with: markOption.parameters)
             
             if !ranking.isEmpty {
                 parameters["ranking"] = ranking
@@ -109,7 +109,7 @@ extension FeedEndpoint: TargetType {
             var parameters: [String: Any] = ["limit": limit, "offset": offset]
             
             if !filter.isEmpty {
-                parameters["filter"] = filter.map { $0.description }.joined(separator: ",")
+                parameters["filter"] = filter.value
             }
             
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
@@ -122,7 +122,7 @@ extension FeedEndpoint: TargetType {
     
     var sampleData: Data {
         switch self {
-        case let .get(_, pagination: pagination, _):
+        case let .get(_, pagination: pagination, _, _):
             let json: String
             
             if case .limit(let limit) = pagination, limit == 1 {
@@ -252,5 +252,31 @@ public enum FeedPagination {
         }
         
         return params
+    }
+}
+
+// MARK: - Feed Mark Option
+
+public enum FeedMarkOption {
+    case none
+    case seenAll
+    case seen(_ feedIds: FeedIds)
+    case readAll
+    case read(_ feedIds: FeedIds)
+    
+    /// Parameters for a request.
+    fileprivate var parameters: [String: Any] {
+        switch self {
+        case .none:
+            return [:]
+        case .seenAll:
+            return ["mark_seen": true]
+        case .seen(let feedIds):
+            return ["mark_seen": feedIds.value ]
+        case .readAll:
+            return ["mark_read": true]
+        case .read(let feedIds):
+            return ["mark_read": feedIds.value ]
+        }
     }
 }

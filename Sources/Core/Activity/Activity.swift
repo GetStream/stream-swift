@@ -38,7 +38,7 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     public var time: Date?
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
-    public var feedIds: [FeedId]?
+    public var feedIds: FeedIds?
     
     /// Create an activity.
     ///
@@ -56,7 +56,7 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
                 target: String? = nil,
                 foreignId: String? = nil,
                 time: Date? = nil,
-                feedIds: [FeedId]? = nil) {
+                feedIds: FeedIds? = nil) {
         self.actor = actor
         self.verb = verb
         self.object = object

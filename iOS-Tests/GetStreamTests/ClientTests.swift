@@ -27,7 +27,7 @@ class ClientTests: XCTestCase {
     func testGetEndpoint() {
         let expectFeed = expectation(description: "expecting a feed response")
         
-        client.request(endpoint: FeedEndpoint.get(feedId, pagination: .none, ranking: "")) { result in
+        client.request(endpoint: FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)) { result in
             if case .success(let response) = result,
                 let json = (try? response.mapJSON()) as? JSON,
                 let activities = json["results"] as? [Any] {
@@ -67,7 +67,7 @@ class ClientTests: XCTestCase {
     }
     
     func testFeedPagination() {
-        var endpoint = FeedEndpoint.get(feedId, pagination: .none, ranking: "")
+        var endpoint = FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)
         
         guard case .requestPlain = endpoint.task else {
             XCTFail("❌")
@@ -75,7 +75,7 @@ class ClientTests: XCTestCase {
         }
         
         // with limit 5.
-        endpoint = FeedEndpoint.get(feedId, pagination: .limit(5), ranking: "")
+        endpoint = FeedEndpoint.get(feedId, pagination: .limit(5), ranking: "", markOption: .none)
         
         guard case .requestParameters(let limitParameters, _) = endpoint.task else {
             XCTFail("❌")
@@ -85,7 +85,7 @@ class ClientTests: XCTestCase {
         XCTAssertEqual(limitParameters as! [String: Int], ["limit": 5])
         
         // with offset and limit
-        endpoint = FeedEndpoint.get(feedId, pagination: .offset(1, limit: 1), ranking: "")
+        endpoint = FeedEndpoint.get(feedId, pagination: .offset(1, limit: 1), ranking: "", markOption: .none)
         
         guard case .requestParameters(let offsetParameters, _) = endpoint.task else {
             XCTFail("❌")
@@ -96,7 +96,7 @@ class ClientTests: XCTestCase {
         
         // with great then id and limit
         let someId = "someId"
-        endpoint = FeedEndpoint.get(feedId, pagination: .greaterThan(id: someId, limit: 3), ranking: "")
+        endpoint = FeedEndpoint.get(feedId, pagination: .greaterThan(id: someId, limit: 3), ranking: "", markOption: .none)
         
         guard case .requestParameters(let idParameters, _) = endpoint.task else {
             XCTFail("❌")
