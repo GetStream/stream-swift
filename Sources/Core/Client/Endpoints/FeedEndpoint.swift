@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum FeedEndpoint {
-    case get(_ feedId: FeedId, pagination: FeedPagination)
+    case get(_ feedId: FeedId, pagination: FeedPagination, ranking: String)
     case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
@@ -27,7 +27,7 @@ extension FeedEndpoint: TargetType {
     
     var path: String {
         switch self {
-        case .get(let feedId, _):
+        case .get(let feedId, _, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
         case .add(_, let feedId):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
@@ -69,12 +69,18 @@ extension FeedEndpoint: TargetType {
     
     var task: Task {
         switch self {
-        case .get(_, let pagination):
-            if case .none = pagination {
+        case let .get(_, pagination, ranking):
+            if case .none = pagination, ranking.isEmpty {
                 return .requestPlain
             }
             
-            return .requestParameters(parameters: pagination.parameters, encoding: URLEncoding.default)
+            var parameters = pagination.parameters
+            
+            if !ranking.isEmpty {
+                parameters["ranking"] = ranking
+            }
+            
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
             
         case .add(let activity, feedId: _):
             return .requestCustomJSONEncodable(activity, encoder: JSONEncoder.Stream.default)
@@ -116,7 +122,7 @@ extension FeedEndpoint: TargetType {
     
     var sampleData: Data {
         switch self {
-        case let .get(_, pagination: pagination):
+        case let .get(_, pagination: pagination, _):
             let json: String
             
             if case .limit(let limit) = pagination, limit == 1 {

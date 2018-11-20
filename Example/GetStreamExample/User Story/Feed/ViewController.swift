@@ -14,20 +14,34 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let token = Token(secret: "wwzpjxsththuh56373u65rnw9bcjqxb6jxfhu5ux33b6xzyuw6vrdp9bjxg247u6") else {
+        guard let token = Token(secret: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav") else {
             return
         }
         
-        let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44181", token: token, logsEnabled: true)
+        let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
         
-        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
-        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
+        let ericFeed = client.feed(feedSlug: "timeline", userId: "eric")
+//        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
         
-//        jessicaFeed.follow(to: ericFeed.feedId) {
+//        let activity = Activity(actor: "eric", tweet: "A test tweet.")
+        
+//        ericFeed.add(activity) {
 //            print($0)
+        
+            ericFeed.get(typeOf: Activity.self, ranking: "popular") { result in
+                print(try! result.dematerialize())
+            }
+//        }
+    }
+    
+    private func followers(_ client: Client) {
+        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
+        //        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
+        //        jessicaFeed.follow(to: ericFeed.feedId) {
+        //            print($0)
         ericFeed.following() { print($0) }
         ericFeed.followers { print($0) }
-//        }
+        //        }
     }
     
     private func setUnsetProperties(_ client: Client) {
