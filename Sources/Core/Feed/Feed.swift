@@ -127,16 +127,16 @@ extension Feed {
     /// Returns a paginated list of followers.
     ///
     /// - Parameters:
-    ///     - limit: amount of results per request, max 500, default 25.
     ///     - offset: number of followers to skip before returning results, max 400.
+    ///     - limit: amount of results per request, max 500, default 25.
     ///     - completion: a result with `Follower`'s or an error.
     /// - Note: the number of followers that can be retrieved is limited to 1000.
     @discardableResult
-    public func followers(limit: Int = 25, offset: Int = 0, completion: @escaping FollowerCompletion) -> Cancellable {
+    public func followers(offset: Int = 0, limit: Int = 25, completion: @escaping FollowerCompletion) -> Cancellable {
         let limit = max(0, min(500, limit))
         let offset = max(0, min(400, offset))
         
-        return client.request(endpoint: FeedEndpoint.followers(feedId, limit: limit, offset: offset)) {
+        return client.request(endpoint: FeedEndpoint.followers(feedId, offset: offset, limit: limit)) {
             Client.parseFollowersResponse($0, completion: completion)
         }
     }
@@ -145,16 +145,19 @@ extension Feed {
     ///
     /// - Parameters:
     ///     - filter: list of feeds to filter results on.
-    ///     - limit: amount of results per request, max 500, default 25.
     ///     - offset: number of followers to skip before returning results, max 400.
+    ///     - limit: amount of results per request, max 500, default 25.
     ///     - completion: a result with `Follower`'s or an error.
     /// - Note: the number of followers that can be retrieved is limited to 1000.
     @discardableResult
     public func following(filter: [FeedId] = [],
-                          limit: Int = 25,
                           offset: Int = 0,
+                          limit: Int = 25,
                           completion: @escaping FollowerCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.following(feedId, filter: filter, limit: limit, offset: offset)) {
+        let limit = max(0, min(500, limit))
+        let offset = max(0, min(400, offset))
+        
+        return client.request(endpoint: FeedEndpoint.following(feedId, filter: filter, offset: offset, limit: limit)) {
             Client.parseFollowersResponse($0, completion: completion)
         }
     }

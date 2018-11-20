@@ -16,8 +16,8 @@ enum FeedEndpoint {
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
     case follow(_ feedId: FeedId, target: FeedId, activityCopyLimit: Int)
     case unfollow(_ feedId: FeedId, target: FeedId, keepHistory: Bool)
-    case followers(_ feedId: FeedId, limit: Int, offset: Int)
-    case following(_ feedId: FeedId, filter: [FeedId], limit: Int, offset: Int)
+    case followers(_ feedId: FeedId, offset: Int, limit: Int)
+    case following(_ feedId: FeedId, filter: [FeedId], offset: Int, limit: Int)
 }
 
 extension FeedEndpoint: TargetType {
@@ -102,10 +102,10 @@ extension FeedEndpoint: TargetType {
             
             return .requestPlain
             
-        case let .followers(_, limit, offset):
+        case let .followers(_, offset, limit):
             return .requestParameters(parameters: ["limit": limit, "offset": offset], encoding: URLEncoding.default)
             
-        case let .following(_, filter, limit, offset):
+        case let .following(_, filter, offset, limit):
             var parameters: [String: Any] = ["limit": limit, "offset": offset]
             
             if !filter.isEmpty {
