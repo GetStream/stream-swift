@@ -12,15 +12,18 @@ import Foundation
 
 extension JSONDecoder {
     public struct Stream {
-        public static let `default`: JSONDecoder = {
+        public static let `default`: JSONDecoder = decoder { $0.streamDate }
+        public static let iso8601: JSONDecoder = decoder { DateFormatter.Stream.iso8601Date(from: $0) }
+        
+        private static func decoder(dateParser: @escaping (_ dateString: String) -> Date?) -> JSONDecoder {
             let decoder = JSONDecoder()
             
-            /// A custom decoding for the custom ISO8601 date.
+            /// A custom decoding for a date.
             decoder.dateDecodingStrategy = .custom { decoder throws -> Date in
                 let container = try decoder.singleValueContainer()
                 let string: String = try container.decode(String.self)
                 
-                if let date = string.streamDate {
+                if let date = dateParser(string) {
                     return date
                 }
                 
@@ -28,19 +31,7 @@ extension JSONDecoder {
             }
             
             return decoder
-        }()
-        
-        public static let iso8601: JSONDecoder = {
-            let decoder  = JSONDecoder()
-            
-            decoder.dateDecodingStrategy = .custom { decoder -> Date in
-                let container = try decoder.singleValueContainer()
-                let string = try container.decode(String.self)
-                return DateFormatter.Stream.iso8601Date(from: string) ?? Date()
-            }
-            
-            return decoder
-        }()
+        }
     }
 }
 
