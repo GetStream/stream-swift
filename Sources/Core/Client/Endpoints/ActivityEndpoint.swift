@@ -112,22 +112,3 @@ extension ActivityEndpoint {
         return ["foreign_ids": foreignIds, "timestamps": times]
     }
 }
-
-// MARK: - Activities Container
-
-open class ActivitiesContainer<T: ActivityProtocol>: Encodable {
-    private enum CodingKeys: String, Swift.CodingKey {
-        case activities
-    }
-    
-    var activities: [T] = []
-    
-    init(_ activities: [T]) {
-        self.activities = activities
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(activities, forKey: .activities)
-    }
-}
