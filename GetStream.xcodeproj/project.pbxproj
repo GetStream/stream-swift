@@ -164,7 +164,7 @@
 		8A62840E2199B4630002913D /* Token+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+Generator.swift"; sourceTree = "<group>"; };
 		8A6284132199CF9C0002913D /* FeedId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedId.swift; sourceTree = "<group>"; };
 		8A64566921A306AB00E890F4 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
-		8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetStream.podspec; sourceTree = SOURCE_ROOT; };
+		8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetStream.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8A6DE4F2219C5E0C001DF2A8 /* iOS-Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6DE4F4219C5E0C001DF2A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A6DE4FB219C5E0D001DF2A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };

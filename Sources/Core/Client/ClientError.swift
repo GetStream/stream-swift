@@ -17,18 +17,6 @@ public enum ClientError: Error {
     case network(_ description: String)
     case server(_ info: Info)
     
-    init(json: JSON) {
-        guard let detail = json["detail"] as? String,
-            let code = json["code"] as? Int,
-            let statusCode = json["status_code"] as? Int,
-            let exception = json["exception"] as? String else {
-                self = .unknown
-                return
-        }
-        
-        self = .server(Info(info: detail, code: code, statusCode: statusCode, exception: exception))
-    }
-    
     public var localizedDescription: String {
         switch self {
         case .unknown:
@@ -53,15 +41,38 @@ public enum ClientError: Error {
     }
 }
 
+// MARK: - Client Error Info
+
 extension ClientError {
     public struct Info: CustomStringConvertible {
         let info: String
         let code: Int
         let statusCode: Int
         let exception: String
+        let json: JSON
+        
+        init(json: JSON) {
+            guard let detail = json["detail"] as? String,
+                let code = json["code"] as? Int,
+                let statusCode = json["status_code"] as? Int,
+                let exception = json["exception"] as? String else {
+                    info = ""
+                    self.code = 0
+                    self.statusCode = 0
+                    self.exception = ""
+                    self.json = json
+                    return
+            }
+            
+            info = detail
+            self.code = code
+            self.statusCode = statusCode
+            self.exception = exception
+            self.json = [:]
+        }
         
         public var description: String {
-            return "\(exception)[\(code)] Status Code: \(statusCode), \(info)"
+            return exception.isEmpty ? "JSON response \(json)" : "\(exception)[\(code)] Status Code: \(statusCode), \(info)"
         }
     }
 }

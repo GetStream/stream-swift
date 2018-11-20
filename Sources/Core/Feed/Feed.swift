@@ -69,20 +69,6 @@ extension Feed {
 // MARK: - Receive Feed Activities
 
 extension Feed {
-    /// Receive feed activities.
-    ///
-    /// - Parameters:
-    ///     - pagination: a pagination options.
-    ///     - completion: a completion handler with Result of Activity.
-    /// - Returns:
-    ///     - a cancellable object to cancel the request.
-    @discardableResult
-    public func get(pagination: FeedPagination = .none,
-                    ranking: String? = nil,
-                    completion: @escaping Completion<Activity>) -> Cancellable {
-        return get(typeOf: Activity.self, pagination: pagination, completion: completion)
-    }
-    
     /// Receive feed activities with a custom activity type.
     ///
     /// - Parameters:
@@ -94,8 +80,12 @@ extension Feed {
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
                                          pagination: FeedPagination = .none,
                                          ranking: String? = nil,
+                                         markOption: FeedMarkOption = .none,
                                          completion: @escaping Completion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.get(feedId, pagination: pagination, ranking: ranking ?? "")) {
+        return client.request(endpoint: FeedEndpoint.get(feedId,
+                                                         pagination: pagination,
+                                                         ranking: ranking ?? "",
+                                                         markOption: markOption)) {
             Client.parseResultsResponse($0, inContainer: true, completion: completion)
         }
     }
@@ -150,7 +140,7 @@ extension Feed {
     ///     - completion: a result with `Follower`'s or an error.
     /// - Note: the number of followers that can be retrieved is limited to 1000.
     @discardableResult
-    public func following(filter: [FeedId] = [],
+    public func following(filter: FeedIds = [],
                           offset: Int = 0,
                           limit: Int = 25,
                           completion: @escaping FollowerCompletion) -> Cancellable {

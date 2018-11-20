@@ -141,7 +141,7 @@ extension Client {
                 do {
                     if let json = try response.mapJSON() as? JSON {
                         if json["exception"] != nil {
-                            completion(.failure(ClientError(json: json)))
+                            completion(.failure(.server(.init(json: json))))
                         } else {
                             completion(.success(response))
                         }
