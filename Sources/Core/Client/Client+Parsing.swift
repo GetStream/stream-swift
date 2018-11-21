@@ -25,7 +25,7 @@ extension Client {
                     completion(.success([object]))
                 }
             } catch {
-                completion(.failure(.jsonDecode(error, data: response.data)))
+                completion(.failure(.jsonDecode(error.localizedDescription, data: response.data)))
             }
         } else if case .failure(let error) = result {
             completion(.failure(error))
@@ -41,7 +41,7 @@ extension Client {
         } catch let error as ClientError {
             completion(.failure(error))
         } catch {
-            completion(.failure(.unknownError(error)))
+            completion(.failure(.unknownError(error.localizedDescription)))
         }
     }
     
@@ -57,7 +57,7 @@ extension Client {
                     completion(.success(nil))
                 }
             } catch {
-                completion(.failure(ClientError.jsonEncode(error)))
+                completion(.failure(ClientError.jsonEncode(error.localizedDescription)))
             }
         } else if case .failure(let error) = result {
             completion(.failure(error))
@@ -72,7 +72,7 @@ extension Client {
         } catch let error as ClientError {
             completion(.failure(error))
         } catch {
-            completion(.failure(.unknownError(error)))
+            completion(.failure(.unknownError(error.localizedDescription)))
         }
     }
 }
