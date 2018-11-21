@@ -55,6 +55,12 @@ public struct FeedId: CustomStringConvertible, Codable {
     }
 }
 
+extension FeedId: Equatable {
+    public static func == (lhs: FeedId, rhs: FeedId) -> Bool {
+        return lhs.feedSlug == rhs.feedSlug && lhs.userId == rhs.userId
+    }
+}
+
 // MARK: - FeedIds
 
 public typealias FeedIds = [FeedId]
