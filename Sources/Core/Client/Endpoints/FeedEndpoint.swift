@@ -175,7 +175,19 @@ extension FeedEndpoint: TargetType {
             
             return json.data(using: .utf8) ?? Data()
         case .add(let activity, feedId: _):
-            return """
+            let json: String
+            
+            if activity.actor == ClientError.jsonInvalid.localizedDescription {
+                json = "[]"
+                
+            } else if activity.actor == ClientError.network("Failed to map data to JSON.").localizedDescription {
+                json = "{"
+                
+            } else if activity.actor == ClientError.server(.init(json: ["exception": 0])).localizedDescription {
+                json = "{\"exception\": 0}"
+                
+            } else {
+                json = """
                 {"actor":"\(activity.actor)",
                 "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
                 "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
@@ -185,7 +197,10 @@ extension FeedEndpoint: TargetType {
                 "time":"2018-11-14T15:54:45.268000",
                 "to":["timeline:jessica"],
                 "verb":"\(activity.verb)"}
-                """.data(using: .utf8) ?? Data()
+                """
+            }
+            
+            return json.data(using: .utf8) ?? Data()
             
         default:
             return Data()

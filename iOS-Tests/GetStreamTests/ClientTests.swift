@@ -23,7 +23,8 @@ class ClientTests: XCTestCase {
     lazy var client = Client(appId: "appId", networkProvider: provider)
     
     func testConstructor() {
-        XCTAssertEqual(Client(apiKey: "", appId: "appId", token: "").appId, "appId")
+        let client = Client(apiKey: "", appId: "appId", token: "")
+        XCTAssertEqual(client.description, "GetStream Client v.\(Client.version) appId: appId")
         _ = Client(apiKey: "", appId: "appId", token: "", logsEnabled: true)
         _ = Client(apiKey: "", appId: "appId", token: "", callbackQueue: DispatchQueue.main)
     }
@@ -70,6 +71,35 @@ class ClientTests: XCTestCase {
         wait(for: [expectFeed], timeout: TimeInterval(1))
     }
     
+    func testJSONInvalid() {
+        failRequests(clientError: .jsonInvalid)
+    }
+    
+    func testFailedMapDataToJSON() {
+        failRequests(clientError: .network("Failed to map data to JSON."))
+    }
+    
+    func testExceptionInJSON() {
+        failRequests(clientError: .server(.init(json: ["exception": 0])))
+    }
+    
+    func failRequests(clientError: ClientError) {
+        let expect = expectation(description: "expecting \(clientError.localizedDescription)")
+        let activity = Activity(actor: clientError.localizedDescription, verb: "", object: "")
+        
+        client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
+            if case .failure(let error) = result {
+                XCTAssertEqual(error.localizedDescription, clientError.localizedDescription)
+            } else {
+                XCTFail("❌ Shouldn't be success")
+            }
+            
+            expect.fulfill()
+        }
+        
+        wait(for: [expect], timeout: TimeInterval(1))
+    }
+    
     func testFeedPagination() {
         var endpoint = FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)
         
@@ -109,5 +139,26 @@ class ClientTests: XCTestCase {
         
         XCTAssertEqual(idParameters["id_gt"] as! String, someId)
         XCTAssertEqual(idParameters["limit"] as! Int, 3)
+    }
+    
+    func testRateLimit() {
+        let response = Response(statusCode: 200, data: Data())
+        XCTAssertNil(Client.RateLimit(response: response))
+        
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let httpResponse = HTTPURLResponse(url: baseURL.url,
+                                           statusCode: 200,
+                                           httpVersion: nil,
+                                           headerFields: ["x-ratelimit-limit": "20",
+                                                          "x-ratelimit-remaining": "10",
+                                                          "x-ratelimit-reset": String(timestamp)])
+        let rateLimit = Client.RateLimit(response: Response(statusCode: 200, data: Data(), response: httpResponse))
+        XCTAssertNotNil(rateLimit)
+        
+        if let rateLimit = rateLimit {
+            XCTAssertEqual(rateLimit.limit, 20)
+            XCTAssertEqual(rateLimit.remaining, 10)
+            XCTAssertEqual(rateLimit.resetDate, Date(timeIntervalSince1970: TimeInterval(timestamp)))
+        }
     }
 }
