@@ -161,4 +161,21 @@ class ClientTests: XCTestCase {
             XCTAssertEqual(rateLimit.resetDate, Date(timeIntervalSince1970: TimeInterval(timestamp)))
         }
     }
+    
+    func testClientError() {
+        let info = ClientError.Info(json: ["detail": "DETAIL", "code": 1, "status_code": 2, "exception": "EXCEPTION"])
+        XCTAssertEqual(info.description, "EXCEPTION[1] Status Code: 2, DETAIL")
+        
+        let emptyInfo = ClientError.Info(json: ["empty":"json"])
+        XCTAssertEqual(emptyInfo.description, "JSON response [\"empty\": \"json\"]")
+        
+        ClientError.warning(for: [], missedParameter: "test")
+        
+        let unknownError = ClientError.unknown
+        XCTAssertEqual(unknownError.localizedDescription, "Unexpected behaviour")
+        XCTAssertEqual(ClientError.unknownError(unknownError.localizedDescription).localizedDescription,
+                       "Unexpected behaviour with error: Unexpected behaviour")
+        XCTAssertEqual(ClientError.jsonEncode("test").localizedDescription, "JSON encoding error: test")
+        XCTAssertEqual(ClientError.jsonDecode("test", data: Data()).localizedDescription, "JSON decoding error: test. Data: 0 bytes")
+    }
 }
