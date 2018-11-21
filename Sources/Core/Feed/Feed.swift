@@ -25,12 +25,14 @@ public struct Feed: CustomStringConvertible {
 }
 
 extension Client {
+    /// Get a `Feed` with a given `feedSlug` and `userId`.
     public func feed(feedSlug: String, userId: String) -> Feed {
         return feed(FeedId(feedSlug: feedSlug, userId: userId))
     }
     
-    public func feed(_ feedIf: FeedId) -> Feed {
-        return Feed(feedIf, client: self)
+    /// Get a `Feed` with a given `feedId`.
+    public func feed(_ feedId: FeedId) -> Feed {
+        return Feed(feedId, client: self)
     }
 }
 

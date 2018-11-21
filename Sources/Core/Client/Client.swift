@@ -13,9 +13,11 @@ import Result
 typealias JSON = [String: Any]
 typealias ClientCompletionResult = Result<Response, ClientError>
 typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
+typealias NetworkProvider = MoyaProvider<MultiTarget>
 
 public final class Client {
-    private let moyaProvider: MoyaProvider<MultiTarget>
+    let appId: String
+    private let moyaProvider: NetworkProvider
     
     /// Create a GetStream client for making network requests.
     ///
@@ -41,15 +43,14 @@ public final class Client {
         let callbackQueue = callbackQueue
             ?? DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
         
-        let moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) },
-                                                     callbackQueue: callbackQueue,
-                                                     plugins: moyaPlugins)
-        
-        self.init(moyaProvider: moyaProvider)
+        let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
+        let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: callbackQueue, plugins: moyaPlugins)
+        self.init(appId: appId, networkProvider: moyaProvider)
     }
     
-    init(moyaProvider: MoyaProvider<MultiTarget>) {
-        self.moyaProvider = moyaProvider
+    init(appId: String, networkProvider: NetworkProvider) {
+        self.appId = appId
+        self.moyaProvider = networkProvider
     }
 }
 
@@ -63,7 +64,7 @@ extension Client {
 
 extension Client: CustomStringConvertible {
     public var description: String {
-        return "GetStream Client v.\(Client.version)"
+        return "GetStream Client v.\(Client.version) appId: \(appId)"
     }
 }
 
