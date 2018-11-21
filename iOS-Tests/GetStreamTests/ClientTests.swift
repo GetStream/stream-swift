@@ -11,12 +11,7 @@ import Moya
 import Require
 @testable import GetStream
 
-extension UUID {
-    static let test1: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000001").require()
-    static let test2: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000002").require()
-}
-
-class ClientTests: XCTestCase {
+final class ClientTests: TestCase {
     
     let baseURL = BaseURL(location: .europeWest)
     let feedId = FeedId(feedSlug: "test", userId: "123")
@@ -36,63 +31,114 @@ class ClientTests: XCTestCase {
     }
     
     func testFeedEndpointGet() {
-        let expectFeed = expectation(description: "expecting a feed response")
-        
-        client.request(endpoint: FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)) { result in
-            if case .success(let response) = result,
-                let json = (try? response.mapJSON()) as? JSON,
-                let activities = json["results"] as? [Any] {
-                XCTAssertEqual(activities.count, 3)
-            } else if case .failure(let error) = result {
-                XCTFail("❌ \(error.localizedDescription)")
-            } else {
-                XCTFail("❌ Bad data")
+        expect("feed") { test in
+            client.request(endpoint: FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)) { result in
+                if case .success(let response) = result,
+                    let json = (try? response.mapJSON()) as? JSON,
+                    let activities = json["results"] as? [Any] {
+                    XCTAssertEqual(activities.count, 3)
+                    test.fulfill()
+                }
             }
-            
-            expectFeed.fulfill()
         }
-        
-        wait(for: [expectFeed], timeout: TimeInterval(1))
     }
     
     func testFeedEndpointAddActivity() {
-        let expectFeed = expectation(description: "expecting a feed response")
-        let activity = Activity(actor: "tester", verb: "test", object: "add activity")
-        
-        client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
-            if case .success(let response) = result,
-                let json = (try? response.mapJSON()) as? JSON {
-                XCTAssertEqual(json["actor"] as! String, activity.actor)
-                XCTAssertEqual(json["verb"] as! String, activity.verb)
-                XCTAssertEqual(json["object"] as! String, activity.object)
-            } else if case .failure(let error) = result {
-                XCTFail("❌ \(error.localizedDescription)")
-            } else {
-                XCTFail("❌ Bad data")
-            }
+        expect("add activity to the feed") { test in
+            let activity = Activity(actor: "tester", verb: "test", object: "add activity")
             
-            expectFeed.fulfill()
+            client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
+                if case .success(let response) = result,
+                    let json = (try? response.mapJSON()) as? JSON {
+                    XCTAssertEqual(json["actor"] as! String, activity.actor)
+                    XCTAssertEqual(json["verb"] as! String, activity.verb)
+                    XCTAssertEqual(json["object"] as! String, activity.object)
+                    test.fulfill()
+                }
+            }
         }
-        
-        wait(for: [expectFeed], timeout: TimeInterval(1))
     }
     
-    func testClientActivityGet() {
-        let expectFeed = expectation(description: "expecting a activity response")
-        
-        client.get(typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
-            if case .success(let activities) = result {
-                XCTAssertEqual(activities.count, 2)
-                XCTAssertEqual(activities[0].id.require(), .test1)
-                XCTAssertEqual(activities[1].id.require(), .test2)
-            } else {
-                XCTFail("❌ Bad data")
+    func testActivityBaseURL() {
+        let endpoint = ActivityEndpoint<Activity>.getByIds([.test1])
+        XCTAssertEqual(endpoint.baseURL, BaseURL.placeholderURL)
+    }
+    
+    func testClientActivityGetByIds() {
+        expect("get an activity by id") { test in
+            client.get(typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
+                if case .success(let activities) = result {
+                    XCTAssertEqual(activities.count, 2)
+                    XCTAssertEqual(activities[0].id.require(), .test1)
+                    XCTAssertEqual(activities[1].id.require(), .test2)
+                    test.fulfill()
+                }
             }
-            
-            expectFeed.fulfill()
         }
-        
-        wait(for: [expectFeed], timeout: TimeInterval(1))
+    }
+    
+    func testClientActivityGetByForeignIds() {
+        expect("get an activity by foreignId") { test in
+            let foreignIds = ["f1", "f2"]
+            let times = [Date(timeIntervalSinceNow: -10), Date(timeIntervalSinceNow: -20)]
+            
+            client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
+                if case .success(let activities) = result {
+                    XCTAssertEqual(activities.count, 2)
+                    XCTAssertEqual(activities[0].foreignId.require(), foreignIds[0])
+                    XCTAssertEqual(activities[1].foreignId.require(), foreignIds[1])
+                    XCTAssertEqual(activities[0].time.require().stream, times[0].stream)
+                    XCTAssertEqual(activities[1].time.require().stream, times[1].stream)
+                    test.fulfill()
+                }
+            }
+        }
+    }
+    
+    func testClientActivitiesUpdate() {
+        expect("activities updated") { test in
+            let activity = Activity(actor: "tester", verb: "update", object: "activities")
+            
+            client.update(activities: [activity]) { result in
+                if case .success(let statusCode) = result {
+                    XCTAssertEqual(statusCode, 200)
+                    test.fulfill()
+                }
+            }
+        }
+    }
+    
+    func testClientActivityUpdateById() {
+        expect("an activity updated by id") { test in
+            client.updateActivity(typeOf: Activity.self,
+                                  setProperties: ["object": "updated"],
+                                  unsetPropertiesNames: ["image"],
+                                  activityId: .test1) { result in
+                                    if case .success(let activities) = result, let activity = activities.first {
+                                        XCTAssertEqual(activity.id.require(), .test1)
+                                        XCTAssertEqual(activity.object, "updated")
+                                        test.fulfill()
+                                    }
+            }
+        }
+    }
+    
+    func testClientActivityUpdateByForeignId() {
+        expect("an activity updated by foreignId") { test in
+            let time = Date()
+            client.updateActivity(typeOf: Activity.self,
+                                  setProperties: ["object": "updated"],
+                                  unsetPropertiesNames: ["image"],
+                                  foreignId: "f1",
+                                  time: time) { result in
+                                    if case .success(let activities) = result, let activity = activities.first {
+                                        XCTAssertEqual(activity.foreignId, "f1")
+                                        XCTAssertEqual(activity.object, "updated")
+                                        XCTAssertEqual(activity.time.require().stream, time.stream)
+                                        test.fulfill()
+                                    }
+            }
+        }
     }
     
     func testJSONInvalid() {
@@ -108,20 +154,16 @@ class ClientTests: XCTestCase {
     }
     
     func failRequests(clientError: ClientError) {
-        let expect = expectation(description: "expecting \(clientError.localizedDescription)")
-        let activity = Activity(actor: clientError.localizedDescription, verb: "", object: "")
-        
-        client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
-            if case .failure(let error) = result {
-                XCTAssertEqual(error.localizedDescription, clientError.localizedDescription)
-            } else {
-                XCTFail("❌ Shouldn't be success")
-            }
+        expect(clientError.localizedDescription) { test in
+            let activity = Activity(actor: clientError.localizedDescription, verb: "", object: "")
             
-            expect.fulfill()
+            client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
+                if case .failure(let error) = result {
+                    XCTAssertEqual(error.localizedDescription, clientError.localizedDescription)
+                    test.fulfill()
+                }
+            }
         }
-        
-        wait(for: [expect], timeout: TimeInterval(1))
     }
     
     func testFeedPagination() {
@@ -201,5 +243,16 @@ class ClientTests: XCTestCase {
                        "Unexpected behaviour with error: Unexpected behaviour")
         XCTAssertEqual(ClientError.jsonEncode("test").localizedDescription, "JSON encoding error: test")
         XCTAssertEqual(ClientError.jsonDecode("test", data: Data()).localizedDescription, "JSON decoding error: test. Data: 0 bytes")
+    }
+    
+    func testMoyaError() {
+        XCTAssertEqual(MoyaError.requestMapping("Test.").clientError.localizedDescription,
+                       "Moya error: Failed to map Endpoint to a URLRequest.")
+    }
+    
+    func testBaseURL() {
+        let testURL = "https://google.com"
+        let baseURL = BaseURL(customURL: URL(string: testURL).require())
+        XCTAssertEqual(baseURL.description, testURL)
     }
 }

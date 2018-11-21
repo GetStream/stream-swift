@@ -87,34 +87,93 @@ extension ActivityEndpoint: TargetType {
     }
     
     var sampleData: Data {
-        let json: String
+        var json: String = ""
         
         switch self {
         case .getByIds(let activitiesIds):
-            json = """
-            {"results":[
-            {"actor":"eric",
-            "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
-            "id":"\(activitiesIds[0].uuidString)",
-            "object":"Hello world 3",
-            "origin":null,
-            "target":"",
-            "time":"2018-11-14T15:54:45.268000",
-            "to":["timeline:jessica"],
-            "verb":"tweet"},
-            {"actor":"eric",
-            "foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
-            "id":"\(activitiesIds[1].uuidString)",
-            "object":"Hello world 2",
-            "origin":null,
-            "target":"",
-            "time":"2018-11-14T11:00:32.282000",
-            "verb":"tweet"}],
-            "next":"",
-            "duration":"15.73ms"}
-            """
-        default:
-            json = ""
+            if activitiesIds.count == 2 {
+                json = """
+                {"results":[
+                {"actor":"eric",
+                "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+                "id":"\(activitiesIds[0].uuidString)",
+                "object":"Hello world 3",
+                "origin":null,
+                "target":"",
+                "time":"2018-11-14T15:54:45.268000",
+                "to":["timeline:jessica"],
+                "verb":"tweet"},
+                {"actor":"eric",
+                "foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
+                "id":"\(activitiesIds[1].uuidString)",
+                "object":"Hello world 2",
+                "origin":null,
+                "target":"",
+                "time":"2018-11-14T11:00:32.282000",
+                "verb":"tweet"}],
+                "next":"",
+                "duration":"15.73ms"}
+                """
+            }
+        case let .get(foreignIds, times):
+            if foreignIds.count == 2 {
+                json = """
+                {"results":[
+                {"actor":"eric",
+                "foreign_id":"\(foreignIds[0])",
+                "id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+                "object":"Hello world 3",
+                "origin":null,
+                "target":"",
+                "time":"\(times[0].stream)",
+                "to":["timeline:jessica"],
+                "verb":"tweet"},
+                {"actor":"eric",
+                "foreign_id":"\(foreignIds[1])",
+                "id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
+                "object":"Hello world 2",
+                "origin":null,
+                "target":"",
+                "time":"\(times[1].stream)",
+                "verb":"tweet"}],
+                "next":"",
+                "duration":"15.73ms"}
+                """
+            }
+        case .update:
+            json = "{}"
+        case let .updateActivityById(setProperties, unsetPropertiesNames, activityId):
+            if let setProperties = setProperties as? [String: String],
+                let unsetPropertiesNames = unsetPropertiesNames,
+                unsetPropertiesNames.contains("image") {
+                json = """
+                {"actor":"eric",
+                "foreign_id":"",
+                "id":"\(activityId.uuidString)",
+                "object":"\(setProperties["object"].require())",
+                "origin":null,
+                "target":"",
+                "time":"2018-11-14T15:54:45.268000",
+                "to":["timeline:jessica"],
+                "verb":"tweet"}
+                """
+            }
+        case let .updateActivity(setProperties, unsetPropertiesNames, foreignId, time):
+            if let setProperties = setProperties as? [String: String],
+                let unsetPropertiesNames = unsetPropertiesNames,
+                unsetPropertiesNames.contains("image") {
+                json = """
+                {"actor":"eric",
+                "foreign_id":"\(foreignId)",
+                "id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
+                "object":"\(setProperties["object"].require())",
+                "origin":null,
+                "target":"",
+                "time":"\(time.stream)",
+                "to":["timeline:jessica"],
+                "verb":"tweet"}
+                """
+            }
         }
         
         return json.data(using: .utf8).require()

@@ -92,6 +92,9 @@
 		8ADCEE95219F1E01001598C1 /* Client+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE93219F1E01001598C1 /* Client+Parsing.swift */; };
 		8ADCEE96219F1E01001598C1 /* Client+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE93219F1E01001598C1 /* Client+Parsing.swift */; };
 		8ADCEE97219F1E01001598C1 /* Client+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE93219F1E01001598C1 /* Client+Parsing.swift */; };
+		8AE7F99D21A59C8B0074DA21 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
+		8AE7F9A021A59EE30074DA21 /* UUID+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */; };
+		8AEFF2BC21A587FA006887AB /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFF2BB21A587FA006887AB /* FeedTests.swift */; };
 		DD7502881C68FEDE006590AF /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* GetStream.framework */; };
 		DD7502921C690C7A006590AF /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* GetStream.framework */; };
 /* End PBXBuildFile section */
@@ -180,6 +183,9 @@
 		8ADCEE87219ECF78001598C1 /* Client+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Activity.swift"; sourceTree = "<group>"; };
 		8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEndpoint.swift; sourceTree = "<group>"; };
 		8ADCEE93219F1E01001598C1 /* Client+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Parsing.swift"; sourceTree = "<group>"; };
+		8AE7F99C21A59C8B0074DA21 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
+		8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Extensions.swift"; sourceTree = "<group>"; };
+		8AEFF2BB21A587FA006887AB /* FeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTests.swift; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* GetStream.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStream.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* GetStreamTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStreamTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* GetStream-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GetStream-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,7 +309,9 @@
 			isa = PBXGroup;
 			children = (
 				8A3A4905219C68810010D831 /* ClientTests.swift */,
+				8AEFF2BB21A587FA006887AB /* FeedTests.swift */,
 				8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */,
+				8AE7F99B21A59C620074DA21 /* Extensions */,
 			);
 			name = Tests;
 			path = GetStreamTests;
@@ -410,6 +418,15 @@
 				8ADCEE87219ECF78001598C1 /* Client+Activity.swift */,
 			);
 			path = Activity;
+			sourceTree = "<group>";
+		};
+		8AE7F99B21A59C620074DA21 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8AE7F99C21A59C8B0074DA21 /* TestCase.swift */,
+				8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DD7502721C68FC1B006590AF /* Frameworks */ = {
@@ -768,6 +785,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AE7F9A021A59EE30074DA21 /* UUID+Extensions.swift in Sources */,
+				8AEFF2BC21A587FA006887AB /* FeedTests.swift in Sources */,
+				8AE7F99D21A59C8B0074DA21 /* TestCase.swift in Sources */,
 				8A3A4906219C68810010D831 /* ClientTests.swift in Sources */,
 				8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */,
 			);

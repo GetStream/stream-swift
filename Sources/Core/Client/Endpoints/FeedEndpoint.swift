@@ -121,10 +121,10 @@ extension FeedEndpoint: TargetType {
     }
     
     var sampleData: Data {
+        var json = ""
+        
         switch self {
         case let .get(_, pagination: pagination, _, _):
-            let json: String
-            
             if case .limit(let limit) = pagination, limit == 1 {
                 json = """
                 {"results":[
@@ -173,10 +173,7 @@ extension FeedEndpoint: TargetType {
                 """
             }
             
-            return json.data(using: .utf8) ?? Data()
         case .add(let activity, feedId: _):
-            let json: String
-            
             if activity.actor == ClientError.jsonInvalid.localizedDescription {
                 json = "[]"
                 
@@ -200,11 +197,46 @@ extension FeedEndpoint: TargetType {
                 """
             }
             
-            return json.data(using: .utf8) ?? Data()
+        case .deleteById(let activityId, _):
+            json = "{\"removed\":\"\(activityId.uuidString)\"}"
             
-        default:
-            return Data()
+        case .deleteByForeignId(let foreignId, _):
+            json = "{\"removed\":\"\(foreignId)\"}"
+            
+        case .follow(_, let target, _):
+            if target.description == "s2:u2" {
+                json = "{}"
+            }
+            
+        case let .unfollow(_, target, keepHistory):
+            if target.description == "s2:u2" {
+                json = "{}"
+            }
+            
+            if keepHistory {
+                json = "[]"
+            }
+
+        case .followers(let feedId, _, _):
+            json = """
+            {"results": [
+            {"feed_id": "\(feedId.description)",
+            "target_id": "s2:u2",
+            "created_at": "2018-11-14T15:54:45.268000Z"}
+            ]}
+            """
+            
+        case .following(let feedId, _, _, _):
+            json = """
+            {"results": [
+            {"feed_id": "\(feedId.description)",
+            "target_id": "s2:u2",
+            "created_at": "2018-11-14T15:54:45.268000Z"}
+            ]}
+            """
         }
+        
+        return json.data(using: .utf8).require()
     }
 }
 
