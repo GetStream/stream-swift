@@ -13,8 +13,8 @@ import Foundation
 extension Client {
     
     static func parseResultsResponse<T: Decodable>(_ result: ClientCompletionResult,
-                                            inContainer: Bool = false,
-                                            completion: @escaping Completion<T>) {
+                                                   inContainer: Bool = false,
+                                                   completion: @escaping Completion<T>) {
         if case .success(let response) = result {
             do {
                 if inContainer {
@@ -57,7 +57,7 @@ extension Client {
                     completion(.success(nil))
                 }
             } catch {
-                completion(.failure(ClientError.jsonEncode(error.localizedDescription)))
+                completion(.failure(ClientError.jsonDecode(error.localizedDescription, data: response.data)))
             }
         } else if case .failure(let error) = result {
             completion(.failure(error))
@@ -69,10 +69,10 @@ extension Client {
             let response = try result.dematerialize()
             completion(.success(response.statusCode))
             
-        } catch let error as ClientError {
-            completion(.failure(error))
         } catch {
-            completion(.failure(.unknownError(error.localizedDescription)))
+            if let clientError = error as? ClientError {
+                completion(.failure(clientError))
+            }
         }
     }
 }
