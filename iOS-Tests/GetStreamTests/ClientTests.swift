@@ -15,14 +15,18 @@ class ClientTests: XCTestCase {
     let baseURL = BaseURL(location: .europeWest)
     let feedId = FeedId(feedSlug: "test", userId: "123")
     
-    lazy var moyaProvider = MoyaProvider<MultiTarget>(endpointClosure: { Client.endpointMapping($0,
-                                                                                                apiKey: "testAPIKey",
-                                                                                                baseURL: self.baseURL) },
-                                                      stubClosure: MoyaProvider.immediatelyStub,
-                                                      plugins: [AuthorizationMoyaPlugin(token: "test.token"),
-                                                                NetworkLoggerPlugin(verbose: true)])
+    lazy var provider = NetworkProvider(endpointClosure: { Client.endpointMapping($0, apiKey: "apiKey", baseURL: self.baseURL) },
+                                        stubClosure: MoyaProvider.immediatelyStub,
+                                        plugins: [AuthorizationMoyaPlugin(token: "test.token"),
+                                                  NetworkLoggerPlugin(verbose: true)])
     
-    lazy var client = Client(moyaProvider: moyaProvider)
+    lazy var client = Client(appId: "appId", networkProvider: provider)
+    
+    func testConstructor() {
+        XCTAssertEqual(Client(apiKey: "", appId: "appId", token: "").appId, "appId")
+        _ = Client(apiKey: "", appId: "appId", token: "", logsEnabled: true)
+        _ = Client(apiKey: "", appId: "appId", token: "", callbackQueue: DispatchQueue.main)
+    }
     
     func testGetEndpoint() {
         let expectFeed = expectation(description: "expecting a feed response")
@@ -37,7 +41,7 @@ class ClientTests: XCTestCase {
             } else {
                 XCTFail("❌ Bad data")
             }
-
+            
             expectFeed.fulfill()
         }
         
