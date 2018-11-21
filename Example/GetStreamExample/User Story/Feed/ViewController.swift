@@ -75,7 +75,7 @@ class ViewController: UIViewController {
         let times = ["2018-11-16T12:58:06.664401".streamDate.require(),
                      "2018-11-14T11:00:32.282000".streamDate.require()]
         
-        client.get(typeOf: Activity.self, for: foreignIds, times: times) { result in
+        client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
             print(result)
         }
     }
