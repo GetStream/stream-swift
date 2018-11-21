@@ -8,7 +8,13 @@
 
 import XCTest
 import Moya
+import Require
 @testable import GetStream
+
+extension UUID {
+    static let test1: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000001").require()
+    static let test2: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000002").require()
+}
 
 class ClientTests: XCTestCase {
     
@@ -17,7 +23,7 @@ class ClientTests: XCTestCase {
     
     lazy var provider = NetworkProvider(endpointClosure: { Client.endpointMapping($0, apiKey: "apiKey", baseURL: self.baseURL) },
                                         stubClosure: MoyaProvider.immediatelyStub,
-                                        plugins: [AuthorizationMoyaPlugin(token: "test.token"),
+                                        plugins: [AuthorizationMoyaPlugin(token: "test"),
                                                   NetworkLoggerPlugin(verbose: true)])
     
     lazy var client = Client(appId: "appId", networkProvider: provider)
@@ -29,7 +35,7 @@ class ClientTests: XCTestCase {
         _ = Client(apiKey: "", appId: "appId", token: "", callbackQueue: DispatchQueue.main)
     }
     
-    func testGetEndpoint() {
+    func testFeedEndpointGet() {
         let expectFeed = expectation(description: "expecting a feed response")
         
         client.request(endpoint: FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)) { result in
@@ -49,7 +55,7 @@ class ClientTests: XCTestCase {
         wait(for: [expectFeed], timeout: TimeInterval(1))
     }
     
-    func testAddActivity() {
+    func testFeedEndpointAddActivity() {
         let expectFeed = expectation(description: "expecting a feed response")
         let activity = Activity(actor: "tester", verb: "test", object: "add activity")
         
@@ -61,6 +67,24 @@ class ClientTests: XCTestCase {
                 XCTAssertEqual(json["object"] as! String, activity.object)
             } else if case .failure(let error) = result {
                 XCTFail("❌ \(error.localizedDescription)")
+            } else {
+                XCTFail("❌ Bad data")
+            }
+            
+            expectFeed.fulfill()
+        }
+        
+        wait(for: [expectFeed], timeout: TimeInterval(1))
+    }
+    
+    func testClientActivityGet() {
+        let expectFeed = expectation(description: "expecting a activity response")
+        
+        client.get(typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
+            if case .success(let activities) = result {
+                XCTAssertEqual(activities.count, 2)
+                XCTAssertEqual(activities[0].id.require(), .test1)
+                XCTAssertEqual(activities[1].id.require(), .test2)
             } else {
                 XCTFail("❌ Bad data")
             }

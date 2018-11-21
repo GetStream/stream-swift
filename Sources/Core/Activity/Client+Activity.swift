@@ -27,7 +27,7 @@ extension Client {
     /// - Note: A maximum length of list of foreignIds and times is 100.
     @discardableResult
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
-                                         for foreignIds: [String],
+                                         foreignIds: [String],
                                          times: [Date],
                                          completion: @escaping Completion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.get(foreignIds: foreignIds, times: times)) {
