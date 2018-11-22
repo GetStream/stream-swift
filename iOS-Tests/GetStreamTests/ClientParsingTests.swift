@@ -17,7 +17,7 @@ class ClientParsingTests: TestCase {
         let responseResult: ClientCompletionResult = .success(response)
         
         expect("error json decode") { test in
-            Client.parseResultsResponse(responseResult) { (result: CompletionResult<Activity>) in
+            Client.parseResultsResponse(responseResult) { (result: ActivitiesResult<Activity>) in
                 if case .failure(let clientError) = result, case .jsonDecode = clientError {
                     test.fulfill()
                 }
@@ -25,7 +25,7 @@ class ClientParsingTests: TestCase {
         }
         
         expect("error result") { test in
-            Client.parseResultsResponse(.failure(ClientError.unknown)) { (result: CompletionResult<Activity>) in
+            Client.parseResultsResponse(.failure(ClientError.unknown)) { (result: ActivitiesResult<Activity>) in
                 if case .failure(let clientError) = result, case .unknown = clientError {
                     test.fulfill()
                 }

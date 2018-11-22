@@ -41,7 +41,7 @@ extension Client {
 extension Feed {
     /// Add a new activity.
     @discardableResult
-    public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping Completion<T>) -> Cancellable {
+    public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) {
             Client.parseResultsResponse($0, completion: completion)
         }
@@ -83,7 +83,7 @@ extension Feed {
                                          pagination: FeedPagination = .none,
                                          ranking: String? = nil,
                                          markOption: FeedMarkOption = .none,
-                                         completion: @escaping Completion<T>) -> Cancellable {
+                                         completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.get(feedId,
                                                          pagination: pagination,
                                                          ranking: ranking ?? "",
@@ -124,7 +124,7 @@ extension Feed {
     ///     - completion: a result with `Follower`'s or an error.
     /// - Note: the number of followers that can be retrieved is limited to 1000.
     @discardableResult
-    public func followers(offset: Int = 0, limit: Int = 25, completion: @escaping FollowerCompletion) -> Cancellable {
+    public func followers(offset: Int = 0, limit: Int = 25, completion: @escaping FollowersCompletion) -> Cancellable {
         let limit = max(0, min(500, limit))
         let offset = max(0, min(400, offset))
         
@@ -145,7 +145,7 @@ extension Feed {
     public func following(filter: FeedIds = [],
                           offset: Int = 0,
                           limit: Int = 25,
-                          completion: @escaping FollowerCompletion) -> Cancellable {
+                          completion: @escaping FollowersCompletion) -> Cancellable {
         let limit = max(0, min(500, limit))
         let offset = max(0, min(400, offset))
         

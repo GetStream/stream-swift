@@ -16,7 +16,7 @@ extension Client {
     @discardableResult
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
                                          activityIds: [UUID],
-                                         completion: @escaping Completion<T>) -> Cancellable {
+                                         completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) {
             Client.parseResultsResponse($0, inContainer: true, completion: completion)
         }
@@ -29,7 +29,7 @@ extension Client {
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
                                          foreignIds: [String],
                                          times: [Date],
-                                         completion: @escaping Completion<T>) -> Cancellable {
+                                         completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.get(foreignIds: foreignIds, times: times)) {
             Client.parseResultsResponse($0, inContainer: true, completion: completion)
         }
@@ -70,7 +70,7 @@ extension Client {
                                                     setProperties properties: Properties? = nil,
                                                     unsetPropertiesNames names: [String]? = nil,
                                                     activityId: UUID,
-                                                    completion: @escaping Completion<T>) -> Cancellable {
+                                                    completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.updateActivityById(setProperties: properties,
                                                                         unsetPropertiesNames: names,
                                                                         activityId: activityId)) {
@@ -101,7 +101,7 @@ extension Client {
                                                     unsetPropertiesNames names: [String]? = nil,
                                                     foreignId: String,
                                                     time: Date,
-                                                    completion: @escaping Completion<T>) -> Cancellable {
+                                                    completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.updateActivity(setProperties: properties,
                                                                     unsetPropertiesNames: names,
                                                                     foreignId: foreignId,
