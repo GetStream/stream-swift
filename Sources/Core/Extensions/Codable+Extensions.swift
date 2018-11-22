@@ -82,7 +82,7 @@ extension DateFormatter {
         }()
         
         public static func iso8601Date(from string: String) -> Date? {
-            if #available(iOS 11, *) {
+            if #available(iOS 11, macOS 10.13, *) {
                 let formatter = ISO8601DateFormatter()
                 formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
                 return formatter.date(from: string)
