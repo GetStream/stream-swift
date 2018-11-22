@@ -189,7 +189,7 @@
 		8A6DE4FE219C5E0D001DF2A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A6DE500219C5E0D001DF2A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A7B688921A6B90F00062FBD /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
-		8A7B688B21A6DA7600062FBD /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
+		8A7B688F21A6F5AB00062FBD /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		8A8E539321A6B6BC008CFD78 /* JWT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWT.framework; path = Carthage/Build/iOS/JWT.framework; sourceTree = "<group>"; };
 		8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProtocol.swift; sourceTree = "<group>"; };
 		8AA6BEB5219D711E005B9C98 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
@@ -313,8 +313,8 @@
 			children = (
 				DD7502721C68FC1B006590AF /* Frameworks */,
 				DD7502731C68FC20006590AF /* Tests */,
+				8A7B688F21A6F5AB00062FBD /* Package.swift */,
 				8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */,
-				8A7B688B21A6DA7600062FBD /* Package.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -326,20 +326,6 @@
 				8A62840D2199B43F0002913D /* Token */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		8933C7831EB5B7EB000D00A4 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				8A3A4905219C68810010D831 /* ClientTests.swift */,
-				8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */,
-				8AEFF2BB21A587FA006887AB /* FeedTests.swift */,
-				8A7B688921A6B90F00062FBD /* TokenTests.swift */,
-				8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */,
-				8AE7F99B21A59C620074DA21 /* Extensions */,
-			);
-			name = Tests;
-			path = GetStreamTests;
 			sourceTree = "<group>";
 		};
 		8A582328219D691800B338D8 /* Endpoints */ = {
@@ -415,13 +401,42 @@
 		8A6DE4F3219C5E0C001DF2A8 /* iOS-Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8933C7831EB5B7EB000D00A4 /* Tests */,
+				8A7B688D21A6F32A00062FBD /* Tests */,
 				8A6DE4F4219C5E0C001DF2A8 /* AppDelegate.swift */,
 				8A6DE4FB219C5E0D001DF2A8 /* Assets.xcassets */,
 				8A6DE4FD219C5E0D001DF2A8 /* LaunchScreen.storyboard */,
 				8A6DE500219C5E0D001DF2A8 /* Info.plist */,
 			);
 			path = "iOS-Tests";
+			sourceTree = "<group>";
+		};
+		8A7B688C21A6F30300062FBD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8A3A4905219C68810010D831 /* ClientTests.swift */,
+				8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */,
+				8AEFF2BB21A587FA006887AB /* FeedTests.swift */,
+				8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */,
+				8AE7F99B21A59C620074DA21 /* Extensions */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8A7B688D21A6F32A00062FBD /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8A7B688C21A6F30300062FBD /* Core */,
+				8A7B688E21A6F34400062FBD /* Token */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		8A7B688E21A6F34400062FBD /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				8A7B688921A6B90F00062FBD /* TokenTests.swift */,
+			);
+			path = Token;
 			sourceTree = "<group>";
 		};
 		8AA6BEB4219D7087005B9C98 /* Frameworks */ = {
