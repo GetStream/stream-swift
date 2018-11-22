@@ -9,6 +9,6 @@
 import XCTest
 
 extension UUID {
-    static let test1: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000001").require()
-    static let test2: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000002").require()
+    static let test1: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
+    static let test2: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000002")!
 }
