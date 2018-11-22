@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import SwiftyJWT
+import Require
+import JWT
 
 extension Token {
     /// Generate the Stream token with a given secret.
@@ -17,21 +18,15 @@ extension Token {
     ///     - resource: a resource string, e.g. feed
     ///     - permission: a permissionm e.g. read or write
     ///     - feedId: a `FeedId` or any as by default.
-    public init?(secret: String, resource: Resource = .all, permission: Permission = .all, feedId: FeedId = .any) {
-        let algorithm = JWTAlgorithm.hs256(secret)
-        var payload = JWTPayload()
-        
-        payload.customFields = ["resource": EncodableValue(value: resource.rawValue),
-                                "action": EncodableValue(value: permission.rawValue),
-                                "feed_id": EncodableValue(value: feedId.description)]
-        
-        let jwt = JWT(payload: payload, algorithm: algorithm)
-        
-        if let token = jwt?.rawString {
-            self = token
-        } else {
-            return nil
-        }
+    public init(secret: String, resource: Resource = .all, permission: Permission = .all, feedId: FeedId = .any) {
+        self = JWT.encode(claims: Token.payload(resource: resource, permission: permission, feedId: feedId),
+                          algorithm: .hs256(secret.data(using: .utf8).require()))
+    }
+    
+    static func payload(resource: Resource = .all, permission: Permission = .all, feedId: FeedId = .any) -> [String: Any] {
+        return ["resource": resource.rawValue,
+                "action": permission.rawValue,
+                "feed_id": feedId.description]
     }
 }
 

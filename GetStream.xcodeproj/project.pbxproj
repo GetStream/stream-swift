@@ -68,6 +68,17 @@
 		8A6DE4FC219C5E0D001DF2A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A6DE4FB219C5E0D001DF2A8 /* Assets.xcassets */; };
 		8A6DE4FF219C5E0D001DF2A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A6DE4FD219C5E0D001DF2A8 /* LaunchScreen.storyboard */; };
 		8A6DE51A219C6271001DF2A8 /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* GetStream.framework */; };
+		8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B688921A6B90F00062FBD /* TokenTests.swift */; };
+		8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
+		8A8E539021A6A99B008CFD78 /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
+		8A8E539121A6A99B008CFD78 /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
+		8A8E539221A6A99C008CFD78 /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
+		8A8E539421A6B6BC008CFD78 /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; };
+		8A8E539521A6B6BC008CFD78 /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; };
+		8A8E539621A6B6BC008CFD78 /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; };
+		8A8E539721A6B6BC008CFD78 /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; };
+		8A8E539821A6B6C6008CFD78 /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; };
+		8A8E539921A6B6C6008CFD78 /* JWT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
 		8A92B1E1219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
 		8A92B1E2219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
@@ -140,6 +151,7 @@
 			files = (
 				8AA6BEBC219D7172005B9C98 /* Moya.framework in Embed Frameworks */,
 				8AA6BEBA219D7172005B9C98 /* Alamofire.framework in Embed Frameworks */,
+				8A8E539921A6B6C6008CFD78 /* JWT.framework in Embed Frameworks */,
 				8AA6BEBE219D7172005B9C98 /* Require.framework in Embed Frameworks */,
 				8AA6BEC0219D7172005B9C98 /* Result.framework in Embed Frameworks */,
 			);
@@ -176,6 +188,8 @@
 		8A6DE4FB219C5E0D001DF2A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A6DE4FE219C5E0D001DF2A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A6DE500219C5E0D001DF2A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A7B688921A6B90F00062FBD /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
+		8A8E539321A6B6BC008CFD78 /* JWT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWT.framework; path = Carthage/Build/iOS/JWT.framework; sourceTree = "<group>"; };
 		8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProtocol.swift; sourceTree = "<group>"; };
 		8AA6BEB5219D711E005B9C98 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
 		8AA6BEB6219D711E005B9C98 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -199,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8E539421A6B6BC008CFD78 /* JWT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8E539621A6B6BC008CFD78 /* JWT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8E539721A6B6BC008CFD78 /* JWT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +245,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8E539521A6B6BC008CFD78 /* JWT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +257,7 @@
 				8AA6BEBB219D7172005B9C98 /* Moya.framework in Frameworks */,
 				8AA6BEBF219D7172005B9C98 /* Result.framework in Frameworks */,
 				8AA6BEBD219D7172005B9C98 /* Require.framework in Frameworks */,
+				8A8E539821A6B6C6008CFD78 /* JWT.framework in Frameworks */,
 				8AA6BEB9219D7172005B9C98 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +332,7 @@
 				8A3A4905219C68810010D831 /* ClientTests.swift */,
 				8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */,
 				8AEFF2BB21A587FA006887AB /* FeedTests.swift */,
+				8A7B688921A6B90F00062FBD /* TokenTests.swift */,
 				8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */,
 				8AE7F99B21A59C620074DA21 /* Extensions */,
 			);
@@ -406,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				8AA6BEB6219D711E005B9C98 /* Alamofire.framework */,
+				8A8E539321A6B6BC008CFD78 /* JWT.framework */,
 				8AA6BEB5219D711E005B9C98 /* Moya.framework */,
 				8AA6BEB7219D711E005B9C98 /* Require.framework */,
 				8AA6BEB8219D711F005B9C98 /* Result.framework */,
@@ -767,6 +788,7 @@
 				8A6284142199CF9C0002913D /* FeedId.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
+				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
 				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
@@ -794,6 +816,7 @@
 				8AE7F99D21A59C8B0074DA21 /* TestCase.swift in Sources */,
 				8A3A4906219C68810010D831 /* ClientTests.swift in Sources */,
 				8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */,
+				8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +827,7 @@
 				8A6284162199CF9C0002913D /* FeedId.swift in Sources */,
 				8ADCEE8A219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8A6283F72199AEE20002913D /* FeedEndpoint.swift in Sources */,
+				8A8E539221A6A99C008CFD78 /* Token+Generator.swift in Sources */,
 				8A6283FF2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283EB2199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283FB2199AEE20002913D /* Activity.swift in Sources */,
@@ -828,6 +852,7 @@
 				8A6284172199CF9C0002913D /* FeedId.swift in Sources */,
 				8ADCEE8B219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8A6283F82199AEE20002913D /* FeedEndpoint.swift in Sources */,
+				8A8E539121A6A99B008CFD78 /* Token+Generator.swift in Sources */,
 				8A6284002199AEE20002913D /* Feed.swift in Sources */,
 				8A6283EC2199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283FC2199AEE20002913D /* Activity.swift in Sources */,
@@ -852,6 +877,7 @@
 				8A6284152199CF9C0002913D /* FeedId.swift in Sources */,
 				8ADCEE89219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8A6283F62199AEE20002913D /* FeedEndpoint.swift in Sources */,
+				8A8E539021A6A99B008CFD78 /* Token+Generator.swift in Sources */,
 				8A6283FE2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283EA2199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283FA2199AEE20002913D /* Activity.swift in Sources */,
@@ -1044,7 +1070,6 @@
 		52D6D9911BEFF229002C0205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -1070,7 +1095,6 @@
 		52D6D9921BEFF229002C0205 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -1133,7 +1157,6 @@
 		52D6D9E81BEFFF6E002C0205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1159,7 +1182,6 @@
 		52D6D9E91BEFFF6E002C0205 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1186,7 +1208,6 @@
 		52D6DA021BEFFFBE002C0205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1212,7 +1233,6 @@
 		52D6DA031BEFFFBE002C0205 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1239,7 +1259,6 @@
 		52D6DA211BF000BD002C0205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1266,7 +1285,6 @@
 		52D6DA221BF000BD002C0205 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;

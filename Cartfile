@@ -1,2 +1,3 @@
 github "Moya/Moya"
 github "johnsundell/require"
+github "huynguyen-n/JSONWebToken.swift" "develop" # 0dda17fb7574175dbb47c3d639c02031061e7d32
