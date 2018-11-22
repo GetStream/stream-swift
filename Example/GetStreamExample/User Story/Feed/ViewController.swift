@@ -14,10 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let token = Token(secret: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav") else {
-            return
-        }
-        
+        let token = Token(secret: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav")
         let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
         
         let ericFeed = client.feed(feedSlug: "timeline", userId: "eric")

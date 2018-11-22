@@ -24,6 +24,6 @@ Pod::Spec.new do |s|
   s.subspec "Token" do |ss|
     ss.source_files = "Sources/Token/"
     ss.dependency "GetStream/Core"
-    ss.dependency "SwiftyJWT"
+    ss.dependency "JSONWebToken"
   end
 end
