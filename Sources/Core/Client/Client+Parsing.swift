@@ -14,7 +14,7 @@ extension Client {
     
     static func parseResultsResponse<T: Decodable>(_ result: ClientCompletionResult,
                                                    inContainer: Bool = false,
-                                                   completion: @escaping Completion<T>) {
+                                                   completion: @escaping ActivitiesCompletion<T>) {
         if case .success(let response) = result {
             do {
                 if inContainer {
@@ -32,7 +32,7 @@ extension Client {
         }
     }
     
-    static func parseFollowersResponse(_ result: ClientCompletionResult, completion: @escaping FollowerCompletion) {
+    static func parseFollowersResponse(_ result: ClientCompletionResult, completion: @escaping FollowersCompletion) {
         do {
             let response = try result.dematerialize()
             let container = try JSONDecoder.Stream.iso8601.decode(ResultsContainer<Follower>.self, from: response.data)
