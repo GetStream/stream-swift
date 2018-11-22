@@ -30,30 +30,20 @@ extension ActivityEndpoint: TargetType {
     
     var path: String {
         switch self {
-        case .getByIds:
+        case .getByIds, .get, .update:
             return "activities/"
-        case .get:
-            return "activities/"
-        case .update:
-            return "activities/"
-        case .updateActivityById:
-            return "activity/"
-        case .updateActivity:
+            
+        case .updateActivityById, .updateActivity:
             return "activity/"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getByIds:
+        case .getByIds, .get:
             return .get
-        case .get:
-            return .get
-        case .update:
-            return .post
-        case .updateActivityById:
-            return .post
-        case .updateActivity:
+            
+        case .update, .updateActivityById, .updateActivity:
             return .post
         }
     }

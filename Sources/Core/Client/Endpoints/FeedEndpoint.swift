@@ -27,20 +27,24 @@ extension FeedEndpoint: TargetType {
     
     var path: String {
         switch self {
-        case .get(let feedId, _, _, _):
+        case .get(let feedId, _, _, _), .add(_, let feedId):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
-        case .add(_, let feedId):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
+            
         case let .deleteById(activityId, feedId):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/\(activityId.uuidString.lowercased())/"
+            
         case let .deleteByForeignId(foreignId, feedId):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/\(foreignId)/"
+            
         case let .follow(feedId, _, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/"
+            
         case let .unfollow(feedId, target, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/\(target.description)/"
+            
         case .followers(let feedId, _, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/followers/"
+            
         case .following(let feedId, _, _, _):
             return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/"
         }
@@ -48,22 +52,14 @@ extension FeedEndpoint: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .get:
+        case .get, .followers, .following:
             return .get
-        case .add:
+            
+        case .add, .follow:
             return .post
-        case .deleteById:
+            
+        case .deleteById, .deleteByForeignId, .unfollow:
             return .delete
-        case .deleteByForeignId:
-            return .delete
-        case .follow:
-            return .post
-        case .unfollow:
-            return .delete
-        case .followers:
-            return .get
-        case .following:
-            return .get
         }
     }
     
