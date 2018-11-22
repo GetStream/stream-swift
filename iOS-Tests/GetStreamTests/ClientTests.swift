@@ -8,20 +8,12 @@
 
 import XCTest
 import Moya
-import Require
 @testable import GetStream
 
 final class ClientTests: TestCase {
     
-    let baseURL = BaseURL(location: .europeWest)
     let feedId = FeedId(feedSlug: "test", userId: "123")
-    
-    lazy var provider = NetworkProvider(endpointClosure: { Client.endpointMapping($0, apiKey: "apiKey", baseURL: self.baseURL) },
-                                        stubClosure: MoyaProvider.immediatelyStub,
-                                        plugins: [AuthorizationMoyaPlugin(token: "test"),
-                                                  NetworkLoggerPlugin(verbose: true)])
-    
-    lazy var client = Client(appId: "appId", networkProvider: provider)
+    lazy var client = Client(appId: "appId", networkProvider: NetworkProvider(stubClosure: MoyaProvider.immediatelyStub))
     
     func testConstructor() {
         let client = Client(apiKey: "", appId: "appId", token: "")
@@ -69,8 +61,8 @@ final class ClientTests: TestCase {
             client.get(typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
                 if case .success(let activities) = result {
                     XCTAssertEqual(activities.count, 2)
-                    XCTAssertEqual(activities[0].id.require(), .test1)
-                    XCTAssertEqual(activities[1].id.require(), .test2)
+                    XCTAssertEqual(activities[0].id!, .test1)
+                    XCTAssertEqual(activities[1].id!, .test2)
                     test.fulfill()
                 }
             }
@@ -85,10 +77,10 @@ final class ClientTests: TestCase {
             client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
                 if case .success(let activities) = result {
                     XCTAssertEqual(activities.count, 2)
-                    XCTAssertEqual(activities[0].foreignId.require(), foreignIds[0])
-                    XCTAssertEqual(activities[1].foreignId.require(), foreignIds[1])
-                    XCTAssertEqual(activities[0].time.require().stream, times[0].stream)
-                    XCTAssertEqual(activities[1].time.require().stream, times[1].stream)
+                    XCTAssertEqual(activities[0].foreignId!, foreignIds[0])
+                    XCTAssertEqual(activities[1].foreignId!, foreignIds[1])
+                    XCTAssertEqual(activities[0].time!.stream, times[0].stream)
+                    XCTAssertEqual(activities[1].time!.stream, times[1].stream)
                     test.fulfill()
                 }
             }
@@ -115,7 +107,7 @@ final class ClientTests: TestCase {
                                   unsetPropertiesNames: ["image"],
                                   activityId: .test1) { result in
                                     if case .success(let activities) = result, let activity = activities.first {
-                                        XCTAssertEqual(activity.id.require(), .test1)
+                                        XCTAssertEqual(activity.id!, .test1)
                                         XCTAssertEqual(activity.object, "updated")
                                         test.fulfill()
                                     }
@@ -134,7 +126,7 @@ final class ClientTests: TestCase {
                                     if case .success(let activities) = result, let activity = activities.first {
                                         XCTAssertEqual(activity.foreignId, "f1")
                                         XCTAssertEqual(activity.object, "updated")
-                                        XCTAssertEqual(activity.time.require().stream, time.stream)
+                                        XCTAssertEqual(activity.time!.stream, time.stream)
                                         test.fulfill()
                                     }
             }
@@ -167,44 +159,28 @@ final class ClientTests: TestCase {
     }
     
     func testFeedPagination() {
-        var endpoint = FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)
-        
-        guard case .requestPlain = endpoint.task else {
-            XCTFail("❌")
-            return
-        }
-        
         // with limit 5.
-        endpoint = FeedEndpoint.get(feedId, pagination: .limit(5), ranking: "", markOption: .none)
+        var endpoint = FeedEndpoint.get(feedId, pagination: .limit(5), ranking: "", markOption: .none)
         
-        guard case .requestParameters(let limitParameters, _) = endpoint.task else {
-            XCTFail("❌")
-            return
+        if case .requestParameters(let limitParameters, _) = endpoint.task {
+            XCTAssertEqual(limitParameters as! [String: Int], ["limit": 5])
         }
-        
-        XCTAssertEqual(limitParameters as! [String: Int], ["limit": 5])
         
         // with offset and limit
-        endpoint = FeedEndpoint.get(feedId, pagination: .offset(1, limit: 1), ranking: "", markOption: .none)
+        endpoint = .get(feedId, pagination: .offset(1, limit: 1), ranking: "", markOption: .none)
         
-        guard case .requestParameters(let offsetParameters, _) = endpoint.task else {
-            XCTFail("❌")
-            return
+        if case .requestParameters(let offsetParameters, _) = endpoint.task {
+            XCTAssertEqual(offsetParameters as! [String: Int], ["offset": 1, "limit": 1])
         }
-        
-        XCTAssertEqual(offsetParameters as! [String: Int], ["offset": 1, "limit": 1])
         
         // with great then id and limit
         let someId = "someId"
-        endpoint = FeedEndpoint.get(feedId, pagination: .greaterThan(id: someId, limit: 3), ranking: "", markOption: .none)
+        endpoint = .get(feedId, pagination: .greaterThan(id: someId, limit: 3), ranking: "", markOption: .none)
         
-        guard case .requestParameters(let idParameters, _) = endpoint.task else {
-            XCTFail("❌")
-            return
+        if case .requestParameters(let idParameters, _) = endpoint.task {
+            XCTAssertEqual(idParameters["id_gt"] as! String, someId)
+            XCTAssertEqual(idParameters["limit"] as! Int, 3)
         }
-        
-        XCTAssertEqual(idParameters["id_gt"] as! String, someId)
-        XCTAssertEqual(idParameters["limit"] as! Int, 3)
     }
     
     func testRateLimit() {
@@ -212,7 +188,7 @@ final class ClientTests: TestCase {
         XCTAssertNil(Client.RateLimit(response: response))
         
         let timestamp = Int(Date().timeIntervalSince1970)
-        let httpResponse = HTTPURLResponse(url: baseURL.url,
+        let httpResponse = HTTPURLResponse(url: BaseURL.placeholderURL,
                                            statusCode: 200,
                                            httpVersion: nil,
                                            headerFields: ["x-ratelimit-limit": "20",
@@ -252,7 +228,7 @@ final class ClientTests: TestCase {
     
     func testBaseURL() {
         let testURL = "https://google.com"
-        let baseURL = BaseURL(customURL: URL(string: testURL).require())
+        let baseURL = BaseURL(customURL: URL(string: testURL)!)
         XCTAssertEqual(baseURL.description, testURL)
     }
 }

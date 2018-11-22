@@ -8,7 +8,6 @@
 
 import XCTest
 import Moya
-import Require
 import Result
 @testable import GetStream
 

@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import Require
 @testable import GetStream
 
 final class ExtensionsTests: XCTestCase {
@@ -27,7 +26,7 @@ final class ExtensionsTests: XCTestCase {
     "to":["timeline:jessica"],
     "verb":"tweet"
 }
-""".data(using: .utf8).require()
+""".data(using: .utf8)!
 
     let iso8601Data = """
 {
@@ -41,7 +40,7 @@ final class ExtensionsTests: XCTestCase {
     "to":["timeline:jessica"],
     "verb":"tweet"
 }
-""".data(using: .utf8).require()
+""".data(using: .utf8)!
 
     let badDefaultData = """
 {
@@ -55,7 +54,7 @@ final class ExtensionsTests: XCTestCase {
     "to":["timeline:jessica"],
     "verb":"tweet"
 }
-""".data(using: .utf8).require()
+""".data(using: .utf8)!
     
     func testCodable() {
         do {
@@ -63,7 +62,7 @@ final class ExtensionsTests: XCTestCase {
             XCTAssertEqual(activity.actor, "eric")
             
             if let time = activity.time {
-                XCTAssertEqual(time, "2018-11-14T15:54:45.268000".streamDate.require())
+                XCTAssertEqual(time, "2018-11-14T15:54:45.268000".streamDate!)
                 
                 let encodedData = try encoder.encode(activity)
                 
@@ -102,7 +101,7 @@ final class ExtensionsTests: XCTestCase {
             XCTAssertEqual(activity.actor, "eric")
             
             if let time = activity.time {
-                XCTAssertEqual(time, "2018-11-14T15:54:45.268000".streamDate.require())
+                XCTAssertEqual(time, "2018-11-14T15:54:45.268000".streamDate!)
             } else {
                 XCTFail("❌ Failed decode date property of Activity")
             }
@@ -114,8 +113,8 @@ final class ExtensionsTests: XCTestCase {
     func testDateExtension() {
         let date = Date()
         let streamString = date.stream
-        let streamDate = streamString.streamDate.require()
-        XCTAssertEqual(streamDate, streamDate.stream.streamDate.require())
+        let streamDate = streamString.streamDate!
+        XCTAssertEqual(streamDate, streamDate.stream.streamDate!)
         
         let formatter = DateFormatter()
         formatter.dateStyle = .full

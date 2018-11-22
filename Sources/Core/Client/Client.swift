@@ -72,7 +72,7 @@ extension Client: CustomStringConvertible {
 
 extension Client {
     /// Add the app key parameter as an URL parameter for each request.
-    static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
+    private static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
         let appKeyParameter = ["api_key": apiKey]
         var task: Task = target.task
         
