@@ -120,8 +120,11 @@ extension FeedEndpoint: TargetType {
         var json = ""
         
         switch self {
-        case let .get(_, pagination: pagination, _, _):
-            if case .limit(let limit) = pagination, limit == 1 {
+        case let .get(feedId, pagination: pagination, _, _):
+            if feedId.feedSlug == "bad", feedId.userId == "json" {
+                json = "{"
+                
+            } else if case .limit(let limit) = pagination, limit == 1 {
                 json = """
                 {"results":[
                 {"actor":"eric",

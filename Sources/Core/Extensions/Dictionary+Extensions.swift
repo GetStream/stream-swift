@@ -13,6 +13,6 @@ import Foundation
 /// dictionary, replacing values with values of the other dictionary.
 extension Dictionary {
     func merged(with other: Dictionary) -> Dictionary {
-        return merging(other, uniquingKeysWith: { _, new in new })
+        return merging(other) { _, new in new }
     }
 }
