@@ -13,14 +13,13 @@
 # Uncomment the line if you want fastlane to automatically update itself
 update_fastlane
 
-carthage(use_binaries: false, verbose: true, platform: "iOS")
+carthage(use_binaries: false, platform: "iOS")
 
 default_platform(:ios)
 
 platform :ios do
   desc "Run all unit tests for GetStream"
   lane :tests do
-    reset_simulators if is_ci?
     run_tests(scheme: "GetStream-iOS")
   end
 end
