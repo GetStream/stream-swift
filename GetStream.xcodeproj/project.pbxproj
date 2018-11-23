@@ -707,6 +707,7 @@
 					};
 					DD75028C1C690C7A006590AF = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = EHV7XZLAHA;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -1422,6 +1423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = EHV7XZLAHA;
 				INFOPLIST_FILE = Configs/GetStreamTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GetStream.GetStream-tvOS-Tests";
@@ -1436,6 +1438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = EHV7XZLAHA;
 				INFOPLIST_FILE = Configs/GetStreamTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GetStream.GetStream-tvOS-Tests";
