@@ -72,7 +72,7 @@ extension Client: CustomStringConvertible {
 
 extension Client {
     /// Add the app key parameter as an URL parameter for each request.
-    private static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
+    static func endpointMapping(_ target: MultiTarget, apiKey: String, baseURL: BaseURL) -> Endpoint {
         let appKeyParameter = ["api_key": apiKey]
         var task: Task = target.task
         
@@ -121,13 +121,11 @@ extension Client {
             print("⚠️", #function, "Can't map the appKey parameter to the request", target.task)
         }
         
-        return Endpoint(
-            url: baseURL.endpointURLString(targetPath: target.path),
-            sampleResponseClosure: { .networkResponse(200, target.sampleData) },
-            method: target.method,
-            task: task,
-            httpHeaderFields: target.headers
-        )
+        return Endpoint(url: baseURL.endpointURLString(targetPath: target.path),
+                        sampleResponseClosure: { .networkResponse(200, target.sampleData) },
+                        method: target.method,
+                        task: task,
+                        httpHeaderFields: target.headers)
     }
 }
 
@@ -149,12 +147,11 @@ extension Client {
                     } else {
                         completion(.failure(.jsonInvalid))
                     }
-                } catch let error as MoyaError {
-                    completion(.failure(error.clientError))
+                } catch let moyaError as MoyaError {
+                    completion(.failure(moyaError.clientError))
                 } catch {
-                    completion(.failure(.unknown))
+                    completion(.failure(.unknownError(error.localizedDescription)))
                 }
-                
             } else if case .failure(let moyaError) = result {
                 completion(.failure(moyaError.clientError))
             }

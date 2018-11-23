@@ -22,6 +22,22 @@ final class ClientTests: TestCase {
         _ = Client(apiKey: "", appId: "appId", token: "", callbackQueue: DispatchQueue.main)
     }
     
+    func testEndpointMapper() {
+        let feedId = FeedId(feedSlug: "test", userId: "123")
+        let apiKey = "testKey"
+        let ranking = "r"
+        let target = FeedEndpoint.get(feedId, pagination: .none, ranking: ranking, markOption: .none)
+        let endpoint = Client.endpointMapping(MultiTarget(target), apiKey: apiKey, baseURL: BaseURL())
+        
+        if case .networkResponse(_, let sampleData) = endpoint.sampleResponseClosure() {
+            XCTAssertEqual(sampleData, target.sampleData)
+        }
+        
+        if case let .requestParameters(urlParameters, _) = endpoint.task, let parameters = urlParameters as? [String: String] {
+            XCTAssertEqual(parameters, ["api_key": apiKey, "ranking": ranking])
+        }
+    }
+    
     func testFeedEndpointGet() {
         expect("feed") { test in
             client.request(endpoint: FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)) { result in
@@ -38,6 +54,7 @@ final class ClientTests: TestCase {
     func testFeedEndpointAddActivity() {
         expect("add activity to the feed") { test in
             let activity = Activity(actor: "tester", verb: "test", object: "add activity")
+            XCTAssertEqual(activity.description, "Activity<<no id>> foreignId: <n/a>, tester test add activity  at <n/a> to: []")
             
             client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
                 if case .success(let response) = result,
@@ -221,6 +238,15 @@ final class ClientTests: TestCase {
         XCTAssertEqual(ClientError.jsonDecode("test", data: Data()).localizedDescription, "JSON decoding error: test. Data: 0 bytes")
     }
     
+    func testMoyaAuthPlugin() {
+        let token: Token = "123"
+        let auth = AuthorizationMoyaPlugin(token: token)
+        let request = URLRequest(url: URL(string: "https://getstream.io")!)
+        let authRequest = auth.prepare(request, target: FeedEndpoint.deleteByForeignId("", feedId: FeedId.any))
+        XCTAssertEqual(authRequest.allHTTPHeaderFields!["Stream-Auth-Type"], "jwt")
+        XCTAssertEqual(authRequest.allHTTPHeaderFields!["Authorization"], token)
+    }
+    
     func testMoyaError() {
         XCTAssertEqual(MoyaError.requestMapping("Test.").clientError.localizedDescription,
                        "Moya error: Failed to map Endpoint to a URLRequest.")
@@ -230,5 +256,7 @@ final class ClientTests: TestCase {
         let testURL = "https://google.com"
         let baseURL = BaseURL(customURL: URL(string: testURL)!)
         XCTAssertEqual(baseURL.description, testURL)
+        XCTAssertEqual(baseURL.endpointURLString(targetPath: ""), testURL)
+        XCTAssertEqual(baseURL.endpointURLString(targetPath: "test"), testURL.appending("/test"))
     }
 }

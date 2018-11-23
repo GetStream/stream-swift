@@ -56,27 +56,14 @@ final class ExtensionsTests: XCTestCase {
 }
 """.data(using: .utf8)!
     
-    func testCodable() {
-        do {
-            let activity = try decoder.decode(Activity.self, from: defaultData)
-            XCTAssertEqual(activity.actor, "eric")
-            
-            if let time = activity.time {
-                XCTAssertEqual(time, "2018-11-14T15:54:45.268000".streamDate!)
-                
-                let encodedData = try encoder.encode(activity)
-                
-                if let dataString = String(data: encodedData, encoding: .utf8) {
-                    XCTAssertTrue(dataString.contains("2018-11-14T15:54:45.268"))
-                } else {
-                    XCTFail("❌")
-                }
-            } else {
-                XCTFail("❌ Failed decode date property of Activity")
-            }
-        } catch {
-            XCTFail("❌ \(error.localizedDescription)")
-        }
+    // MARK: - Codable
+    
+    func testCodable() throws {
+        let activity = try decoder.decode(Activity.self, from: defaultData)
+        XCTAssertEqual(activity.actor, "eric")
+        XCTAssertEqual(activity.time!, "2018-11-14T15:54:45.268000".streamDate!)
+        let encodedData = try encoder.encode(activity)
+        XCTAssertTrue(String(data: encodedData, encoding: .utf8)!.contains("2018-11-14T15:54:45.268"))
     }
     
     func testCodableInvalidData() {
@@ -95,19 +82,22 @@ final class ExtensionsTests: XCTestCase {
         }
     }
     
-    func testISO8601Codable() {
-        do {
-            let activity = try decoderISO8601.decode(Activity.self, from: iso8601Data)
-            XCTAssertEqual(activity.actor, "eric")
-            
-            if let time = activity.time {
-                XCTAssertEqual(time, "2018-11-14T15:54:45.268000".streamDate!)
-            } else {
-                XCTFail("❌ Failed decode date property of Activity")
-            }
-        } catch {
-            XCTFail("❌ \(error.localizedDescription)")
+    func testAnyCodable() throws {
+        struct Test: Encodable {
+            let value: String
         }
+        
+        let anyEncodable = AnyEncodable(Test(value: "test"))
+        let jsonData = try encoder.encode(anyEncodable)
+        XCTAssertEqual(String(data: jsonData, encoding: .utf8)!, "{\"value\":\"test\"}")
+    }
+    
+    // MARK: - Test Date Formatter
+    
+    func testISO8601Codable() throws {
+        let activity = try decoderISO8601.decode(Activity.self, from: iso8601Data)
+        XCTAssertEqual(activity.actor, "eric")
+        XCTAssertEqual(activity.time!, "2018-11-14T15:54:45.268000".streamDate!)
     }
     
     func testDateExtension() {

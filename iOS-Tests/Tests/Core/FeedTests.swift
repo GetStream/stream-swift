@@ -129,6 +129,8 @@ final class FeedTests: TestCase {
             test.fulfill()
         }
     }
+    
+    // MARK: - FeedId tests
 
     func testFeedId() {
         XCTAssertEqual(FeedId(feedSlug: "s1", userId: "u1").description, "s1:u1")
@@ -137,5 +139,28 @@ final class FeedTests: TestCase {
     
     func testFeedIds() {
         XCTAssertEqual([FeedId(feedSlug: "s1", userId: "u1"), FeedId(feedSlug: "s2", userId: "u2")].value, "s1:u1,s2:u2")
+    }
+    
+    func testDecodeFeedId() throws {
+        try testDecodeFeedId("", error: "Cannot initialize FeedId from an empty string")
+        try testDecodeFeedId("123", error: "Cannot initialize FeedId from a currupted string: 123")
+    }
+    
+    private func testDecodeFeedId(_ payload: String, error errorDescription: String) throws {
+        struct Test: Decodable {
+            let feedId: FeedId
+        }
+        
+        let decoder = JSONDecoder.Stream.default
+        
+        do {
+            _ = try decoder.decode(Test.self, from: "{\"feedId\":\"\(payload)\"}".data(using: .utf8)!)
+        } catch let error as DecodingError {
+            if case .dataCorrupted(let context) = error {
+                XCTAssertEqual(context.debugDescription, errorDescription)
+            } else {
+                throw error
+            }
+        }
     }
 }
