@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GetStream
 import Require
 import JWT
 
