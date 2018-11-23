@@ -13,7 +13,7 @@
 # Uncomment the line if you want fastlane to automatically update itself
 update_fastlane
 
-carthage(command: "bootstrap", platform: "iOS")
+carthage(use_binaries: false, verbose: true, platform: "iOS")
 
 default_platform(:ios)
 
