@@ -4,7 +4,6 @@ PODS:
     - GetStream/Core (= 0.1.0)
   - GetStream/Core (0.1.0):
     - Moya (~> 12.0)
-    - Require (~> 2.0)
   - GetStream/Token (0.1.0):
     - GetStream/Core
     - JSONWebToken
@@ -14,7 +13,6 @@ PODS:
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.0)
-  - Require (2.0.0)
   - Result (4.0.0)
 
 DEPENDENCIES:
@@ -26,7 +24,6 @@ SPEC REPOS:
     - Alamofire
     - JSONWebToken
     - Moya
-    - Require
     - Result
 
 EXTERNAL SOURCES:
@@ -35,10 +32,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  GetStream: 73d44bba09922c75000a33bb3b3f48c5aa970930
+  GetStream: 6da3e6a35df2bd4226d0255ae7e21a80c288a3c8
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Require: f93abc18dda985f665465cf027cea7166455fb28
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
 
 PODFILE CHECKSUM: 8143502a9a6823fabfed924a4032a5dca55115d2

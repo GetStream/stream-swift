@@ -7,20 +7,19 @@
 //
 
 import Foundation
-import Require
 import JWT
 
 extension Token {
     /// Generate the Stream token with a given secret.
     ///
     /// - Parameters:
-    ///     - secret: a secret string.
+    ///     - secretData: a secret data.
     ///     - resource: a resource string, e.g. feed
     ///     - permission: a permissionm e.g. read or write
     ///     - feedId: a `FeedId` or any as by default.
-    public init(secret: String, resource: Resource = .all, permission: Permission = .all, feedId: FeedId = .any) {
+    public init(secretData: Data, resource: Resource = .all, permission: Permission = .all, feedId: FeedId = .any) {
         self = JWT.encode(claims: Token.payload(resource: resource, permission: permission, feedId: feedId),
-                          algorithm: .hs256(secret.data(using: .utf8).require()))
+                          algorithm: .hs256(secretData))
     }
     
     static func payload(resource: Resource = .all, permission: Permission = .all, feedId: FeedId = .any) -> [String: Any] {

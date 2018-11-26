@@ -7,16 +7,14 @@
 //
 
 import Foundation
-import Require
 
 public struct BaseURL {
-    static let placeholderURL = URL(string: "https://getstream.io").require()
+    static let placeholderURL = URL(string: "https://getstream.io")!
     
     let url: URL
     
     public init(location: Location = .default, service: Service = .api, version: String = "1.0") {
-        url = URL(string: "https://\(location.rawValue)\(service.rawValue).stream-io-api.com/\(service.rawValue)/v\(version)/")
-            .require()
+        url = URL(string: "https://\(location.rawValue)\(service.rawValue).stream-io-api.com/\(service.rawValue)/v\(version)/")!
     }
     
     public init(customURL: URL) {

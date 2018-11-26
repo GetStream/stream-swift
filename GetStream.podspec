@@ -17,7 +17,6 @@ Pod::Spec.new do |s|
     ss.source_files = "Sources/Core/**/*"
     ss.framework = "Foundation"
     ss.dependency "Moya", "~> 12.0"
-    ss.dependency "Require", "~> 2.0"
   end
   
   s.subspec "Token" do |ss|
