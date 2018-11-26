@@ -7,7 +7,7 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
@@ -37,6 +37,13 @@
             BlueprintName = "GetStream-iOS"
             ReferencedContainer = "container:GetStream.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8A0935A021AC012900C64488"
+            BuildableName = "Faye.framework"
+            BlueprintName = "Faye"
+            ReferencedContainer = "container:GetStream.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
@@ -46,6 +53,16 @@
                BlueprintIdentifier = "52D6D9851BEFF229002C0205"
                BuildableName = "GetStream-iOS Tests.xctest"
                BlueprintName = "GetStream-iOS Tests"
+               ReferencedContainer = "container:GetStream.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8A0935A821AC012900C64488"
+               BuildableName = "FayeTests.xctest"
+               BlueprintName = "FayeTests"
                ReferencedContainer = "container:GetStream.xcodeproj">
             </BuildableReference>
          </TestableReference>
