@@ -235,7 +235,7 @@ extension FeedEndpoint: TargetType {
             """
         }
         
-        return json.data(using: .utf8).require()
+        return json.data(using: .utf8)!
     }
 }
 

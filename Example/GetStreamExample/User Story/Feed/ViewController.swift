@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let token = Token(secret: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav")
+        let token = Token(secretData: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!)
         let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
         
         let ericFeed = client.feed(feedSlug: "timeline", userId: "eric")
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     private func setUnsetProperties(_ client: Client) {
         client.updateActivity(typeOf: Activity.self,
                               setProperties: ["tweet": "new"],
-                              activityId: UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0").require()) {
+                              activityId: UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0")!) {
                                 print($0)
                                 self.fetchActivities(client)
         }
@@ -52,15 +52,15 @@ class ViewController: UIViewController {
         client.updateActivity(typeOf: Activity.self,
                               setProperties: ["tweet": "new2"],
                               foreignId: "D05B0F4D-4DDB-4154-9565-DD424CC70A67",
-                              time: "2018-11-16T12:58:06.664401".streamDate.require()) {
+                              time: "2018-11-16T12:58:06.664401".streamDate!) {
                                 print($0)
                                 self.fetchActivities(client)
         }
     }
     
     private func fetchActivities(_ client: Client) {
-        let activityIds = [UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0").require(),
-                           UUID(uuidString: "815B4FA0-E7FC-11E8-8080-80007911093A").require()]
+        let activityIds = [UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0")!,
+                           UUID(uuidString: "815B4FA0-E7FC-11E8-8080-80007911093A")!]
         
         client.get(typeOf: Activity.self, activityIds: activityIds) { result in
             print(result)
@@ -69,8 +69,8 @@ class ViewController: UIViewController {
         let foreignIds = ["D05B0F4D-4DDB-4154-9565-DD424CC70A67",
                           "1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6"]
         
-        let times = ["2018-11-16T12:58:06.664401".streamDate.require(),
-                     "2018-11-14T11:00:32.282000".streamDate.require()]
+        let times = ["2018-11-16T12:58:06.664401".streamDate!,
+                     "2018-11-14T11:00:32.282000".streamDate!]
         
         client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
             print(result)
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
                 print(first)
                 
                 guard let foreignId = first.foreignId, !foreignId.isEmpty else {
-                    ericFeed.remove(by: first.id.require(), completion: { result in
+                    ericFeed.remove(by: first.id!, completion: { result in
                         print(result)
                     })
                     return

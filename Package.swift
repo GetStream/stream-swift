@@ -11,11 +11,10 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "12.0.0")),
-        .package(url: "https://github.com/JohnSundell/Require.git", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/kylef/JSONWebToken.swift.git", .upToNextMajor(from: "2.2.0")),
     ],
     targets: [
-        .target(name: "GetStream", dependencies: ["Moya", "Require"], path: "Sources/Core"),
+        .target(name: "GetStream", dependencies: ["Moya"], path: "Sources/Core"),
         .target(name: "GetStreamToken", dependencies: ["GetStream", "JWT"], path: "Sources/Token"),
         .testTarget(name: "GetStreamTests", dependencies: ["GetStream"], path: "iOS-Tests/Tests/Core"),
 //        .testTarget(name: "GetStreamTokenTests", dependencies: ["GetStreamToken"], path: "iOS-Tests/Tests/Token"),

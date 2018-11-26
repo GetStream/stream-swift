@@ -87,10 +87,6 @@
 		8AA6BEBA219D7172005B9C98 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB6219D711E005B9C98 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8AA6BEBB219D7172005B9C98 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB5219D711E005B9C98 /* Moya.framework */; };
 		8AA6BEBC219D7172005B9C98 /* Moya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB5219D711E005B9C98 /* Moya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8AA6BEBD219D7172005B9C98 /* Require.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB7219D711E005B9C98 /* Require.framework */; };
-		8AA6BEBE219D7172005B9C98 /* Require.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB7219D711E005B9C98 /* Require.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8AA6BEBF219D7172005B9C98 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; };
-		8AA6BEC0219D7172005B9C98 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE87219ECF78001598C1 /* Client+Activity.swift */; };
 		8ADCEE89219ECF78001598C1 /* Client+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE87219ECF78001598C1 /* Client+Activity.swift */; };
 		8ADCEE8A219ECF78001598C1 /* Client+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE87219ECF78001598C1 /* Client+Activity.swift */; };
@@ -107,6 +103,8 @@
 		8AE7F9A021A59EE30074DA21 /* UUID+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */; };
 		8AE7F9A321A5A8850074DA21 /* ClientParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */; };
 		8AEFF2BC21A587FA006887AB /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFF2BB21A587FA006887AB /* FeedTests.swift */; };
+		8AF6992B21ABFE1B00F5C7F7 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; };
+		8AF6992C21ABFE1B00F5C7F7 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD7502881C68FEDE006590AF /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* GetStream.framework */; };
 		DD7502921C690C7A006590AF /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* GetStream.framework */; };
 /* End PBXBuildFile section */
@@ -151,9 +149,8 @@
 			files = (
 				8AA6BEBC219D7172005B9C98 /* Moya.framework in Embed Frameworks */,
 				8AA6BEBA219D7172005B9C98 /* Alamofire.framework in Embed Frameworks */,
+				8AF6992C21ABFE1B00F5C7F7 /* Result.framework in Embed Frameworks */,
 				8A8E539921A6B6C6008CFD78 /* JWT.framework in Embed Frameworks */,
-				8AA6BEBE219D7172005B9C98 /* Require.framework in Embed Frameworks */,
-				8AA6BEC0219D7172005B9C98 /* Result.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,8 +253,7 @@
 			files = (
 				8A6DE51A219C6271001DF2A8 /* GetStream.framework in Frameworks */,
 				8AA6BEBB219D7172005B9C98 /* Moya.framework in Frameworks */,
-				8AA6BEBF219D7172005B9C98 /* Result.framework in Frameworks */,
-				8AA6BEBD219D7172005B9C98 /* Require.framework in Frameworks */,
+				8AF6992B21ABFE1B00F5C7F7 /* Result.framework in Frameworks */,
 				8A8E539821A6B6C6008CFD78 /* JWT.framework in Frameworks */,
 				8AA6BEB9219D7172005B9C98 /* Alamofire.framework in Frameworks */,
 			);

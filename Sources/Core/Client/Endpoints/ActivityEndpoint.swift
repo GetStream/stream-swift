@@ -140,7 +140,7 @@ extension ActivityEndpoint: TargetType {
                 {"actor":"eric",
                 "foreign_id":"",
                 "id":"\(activityId.uuidString)",
-                "object":"\(setProperties["object"].require())",
+                "object":"\(setProperties["object"]!)",
                 "origin":null,
                 "target":"",
                 "time":"2018-11-14T15:54:45.268000",
@@ -156,7 +156,7 @@ extension ActivityEndpoint: TargetType {
                 {"actor":"eric",
                 "foreign_id":"\(foreignId)",
                 "id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
-                "object":"\(setProperties["object"].require())",
+                "object":"\(setProperties["object"]!)",
                 "origin":null,
                 "target":"",
                 "time":"\(time.stream)",
@@ -166,7 +166,7 @@ extension ActivityEndpoint: TargetType {
             }
         }
         
-        return json.data(using: .utf8).require()
+        return json.data(using: .utf8)!
     }
 }
 

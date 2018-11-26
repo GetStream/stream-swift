@@ -13,9 +13,9 @@ import JWT
 class TokenTests: XCTestCase {
 
     func testGenerator() {
-        let secret = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav"
-        let token = Token(secret: secret)
-        let jwtClaims: ClaimSet = try! JWT.decode(token, algorithm: .hs256(secret.data(using: .utf8)!))
+        let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
+        let token = Token(secretData: secretData)
+        let jwtClaims: ClaimSet = try! JWT.decode(token, algorithm: .hs256(secretData))
         XCTAssertEqual(jwtClaims["resource"] as! String, Token.Resource.all.rawValue)
         XCTAssertEqual(jwtClaims["action"] as! String, Token.Permission.all.rawValue)
         XCTAssertEqual(jwtClaims["feed_id"] as! String, FeedId.any.description)
