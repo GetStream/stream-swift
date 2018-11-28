@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52D6D9EF1BEFFFBE002C0205"
-               BuildableName = "GetStream.framework"
-               BlueprintName = "GetStream-tvOS"
+               BlueprintIdentifier = "8A0935A021AC012900C64488"
+               BuildableName = "Faye.framework"
+               BlueprintName = "Faye"
+               ReferencedContainer = "container:GetStream.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8A0935A821AC012900C64488"
+               BuildableName = "FayeTests.xctest"
+               BlueprintName = "FayeTests"
                ReferencedContainer = "container:GetStream.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,15 +41,26 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8A0935A021AC012900C64488"
+            BuildableName = "Faye.framework"
+            BlueprintName = "Faye"
+            ReferencedContainer = "container:GetStream.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DD75028C1C690C7A006590AF"
-               BuildableName = "GetStream-tvOS Tests.xctest"
-               BlueprintName = "GetStream-tvOS Tests"
+               BlueprintIdentifier = "8A0935A821AC012900C64488"
+               BuildableName = "FayeTests.xctest"
+               BlueprintName = "FayeTests"
                ReferencedContainer = "container:GetStream.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,13 +68,23 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52D6D9EF1BEFFFBE002C0205"
-            BuildableName = "GetStream.framework"
-            BlueprintName = "GetStream-tvOS"
+            BlueprintIdentifier = "8A0935A021AC012900C64488"
+            BuildableName = "Faye.framework"
+            BlueprintName = "Faye"
             ReferencedContainer = "container:GetStream.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "MallocStackLogging"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "PrefersMallocStackLoggingLite"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
@@ -65,9 +100,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52D6D9EF1BEFFFBE002C0205"
-            BuildableName = "GetStream.framework"
-            BlueprintName = "GetStream-tvOS"
+            BlueprintIdentifier = "8A0935A021AC012900C64488"
+            BuildableName = "Faye.framework"
+            BlueprintName = "Faye"
             ReferencedContainer = "container:GetStream.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +118,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52D6D9EF1BEFFFBE002C0205"
-            BuildableName = "GetStream.framework"
-            BlueprintName = "GetStream-tvOS"
+            BlueprintIdentifier = "8A0935A021AC012900C64488"
+            BuildableName = "Faye.framework"
+            BlueprintName = "Faye"
             ReferencedContainer = "container:GetStream.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

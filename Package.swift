@@ -19,8 +19,8 @@ let package = Package(
         .target(name: "GetStream", dependencies: ["Moya"], path: "Sources/Core"),
         .target(name: "GetStreamToken", dependencies: ["GetStream", "JWT"], path: "Sources/Token"),
         .target(name: "Faye", dependencies: ["Starscream"], path: "Faye"),
-        .testTarget(name: "GetStreamTests", dependencies: ["GetStream"], path: "iOS-Tests/Tests/Core"),
-//        .testTarget(name: "GetStreamTokenTests", dependencies: ["GetStreamToken"], path: "iOS-Tests/Tests/Token"),
+        .testTarget(name: "GetStreamTests", dependencies: ["GetStream"], path: "Tests/Core"),
+//        .testTarget(name: "GetStreamTokenTests", dependencies: ["GetStreamToken"], path: "Tests/Token"),
     ],
     swiftLanguageVersions: [.v4, .v4_2]
 )
