@@ -11,10 +11,12 @@
 		8A0935AA21AC012900C64488 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A0935B621AC012A00C64488 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A0935B721AC012A00C64488 /* Faye.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8A0935C321AC030400C64488 /* Faye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0935C221AC030400C64488 /* Faye.swift */; };
+		8A0935C321AC030400C64488 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0935C221AC030400C64488 /* Client.swift */; };
 		8A0935CB21AC05AD00C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; };
 		8A0935CC21AC05B800C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; };
 		8A0935CD21AC05B800C64488 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8A38A63B21AE915000976D54 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A38A63A21AE915000976D54 /* Message.swift */; };
+		8A38A63D21AE929400976D54 /* ChannelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A38A63C21AE929400976D54 /* ChannelName.swift */; };
 		8A391C5921AC0AF700F645CC /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB5219D711E005B9C98 /* Moya.framework */; };
 		8A391C5A21AC0AF800F645CC /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB5219D711E005B9C98 /* Moya.framework */; };
 		8A391C5B21AC0AF800F645CC /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB5219D711E005B9C98 /* Moya.framework */; };
@@ -27,6 +29,7 @@
 		8A391C6221AC0B0800F645CC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; };
 		8A391C6321AC0B0800F645CC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; };
 		8A391C6421AC0B0900F645CC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; };
+		8A391C6621AC143500F645CC /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A391C6521AC143500F645CC /* Channel.swift */; };
 		8A3A4906219C68810010D831 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A4905219C68810010D831 /* ClientTests.swift */; };
 		8A3A4907219C68810010D831 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A4905219C68810010D831 /* ClientTests.swift */; };
 		8A3A4908219C68810010D831 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A4905219C68810010D831 /* ClientTests.swift */; };
@@ -128,6 +131,7 @@
 		8AEFF2BC21A587FA006887AB /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFF2BB21A587FA006887AB /* FeedTests.swift */; };
 		8AF6992B21ABFE1B00F5C7F7 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; };
 		8AF6992C21ABFE1B00F5C7F7 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8AF759A121AD8085000CD6DB /* LoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF759A021AD8085000CD6DB /* LoggerPlugin.swift */; };
 		DD7502881C68FEDE006590AF /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* GetStream.framework */; };
 		DD7502921C690C7A006590AF /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* GetStream.framework */; };
 /* End PBXBuildFile section */
@@ -211,10 +215,13 @@
 		52D6DA0F1BF000BD002C0205 /* GetStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GetStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0935A121AC012900C64488 /* Faye.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Faye.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0935A921AC012900C64488 /* FayeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FayeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A0935C221AC030400C64488 /* Faye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Faye.swift; sourceTree = "<group>"; };
+		8A0935C221AC030400C64488 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		8A0935C421AC038000C64488 /* Faye.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Faye.plist; sourceTree = "<group>"; };
 		8A0935C621AC038700C64488 /* FayeTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FayeTests.plist; sourceTree = "<group>"; };
 		8A0935CA21AC05AD00C64488 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		8A38A63A21AE915000976D54 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8A38A63C21AE929400976D54 /* ChannelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelName.swift; sourceTree = "<group>"; };
+		8A391C6521AC143500F645CC /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		8A3A4905219C68810010D831 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationMoyaPlugin.swift; sourceTree = "<group>"; };
 		8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaError+ClientError.swift"; sourceTree = "<group>"; };
@@ -252,6 +259,7 @@
 		8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Extensions.swift"; sourceTree = "<group>"; };
 		8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientParsingTests.swift; sourceTree = "<group>"; };
 		8AEFF2BB21A587FA006887AB /* FeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTests.swift; sourceTree = "<group>"; };
+		8AF759A021AD8085000CD6DB /* LoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerPlugin.swift; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* GetStream.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStream.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* GetStreamTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStreamTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* GetStream-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GetStream-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -412,7 +420,11 @@
 		8A0935A221AC012900C64488 /* Faye */ = {
 			isa = PBXGroup;
 			children = (
-				8A0935C221AC030400C64488 /* Faye.swift */,
+				8A0935C221AC030400C64488 /* Client.swift */,
+				8A391C6521AC143500F645CC /* Channel.swift */,
+				8A38A63C21AE929400976D54 /* ChannelName.swift */,
+				8A38A63A21AE915000976D54 /* Message.swift */,
+				8AF759A021AD8085000CD6DB /* LoggerPlugin.swift */,
 			);
 			path = Faye;
 			sourceTree = "<group>";
@@ -1090,7 +1102,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A0935C321AC030400C64488 /* Faye.swift in Sources */,
+				8AF759A121AD8085000CD6DB /* LoggerPlugin.swift in Sources */,
+				8A0935C321AC030400C64488 /* Client.swift in Sources */,
+				8A38A63B21AE915000976D54 /* Message.swift in Sources */,
+				8A391C6621AC143500F645CC /* Channel.swift in Sources */,
+				8A38A63D21AE929400976D54 /* ChannelName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
