@@ -146,13 +146,23 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8A0935A021AC012900C64488"
-            BuildableName = "Faye.framework"
-            BlueprintName = "Faye"
+            BlueprintIdentifier = "52D6D97B1BEFF229002C0205"
+            BuildableName = "GetStream.framework"
+            BlueprintName = "GetStream-iOS"
             ReferencedContainer = "container:GetStream.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "MallocStackLogging"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
+         <AdditionalOption
+            key = "PrefersMallocStackLoggingLite"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
