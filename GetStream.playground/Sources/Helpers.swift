@@ -5,12 +5,15 @@ import Foundation
 ///
 /// Example:
 ///     startSync()
-///     asyncRequest {
+///
+///     URLSession.shared.dataTask(with: ...) {
 ///         ...
 ///         endSync()
 ///     }
+///
 ///     waitSync()
-///     asyncRequest {
+///
+///     URLSession.shared.dataTask(with: ...) {
 ///         ...
 ///         endSync()
 ///     }
@@ -21,10 +24,10 @@ public func startSync() {
     awaitGroup.enter()
 }
 
-public func endSync(_ andPlaygroundToo: Bool = false) {
+public func endSync(finishPlayground: Bool = false) {
     awaitGroup.leave()
     
-    if andPlaygroundToo {
+    if finishPlayground {
         PlaygroundPage.current.finishExecution()
     }
 }

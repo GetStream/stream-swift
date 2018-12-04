@@ -13,23 +13,21 @@ public typealias JSON = [String: Any]
 public typealias ClientConnected = (_ isConnected: Bool, _ error: Error?) -> Void
 public typealias ClientWriteDataCompletion = () -> Void
 
-public protocol PluginProtocol {
+public protocol ClientPluginProtocol {
     func outgoing(message: Message) -> Message
 }
 
 public final class Client {
     private let webSocket: WebSocket
-    private let plugins: [PluginProtocol]
-    private var clientUUID: UUID = UUID()
+    private let plugins: [ClientPluginProtocol]
     private var connectedCallbacks = [ClientConnected]()
     private var weakChannels = [WeakChannel]()
+    private var isConnected: Bool = false
     
-    private var clientId: String {
-        return clientUUID.uuidString.lowercased()
-    }
-
-    public var isConnected: Bool {
-        return webSocket.isConnected
+    private var clientId: String? {
+        didSet {
+            isConnected = clientId != nil
+        }
     }
     
     private var channels: [Channel] {
@@ -41,34 +39,30 @@ public final class Client {
     /// - Parameters:
     ///     - url: an `URL` of your websocket server.
     ///     - headers: custom headers.
-    ///     - protocols: websocket protocols for the header: `Sec-WebSocket-Protocol`, e.g. `chat`.
     ///     - plugins: a list of `PluginProtocol` plugins to manager incoming/outgoing messages.
-    public convenience init(url: URL,
-                            headers: [String: String]? = nil,
-                            protocols: [String]? = nil,
-                            plugins: [PluginProtocol] = []) {
+    public convenience init(url: URL, headers: [String: String]? = nil, plugins: [ClientPluginProtocol] = []) {
         var urlRequest = URLRequest(url: url)
         
         if let headers = headers {
             headers.forEach { urlRequest.addValue($0.value, forHTTPHeaderField: $0.key) }
         }
         
-        self.init(urlRequest: urlRequest, protocols: protocols, plugins: plugins)
+        self.init(urlRequest: urlRequest, plugins: plugins)
     }
     
     /// Create a Faye client with a given `URLRequest`.
     ///
     /// - Parameters:
     ///     - urlRequest: an `URLRequest` with `URL`, custom headers and a timeout parameter.
-    ///     - protocols: websocket protocols for the header: `Sec-WebSocket-Protocol`, e.g. `chat`.
     ///     - plugins: a list of `PluginProtocol` plugins to manager incoming/outgoing messages.
-    public init(urlRequest: URLRequest, protocols: [String]? = nil, plugins: [PluginProtocol] = []) {
+    public init(urlRequest: URLRequest, plugins: [ClientPluginProtocol] = []) {
         self.plugins = plugins
-        webSocket = WebSocket(request: urlRequest, protocols: protocols)
+        webSocket = WebSocket(request: urlRequest, protocols: ["faye"])
         webSocket.onConnect = webSocketDidConnect
         webSocket.onDisconnect = webSocketDidDisconnect
         webSocket.onText = webSocketDidReceiveMessage
         webSocket.onData = webSocketDidReceiveData
+        webSocket.onPong = webSocketDidReceivePong
     }
 }
 
@@ -76,7 +70,7 @@ public final class Client {
 
 extension Client {
     public func connect(completion: ClientConnected? = nil) {
-        guard isConnected else {
+        guard !isConnected else {
             completion?(true, nil)
             return
         }
@@ -97,63 +91,135 @@ extension Client {
     public func disconnect() {
         if webSocket.isConnected {
             webSocket.disconnect()
+            clientId = nil
         }
-    }
-    
-    public func channel(_ name: String, subscription: @escaping ChannelSubscription) -> Channel {
-        return Channel(name, client: self, subscription: subscription)
     }
 }
 
 // MARK: - Channel
 
 extension Client {
-    func add(channel: Channel) {
-        weakChannels.append(WeakChannel(channel))
-        try? subscribe(channel: channel)
+    public func subscribe(to channel: Channel) throws {
+        guard isConnected else {
+            throw Error.notConnected
+        }
+        
+        try webSocketWrite(.subscribe(channel)) { [weak self] in
+            self?.weakChannels.append(WeakChannel(channel))
+        }
+    }
+    
+    func unsubscribe(channel: Channel) throws {
+        guard isConnected else {
+            return
+        }
+        
+        try webSocketWrite(.unsubscribe(channel))
     }
     
     func remove(channel: Channel) {
-        if let index = weakChannels.firstIndex(where: { $0.channel === channel }) {
-            weakChannels.remove(at: index)
-        }
-        
-        unsubscribe(channel: channel)
-    }
-    
-    func subscribe(channel: Channel, completion: ClientWriteDataCompletion? = nil) throws {
-        guard isConnected else {
-            connect { [weak self] connected, _ in
-                if connected {
-                    try? self?.subscribe(channel: channel, completion: completion)
-                }
-            }
-            
-            return
-        }
-        
-        try send(.subscribe(channel.name), completion: completion)
-    }
-    
-    func unsubscribe(channel: Channel) {
-        guard isConnected else {
-            return
-        }
-    }
-    
-    private func send(_ bayeuxChannel: BayeuxChannel, completion: ClientWriteDataCompletion? = nil) throws {
-        var message = Message(bayeuxChannel, clientId: clientId)
-        message = applyPlugins(for: message)
-        let data = try JSONEncoder().encode(message)
-        webSocket.write(data: data, completion: completion)
+        weakChannels = weakChannels.filter { $0.channel != nil }
+        try? unsubscribe(channel: channel)
     }
 }
 
-private final class WeakChannel {
-    weak var channel: Channel?
+// MARK: - Sending/Receiving
+
+extension Client {
     
-    init(_ channel: Channel) {
-        self.channel = channel
+    private func webSocketWrite(_ bayeuxChannel: BayeuxChannel, completion: ClientWriteDataCompletion? = nil) throws {
+        guard webSocket.isConnected else {
+            throw Error.notConnected
+        }
+        
+        guard clientId != nil || bayeuxChannel.channel == BayeuxChannel.handshake.channel else {
+            throw Error.clientIdIsEmpty
+        }
+        
+        let message = self.applyPlugins(for: Message(bayeuxChannel, clientId: self.clientId))
+        let data = try JSONEncoder().encode([message])
+        print("🕸 --->", message)
+        
+        webSocket.callbackQueue.async { [weak self] in
+            self?.webSocket.write(data: data, completion: completion)
+        }
+    }
+    
+    private func webSocketDidConnect() {
+        do {
+            try webSocketWrite(.handshake)
+        } catch {
+            print("🕸", #function, error)
+        }
+    }
+    
+    private func webSocketDidDisconnect(_ error: Swift.Error?) {
+        clientId = nil
+        notifyConnectedCallbacks(isConnected: false, error: error)
+    }
+    
+    private func webSocketDidReceivePong(data: Data?) {
+        print("🕸 <--- pong", data)
+    }
+    
+    private func webSocketDidReceiveMessage(text: String) {
+        guard let data = text.data(using: .utf8) else {
+            print("🕸❌", #function, "Bad data encoding")
+            return
+        }
+        
+        print("🕸 <---", text)
+        webSocketDidReceiveData(data: data)
+    }
+    
+    private func webSocketDidReceiveData(data: Data) {
+        do {
+            let decoder = JSONDecoder()
+            let messages = try decoder.decode([Message].self, from: data)
+            messages.forEach { dispatch($0) }
+        } catch {
+            print("🕸❌", #function, error)
+        }
+    }
+    
+    private func dispatch(_ message: Message) {
+        if dispatchBayeuxChannel(message) {
+            return
+        }
+        
+        channels.forEach { channel in
+            if channel.name.match(with: message.channel) {
+                channel.subscription(channel, message)
+            }
+        }
+    }
+    
+    private func dispatchBayeuxChannel(_ message: Message) -> Bool {
+        guard let bayeuxChannel = BayeuxChannel(message) else {
+            return false
+        }
+        
+        if case .handshake = bayeuxChannel {
+            clientId = message.clientId
+            notifyConnectedCallbacks(isConnected: true)
+            channels.forEach { try? self.subscribe(to: $0) }
+        }
+        
+        return true
+    }
+    
+    private func notifyConnectedCallbacks(isConnected: Bool, error: Swift.Error? = nil) {
+        connectedCallbacks.forEach { $0(isConnected, error) }
+        connectedCallbacks = []
+    }
+}
+
+// MARK: - Error
+
+extension Client {
+    public enum Error: String, Swift.Error {
+        case notConnected
+        case clientIdIsEmpty
     }
 }
 
@@ -167,53 +233,12 @@ extension Client {
     }
 }
 
-// MARK: - WebSocket requests
+// MARK: - Helpers
 
-extension Client {
-    /// TODO: publish
-    func publish(in channelName: String, object: Encodable, encoder: JSONEncoder, completion: ClientWriteDataCompletion?) throws {
-        completion?()
-//        guard isConnected else {
-//            connect { [weak self] connected, _ in
-//                if connected {
-//                    try? self?.publish(in: channelName, json: json, completion: completion)
-//                }
-//            }
-//
-//            return
-//        }
-//
-//        let data = encoder.encode(<#T##value: Encodable##Encodable#>)
-//        var message = Message(., clientId: <#T##String#>)
-//
-//        let data = try JSONEncoder().encode(bayeux)
-//        webSocket.write(data: data, completion: completion)
-    }
-}
-
-// MARK: - WebSocket
-
-extension Client {
-    private func webSocketDidConnect() {
-        notifyConnectedCallbacks(isConnected: true)
-        try? send(.connect)
-        channels.forEach { [weak self] in try? self?.subscribe(channel: $0) }
-    }
+private final class WeakChannel {
+    weak var channel: Channel?
     
-    private func webSocketDidDisconnect(_ error: Error?) {
-        notifyConnectedCallbacks(isConnected: false, error: error)
-        clientUUID = UUID()
-    }
-    
-    private func webSocketDidReceiveMessage(text: String) {
-//        channels.filter { $0.isRelated(to: channelName) }.forEach { $0.subscription($0, message) }
-    }
-    
-    private func webSocketDidReceiveData(data: Data) {
-    }
-    
-    private func notifyConnectedCallbacks(isConnected: Bool, error: Error? = nil) {
-        connectedCallbacks.forEach { $0(isConnected, error) }
-        connectedCallbacks = []
+    init(_ channel: Channel) {
+        self.channel = channel
     }
 }

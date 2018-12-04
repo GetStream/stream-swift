@@ -1,10 +1,8 @@
-import PlaygroundSupport
-import Foundation
-import GetStream
-PlaygroundPage.current.needsIndefiniteExecution = true
-
 //: [Previous](@previous)
 //: ## Quick start
+import PlaygroundSupport
+import GetStream
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 // Setup the Stream client
 // This token must be received from your server.
