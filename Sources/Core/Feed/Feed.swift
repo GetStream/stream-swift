@@ -12,7 +12,7 @@ import Result
 
 public struct Feed: CustomStringConvertible {
     public let feedId: FeedId
-    private let client: Client
+    let client: Client
     
     public var description: String {
         return feedId.description

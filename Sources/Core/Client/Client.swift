@@ -15,8 +15,12 @@ typealias ClientCompletionResult = Result<Response, ClientError>
 typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
 typealias NetworkProvider = MoyaProvider<MultiTarget>
 
+/// GetStream client.
 public final class Client {
+    let apiKey: String
     let appId: String
+    let token: Token
+    
     private let moyaProvider: NetworkProvider
     
     /// Create a GetStream client for making network requests.
@@ -45,11 +49,13 @@ public final class Client {
         
         let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
         let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: callbackQueue, plugins: moyaPlugins)
-        self.init(appId: appId, networkProvider: moyaProvider)
+        self.init(apiKey: apiKey, appId: appId, token: token, networkProvider: moyaProvider)
     }
     
-    init(appId: String, networkProvider: NetworkProvider) {
+    init(apiKey: String, appId: String, token: Token, networkProvider: NetworkProvider) {
+        self.apiKey = apiKey
         self.appId = appId
+        self.token = token
         self.moyaProvider = networkProvider
     }
 }

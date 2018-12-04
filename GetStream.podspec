@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = "2.0"
   s.tvos.deployment_target = "9.0"
   s.source = { :git => "https://github.com/GetStream/stream-swift.git", :tag => s.version.to_s }
-  s.default_subspec = "Core"
+  s.default_subspecs = "Core", "Faye"
   
   s.subspec "Core" do |ss|
     ss.source_files = "Sources/Core/**/*"
@@ -23,5 +23,11 @@ Pod::Spec.new do |s|
     ss.source_files = "Sources/Token/"
     ss.dependency "GetStream/Core"
     ss.dependency "JSONWebToken"
+  end
+  
+  s.subspec "Faye" do |ss|
+      ss.source_files = "Sources/Faye/"
+      ss.dependency "GetStream/Core"
+      ss.dependency "Faye"
   end
 end

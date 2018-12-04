@@ -8,18 +8,18 @@
 
 import Foundation
 
-public typealias ChannelSubscription = (_ channel: Channel, _ message: String) -> Void
+public typealias ChannelSubscription = (_ channel: Channel, _ message: Message) -> Void
 
 public final class Channel {
-    public let name: ChannelName
-    let subscription: ChannelSubscription
     private weak var client: Client?
-    
+    let subscription: ChannelSubscription
+    public let name: ChannelName
+    public var ext: [String: String]?
+
     public init(_ name: ChannelName, client: Client, subscription: @escaping ChannelSubscription) {
-        self.name = name.slashTrimmed()
+        self.name = "/".appending(name.slashTrimmed())
         self.client = client
         self.subscription = subscription
-        client.add(channel: self)
     }
     
     deinit {
@@ -44,6 +44,6 @@ extension Channel {
             throw Error.clientNotFound
         }
         
-        try client.publish(in: try name.wildcard(with: segment), object: object, encoder: encoder, completion: completion)
+        //try client.publish(in: try name.wildcard(with: segment), object: object, encoder: encoder, completion: completion)
     }
 }

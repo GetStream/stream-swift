@@ -8,9 +8,12 @@
 
 import Foundation
 
-public struct LoggerPlugin: PluginProtocol {
+public struct LoggerPlugin: ClientPluginProtocol {
+    
+    public init() {}
+    
     public func outgoing(message: Message) -> Message {
-        print(#function, message.id, message.channel, message.ext ?? [:])
+        print(#function, "#\(message.id)", message.channel, "ext: \(message.ext ?? [:])")
         return message
     }
 }
