@@ -11,7 +11,7 @@ import GetStream
 
 class ViewController: UIViewController {
     
-    var subscription: SubscriptionChannel?
+    var subscription: SubscribedChannel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,26 @@ class ViewController: UIViewController {
         let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token)
         let ericFeed = client.feed(feedSlug: "user", userId: "eric")
         
-        subscription = ericFeed.subscribe { channel, message in
-            print(channel, message)
+        subscription = ericFeed.subscribe(typeOf: Activity.self) { result in
+            print(result)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.subscription = nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let activity = Activity(actor: "eric", tweet: "realtime")
+            activity.foreignId = "realtime"
+            
+            ericFeed.add(activity, completion: { result in
+                print(result)
+                let activities = try? result.dematerialize()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if let activityId = activities?.first?.foreignId {
+                        ericFeed.remove(by: activityId, completion: { result in
+                            print(result)
+                        })
+                    }
+                }
+            })
         }
     }
     

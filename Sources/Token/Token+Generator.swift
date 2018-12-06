@@ -19,17 +19,16 @@ extension Token {
     ///     - resource: a resource string, e.g. feed
     ///     - permission: a permissionm e.g. read or write
     ///     - feedId: a `FeedId` or any as by default.
-    public init(secretData: Data, resource: Resource = .all, permission: Permission = .all, feedId: FeedId = .any) {
-        self = Token.jwt(secretData: secretData, claims: Token.claims(resource: resource, permission: permission, feedId: feedId))
-    }
-    
-    /// Generate the Stream token with a given secret and user id with full access.
-    ///
-    /// - Parameters:
-    ///     - secretData: a secret data.po token
     ///     - userId: a `userId`.
-    public init(secretData: Data, userId: String) {
-        self = Token.jwt(secretData: secretData, claims: Token.claims(userId: userId))
+    public init(secretData: Data,
+                resource: Resource = .all,
+                permission: Permission = .all,
+                feedId: FeedId = .any,
+                userId: String? = nil) {
+        self = Token.jwt(secretData: secretData, claims: Token.claims(resource: resource,
+                                                                      permission: permission,
+                                                                      feedId: feedId,
+                                                                      userId: userId))
     }
     
     private static func jwt(secretData: Data, claims: Claims) -> Token {

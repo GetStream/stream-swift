@@ -52,7 +52,9 @@ extension ChannelName {
     /// - Parameters:
     ///     - channelName: an another channel name
     func match(with channelName: ChannelName) -> Bool {
-        let channelName = channelName.slashTrimmed()
+        if self == channelName {
+            return true
+        }
         
         if channelName.isWildcard || channelName.count == 0 {
             return false

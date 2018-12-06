@@ -9,27 +9,23 @@
 import Foundation
 
 public struct Message: Codable {
-    static var counter = 0
-    
-    private(set) var clientId: String?
+    var clientId: String?
     var connectionType: String?
     var version: String?
     var minimumVersion: String?
     var supportedConnectionTypes: [String]?
-    public let id: String
-    public let channel: String
+    var advice: Advice?
+    var successful: Bool?
+    public let channel: ChannelName
+    public var id: String?
     public var subscription: String?
     public var ext: [String: String]?
-    public var data: String?
-    public var successful: Bool?
-    public var advice: Advice?
     public var error: String?
     
-    init(_ bayeuxChannel: BayeuxChannel, clientId: String?) {
-        Message.counter += 1
-        id = String(Message.counter, radix: 16)
+    init(_ bayeuxChannel: BayeuxChannel, _ channel: Channel?, clientId: String?) {
+        id = Message.Counter.value
         self.clientId = clientId
-        channel = bayeuxChannel.channel
+        self.channel = bayeuxChannel.rawValue
         
         switch bayeuxChannel {
         case .handshake:
@@ -38,48 +34,39 @@ public struct Message: Codable {
             supportedConnectionTypes = ["websocket"]
         case .connect:
             connectionType = "websocket"
-        case .subscribe(let channel), .unsubscribe(let channel):
-            self.subscription = channel.name
-            self.ext = channel.ext
+        case .subscribe, .unsubscribe:
+            subscription = channel?.name
+            ext = channel?.ext
         }
     }
 }
 
+// MARK: Counter
+
 extension Message {
-    public struct Advice: Codable {
+    struct Counter {
+        private static var id = 0
+        
+        static var value: String {
+            id += 1
+            return String(id, radix: 16)
+        }
+    }
+}
+
+// MARK: Advice
+
+extension Message {
+    struct Advice: Codable {
         let reconnect: String
         let interval: Int
         let timeout: Int
     }
 }
 
-enum BayeuxChannel {
-    case handshake
-    case connect
-    case subscribe(_ channel: Channel)
-    case unsubscribe(_ channel: Channel)
-    
-    var channel: String {
-        switch self {
-        case .handshake:
-            return "/meta/handshake"
-        case .connect:
-            return "/meta/connect"
-        case .subscribe:
-            return "/meta/subscribe"
-        case .unsubscribe:
-            return "/meta/unsubscribe"
-        }
-    }
-    
-    init?(_ message: Message) {
-        switch message.channel {
-        case BayeuxChannel.handshake.channel:
-            self = .handshake
-        case BayeuxChannel.connect.channel:
-            self = .connect
-        default:
-            return nil
-        }
-    }
+enum BayeuxChannel: ChannelName {
+    case handshake = "/meta/handshake"
+    case connect = "/meta/connect"
+    case subscribe = "/meta/subscribe"
+    case unsubscribe = "/meta/unsubscribe"
 }
