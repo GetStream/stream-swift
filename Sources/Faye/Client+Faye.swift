@@ -8,8 +8,10 @@
 
 import Foundation
 import Faye
+import Result
 
-public typealias SubscriptionChannel = Faye.Channel
+public typealias SubscribedChannel = Faye.Channel
+public typealias Subscription<T: ActivityProtocol> = (_ result: Result<SubscriptionResponse<T>, DecodingError>) -> Void
 
 fileprivate var fayeClientKey: UInt8 = 0
 fileprivate var fayeFeedChannelKey: UInt8 = 0
@@ -22,7 +24,6 @@ extension Client {
         }
         
         let url = URL(string: "wss://faye.getstream.io/faye")!
-        let authPlugin = ClientAuthFayePlugin(client: self)
         let fayeClient = Faye.Client(url: url)
         objc_setAssociatedObject(self, &fayeClientKey, fayeClient, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         
@@ -31,14 +32,22 @@ extension Client {
 }
 
 extension Feed {
-    
-    public func subscribe(completion: @escaping ChannelSubscription) -> SubscriptionChannel {
-        let channel = Channel(notificationChannelName,
-                              client: client.fayeClient,
-                              subscription: completion)
+    public func subscribe<T: ActivityProtocol>(typeOf type: T.Type,
+                                               decoder: JSONDecoder = JSONDecoder.Stream.default,
+                                               subscriptionResult: @escaping Subscription<T>) -> SubscribedChannel {
+        let channel = Channel(notificationChannelName, client: client.fayeClient) { data  in
+            do {
+                let response = try decoder.decode(SubscriptionResponse<T>.self, from: data)
+                subscriptionResult(.success(response))
+            } catch let error as DecodingError {
+                subscriptionResult(.failure(error))
+            } catch {
+                print("❌", #function, error)
+            }
+        }
         
         channel.ext = ["api_key": client.apiKey,
-                       "signature": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWVkX2lkIjoiKiIsInJlc291cmNlIjoiKiIsImFjdGlvbiI6IioiLCJ1c2VyX2lkIjoiZXJpYyJ9.Lg4o5xfw70hLjphb1hHE6uCgnfoc7X2ASH3c8kf04lk",
+                       "signature": client.token,
                        "user_id": notificationChannelName]
         
         client.fayeClient.connect { isConnected, error in
@@ -59,4 +68,16 @@ extension Feed {
     var notificationChannelName: ChannelName {
         return "site-\(client.appId)-feed-\(feedId.together)"
     }
+}
+
+public struct SubscriptionResponse<T: ActivityProtocol>: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case feedId = "feed"
+        case deletedActivitiesIds = "deleted"
+        case newActivities = "new"
+    }
+    
+    public let feedId: FeedId
+    public let deletedActivitiesIds: [String]
+    public let newActivities: [T]
 }

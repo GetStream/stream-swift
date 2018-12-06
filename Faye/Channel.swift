@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias ChannelSubscription = (_ channel: Channel, _ message: Message) -> Void
+public typealias ChannelSubscription = (_ data: Data) -> Void
 
 public final class Channel {
     private weak var client: Client?
@@ -24,26 +24,5 @@ public final class Channel {
     
     deinit {
         client?.remove(channel: self)
-    }
-}
-
-extension Channel {
-    public enum Error: Swift.Error {
-        case clientNotFound
-    }
-}
-
-// MARK: - Publishing
-
-extension Channel {
-    public func publish(_ object: Encodable,
-                        encoder: JSONEncoder = JSONEncoder(),
-                        to segment: ChannelName? = nil,
-                        completion: ClientWriteDataCompletion? = nil) throws {
-        guard let client = client else {
-            throw Error.clientNotFound
-        }
-        
-        //try client.publish(in: try name.wildcard(with: segment), object: object, encoder: encoder, completion: completion)
     }
 }
