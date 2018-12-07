@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         let ericFeed = client.feed(feedSlug: "user", userId: "eric")
         
         subscription = ericFeed.subscribe(typeOf: Activity.self) { result in
-            print(result)
+            print(#function, result)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
