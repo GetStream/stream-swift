@@ -19,6 +19,10 @@ class ViewController: UIViewController {
         let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
         let token = Token(secretData: secretData, userId: "eric")
         let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token)
+        checkSubscriptions(client)
+    }
+    
+    func checkSubscriptions(_ client: Client) {
         let ericFeed = client.feed(feedSlug: "user", userId: "eric")
         
         subscription = ericFeed.subscribe(typeOf: Activity.self) { result in
@@ -48,7 +52,7 @@ class ViewController: UIViewController {
         }
     }
     
-//    private func stream() {
+//    func stream() {
 //        let token = Token(secretData: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!)
 //        let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
 //
@@ -66,7 +70,7 @@ class ViewController: UIViewController {
 //        //        }
 //    }
 //
-//    private func followers(_ client: Client) {
+//    func followers(_ client: Client) {
 //        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
 //        //        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
 //        //        jessicaFeed.follow(to: ericFeed.feedId) {
@@ -76,7 +80,7 @@ class ViewController: UIViewController {
 //        //        }
 //    }
 //
-//    private func setUnsetProperties(_ client: Client) {
+//    func setUnsetProperties(_ client: Client) {
 //        client.updateActivity(typeOf: Activity.self,
 //                              setProperties: ["tweet": "new"],
 //                              activityId: UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0")!) {
@@ -93,7 +97,7 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    private func fetchActivities(_ client: Client) {
+//    func fetchActivities(_ client: Client) {
 //        let activityIds = [UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0")!,
 //                           UUID(uuidString: "815B4FA0-E7FC-11E8-8080-80007911093A")!]
 //
@@ -112,7 +116,7 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    private func updateActivity(_ client: Client) {
+//    func updateActivity(_ client: Client) {
 //        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
 //
 //        ericFeed.get(typeOf: Activity.self) { result in
@@ -133,7 +137,7 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    private func follow(client: Client) {
+//    func follow(client: Client) {
 //        let ericFeedId = FeedId(feedSlug: "user", userId: "eric")
 //        let jessicaFeedId = FeedId(feedSlug: "timeline", userId: "jessica")
 //        let ericFeed = client.feed(ericFeedId)
@@ -154,7 +158,7 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    private func add(activity: Activity, to feed: Feed) {
+//    func add(activity: Activity, to feed: Feed) {
 //        print("Adding to \(feed)...", activity)
 //
 //        feed.add(activity) { result in
@@ -167,7 +171,7 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    private func fetch(_ feed: Feed, completion: (() -> Void)? = nil) {
+//    func fetch(_ feed: Feed, completion: (() -> Void)? = nil) {
 //        print("Fetching feed \(feed)...")
 //
 //        feed.get(typeOf: Activity.self) { result in
@@ -180,7 +184,7 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    private func removeFirstAndLastActivities(_ activities: [Activity], in feed: Feed) {
+//    func removeFirstAndLastActivities(_ activities: [Activity], in feed: Feed) {
 //        if let first = activities.first, let foreignId = first.foreignId {
 //            print("Deleting from \(feed)...", first)
 //
@@ -198,7 +202,7 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    private func codable(_ activity: Activity) {
+//    func codable(_ activity: Activity) {
 //        let data = try! JSONEncoder.Stream.default.encode(activity)
 //        print(String(data: data, encoding: .utf8)!)
 //
