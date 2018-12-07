@@ -10,14 +10,12 @@ import Foundation
 import Starscream
 
 public typealias JSON = [String: Any]
-public typealias ClientConnected = (_ isConnected: Bool, _ error: Error?) -> Void
 public typealias ClientWriteDataCompletion = () -> Void
 
 public final class Client {
     private let webSocket: WebSocket
-    private var connectedCallbacks = [ClientConnected]()
     private var weakChannels = [WeakChannel]()
-    private var isConnected: Bool = false
+    public private(set) var isConnected: Bool = false
     
     private var clientId: String? {
         didSet {
@@ -58,32 +56,17 @@ public final class Client {
     deinit {
         disconnect()
     }
-    
-    private func async(_ block: @escaping () -> Void) {
-        webSocket.callbackQueue.async(execute: block)
-    }
 }
 
 // MARK: - Public API
 
 extension Client {
-    public func connect(completion: ClientConnected? = nil) {
+    public func connect() {
         guard !isConnected else {
-            completion?(true, nil)
             return
         }
         
-        async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            if let completion = completion {
-                self.connectedCallbacks.append(completion)
-            }
-            
-            self.webSocket.connect()
-        }
+        self.webSocket.connect()
     }
     
     public func disconnect() {
@@ -99,13 +82,15 @@ extension Client {
 extension Client {
     
     public func subscribe(to channel: Channel) throws {
+        if !weakChannels.contains(where: { $0.channel == channel }) {
+            weakChannels.append(WeakChannel(channel))
+        }
+        
         guard isConnected else {
             throw Error.notConnected
         }
         
-        try webSocketWrite(.subscribe, channel) { [weak self] in
-            self?.weakChannels.append(WeakChannel(channel))
-        }
+        try webSocketWrite(.subscribe, channel)
     }
     
     func unsubscribe(channel: Channel) throws {
@@ -136,12 +121,16 @@ extension Client: WebSocketDelegate {
     }
     
     public func websocketDidDisconnect(socket: WebSocketClient, error: Swift.Error?) {
-        notifyConnectedCallbacks(isConnected: false, error: error)
+        print("🕸❌", #function, error)
         
-        if let error = error {
-            print("🕸❌", #function, error)
+        if error != nil {
             applyAdvice()
         }
+    }
+    
+    private func retryReconnect(after timeInterval: DispatchTimeInterval = .seconds(2)) {
+        print("🕸 trying to reconnect...", #function)
+        webSocket.callbackQueue.asyncAfter(deadline: .now() + timeInterval) { [weak self] in self?.connect() }
     }
 }
 
@@ -161,8 +150,8 @@ extension Client {
         
         let message = Message(bayeuxChannel, channel, clientId: self.clientId)
         let data = try JSONEncoder().encode([message])
-        async { [weak self] in self?.webSocket.write(data: data, completion: completion) }
-        print("🕸 ---> ", message.channel, message.clientId, message.ext)
+        webSocket.write(data: data, completion: completion)
+        print("🕸 ---> ", message.channel, message.clientId ?? "", message.ext ?? [:])
     }
 }
 
@@ -227,7 +216,6 @@ extension Client {
     private func dispatchHandshake(with message: Message) {
         clientId = message.clientId
         advice = message.advice
-        notifyConnectedCallbacks(isConnected: true)
         
         weakChannels.forEach {
             if let channel = $0.channel {
@@ -235,18 +223,13 @@ extension Client {
             }
         }
     }
-    
-    private func notifyConnectedCallbacks(isConnected: Bool, error: Swift.Error? = nil) {
-        connectedCallbacks.forEach { $0(isConnected, error) }
-        connectedCallbacks = []
-    }
 }
 
 // MARK: - Ping/Pong
 
 extension Client: WebSocketPongDelegate {
     public func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
-        print("🕸 <--- pong", data)
+        print("🕸 <--- pong", data ?? Data())
     }
 }
 
@@ -257,6 +240,7 @@ extension Client {
         clientId = nil
         
         guard let advice = advice else {
+            retryReconnect()
             return
         }
         
@@ -268,8 +252,7 @@ extension Client {
         case .handshake:
             try? webSocketWrite(.handshake)
         case .retry:
-            disconnect()
-            async { [weak self] in self?.connect() }
+            retryReconnect()
         }
         
         self.advice = nil

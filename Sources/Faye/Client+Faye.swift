@@ -73,25 +73,20 @@ extension Feed {
         
         channel.ext = ["api_key": client.apiKey, "signature": client.token, "user_id": notificationChannelName]
         
-        client.fayeClient.connect { isConnected, error in
-            if isConnected {
-                do {
-                    try self.client.fayeClient.subscribe(to: channel)
-                    
-                } catch let error as Faye.Client.Error {
-                    print("❌", #function, error)
-                    subscription(.failure(.fayeClient(error)))
-                    
-                } catch {
-                    print("❌", #function, error)
-                    subscription(.failure(.unexpected(error)))
-                }
-            } else if let error = error {
-                print("❌", #function, error)
-                subscription(.failure(.unexpected(error)))
+        do {
+            try client.fayeClient.subscribe(to: channel)
+            
+        } catch let error as Faye.Client.Error {
+            if case .notConnected = error {
+                client.fayeClient.connect()
             } else {
-                print("❌", #function, "Unexpected callback for Faye client connect.")
+                print("❌", #function, error)
+                subscription(.failure(.fayeClient(error)))
             }
+            
+        } catch {
+            print("❌", #function, error)
+            subscription(.failure(.unexpected(error)))
         }
         
         return SubscribedChannel(channel)
