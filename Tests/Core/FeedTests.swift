@@ -12,7 +12,8 @@ import Result
 @testable import GetStream
 
 final class FeedTests: TestCase {
-    lazy var client = Client(appId: "appId", networkProvider: NetworkProvider(stubClosure: MoyaProvider.immediatelyStub))
+    
+    lazy var client = Client.test
     
     func testFeed() {
         let feedId = FeedId(feedSlug: "s1", userId: "u1")

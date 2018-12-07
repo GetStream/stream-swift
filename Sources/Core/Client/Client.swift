@@ -21,7 +21,7 @@ public final class Client {
     let appId: String
     let token: Token
     
-    private let moyaProvider: NetworkProvider
+    private let networkProvider: NetworkProvider
     
     /// Create a GetStream client for making network requests.
     ///
@@ -56,7 +56,7 @@ public final class Client {
         self.apiKey = apiKey
         self.appId = appId
         self.token = token
-        self.moyaProvider = networkProvider
+        self.networkProvider = networkProvider
     }
 }
 
@@ -141,7 +141,7 @@ extension Client {
     /// Make a request with a given endpoint.
     @discardableResult
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
-        return moyaProvider.request(MultiTarget(endpoint)) { result in
+        return networkProvider.request(MultiTarget(endpoint)) { result in
             if case .success(let response) = result {
                 do {
                     if let json = try response.mapJSON() as? JSON {

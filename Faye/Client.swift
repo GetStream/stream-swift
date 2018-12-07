@@ -121,9 +121,10 @@ extension Client: WebSocketDelegate {
     }
     
     public func websocketDidDisconnect(socket: WebSocketClient, error: Swift.Error?) {
-        print("🕸❌", #function, error)
+        print("🕸", #function)
         
-        if error != nil {
+        if let error = error {
+            print("🕸❌", #function, error)
             applyAdvice()
         }
     }
