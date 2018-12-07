@@ -28,25 +28,25 @@ extension FeedEndpoint: TargetType {
     var path: String {
         switch self {
         case .get(let feedId, _, _, _), .add(_, let feedId):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/"
+            return "feed/\(feedId.togetherWithSlash)/"
             
         case let .deleteById(activityId, feedId):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/\(activityId.uuidString.lowercased())/"
+            return "feed/\(feedId.togetherWithSlash)/\(activityId.uuidString.lowercased())/"
             
         case let .deleteByForeignId(foreignId, feedId):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/\(foreignId)/"
+            return "feed/\(feedId.togetherWithSlash)/\(foreignId)/"
             
         case let .follow(feedId, _, _):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/"
+            return "feed/\(feedId.togetherWithSlash)/follows/"
             
         case let .unfollow(feedId, target, _):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/\(target.description)/"
+            return "feed/\(feedId.togetherWithSlash)/follows/\(target.description)/"
             
         case .followers(let feedId, _, _):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/followers/"
+            return "feed/\(feedId.togetherWithSlash)/followers/"
             
         case .following(let feedId, _, _, _):
-            return "feed/\(feedId.feedSlug)/\(feedId.userId)/follows/"
+            return "feed/\(feedId.togetherWithSlash)/follows/"
         }
     }
     
@@ -219,7 +219,7 @@ extension FeedEndpoint: TargetType {
         case .followers(let feedId, _, _):
             json = """
             {"results": [
-            {"feed_id": "\(feedId.description)",
+            {"feed_id": "\(feedId.togetherWithColon)",
             "target_id": "s2:u2",
             "created_at": "2018-11-14T15:54:45.268000Z"}
             ]}
@@ -228,7 +228,7 @@ extension FeedEndpoint: TargetType {
         case .following(let feedId, _, _, _):
             json = """
             {"results": [
-            {"feed_id": "\(feedId.description)",
+            {"feed_id": "\(feedId.togetherWithColon)",
             "target_id": "s2:u2",
             "created_at": "2018-11-14T15:54:45.268000Z"}
             ]}

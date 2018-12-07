@@ -25,6 +25,8 @@ public final class Client {
         }
     }
     
+    private var advice: Advice?
+    
     /// Create a Faye client with a given `URL`.
     ///
     /// - Parameters:
@@ -49,14 +51,15 @@ public final class Client {
                 callbackQueue: DispatchQueue = DispatchQueue(label: "io.getstream.Faye", qos: .userInitiated)) {
         webSocket = WebSocket(request: urlRequest, protocols: ["faye"])
         webSocket.callbackQueue = callbackQueue
-        webSocket.onConnect = webSocketDidConnect
-        webSocket.onDisconnect = webSocketDidDisconnect
-        webSocket.onText = webSocketDidReceiveMessage
-        webSocket.onData = webSocketDidReceiveData
-        webSocket.onPong = webSocketDidReceivePong
+        webSocket.delegate = self
+        webSocket.pongDelegate = self
     }
     
-    private func async(block: @escaping () -> Void) {
+    deinit {
+        disconnect()
+    }
+    
+    private func async(_ block: @escaping () -> Void) {
         webSocket.callbackQueue.async(execute: block)
     }
 }
@@ -84,14 +87,17 @@ extension Client {
     }
     
     public func disconnect() {
+        print("🕸", #function)
         webSocket.disconnect()
         clientId = nil
+        advice = nil
     }
 }
 
 // MARK: - Channel
 
 extension Client {
+    
     public func subscribe(to channel: Channel) throws {
         guard isConnected else {
             throw Error.notConnected
@@ -111,34 +117,31 @@ extension Client {
     }
     
     func remove(channel: Channel) {
-        async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            self.weakChannels = self.weakChannels.filter { $0.channel != nil }
-            try? self.unsubscribe(channel: channel)
-        }
+        weakChannels = weakChannels.filter { $0.channel != channel }
+        try? unsubscribe(channel: channel)
     }
 }
 
 // MARK: - Connection
-extension Client {
-    private func webSocketDidConnect() {
+
+extension Client: WebSocketDelegate {
+    
+    public func websocketDidConnect(socket: WebSocketClient) {
         do {
             try webSocketWrite(.handshake)
         } catch {
             print("🕸", #function, error)
+            applyAdvice()
         }
     }
     
-    private func webSocketDidDisconnect(_ error: Swift.Error?) {
-        clientId = nil
+    public func websocketDidDisconnect(socket: WebSocketClient, error: Swift.Error?) {
         notifyConnectedCallbacks(isConnected: false, error: error)
-    }
-    
-    private func webSocketDidReceivePong(data: Data?) {
-        print("🕸 <--- pong", data)
+        
+        if let error = error {
+            print("🕸❌", #function, error)
+            applyAdvice()
+        }
     }
 }
 
@@ -166,24 +169,23 @@ extension Client {
 // MARK: - Receiving
 
 extension Client {
-    private func webSocketDidReceiveMessage(text: String) {
+    public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         guard let data = text.data(using: .utf8) else {
             print("🕸❌", #function, "Bad data encoding")
             return
         }
         
         print("🕸 <---", text)
-        webSocketDidReceiveData(data: data)
+        websocketDidReceiveData(socket: socket, data: data)
     }
     
-    private func webSocketDidReceiveData(data: Data) {
+    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         do {
             guard let json = try JSONSerialization.jsonObject(with: data) as? [JSON] else {
                 return
             }
             
-            let decoder = JSONDecoder()
-            let messages = try decoder.decode([Message].self, from: data)
+            let messages = try JSONDecoder().decode([Message].self, from: data)
             
             messages.forEach { message in
                 if !dispatchBayeuxChannel(with: message) {
@@ -206,7 +208,7 @@ extension Client {
         }
         
         if case .handshake = bayeuxChannel {
-            handshake(with: message)
+            dispatchHandshake(with: message)
         }
         
         return true
@@ -222,8 +224,9 @@ extension Client {
         }
     }
     
-    private func handshake(with message: Message) {
+    private func dispatchHandshake(with message: Message) {
         clientId = message.clientId
+        advice = message.advice
         notifyConnectedCallbacks(isConnected: true)
         
         weakChannels.forEach {
@@ -236,6 +239,40 @@ extension Client {
     private func notifyConnectedCallbacks(isConnected: Bool, error: Swift.Error? = nil) {
         connectedCallbacks.forEach { $0(isConnected, error) }
         connectedCallbacks = []
+    }
+}
+
+// MARK: - Ping/Pong
+
+extension Client: WebSocketPongDelegate {
+    public func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
+        print("🕸 <--- pong", data)
+    }
+}
+
+// MARK: - Advice
+
+extension Client {
+    private func applyAdvice() {
+        clientId = nil
+        
+        guard let advice = advice else {
+            return
+        }
+        
+        print("🕸 <-->", #function, advice)
+        
+        switch advice.reconnect {
+        case .none:
+            return
+        case .handshake:
+            try? webSocketWrite(.handshake)
+        case .retry:
+            disconnect()
+            async { [weak self] in self?.connect() }
+        }
+        
+        self.advice = nil
     }
 }
 

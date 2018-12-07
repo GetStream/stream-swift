@@ -9,6 +9,7 @@
 import Foundation
 
 public struct Message: Codable {
+    
     var clientId: String?
     var connectionType: String?
     var version: String?
@@ -56,13 +57,21 @@ extension Message {
 
 // MARK: Advice
 
-extension Message {
-    struct Advice: Codable {
-        let reconnect: String
-        let interval: Int
-        let timeout: Int
+struct Advice: Codable {
+    let reconnect: Reconnection
+    let interval: Int
+    let timeout: Int
+}
+
+extension Advice {
+    enum Reconnection: String, Codable {
+        case none
+        case handshake
+        case retry
     }
 }
+
+// MARK: Bayeux Channels
 
 enum BayeuxChannel: ChannelName {
     case handshake = "/meta/handshake"

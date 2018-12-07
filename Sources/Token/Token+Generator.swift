@@ -50,7 +50,7 @@ extension Token {
         }
         
         if let feedId = feedId {
-            claims["feed_id"] = feedId.togetherWithSeparator
+            claims["feed_id"] = feedId.togetherWithColon
         }
         
         if let userId = userId {
