@@ -16,9 +16,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let token = Token(secretData: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!,
-                          userId: "eric")
-        
+        let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
+        let token = Token(secretData: secretData, userId: "eric")
         let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token)
         let ericFeed = client.feed(feedSlug: "user", userId: "eric")
         
@@ -38,6 +37,10 @@ class ViewController: UIViewController {
                     if let activityId = activities?.first?.foreignId {
                         ericFeed.remove(by: activityId, completion: { result in
                             print(result)
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.subscription = nil
+                            }
                         })
                     }
                 }

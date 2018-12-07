@@ -9,29 +9,37 @@
 import Foundation
 
 public struct FeedId: CustomStringConvertible, Codable {
-    private static let separator: Character = ":"
     
     /// The name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline.
     let feedSlug: String
     /// The owner of the given feed.
     let userId: String
     
-    /// The feed group id with separator, e.g. `timeline:123`
-    public var togetherWithSeparator: String {
-        if userId.isEmpty {
-            return feedSlug
-        }
-        
-        return feedSlug.appending(String(FeedId.separator)).appending(userId)
-    }
-    
     /// The feed group id, e.g. `timeline123`
     public var together: String {
         return feedSlug.appending(userId)
     }
     
+    /// The feed group id with the colon separator, e.g. `timeline:123`
+    public var togetherWithColon: String {
+        if userId.isEmpty {
+            return feedSlug
+        }
+        
+        return feedSlug.appending(":").appending(userId)
+    }
+    
+    /// The feed group id with the slash separator, e.g. `timeline/123`
+    public var togetherWithSlash: String {
+        if userId.isEmpty {
+            return feedSlug
+        }
+        
+        return feedSlug.appending("/").appending(userId)
+    }
+    
     public var description: String {
-        return togetherWithSeparator
+        return togetherWithColon
     }
     
     public init(feedSlug: String, userId: String) {
@@ -48,7 +56,7 @@ public struct FeedId: CustomStringConvertible, Codable {
                                                    debugDescription: "Cannot initialize FeedId from an empty string")
         }
         
-        let pair = id.split(separator: FeedId.separator).map { String($0) }
+        let pair = id.split(separator: ":").map { String($0) }
         
         if pair.count != 2 {
             throw DecodingError.dataCorruptedError(in: container,
