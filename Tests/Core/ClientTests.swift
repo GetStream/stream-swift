@@ -10,11 +10,19 @@ import XCTest
 import Moya
 @testable import GetStream
 
+extension Client {
+    static var test: Client {
+        let provider = NetworkProvider(stubClosure: NetworkProvider.immediatelyStub)
+        let client = Client(apiKey: "apiKey", appId: "appId", token: "token", networkProvider: provider)
+        return client
+    }
+}
+
 final class ClientTests: TestCase {
     
+    lazy var client = Client.test
     let feedId = FeedId(feedSlug: "test", userId: "123")
-    lazy var client = Client(appId: "appId", networkProvider: NetworkProvider(stubClosure: MoyaProvider.immediatelyStub))
-    
+
     func testConstructor() {
         let client = Client(apiKey: "", appId: "appId", token: "")
         XCTAssertEqual(client.description, "GetStream Client v.\(Client.version) appId: appId")
