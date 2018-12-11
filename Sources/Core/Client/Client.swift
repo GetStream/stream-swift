@@ -120,8 +120,11 @@ extension Client {
         case let .requestCompositeData(bodyData, parameters):
             task = .requestCompositeData(bodyData: bodyData, urlParameters: parameters.merged(with: appKeyParameter) )
             
-        case let .uploadCompositeMultipart(data, parameters):
-            task = .uploadCompositeMultipart(data, urlParameters: parameters.merged(with: appKeyParameter))
+        case let .uploadMultipart(multipartFormData):
+            task = .uploadCompositeMultipart(multipartFormData, urlParameters: appKeyParameter)
+            
+        case let .uploadCompositeMultipart(multipartFormData, parameters):
+            task = .uploadCompositeMultipart(multipartFormData, urlParameters: parameters.merged(with: appKeyParameter))
             
         default:
             print("⚠️", #function, "Can't map the appKey parameter to the request", target.task)

@@ -54,7 +54,7 @@ extension Client {
                     completion(.success(removedId))
                 } else {
                     ClientError.warning(for: json, missedParameter: "removed")
-                    completion(.success(nil))
+                    completion(.failure(.unexpectedResponse("`removed` parameter not found")))
                 }
             } catch {
                 completion(.failure(ClientError.jsonDecode(error.localizedDescription, data: response.data)))
@@ -73,6 +73,28 @@ extension Client {
             if let clientError = error as? ClientError {
                 completion(.failure(clientError))
             }
+        }
+    }
+    
+    static func parseUploadResponse(_ result: ClientCompletionResult, completion: @escaping UploadCompletion) {
+        if case .success(let response) = result {
+            do {
+                let json = try response.mapJSON()
+                
+                if let json = json as? [String: Any], let urlString = json["url"] as? String, let url = URL(string: urlString) {
+                    completion(.success(url))
+                } else {
+                    ClientError.warning(for: json, missedParameter: "url")
+                    completion(.failure(.unexpectedResponse("`url` parameter not found")))
+                }
+                
+            } catch {
+                if let clientError = error as? ClientError {
+                    completion(.failure(clientError))
+                }
+            }
+        } else if case .failure(let error) = result {
+            completion(.failure(error))
         }
     }
 }

@@ -9,7 +9,8 @@
 import Foundation
 
 public enum ClientError: Error {
-    case unknown
+    case unexpectedError
+    case unexpectedResponse(_ description: String)
     case unknownError(_ localizedDescription: String)
     case jsonInvalid
     case jsonDecode(_ localizedDescription: String, data: Data)
@@ -19,8 +20,10 @@ public enum ClientError: Error {
     
     public var localizedDescription: String {
         switch self {
-        case .unknown:
+        case .unexpectedError:
             return "Unexpected behaviour"
+        case .unexpectedResponse:
+            return "Unexpected response"
         case .unknownError(let localizedDescription):
             return "Unexpected behaviour with error: \(localizedDescription)"
         case .jsonInvalid:
