@@ -22,20 +22,16 @@ public struct ImageProcess: Codable {
     /// Strategy used to adapt the image the new dimensions. Allowed values are: `clip`, `crop`, `scale`, `fill`.
     let resize: ResizeStrategy
     /// Cropping modes as a comma separated list. Allowed values are top, bottom, left, right, center.
-    let crop: CropMode
+    let crop: String
     /// Width of the processed image.
     let width: Float
     /// Height of the processed image.
     let height: Float
     
-    public init?(url: URL, resize: ResizeStrategy = .clip, crop: CropMode = .center, width: Float, height: Float) {
-        guard width > 0, height > 0 else {
-            return nil
-        }
-        
+    public init(url: URL, resize: ResizeStrategy = .clip, crop: CropMode = .center, width: Float, height: Float) {
         self.url = url
         self.resize = resize
-        self.crop = crop
+        self.crop = crop.description
         self.width = width
         self.height = height
     }
@@ -63,5 +59,31 @@ extension ImageProcess {
         public static let left = CropMode(rawValue: 1 << 2)
         public static let right = CropMode(rawValue: 1 << 3)
         public static let center = CropMode(rawValue: 1 << 4)
+        
+        var description: String {
+            var crops = [String]()
+            
+            if self.contains(.top) {
+                crops.append("top")
+            }
+            
+            if self.contains(.bottom) {
+                crops.append("bottom")
+            }
+            
+            if self.contains(.left) {
+                crops.append("left")
+            }
+            
+            if self.contains(.right) {
+                crops.append("right")
+            }
+            
+            if self.contains(.center) {
+                crops.append("center")
+            }
+            
+            return crops.joined(separator: ",")
+        }
     }
 }

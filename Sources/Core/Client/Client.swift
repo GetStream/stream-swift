@@ -102,7 +102,17 @@ extension Client {
             
         case let .requestJSONEncodable(encodable):
             if let data = try? JSONEncoder().encode(AnyEncodable(encodable)) {
-                task = .requestCompositeData(bodyData: data, urlParameters: appKeyParameter)
+                if target.method == .get {
+                    do {
+                        if let json = (try JSONSerialization.jsonObject(with: data)) as? JSON {
+                            task = .requestParameters(parameters: json.merged(with: appKeyParameter), encoding: URLEncoding.default)
+                        }
+                    } catch {
+                        print("⚠️", #function, "Can't decode the JSON from the encodabledata for a GET request", error)
+                    }
+                } else {
+                    task = .requestCompositeData(bodyData: data, urlParameters: appKeyParameter)
+                }
             } else {
                 print("⚠️", #function, "Can't encode object", encodable)
             }

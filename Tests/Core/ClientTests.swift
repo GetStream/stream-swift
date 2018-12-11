@@ -238,7 +238,7 @@ final class ClientTests: TestCase {
         
         ClientError.warning(for: [], missedParameter: "test")
         
-        let unknownError = ClientError.unknown
+        let unknownError = ClientError.unexpectedError
         XCTAssertEqual(unknownError.localizedDescription, "Unexpected behaviour")
         XCTAssertEqual(ClientError.unknownError(unknownError.localizedDescription).localizedDescription,
                        "Unexpected behaviour with error: Unexpected behaviour")
