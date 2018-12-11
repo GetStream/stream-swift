@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import Result
 import UIKit
 import Swime
+
+public typealias UploadCompletion = (_ result: Result<URL, ClientError>) -> Void
 
 // MARK: - Files
 

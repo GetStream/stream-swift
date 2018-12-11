@@ -10,6 +10,9 @@ import Foundation
 import Moya
 import Result
 
+public typealias RemovedCompletion = (_ result: Result<String, ClientError>) -> Void
+public typealias FollowersCompletion = (_ result: Result<[Follower], ClientError>) -> Void
+
 public struct Feed: CustomStringConvertible {
     public let feedId: FeedId
     let client: Client

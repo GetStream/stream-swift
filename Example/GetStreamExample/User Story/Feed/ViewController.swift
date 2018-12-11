@@ -23,10 +23,16 @@ class ViewController: UIViewController {
                             token: token,
                             logsEnabled: true)
         
-        checkFilesAndImages(client, token: token)
+        checkOG(client)
     }
     
-    func checkFilesAndImages(_ client: Client, token: Token) {
+    func checkOG(_ client: Client) {
+        client.og(url: URL(string: "https://www.imdb.com/title/tt2084970/")!) { result in
+            print(result)
+        }
+    }
+    
+    func checkFilesAndImages(_ client: Client) {
         guard let image = UIImage(named: "niffler"),
             let file = File(name: "test.jpg", jpegImage: image) else {
             return

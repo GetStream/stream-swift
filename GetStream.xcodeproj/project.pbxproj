@@ -11,6 +11,8 @@
 		8A0935AA21AC012900C64488 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A0935C321AC030400C64488 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0935C221AC030400C64488 /* Client.swift */; };
 		8A0935CB21AC05AD00C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */; };
+		8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */; };
 		8A33F72E21B16AEF006399A6 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A38A63B21AE915000976D54 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A38A63A21AE915000976D54 /* Message.swift */; };
 		8A38A63D21AE929400976D54 /* ChannelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A38A63C21AE929400976D54 /* ChannelName.swift */; };
@@ -86,6 +88,8 @@
 		8A0935C421AC038000C64488 /* Faye.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Faye.plist; sourceTree = "<group>"; };
 		8A0935C621AC038700C64488 /* FayeTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FayeTests.plist; sourceTree = "<group>"; };
 		8A0935CA21AC05AD00C64488 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+OpenGraph.swift"; sourceTree = "<group>"; };
+		8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGraphEndpoint.swift; sourceTree = "<group>"; };
 		8A38A63A21AE915000976D54 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8A38A63C21AE929400976D54 /* ChannelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelName.swift; sourceTree = "<group>"; };
 		8A391C6521AC143500F645CC /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
@@ -227,6 +231,15 @@
 			path = Faye;
 			sourceTree = "<group>";
 		};
+		8A2856DF21BFF6930091A977 /* Open Graph */ = {
+			isa = PBXGroup;
+			children = (
+				8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */,
+				8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */,
+			);
+			path = "Open Graph";
+			sourceTree = "<group>";
+		};
 		8A6283D12199AEE20002913D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +248,7 @@
 				8ADCEE86219ECF43001598C1 /* Activity */,
 				8A6283D92199AEE20002913D /* Feed */,
 				8ABC207621BAB8120033EE8F /* Files and Images */,
+				8A2856DF21BFF6930091A977 /* Open Graph */,
 				8A6283D22199AEE20002913D /* Moya */,
 				8A6283D52199AEE20002913D /* Extensions */,
 			);
@@ -632,10 +646,12 @@
 			files = (
 				8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */,
 				8A6284142199CF9C0002913D /* FeedId.swift in Sources */,
+				8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
+				8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */,
 				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283F92199AEE20002913D /* Activity.swift in Sources */,

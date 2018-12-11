@@ -7,6 +7,10 @@
 //
 
 import Foundation
+import Result
+
+public typealias ActivitiesResult<T> = Result<[T], ClientError>
+public typealias ActivitiesCompletion<T> = (_ result: ActivitiesResult<T>) -> Void
 
 extension Client {
     
