@@ -42,7 +42,7 @@ final class FeedTests: TestCase {
             let feed = client.feed(feedSlug: "s", userId: "u")
             
             feed.remove(by: .test1) { result in
-                if case .success(let removedId) = result, let activityId = removedId {
+                if case .success(let activityId) = result {
                     XCTAssertEqual(activityId, UUID.test1.uuidString)
                     test.fulfill()
                 }
@@ -56,7 +56,7 @@ final class FeedTests: TestCase {
             let feed = client.feed(feedSlug: "s", userId: "u")
             
             feed.remove(by: "f1") { result in
-                if case .success(let removedId) = result, let foreignId = removedId {
+                if case .success(let foreignId) = result {
                     XCTAssertEqual(foreignId, "f1")
                     test.fulfill()
                 }

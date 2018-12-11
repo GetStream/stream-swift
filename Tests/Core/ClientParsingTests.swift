@@ -25,8 +25,8 @@ class ClientParsingTests: TestCase {
         }
         
         expect("error result") { test in
-            Client.parseResultsResponse(.failure(ClientError.unknown)) { (result: ActivitiesResult<Activity>) in
-                if case .failure(let clientError) = result, case .unknown = clientError {
+            Client.parseResultsResponse(.failure(ClientError.unknownError(""))) { (result: ActivitiesResult<Activity>) in
+                if case .failure(let clientError) = result, case .unknownError = clientError {
                     test.fulfill()
                 }
             }
@@ -46,8 +46,8 @@ class ClientParsingTests: TestCase {
         }
         
         expect("error result") { test in
-            Client.parseFollowersResponse(.failure(ClientError.unknown)) { result in
-                if case .failure(let clientError) = result, case .unknown = clientError {
+            Client.parseFollowersResponse(.failure(ClientError.unknownError(""))) { result in
+                if case .failure(let clientError) = result, case .unknownError = clientError {
                     test.fulfill()
                 }
             }
@@ -67,8 +67,8 @@ class ClientParsingTests: TestCase {
         }
         
         expect("error result") { test in
-            Client.parseRemovedResponse(.failure(ClientError.unknown)) { result in
-                if case .failure(let clientError) = result, case .unknown = clientError {
+            Client.parseRemovedResponse(.failure(ClientError.unknownError(""))) { result in
+                if case .failure(let clientError) = result, case .unknownError = clientError {
                     test.fulfill()
                 }
             }

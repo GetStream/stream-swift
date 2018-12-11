@@ -81,11 +81,11 @@ extension Client {
             do {
                 let json = try response.mapJSON()
                 
-                if let json = json as? [String: Any], let urlString = json["url"] as? String, let url = URL(string: urlString) {
+                if let json = json as? [String: Any], let urlString = json["file"] as? String, let url = URL(string: urlString) {
                     completion(.success(url))
                 } else {
-                    ClientError.warning(for: json, missedParameter: "url")
-                    completion(.failure(.unexpectedResponse("`url` parameter not found")))
+                    ClientError.warning(for: json, missedParameter: "file")
+                    completion(.failure(.unexpectedResponse("`file` parameter not found")))
                 }
                 
             } catch {
