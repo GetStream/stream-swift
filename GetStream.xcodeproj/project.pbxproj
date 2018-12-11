@@ -39,6 +39,9 @@
 		8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
 		8A8E539421A6B6BC008CFD78 /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; };
 		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
+		8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207921BAB8D10033EE8F /* Client+Files.swift */; };
+		8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */; };
+		8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207D21BE5D680033EE8F /* ImageProcess.swift */; };
 		8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE87219ECF78001598C1 /* Client+Activity.swift */; };
 		8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */; };
 		8ADCEE94219F1E01001598C1 /* Client+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE93219F1E01001598C1 /* Client+Parsing.swift */; };
@@ -110,6 +113,9 @@
 		8AA6BEB5219D711E005B9C98 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
 		8AA6BEB6219D711E005B9C98 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8AA6BEB8219D711F005B9C98 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		8ABC207921BAB8D10033EE8F /* Client+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Files.swift"; sourceTree = "<group>"; };
+		8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesEndpoint.swift; sourceTree = "<group>"; };
+		8ABC207D21BE5D680033EE8F /* ImageProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcess.swift; sourceTree = "<group>"; };
 		8ADCEE87219ECF78001598C1 /* Client+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Activity.swift"; sourceTree = "<group>"; };
 		8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEndpoint.swift; sourceTree = "<group>"; };
 		8ADCEE93219F1E01001598C1 /* Client+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Parsing.swift"; sourceTree = "<group>"; };
@@ -218,15 +224,6 @@
 			path = Faye;
 			sourceTree = "<group>";
 		};
-		8A582328219D691800B338D8 /* Endpoints */ = {
-			isa = PBXGroup;
-			children = (
-				8A6283DA2199AEE20002913D /* FeedEndpoint.swift */,
-				8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */,
-			);
-			path = Endpoints;
-			sourceTree = "<group>";
-		};
 		8A6283D12199AEE20002913D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +231,7 @@
 				8A6283DD2199AEE20002913D /* Client */,
 				8ADCEE86219ECF43001598C1 /* Activity */,
 				8A6283D92199AEE20002913D /* Feed */,
+				8ABC207621BAB8120033EE8F /* Files and Images */,
 				8A6283D22199AEE20002913D /* Moya */,
 				8A6283D52199AEE20002913D /* Extensions */,
 			);
@@ -263,6 +261,7 @@
 			children = (
 				8A6284132199CF9C0002913D /* FeedId.swift */,
 				8A6283DC2199AEE20002913D /* Feed.swift */,
+				8A6283DA2199AEE20002913D /* FeedEndpoint.swift */,
 				8A64566921A306AB00E890F4 /* Follower.swift */,
 			);
 			path = Feed;
@@ -276,7 +275,6 @@
 				8A6283E02199AEE20002913D /* ClientError.swift */,
 				8ADCEE93219F1E01001598C1 /* Client+Parsing.swift */,
 				8A6283DE2199AEE20002913D /* BaseURL.swift */,
-				8A582328219D691800B338D8 /* Endpoints */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -339,12 +337,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8ABC207621BAB8120033EE8F /* Files and Images */ = {
+			isa = PBXGroup;
+			children = (
+				8ABC207921BAB8D10033EE8F /* Client+Files.swift */,
+				8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */,
+				8ABC207D21BE5D680033EE8F /* ImageProcess.swift */,
+			);
+			path = "Files and Images";
+			sourceTree = "<group>";
+		};
 		8ADCEE86219ECF43001598C1 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				8ADCEE87219ECF78001598C1 /* Client+Activity.swift */,
+				8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */,
 				8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */,
 				8A6283DB2199AEE20002913D /* Activity.swift */,
-				8ADCEE87219ECF78001598C1 /* Client+Activity.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -615,14 +624,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */,
 				8A6284142199CF9C0002913D /* FeedId.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
+				8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
 				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
 				8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
+				8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */,
 				8AE491A421B140B2008F9036 /* ClientFayeExtendable.swift in Sources */,
 				8A6284092199AEE20002913D /* ClientError.swift in Sources */,
 				8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */,

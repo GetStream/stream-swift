@@ -1,0 +1,67 @@
+//
+//  ImageProcess.swift
+//  GetStream-iOS
+//
+//  Created by Alexey Bukhtin on 10/12/2018.
+//  Copyright © 2018 Stream.io Inc. All rights reserved.
+//
+
+import Foundation
+
+public struct ImageProcess: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case url
+        case resize = "resize"
+        case crop = "crop"
+        case width = "w"
+        case height = "h"
+    }
+    
+    /// URL of the image to process. This is the URL returned by the `UploadResult` request.
+    let url: URL
+    /// Strategy used to adapt the image the new dimensions. Allowed values are: `clip`, `crop`, `scale`, `fill`.
+    let resize: ResizeStrategy
+    /// Cropping modes as a comma separated list. Allowed values are top, bottom, left, right, center.
+    let crop: CropMode
+    /// Width of the processed image.
+    let width: Float
+    /// Height of the processed image.
+    let height: Float
+    
+    public init?(url: URL, resize: ResizeStrategy = .clip, crop: CropMode = .center, width: Float, height: Float) {
+        guard width > 0, height > 0 else {
+            return nil
+        }
+        
+        self.url = url
+        self.resize = resize
+        self.crop = crop
+        self.width = width
+        self.height = height
+    }
+}
+
+extension ImageProcess {
+    public enum ResizeStrategy: String, Codable {
+        case clip
+        case crop
+        case scale
+        case fill
+    }
+}
+
+extension ImageProcess {
+    public struct CropMode: OptionSet, Codable {
+        public let rawValue: Int
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
+        public static let top = CropMode(rawValue: 1 << 0)
+        public static let bottom = CropMode(rawValue: 1 << 1)
+        public static let left = CropMode(rawValue: 1 << 2)
+        public static let right = CropMode(rawValue: 1 << 3)
+        public static let center = CropMode(rawValue: 1 << 4)
+    }
+}
