@@ -37,12 +37,17 @@ class ViewController: UIViewController {
             let activity = (try! activitiesResult.dematerialize()).first!
             
             client.addReaction(to: activity.id!, kindOf: .comment, data: Comment(text: "Hello!")) { result in
-                let reaction = try! result.dematerialize()
-                print(reaction)
+                let commentReaction = try! result.dematerialize()
+                print(commentReaction)
                 
-                client.addReaction(to: activity.id!, parentReactionId: reaction.id, kindOf: .like) { result in
-                    let reaction = try! result.dematerialize()
-                    print(reaction)
+                client.reaction(id: commentReaction.id, extraDataTypeOf: Comment.self) { result in
+                    let loadedReaction = try! result.dematerialize()
+                    print(loadedReaction)
+                    
+                    client.addReaction(to: activity.id!, parentReactionId: loadedReaction.id, kindOf: .like) { result in
+                        let likeReaction = try! result.dematerialize()
+                        print(likeReaction)
+                    }
                 }
             }
         }
