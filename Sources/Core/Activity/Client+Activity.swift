@@ -22,7 +22,7 @@ extension Client {
                                          activityIds: [UUID],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) {
-            Client.parseResultsResponse($0, inContainer: true, completion: completion)
+            $0.parseActivities(inContainer: true, completion: completion)
         }
     }
     
@@ -35,7 +35,7 @@ extension Client {
                                          times: [Date],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.get(foreignIds: foreignIds, times: times)) {
-            Client.parseResultsResponse($0, inContainer: true, completion: completion)
+            $0.parseActivities(inContainer: true, completion: completion)
         }
     }
     
@@ -49,7 +49,7 @@ extension Client {
     @discardableResult
     public func update<T: ActivityProtocol>(activities: [T], completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.update(activities)) {
-            Client.parseStatusCodeResponse($0, completion: completion)
+            $0.parseStatusCode(completion: completion)
         }
     }
     
@@ -78,7 +78,7 @@ extension Client {
         return request(endpoint: ActivityEndpoint<T>.updateActivityById(setProperties: properties,
                                                                         unsetPropertiesNames: names,
                                                                         activityId: activityId)) {
-                                                                            Client.parseResultsResponse($0, completion: completion)
+                                                                            $0.parseActivities(completion: completion)
         }
     }
     
@@ -110,7 +110,7 @@ extension Client {
                                                                     unsetPropertiesNames: names,
                                                                     foreignId: foreignId,
                                                                     time: time)) {
-                                                                        Client.parseResultsResponse($0, completion: completion)
+                                                                        $0.parseActivities(completion: completion)
         }
     }
 }

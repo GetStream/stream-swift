@@ -20,4 +20,14 @@ class TokenTests: XCTestCase {
         XCTAssertEqual(jwtClaims["action"] as! String, Token.Permission.all.rawValue)
         XCTAssertEqual(jwtClaims["feed_id"] as! String, FeedId.any.description)
     }
+
+    func testUserGenerator() {
+        let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
+        let token = Token(secretData: secretData, userId: "eric")
+        let jwtClaims: ClaimSet = try! JWT.decode(token, algorithm: .hs256(secretData))
+        XCTAssertNil(jwtClaims["resource"])
+        XCTAssertNil(jwtClaims["action"])
+        XCTAssertNil(jwtClaims["feed_id"])
+        XCTAssertEqual(jwtClaims["user_id"] as! String, "eric")
+    }
 }

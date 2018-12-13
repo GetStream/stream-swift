@@ -25,10 +25,21 @@ extension Token {
                 permission: Permission? = nil,
                 feedId: FeedId? = nil,
                 userId: String? = nil) {
-        self = Token.jwt(secretData: secretData, claims: Token.claims(resource: resource,
-                                                                      permission: permission,
-                                                                      feedId: feedId,
-                                                                      userId: userId))
+        let claims: Claims
+        
+        if resource == nil, permission == nil, feedId == nil, userId == nil {
+            claims = Token.claims(resource: .all,
+                                  permission: .all,
+                                  feedId: .any,
+                                  userId: nil)
+        } else {
+            claims = Token.claims(resource: resource,
+                                  permission: permission,
+                                  feedId: feedId,
+                                  userId: userId)
+        }
+        
+        self = Token.jwt(secretData: secretData, claims: claims)
     }
     
     private static func jwt(secretData: Data, claims: Claims) -> Token {

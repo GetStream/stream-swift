@@ -46,7 +46,7 @@ extension Feed {
     @discardableResult
     public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) {
-            Client.parseResultsResponse($0, completion: completion)
+            $0.parseActivities(completion: completion)
         }
     }
 }
@@ -58,7 +58,7 @@ extension Feed {
     @discardableResult
     public func remove(by activityId: UUID, completion: @escaping RemovedCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) {
-            Client.parseRemovedResponse($0, completion: completion)
+            $0.parseRemoved(completion: completion)
         }
     }
     
@@ -66,7 +66,7 @@ extension Feed {
     @discardableResult
     public func remove(by foreignId: String, completion: @escaping RemovedCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) {
-            Client.parseRemovedResponse($0, completion: completion)
+            $0.parseRemoved(completion: completion)
         }
     }
 }
@@ -91,7 +91,7 @@ extension Feed {
                                                          pagination: pagination,
                                                          ranking: ranking ?? "",
                                                          markOption: markOption)) {
-            Client.parseResultsResponse($0, inContainer: true, completion: completion)
+            $0.parseActivities(inContainer: true, completion: completion)
         }
     }
 }
@@ -109,13 +109,13 @@ extension Feed {
         let activityCopyLimit = max(0, min(1000, activityCopyLimit))
         let endpoint = FeedEndpoint.follow(feedId, target: target, activityCopyLimit: activityCopyLimit)
         
-        return client.request(endpoint: endpoint) { Client.parseStatusCodeResponse($0, completion: completion) }
+        return client.request(endpoint: endpoint) { $0.parseStatusCode(completion: completion) }
     }
     
     @discardableResult
     public func unfollow(from target: FeedId, keepHistory: Bool = false, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.unfollow(feedId, target: target, keepHistory: keepHistory)) {
-            Client.parseStatusCodeResponse($0, completion: completion)
+            $0.parseStatusCode(completion: completion)
         }
     }
     
@@ -132,7 +132,7 @@ extension Feed {
         let offset = max(0, min(400, offset))
         
         return client.request(endpoint: FeedEndpoint.followers(feedId, offset: offset, limit: limit)) {
-            Client.parseFollowersResponse($0, completion: completion)
+            $0.parseFollowers(completion: completion)
         }
     }
     
@@ -153,7 +153,7 @@ extension Feed {
         let offset = max(0, min(400, offset))
         
         return client.request(endpoint: FeedEndpoint.following(feedId, filter: filter, offset: offset, limit: limit)) {
-            Client.parseFollowersResponse($0, completion: completion)
+            $0.parseFollowers(completion: completion)
         }
     }
 }

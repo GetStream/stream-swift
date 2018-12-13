@@ -20,14 +20,14 @@ extension Client {
     @discardableResult
     public func upload(file: File, completion: @escaping UploadCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.uploadFile(file)) {
-            Client.parseUploadResponse($0, completion: completion)
+            $0.parseUpload(completion: completion)
         }
     }
     
     @discardableResult
     public func delete(fileURL: URL, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.deleteFile(fileURL)) {
-            Client.parseStatusCodeResponse($0, completion: completion)
+            $0.parseStatusCode(completion: completion)
         }
     }
 }
@@ -39,22 +39,22 @@ extension Client {
     @discardableResult
     public func upload(image: File, completion: @escaping UploadCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.uploadImage(image)) {
-            Client.parseUploadResponse($0, completion: completion)
+            $0.parseUpload(completion: completion)
         }
     }
     
     @discardableResult
     public func delete(imageURL: URL, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.deleteImage(imageURL)) {
-            Client.parseStatusCodeResponse($0, completion: completion)
+            $0.parseStatusCode(completion: completion)
         }
     }
     
     @discardableResult
     public func resizeImage(imageProcess: ImageProcess, completion: @escaping UploadCompletion) -> Cancellable {
-        return request(endpoint: FilesEndpoint.resizeImage(imageProcess), completion: {
-            Client.parseUploadResponse($0, completion: completion)
-        })
+        return request(endpoint: FilesEndpoint.resizeImage(imageProcess)) {
+            $0.parseUpload(completion: completion)
+        }
     }
 }
 
