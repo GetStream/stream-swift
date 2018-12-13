@@ -104,8 +104,6 @@ extension Client {
 struct ResultsContainer<T: Decodable>: Decodable {
     private enum CodingKeys: String, Swift.CodingKey {
         case results
-        case next
-        case duration
     }
     
     let results: [T]

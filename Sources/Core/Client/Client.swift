@@ -10,7 +10,6 @@ import Foundation
 import Moya
 import Result
 
-typealias JSON = [String: Any]
 typealias ClientCompletionResult = Result<Response, ClientError>
 typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
 typealias NetworkProvider = MoyaProvider<MultiTarget>

@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum FeedEndpoint {
-    case get(_ feedId: FeedId, pagination: FeedPagination, ranking: String, markOption: FeedMarkOption)
+    case get(_ feedId: FeedId, pagination: Pagination, ranking: String, markOption: FeedMarkOption)
     case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
@@ -31,7 +31,7 @@ extension FeedEndpoint: TargetType {
             return "feed/\(feedId.togetherWithSlash)/"
             
         case let .deleteById(activityId, feedId):
-            return "feed/\(feedId.togetherWithSlash)/\(activityId.uuidString.lowercased())/"
+            return "feed/\(feedId.togetherWithSlash)/\(activityId.lowercasedString)/"
             
         case let .deleteByForeignId(foreignId, feedId):
             return "feed/\(feedId.togetherWithSlash)/\(foreignId)/"
@@ -197,7 +197,7 @@ extension FeedEndpoint: TargetType {
             }
             
         case .deleteById(let activityId, _):
-            json = "{\"removed\":\"\(activityId.uuidString)\"}"
+            json = "{\"removed\":\"\(activityId.lowercasedString)\"}"
             
         case .deleteByForeignId(let foreignId, _):
             json = "{\"removed\":\"\(foreignId)\"}"
@@ -236,68 +236,6 @@ extension FeedEndpoint: TargetType {
         }
         
         return json.data(using: .utf8)!
-    }
-}
-
-// MARK: - Feed Pagination
-
-public enum FeedPagination {
-    public static let defaultLimit = 25
-    
-    /// Default limit is 25. (Defined in `FeedPagination.defaultLimit`)
-    case none
-    
-    /// The amount of activities requested from the APIs.
-    case limit(_ limit: Int)
-    
-    /// The offset of requesting activities.
-    /// - Note: Using `lessThan` or `lessThanOrEqual` for pagination is preferable to using `offset`.
-    case offset(_ offset: Int, limit: Int)
-    
-    /// Filter the feed on ids greater than the given value.
-    case greaterThan(id: String, limit: Int)
-    
-    /// Filter the feed on ids greater than or equal to the given value.
-    case greaterThanOrEqual(id: String, limit: Int)
-    
-    /// Filter the feed on ids smaller than the given value.
-    case lessThan(id: String, limit: Int)
-    
-    /// Filter the feed on ids smaller than or equal to the given value.
-    case lessThanOrEqual(id: String, limit: Int)
-    
-    /// Parameters for a request.
-    fileprivate var parameters: [String: Any] {
-        var addLimit: Int = FeedPagination.defaultLimit
-        var params: [String: Any] = [:]
-        
-        switch self {
-        case .none:
-            return [:]
-        case .limit(let limit):
-            addLimit = limit
-        case let .offset(offset, limit):
-            params["offset"] = offset
-            addLimit = limit
-        case let .greaterThan(id, limit):
-            params["id_gt"] = id
-            addLimit = limit
-        case let .greaterThanOrEqual(id, limit):
-            params["id_gte"] = id
-            addLimit = limit
-        case let .lessThan(id, limit):
-            params["id_lt"] = id
-            addLimit = limit
-        case let .lessThanOrEqual(id, limit):
-            params["id_lte"] = id
-            addLimit = limit
-        }
-        
-        if addLimit != FeedPagination.defaultLimit {
-            params["limit"] = addLimit
-        }
-        
-        return params
     }
 }
 

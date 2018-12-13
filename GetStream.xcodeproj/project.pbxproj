@@ -13,6 +13,11 @@
 		8A0935CB21AC05AD00C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */; };
 		8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */; };
+		8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E521C00E970091A977 /* Client+Reaction.swift */; };
+		8A2856E821C016BB0091A977 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E721C016BB0091A977 /* Pagination.swift */; };
+		8A2856EA21C0185C0091A977 /* ReactionEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E921C0185C0091A977 /* ReactionEndpoint.swift */; };
+		8A2856EC21C112FB0091A977 /* UUID+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856EB21C112FB0091A977 /* UUID+Stream.swift */; };
+		8A2856F021C15AF70091A977 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856EF21C15AF70091A977 /* Reaction.swift */; };
 		8A33F72E21B16AEF006399A6 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A38A63B21AE915000976D54 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A38A63A21AE915000976D54 /* Message.swift */; };
 		8A38A63D21AE929400976D54 /* ChannelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A38A63C21AE929400976D54 /* ChannelName.swift */; };
@@ -53,6 +58,7 @@
 		8AE7F9A021A59EE30074DA21 /* UUID+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */; };
 		8AE7F9A321A5A8850074DA21 /* ClientParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */; };
 		8AEFF2BC21A587FA006887AB /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFF2BB21A587FA006887AB /* FeedTests.swift */; };
+		8AF44DC721C28D3A00A3A7B4 /* Result+ParseReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF44DC621C28D3A00A3A7B4 /* Result+ParseReaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +96,11 @@
 		8A0935CA21AC05AD00C64488 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+OpenGraph.swift"; sourceTree = "<group>"; };
 		8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGraphEndpoint.swift; sourceTree = "<group>"; };
+		8A2856E521C00E970091A977 /* Client+Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Reaction.swift"; sourceTree = "<group>"; };
+		8A2856E721C016BB0091A977 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
+		8A2856E921C0185C0091A977 /* ReactionEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionEndpoint.swift; sourceTree = "<group>"; };
+		8A2856EB21C112FB0091A977 /* UUID+Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Stream.swift"; sourceTree = "<group>"; };
+		8A2856EF21C15AF70091A977 /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 		8A38A63A21AE915000976D54 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8A38A63C21AE929400976D54 /* ChannelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelName.swift; sourceTree = "<group>"; };
 		8A391C6521AC143500F645CC /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
@@ -131,6 +142,7 @@
 		8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Extensions.swift"; sourceTree = "<group>"; };
 		8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientParsingTests.swift; sourceTree = "<group>"; };
 		8AEFF2BB21A587FA006887AB /* FeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTests.swift; sourceTree = "<group>"; };
+		8AF44DC621C28D3A00A3A7B4 /* Result+ParseReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+ParseReaction.swift"; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* GetStream.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStream.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* GetStreamTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GetStreamTests.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +252,17 @@
 			path = "Open Graph";
 			sourceTree = "<group>";
 		};
+		8A2856E421C00DC10091A977 /* Reactions */ = {
+			isa = PBXGroup;
+			children = (
+				8A2856E521C00E970091A977 /* Client+Reaction.swift */,
+				8AF44DC621C28D3A00A3A7B4 /* Result+ParseReaction.swift */,
+				8A2856E921C0185C0091A977 /* ReactionEndpoint.swift */,
+				8A2856EF21C15AF70091A977 /* Reaction.swift */,
+			);
+			path = Reactions;
+			sourceTree = "<group>";
+		};
 		8A6283D12199AEE20002913D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +270,7 @@
 				8A6283DD2199AEE20002913D /* Client */,
 				8ADCEE86219ECF43001598C1 /* Activity */,
 				8A6283D92199AEE20002913D /* Feed */,
+				8A2856E421C00DC10091A977 /* Reactions */,
 				8ABC207621BAB8120033EE8F /* Files and Images */,
 				8A2856DF21BFF6930091A977 /* Open Graph */,
 				8A6283D22199AEE20002913D /* Moya */,
@@ -269,6 +293,7 @@
 			children = (
 				8A6283D62199AEE20002913D /* Codable+Extensions.swift */,
 				8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */,
+				8A2856EB21C112FB0091A977 /* UUID+Stream.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +317,7 @@
 				8A6283E02199AEE20002913D /* ClientError.swift */,
 				8ADCEE93219F1E01001598C1 /* Client+Parsing.swift */,
 				8A6283DE2199AEE20002913D /* BaseURL.swift */,
+				8A2856E721C016BB0091A977 /* Pagination.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -645,7 +671,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */,
+				8AF44DC721C28D3A00A3A7B4 /* Result+ParseReaction.swift in Sources */,
 				8A6284142199CF9C0002913D /* FeedId.swift in Sources */,
+				8A2856EC21C112FB0091A977 /* UUID+Stream.swift in Sources */,
 				8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */,
@@ -659,15 +687,19 @@
 				8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */,
 				8AE491A421B140B2008F9036 /* ClientFayeExtendable.swift in Sources */,
 				8A6284092199AEE20002913D /* ClientError.swift in Sources */,
+				8A2856F021C15AF70091A977 /* Reaction.swift in Sources */,
 				8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */,
 				8A64566A21A306AB00E890F4 /* Follower.swift in Sources */,
+				8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */,
 				8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */,
+				8A2856EA21C0185C0091A977 /* ReactionEndpoint.swift in Sources */,
 				8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
 				8A6283F12199AEE20002913D /* GetStream.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,
 				8ADCEE94219F1E01001598C1 /* Client+Parsing.swift in Sources */,
 				8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,
 				8A6284012199AEE20002913D /* BaseURL.swift in Sources */,
+				8A2856E821C016BB0091A977 /* Pagination.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

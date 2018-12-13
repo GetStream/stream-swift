@@ -9,6 +9,10 @@
 import UIKit
 import GetStream
 
+struct Comment: ReactionExtraDataProtocol {
+    let text: String
+}
+
 class ViewController: UIViewController {
     
     var subscription: SubscribedChannel?
@@ -23,7 +27,25 @@ class ViewController: UIViewController {
                             token: token,
                             logsEnabled: true)
         
-        checkOG(client)
+        reactions(client)
+    }
+    
+    func reactions(_ client: Client) {
+        let ericFeed = client.feed(feedSlug: "timeline", userId: "eric")
+        
+        ericFeed.get(typeOf: Activity.self) { activitiesResult in
+            let activity = (try! activitiesResult.dematerialize()).first!
+            
+            client.addReaction(to: activity.id!, kindOf: .comment, data: Comment(text: "Hello!")) { result in
+                let reaction = try! result.dematerialize()
+                print(reaction)
+                
+                client.addReaction(to: activity.id!, parentReactionId: reaction.id, kindOf: .like) { result in
+                    let reaction = try! result.dematerialize()
+                    print(reaction)
+                }
+            }
+        }
     }
     
     func checkOG(_ client: Client) {

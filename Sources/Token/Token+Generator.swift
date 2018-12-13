@@ -21,9 +21,9 @@ extension Token {
     ///     - feedId: a `FeedId` or any as by default.
     ///     - userId: a `userId`.
     public init(secretData: Data,
-                resource: Resource = .all,
-                permission: Permission = .all,
-                feedId: FeedId = .any,
+                resource: Resource? = nil,
+                permission: Permission? = nil,
+                feedId: FeedId? = nil,
                 userId: String? = nil) {
         self = Token.jwt(secretData: secretData, claims: Token.claims(resource: resource,
                                                                       permission: permission,
@@ -35,10 +35,7 @@ extension Token {
         return JWT.encode(claims: claims, algorithm: .hs256(secretData))
     }
     
-    private static func claims(resource: Resource? = nil,
-                       permission: Permission? = nil,
-                       feedId: FeedId? = nil,
-                       userId: String? = nil) -> Claims {
+    private static func claims(resource: Resource?, permission: Permission?, feedId: FeedId?, userId: String?) -> Claims {
         var claims: Claims = [:]
         
         if let resource = resource {

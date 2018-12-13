@@ -83,7 +83,7 @@ extension Feed {
     ///     - a cancellable object to cancel the request.
     @discardableResult
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
-                                         pagination: FeedPagination = .none,
+                                         pagination: Pagination = .none,
                                          ranking: String? = nil,
                                          markOption: FeedMarkOption = .none,
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {

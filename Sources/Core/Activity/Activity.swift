@@ -67,7 +67,7 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     }
     
     open var description: String {
-        return "\(type(of: self))<\(id?.uuidString ?? "<no id>")> foreignId: <\(foreignId ?? "n/a")>, "
+        return "\(type(of: self))<\(id?.lowercasedString ?? "<no id>")> foreignId: <\(foreignId ?? "n/a")>, "
             + "\(actor) \(verb) \(object) \(target ?? "") at \(time?.description ?? "<n/a>") to: \(feedIds?.description ?? "[]")"
     }
 }

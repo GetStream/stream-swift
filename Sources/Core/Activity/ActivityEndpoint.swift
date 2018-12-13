@@ -51,7 +51,7 @@ extension ActivityEndpoint: TargetType {
     var task: Task {
         switch self {
         case .getByIds(let ids):
-            let ids = ids.map { $0.uuidString.lowercased() }.joined(separator: ",")
+            let ids = ids.map { $0.lowercasedString }.joined(separator: ",")
             return .requestParameters(parameters: ["ids" : ids], encoding: URLEncoding.default)
             
         case let .get(foreignIds: foreignIds, times: times):
@@ -61,7 +61,7 @@ extension ActivityEndpoint: TargetType {
             return .requestCustomJSONEncodable(["activities": activities], encoder: JSONEncoder.Stream.default)
             
         case let .updateActivityById(setProperties, unsetPropertiesNames, activityId):
-            let parameters: [String: Any] = ["id": activityId.uuidString.lowercased()]
+            let parameters: [String: Any] = ["id": activityId.lowercasedString]
                 .merged(with: setUnsetParameters(setProperties: setProperties, unsetPropertiesNames: unsetPropertiesNames))
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
             
@@ -86,7 +86,7 @@ extension ActivityEndpoint: TargetType {
                 {"results":[
                 {"actor":"eric",
                 "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
-                "id":"\(activitiesIds[0].uuidString)",
+                "id":"\(activitiesIds[0].lowercasedString)",
                 "object":"Hello world 3",
                 "origin":null,
                 "target":"",
@@ -95,7 +95,7 @@ extension ActivityEndpoint: TargetType {
                 "verb":"tweet"},
                 {"actor":"eric",
                 "foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
-                "id":"\(activitiesIds[1].uuidString)",
+                "id":"\(activitiesIds[1].lowercasedString)",
                 "object":"Hello world 2",
                 "origin":null,
                 "target":"",
@@ -139,7 +139,7 @@ extension ActivityEndpoint: TargetType {
                 json = """
                 {"actor":"eric",
                 "foreign_id":"",
-                "id":"\(activityId.uuidString)",
+                "id":"\(activityId.lowercasedString)",
                 "object":"\(setProperties["object"]!)",
                 "origin":null,
                 "target":"",
