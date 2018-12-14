@@ -41,12 +41,12 @@ class ViewController: UIViewController {
         ericFeed.get(typeOf: Activity.self) { activitiesResult in
             let activity = (try! activitiesResult.dematerialize()).first!
             
-            client.addReaction(to: activity.id!, kindOf: .comment, data: Comment(text: "Hello!")) { result in
-                let commentReaction = try! result.dematerialize()
+            client.addReaction(to: activity.id!, kindOf: .comment, data: Comment(text: "Hello!")) {
+                let commentReaction = try! $0.dematerialize()
                 print(commentReaction)
                 
-                client.addReaction(to: activity.id!, parentReactionId: commentReaction.id, kindOf: .like) { result in
-                    let likeReaction = try! result.dematerialize()
+                client.addReaction(to: activity.id!, parentReactionId: commentReaction.id, kindOf: .like) {
+                    let likeReaction = try! $0.dematerialize()
                     print(likeReaction)
                     
                     client.addReaction(to: activity.id!,
@@ -56,18 +56,18 @@ class ViewController: UIViewController {
                                         let heyReaction = try! result.dematerialize()
                                         print(heyReaction)
                                         
-                                        client.reaction(id: commentReaction.id, extraDataTypeOf: Comment.self) { result in
-                                            let loadedReaction = try! result.dematerialize()
+                                        client.reaction(id: commentReaction.id, extraDataTypeOf: Comment.self) {
+                                            let loadedReaction = try! $0.dematerialize()
                                             print(loadedReaction)
                                             
-                                            client.update(reactionId: loadedReaction.id, data: Comment(text: "Hi!")) { result in
-                                                let updatedReaction = try! result.dematerialize()
+                                            client.update(reactionId: loadedReaction.id, data: Comment(text: "Hi!")) {
+                                                let updatedReaction = try! $0.dematerialize()
                                                 print("1️⃣", updatedReaction)
-                                                print("2️⃣", updatedReaction.latestChildren(kindOf: .comment))
+                                                print("2️⃣", updatedReaction.latestChildren(kindOf: .like))
+                                                print("2️⃣", updatedReaction.latestChildren(kindOf: .comment,
+                                                                                                extraDataTypeOf: Comment.self))
                                                 
-//                                                client.delete(reactionId: updatedReaction.id) { result in
-//                                                    print("✖️", result)
-//                                                }
+                                                client.delete(reactionId: updatedReaction.id) { print("✖️", $0) }
                                             }
                                         }
                     }

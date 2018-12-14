@@ -65,7 +65,7 @@ public struct Reaction<T: ReactionExtraDataProtocol>: Decodable {
     public let data: T
     public var parentId: UUID?
     public let childrenCounts: [ReactionKind: Int]
-    private var container: KeyedDecodingContainer<Reaction<T>.ChildrenCodingKeys>?
+    private var latestChildrenContainer: KeyedDecodingContainer<Reaction<T>.ChildrenCodingKeys>?
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -85,7 +85,7 @@ public struct Reaction<T: ReactionExtraDataProtocol>: Decodable {
         }
         
         if !childrenCounts.isEmpty {
-            self.container = try? container.nestedContainer(keyedBy: ChildrenCodingKeys.self, forKey: .latestChildren)
+            latestChildrenContainer = try? container.nestedContainer(keyedBy: ChildrenCodingKeys.self, forKey: .latestChildren)
         }
     }
     
@@ -94,11 +94,11 @@ public struct Reaction<T: ReactionExtraDataProtocol>: Decodable {
     }
     
     public func latestChildren<U: ReactionExtraDataProtocol>(kindOf kind: ReactionKind, extraDataTypeOf: U.Type) -> [Reaction<U>] {
-        guard let container = container else {
-            return []
+        if let container = latestChildrenContainer,
+            let latestChildren = try? container.decode([Reaction<U>].self, forKey: .init(kind: kind)) {
+            return latestChildren
         }
         
-        let latestChildren = try? container.decode([Reaction<U>].self, forKey: .init(kind: kind))
-        return latestChildren ?? []
+        return []
     }
 }
