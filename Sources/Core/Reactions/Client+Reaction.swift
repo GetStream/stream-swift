@@ -9,14 +9,8 @@
 import Foundation
 import Result
 
-public typealias ReactionKind = String
 public typealias ReactionExtraDataProtocol = Codable
 public typealias ReactionCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reaction<T>, ClientError>) -> Void
-
-extension ReactionKind {
-    public static let like = "like"
-    public static let comment = "comment"
-}
 
 // MARK: - Client Reactions
 
@@ -59,7 +53,7 @@ extension Client {
     
     @discardableResult
     public func reaction<T: ReactionExtraDataProtocol>(id: UUID,
-                                                       extraDataTypeOf extraDataType: T.Type,
+                                                       extraDataTypeOf: T.Type,
                                                        completion: @escaping ReactionCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.get(id)) {
             $0.parseReaction(completion: completion)
@@ -69,18 +63,35 @@ extension Client {
     // MARK: Update
     
     @discardableResult
-    public func update(reactionId: UUID, data: ReactionExtraDataProtocol, targetsFeedIds: [FeedId] = []) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.update(reactionId, data, targetsFeedIds)) {
-            print($0)
-        }
+    public func update(reactionId: UUID,
+                       targetsFeedIds: [FeedId] = [],
+                       completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
+        return update(reactionId: reactionId,
+                      data: ReactionNoExtraData.shared,
+                      targetsFeedIds: targetsFeedIds,
+                      completion: completion)
     }
     
     @discardableResult
-    public func delete(reactionId: UUID) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.delete(reactionId)) {
-            print($0)
+    public func update<T: ReactionExtraDataProtocol>(reactionId: UUID,
+                                                     data: T,
+                                                     targetsFeedIds: [FeedId] = [],
+                                                     completion: @escaping ReactionCompletion<T>) -> Cancellable {
+        return request(endpoint: ReactionEndpoint.update(reactionId, data, targetsFeedIds)) {
+            $0.parseReaction(completion: completion)
         }
     }
+    
+    // MARK: Delete
+    
+    @discardableResult
+    public func delete(reactionId: UUID, completion: @escaping StatusCodeCompletion) -> Cancellable {
+        return request(endpoint: ReactionEndpoint.delete(reactionId)) {
+            $0.parseStatusCode(completion: completion)
+        }
+    }
+    
+    // MARK: Fetch
     
     @discardableResult
     public func reactions(forActivityId activityId: UUID,
