@@ -8,9 +8,21 @@
 
 import Foundation
 
+// MARK: - Reaction Kind & Extra Data
+
+public typealias ReactionKind = String
+public typealias ReactionExtraDataProtocol = Codable
+
+extension ReactionKind {
+    static let like = "like"
+    static let comment = "comment"
+}
+
 public struct ReactionNoExtraData: ReactionExtraDataProtocol {
     static let shared = ReactionNoExtraData()
 }
+
+// MARK: - Reaction
 
 public struct Reaction<T: ReactionExtraDataProtocol>: Decodable {
     private enum CodingKeys: String, CodingKey {
@@ -77,11 +89,11 @@ public struct Reaction<T: ReactionExtraDataProtocol>: Decodable {
         }
     }
     
-    public func latestChildren(kind: ReactionKind) -> [Reaction<ReactionNoExtraData>] {
-        return latestChildren(kind: kind, extraDataTypeOf: ReactionNoExtraData.self)
+    public func latestChildren(kindOf kind: ReactionKind) -> [Reaction<ReactionNoExtraData>] {
+        return latestChildren(kindOf: kind, extraDataTypeOf: ReactionNoExtraData.self)
     }
     
-    public func latestChildren<U: ReactionExtraDataProtocol>(kind: ReactionKind, extraDataTypeOf: U.Type) -> [Reaction<U>] {
+    public func latestChildren<U: ReactionExtraDataProtocol>(kindOf kind: ReactionKind, extraDataTypeOf: U.Type) -> [Reaction<U>] {
         guard let container = container else {
             return []
         }

@@ -9,7 +9,6 @@
 import Foundation
 import Result
 
-public typealias ReactionExtraDataProtocol = Codable
 public typealias ReactionCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reaction<T>, ClientError>) -> Void
 
 // MARK: - Client Reactions
@@ -95,7 +94,7 @@ extension Client {
     
     @discardableResult
     public func reactions(forActivityId activityId: UUID,
-                          kind: ReactionKind? = nil,
+                          kindOf kind: ReactionKind? = nil,
                           pagination: Pagination = .none,
                           withActivityData: Bool = false) -> Cancellable {
         return request(endpoint: ReactionEndpoint.reactionsByActivityId(activityId, kind, pagination, withActivityData)) {
@@ -104,14 +103,18 @@ extension Client {
     }
     
     @discardableResult
-    public func reactions(forReactionId reactionId: UUID, kind: ReactionKind? = nil, pagination: Pagination = .none) -> Cancellable {
+    public func reactions(forReactionId reactionId: UUID,
+                          kindOf kind: ReactionKind? = nil,
+                          pagination: Pagination = .none) -> Cancellable {
         return request(endpoint: ReactionEndpoint.reactionsByReactionId(reactionId, kind, pagination)) {
             print($0)
         }
     }
     
     @discardableResult
-    public func reactions(forUserId userId: String, kind: ReactionKind? = nil, pagination: Pagination = .none) -> Cancellable {
+    public func reactions(forUserId userId: String,
+                          kindOf kind: ReactionKind? = nil,
+                          pagination: Pagination = .none) -> Cancellable {
         return request(endpoint: ReactionEndpoint.reactionsByUserId(userId, kind, pagination)) {
             print($0)
         }

@@ -49,7 +49,6 @@
 		8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207921BAB8D10033EE8F /* Client+Files.swift */; };
 		8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */; };
 		8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207D21BE5D680033EE8F /* ImageProcess.swift */; };
-		8ACA792421C3B27F0057E003 /* ReactionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA792321C3B27F0057E003 /* ReactionKind.swift */; };
 		8ACD0E8321BFEC9100B7CC4E /* Swime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACD0E8221BFEC9100B7CC4E /* Swime.framework */; };
 		8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE87219ECF78001598C1 /* Client+Activity.swift */; };
 		8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */; };
@@ -137,7 +136,6 @@
 		8ABC207921BAB8D10033EE8F /* Client+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Files.swift"; sourceTree = "<group>"; };
 		8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesEndpoint.swift; sourceTree = "<group>"; };
 		8ABC207D21BE5D680033EE8F /* ImageProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcess.swift; sourceTree = "<group>"; };
-		8ACA792321C3B27F0057E003 /* ReactionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionKind.swift; sourceTree = "<group>"; };
 		8ACD0E8221BFEC9100B7CC4E /* Swime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swime.framework; path = Carthage/Build/iOS/Swime.framework; sourceTree = "<group>"; };
 		8ADCEE87219ECF78001598C1 /* Client+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Activity.swift"; sourceTree = "<group>"; };
 		8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEndpoint.swift; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 				8AF44DC621C28D3A00A3A7B4 /* Result+ParseReaction.swift */,
 				8A2856E921C0185C0091A977 /* ReactionEndpoint.swift */,
 				8A2856EF21C15AF70091A977 /* Reaction.swift */,
-				8ACA792321C3B27F0057E003 /* ReactionKind.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -711,7 +708,6 @@
 				8A64566A21A306AB00E890F4 /* Follower.swift in Sources */,
 				8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */,
 				8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */,
-				8ACA792421C3B27F0057E003 /* ReactionKind.swift in Sources */,
 				8A2856EA21C0185C0091A977 /* ReactionEndpoint.swift in Sources */,
 				8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
 				8A6283F12199AEE20002913D /* GetStream.swift in Sources */,

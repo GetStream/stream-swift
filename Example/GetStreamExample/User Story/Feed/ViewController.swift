@@ -9,6 +9,11 @@
 import UIKit
 import GetStream
 
+extension ReactionKind {
+    static let like = "like"
+    static let comment = "comment"
+}
+
 struct Comment: ReactionExtraDataProtocol {
     let text: String
 }
@@ -58,16 +63,11 @@ class ViewController: UIViewController {
                                             client.update(reactionId: loadedReaction.id, data: Comment(text: "Hi!")) { result in
                                                 let updatedReaction = try! result.dematerialize()
                                                 print("1️⃣", updatedReaction)
+                                                print("2️⃣", updatedReaction.latestChildren(kindOf: .comment))
                                                 
-                                                do {
-                                                    print("2️⃣", updatedReaction.latestChildren(kind: .comment))
-                                                } catch {
-                                                    print("❌", error)
-                                                }
-                                                
-                                                //                            client.delete(reactionId: updatedReaction.id) { result in
-                                                //                                print("✖️", result)
-                                                //                            }
+//                                                client.delete(reactionId: updatedReaction.id) { result in
+//                                                    print("✖️", result)
+//                                                }
                                             }
                                         }
                     }
