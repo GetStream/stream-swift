@@ -10,9 +10,8 @@ import XCTest
 @testable import GetStream
 
 final class ExtensionsTests: XCTestCase {
-    let decoder = JSONDecoder.Stream.default
-    let encoder = JSONEncoder.Stream.default
-    let decoderISO8601 = JSONDecoder.Stream.iso8601
+    let decoder = JSONDecoder.stream
+    let encoder = JSONEncoder.stream
 
     let defaultData = """
 {
@@ -95,7 +94,7 @@ final class ExtensionsTests: XCTestCase {
     // MARK: - Test Date Formatter
     
     func testISO8601Codable() throws {
-        let activity = try decoderISO8601.decode(Activity.self, from: iso8601Data)
+        let activity = try decoder.decode(Activity.self, from: iso8601Data)
         XCTAssertEqual(activity.actor, "eric")
         XCTAssertEqual(activity.time!, "2018-11-14T15:54:45.268000".streamDate!)
     }

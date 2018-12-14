@@ -11,46 +11,43 @@ import Foundation
 // MARK: - JSONDecoder
 
 extension JSONDecoder {
-    public struct Stream {
-        public static let `default`: JSONDecoder = decoder { $0.streamDate }
-        public static let iso8601: JSONDecoder = decoder { DateFormatter.Stream.iso8601Date(from: $0) }
+    public static let stream: JSONDecoder = {
+        let decoder = JSONDecoder()
         
-        private static func decoder(dateParser: @escaping (_ dateString: String) -> Date?) -> JSONDecoder {
-            let decoder = JSONDecoder()
+        /// A custom decoding for a date.
+        decoder.dateDecodingStrategy = .custom { decoder throws -> Date in
+            let container = try decoder.singleValueContainer()
+            let string: String = try container.decode(String.self)
             
-            /// A custom decoding for a date.
-            decoder.dateDecodingStrategy = .custom { decoder throws -> Date in
-                let container = try decoder.singleValueContainer()
-                let string: String = try container.decode(String.self)
-                
-                if let date = dateParser(string) {
+            if string.hasSuffix("Z") {
+                if let date = DateFormatter.Stream.iso8601Date(from: string) {
                     return date
                 }
-                
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date: \(string)")
+            } else if let date = string.streamDate {
+                return date
             }
             
-            return decoder
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date: \(string)")
         }
-    }
+        
+        return decoder
+    }()
 }
 
 // MARK: - JSONEncoder
 
 extension JSONEncoder {
-    public struct Stream {
-        public static let `default`: JSONEncoder = {
-            let encoder = JSONEncoder()
-            
-            /// A custom encoding for the custom ISO8601 date.
-            encoder.dateEncodingStrategy = .custom { date, encoder throws in
-                var container = encoder.singleValueContainer()
-                try container.encode(DateFormatter.Stream.default.string(from: date))
-            }
-            
-            return encoder
-        }()
-    }
+    public static let stream: JSONEncoder = {
+        let encoder = JSONEncoder()
+        
+        /// A custom encoding for the custom ISO8601 date.
+        encoder.dateEncodingStrategy = .custom { date, encoder throws in
+            var container = encoder.singleValueContainer()
+            try container.encode(DateFormatter.Stream.default.string(from: date))
+        }
+        
+        return encoder
+    }()
 }
 
 // MARK: - JSON Encoder Helper

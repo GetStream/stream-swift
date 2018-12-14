@@ -152,10 +152,8 @@ final class FeedTests: TestCase {
             let feedId: FeedId
         }
         
-        let decoder = JSONDecoder.Stream.default
-        
         do {
-            _ = try decoder.decode(Test.self, from: "{\"feedId\":\"\(payload)\"}".data(using: .utf8)!)
+            _ = try JSONDecoder.stream.decode(Test.self, from: "{\"feedId\":\"\(payload)\"}".data(using: .utf8)!)
         } catch let error as DecodingError {
             if case .dataCorrupted(let context) = error {
                 XCTAssertEqual(context.debugDescription, errorDescription)

@@ -79,7 +79,7 @@ extension FeedEndpoint: TargetType {
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
             
         case .add(let activity, feedId: _):
-            return .requestCustomJSONEncodable(activity, encoder: JSONEncoder.Stream.default)
+            return .requestCustomJSONEncodable(activity, encoder: JSONEncoder.stream)
             
         case .deleteById:
             return .requestPlain

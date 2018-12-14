@@ -15,7 +15,7 @@ extension Result where Value == Response, Error == ClientError {
     func parseFollowers(completion: @escaping FollowersCompletion) {
         do {
             let response = try dematerialize()
-            let container = try JSONDecoder.Stream.iso8601.decode(ResultsContainer<Follower>.self, from: response.data)
+            let container = try JSONDecoder.stream.decode(ResultsContainer<Follower>.self, from: response.data)
             completion(.success(container.results))
             
         } catch let error as ClientError {

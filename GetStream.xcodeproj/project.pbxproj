@@ -26,6 +26,7 @@
 		8A391C6121AC0B0700F645CC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; };
 		8A391C6621AC143500F645CC /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A391C6521AC143500F645CC /* Channel.swift */; };
 		8A3A4906219C68810010D831 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A4905219C68810010D831 /* ClientTests.swift */; };
+		8A411C2A21C3D38E001BE61F /* Reactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C2921C3D38E001BE61F /* Reactions.swift */; };
 		8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */; };
 		8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */; };
 		8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D62199AEE20002913D /* Codable+Extensions.swift */; };
@@ -109,6 +110,7 @@
 		8A38A63C21AE929400976D54 /* ChannelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelName.swift; sourceTree = "<group>"; };
 		8A391C6521AC143500F645CC /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		8A3A4905219C68810010D831 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
+		8A411C2921C3D38E001BE61F /* Reactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactions.swift; sourceTree = "<group>"; };
 		8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationMoyaPlugin.swift; sourceTree = "<group>"; };
 		8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaError+ClientError.swift"; sourceTree = "<group>"; };
 		8A6283D62199AEE20002913D /* Codable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				8AF44DC621C28D3A00A3A7B4 /* Result+ParseReaction.swift */,
 				8A2856E921C0185C0091A977 /* ReactionEndpoint.swift */,
 				8A2856EF21C15AF70091A977 /* Reaction.swift */,
+				8A411C2921C3D38E001BE61F /* Reactions.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
 				8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
 				8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */,
+				8A411C2A21C3D38E001BE61F /* Reactions.swift in Sources */,
 				8AE491A421B140B2008F9036 /* ClientFayeExtendable.swift in Sources */,
 				8AF44DCF21C29AAE00A3A7B4 /* ResultsContainer.swift in Sources */,
 				8A6284092199AEE20002913D /* ClientError.swift in Sources */,

@@ -32,7 +32,28 @@ class ViewController: UIViewController {
                             token: token,
                             logsEnabled: true)
         
-        reactions(client)
+        findReactions(client)
+//        reactions(client)
+    }
+    
+    func findReactions(_ client: Client) {
+//        client.reactions(forUserId: "eric") {
+//            let reactions = try! $0.dematerialize()
+//            print(reactions.reactions)
+//
+//            if let first = reactions.reactions.first, first.kind == .comment {
+//                print(first.data(typeOf: Comment.self))
+//            }
+//        }
+        
+        let activityId = UUID(uuidString: "0EAD9589-F3E6-11E8-A455-0AAA8DCB8F70")!
+
+        client.reactions(forActivityId: activityId, withActivityData: true) {
+            let reactions = try! $0.dematerialize()
+            print(reactions)
+            print(reactions.activity)
+            print(reactions.activity(typeOf: Activity.self))
+        }
     }
     
     func reactions(_ client: Client) {
@@ -63,16 +84,23 @@ class ViewController: UIViewController {
                                             client.update(reactionId: loadedReaction.id, data: Comment(text: "Hi!")) {
                                                 let updatedReaction = try! $0.dematerialize()
                                                 print("1️⃣", updatedReaction)
+                                                self.findReactions(client, reaction: updatedReaction)
                                                 print("2️⃣", updatedReaction.latestChildren(kindOf: .like))
                                                 print("2️⃣", updatedReaction.latestChildren(kindOf: .comment,
                                                                                                 extraDataTypeOf: Comment.self))
-                                                
-                                                client.delete(reactionId: updatedReaction.id) { print("✖️", $0) }
+//
+//                                                client.delete(reactionId: updatedReaction.id) { print("✖️", $0) }
                                             }
                                         }
                     }
                 }
             }
+        }
+    }
+    
+    func findReactions(_ client: Client, reaction: Reaction<Comment>) {
+        client.reactions(forActivityId: reaction.activityId) {
+            print($0)
         }
     }
     
@@ -289,7 +317,7 @@ class ViewController: UIViewController {
         let data = try! JSONEncoder.Stream.default.encode(activity)
         print(String(data: data, encoding: .utf8)!)
         
-        let decodedActivity = try! JSONDecoder.Stream.default.decode(Activity.self, from: data)
+        let decodedActivity = try! JSONDecoder.stream.decode(Activity.self, from: data)
         print(decodedActivity)
     }
 }

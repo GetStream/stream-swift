@@ -15,10 +15,10 @@ extension Result where Value == Response, Error == ClientError {
         if case .success(let response) = self {
             do {
                 if inContainer {
-                    let container = try JSONDecoder.Stream.default.decode(ResultsContainer<T>.self, from: response.data)
+                    let container = try JSONDecoder.stream.decode(ResultsContainer<T>.self, from: response.data)
                     completion(.success(container.results))
                 } else {
-                    let object = try JSONDecoder.Stream.default.decode(T.self, from: response.data)
+                    let object = try JSONDecoder.stream.decode(T.self, from: response.data)
                     completion(.success([object]))
                 }
             } catch let error as ClientError {
