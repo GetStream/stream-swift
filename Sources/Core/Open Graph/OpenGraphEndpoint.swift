@@ -13,10 +13,7 @@ enum OpenGraphEndpoint {
     case og(_ ulr: URL)
 }
 
-extension OpenGraphEndpoint: TargetType {
-    var baseURL: URL {
-        return BaseURL.placeholderURL
-    }
+extension OpenGraphEndpoint: StreamTargetType {
     
     var path: String {
         return "og/"
@@ -31,13 +28,5 @@ extension OpenGraphEndpoint: TargetType {
         case .og(let url):
             return .requestParameters(parameters: ["url": url], encoding: URLEncoding.default)
         }
-    }
-    
-    var headers: [String : String]? {
-        return Client.headers
-    }
-    
-    var sampleData: Data {
-        return Data()
     }
 }

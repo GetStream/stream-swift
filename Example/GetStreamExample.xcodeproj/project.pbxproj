@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A411C3321C4076A001BE61F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C3221C4076A001BE61F /* User.swift */; };
+		8A411C3521C40BA2001BE61F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C3421C40BA2001BE61F /* Comment.swift */; };
 		8A8AABEC2199DA22007DE642 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AABEB2199DA22007DE642 /* Activity.swift */; };
 		8AA8D73821931DDE008AB02E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D73721931DDE008AB02E /* AppDelegate.swift */; };
 		8AA8D73A21931DDE008AB02E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA8D73921931DDE008AB02E /* ViewController.swift */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		05F3A64CF5519772138F8C76 /* Pods-GetStreamExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetStreamExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetStreamExample/Pods-GetStreamExample.release.xcconfig"; sourceTree = "<group>"; };
+		8A411C3221C4076A001BE61F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8A411C3421C40BA2001BE61F /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8A8AABEB2199DA22007DE642 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8AA8D73421931DDE008AB02E /* GetStreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetStreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA8D73721931DDE008AB02E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				8A8AABEB2199DA22007DE642 /* Activity.swift */,
+				8A411C3221C4076A001BE61F /* User.swift */,
+				8A411C3421C40BA2001BE61F /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -312,6 +318,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A411C3521C40BA2001BE61F /* Comment.swift in Sources */,
+				8A411C3321C4076A001BE61F /* User.swift in Sources */,
 				8AA8D73A21931DDE008AB02E /* ViewController.swift in Sources */,
 				8AA8D73821931DDE008AB02E /* AppDelegate.swift in Sources */,
 				8A8AABEC2199DA22007DE642 /* Activity.swift in Sources */,

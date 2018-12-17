@@ -9,15 +9,6 @@
 import UIKit
 import GetStream
 
-extension ReactionKind {
-    static let like = "like"
-    static let comment = "comment"
-}
-
-struct Comment: ReactionExtraDataProtocol {
-    let text: String
-}
-
 class ViewController: UIViewController {
     
     var subscription: SubscribedChannel?
@@ -31,28 +22,30 @@ class ViewController: UIViewController {
                             appId: "44738",
                             token: token,
                             logsEnabled: true)
+        user(client)
+    }
+    
+    func user(_ client: Client) {
         
-        findReactions(client)
-//        reactions(client)
     }
     
     func findReactions(_ client: Client) {
-//        client.reactions(forUserId: "eric") {
-//            let reactions = try! $0.dematerialize()
-//            print(reactions.reactions)
-//
-//            if let first = reactions.reactions.first, first.kind == .comment {
+        client.reactions(forUserId: "eric") {
+            let reactions = try! $0.dematerialize()
+            print(reactions.reactions)
+
+            if let first = reactions.reactions.first, first.kind == .comment {
 //                print(first.data(typeOf: Comment.self))
-//            }
-//        }
+            }
+        }
         
         let activityId = UUID(uuidString: "0EAD9589-F3E6-11E8-A455-0AAA8DCB8F70")!
 
         client.reactions(forActivityId: activityId, withActivityData: true) {
             let reactions = try! $0.dematerialize()
             print(reactions)
-            print(reactions.activity)
-            print(reactions.activity(typeOf: Activity.self))
+//            print(reactions.activity)
+//            print(reactions.activity(typeOf: Activity.self))
         }
     }
     
@@ -314,7 +307,7 @@ class ViewController: UIViewController {
     }
     
     func codable(_ activity: Activity) {
-        let data = try! JSONEncoder.Stream.default.encode(activity)
+        let data = try! JSONEncoder.stream.encode(activity)
         print(String(data: data, encoding: .utf8)!)
         
         let decodedActivity = try! JSONDecoder.stream.decode(Activity.self, from: data)

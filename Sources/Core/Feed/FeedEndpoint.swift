@@ -20,10 +20,7 @@ enum FeedEndpoint {
     case following(_ feedId: FeedId, filter: FeedIds, offset: Int, limit: Int)
 }
 
-extension FeedEndpoint: TargetType {
-    var baseURL: URL {
-        return BaseURL.placeholderURL
-    }
+extension FeedEndpoint: StreamTargetType {
     
     var path: String {
         switch self {
@@ -110,10 +107,6 @@ extension FeedEndpoint: TargetType {
             
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
-    }
-    
-    var headers: [String : String]? {
-        return Client.headers
     }
     
     var sampleData: Data {

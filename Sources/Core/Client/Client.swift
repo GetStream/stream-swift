@@ -73,7 +73,7 @@ extension Client: CustomStringConvertible {
     }
 }
 
-// MARK: - Endpoint Mapping
+// MARK: - Endpoint Request Parameters Mapping
 
 extension Client {
     /// Add the app key parameter as an URL parameter for each request.
@@ -100,7 +100,7 @@ extension Client {
                                                urlParameters: parameters.merged(with: appKeyParameter))
             
         case let .requestJSONEncodable(encodable):
-            if let data = try? JSONEncoder().encode(AnyEncodable(encodable)) {
+            if let data = try? JSONEncoder.stream.encode(AnyEncodable(encodable)) {
                 if target.method == .get {
                     do {
                         if let json = (try JSONSerialization.jsonObject(with: data)) as? JSON {
@@ -117,11 +117,7 @@ extension Client {
             }
             
         case let .requestCustomJSONEncodable(encodable, encoder: encoder):
-            if let data = try? encoder.encode(AnyEncodable(encodable)) {
-                task = .requestCompositeData(bodyData: data, urlParameters: appKeyParameter)
-            } else {
-                print("⚠️", #function, "Can't encode object \(encodable)")
-            }
+            task = .requestJSONEncodable(encodable, encoder: encoder, urlParameters: appKeyParameter)
             
         case let .requestData(data):
             task = .requestCompositeData(bodyData: data, urlParameters: appKeyParameter)
@@ -144,6 +140,20 @@ extension Client {
                         method: target.method,
                         task: task,
                         httpHeaderFields: target.headers)
+    }
+}
+
+extension Task {
+    static func requestJSONEncodable(_ encodable: Encodable,
+                                     encoder: JSONEncoder? = JSONEncoder.stream,
+                                     urlParameters: JSON) -> Task {
+        if let encoder = encoder, let data = try? encoder.encode(AnyEncodable(encodable)) {
+            return .requestCompositeData(bodyData: data, urlParameters: urlParameters)
+        } else {
+            print("⚠️", #function, "Can't encode object \(encodable)")
+        }
+        
+        return .requestPlain
     }
 }
 

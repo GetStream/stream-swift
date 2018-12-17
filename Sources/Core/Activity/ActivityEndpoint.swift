@@ -23,10 +23,7 @@ enum ActivityEndpoint<T: ActivityProtocol> {
     case updateActivity(setProperties: Properties?, unsetPropertiesNames: [String]?, foreignId: String, time: Date)
 }
 
-extension ActivityEndpoint: TargetType {
-    var baseURL: URL {
-        return BaseURL.placeholderURL
-    }
+extension ActivityEndpoint: StreamTargetType {
     
     var path: String {
         switch self {
@@ -70,10 +67,6 @@ extension ActivityEndpoint: TargetType {
                 .merged(with: setUnsetParameters(setProperties: setProperties, unsetPropertiesNames: unsetPropertiesNames))
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
-    }
-    
-    var headers: [String : String]? {
-        return Client.headers
     }
     
     var sampleData: Data {

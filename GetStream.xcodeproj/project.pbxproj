@@ -27,6 +27,9 @@
 		8A391C6621AC143500F645CC /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A391C6521AC143500F645CC /* Channel.swift */; };
 		8A3A4906219C68810010D831 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A4905219C68810010D831 /* ClientTests.swift */; };
 		8A411C2A21C3D38E001BE61F /* Reactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C2921C3D38E001BE61F /* Reactions.swift */; };
+		8A411C2D21C4047F001BE61F /* Client+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C2C21C4047F001BE61F /* Client+User.swift */; };
+		8A411C2F21C4048A001BE61F /* UserEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C2E21C4048A001BE61F /* UserEndpoint.swift */; };
+		8A411C3121C40495001BE61F /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C3021C40495001BE61F /* UserProtocol.swift */; };
 		8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */; };
 		8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */; };
 		8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D62199AEE20002913D /* Codable+Extensions.swift */; };
@@ -41,12 +44,14 @@
 		8A6284142199CF9C0002913D /* FeedId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedId.swift */; };
 		8A64566A21A306AB00E890F4 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566921A306AB00E890F4 /* Follower.swift */; };
 		8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */; };
+		8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */; };
 		8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B688921A6B90F00062FBD /* TokenTests.swift */; };
 		8A8AFEFE21AC07B800A1D512 /* FayeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */; };
 		8A8AFEFF21AC07C700A1D512 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
 		8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
 		8A8E539421A6B6BC008CFD78 /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; };
 		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
+		8AA22FDF21C46F11005D2C6E /* Moya+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA22FDE21C46F11005D2C6E /* Moya+Task.swift */; };
 		8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207921BAB8D10033EE8F /* Client+Files.swift */; };
 		8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */; };
 		8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207D21BE5D680033EE8F /* ImageProcess.swift */; };
@@ -111,6 +116,9 @@
 		8A391C6521AC143500F645CC /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		8A3A4905219C68810010D831 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		8A411C2921C3D38E001BE61F /* Reactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactions.swift; sourceTree = "<group>"; };
+		8A411C2C21C4047F001BE61F /* Client+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+User.swift"; sourceTree = "<group>"; };
+		8A411C2E21C4048A001BE61F /* UserEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoint.swift; sourceTree = "<group>"; };
+		8A411C3021C40495001BE61F /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
 		8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationMoyaPlugin.swift; sourceTree = "<group>"; };
 		8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaError+ClientError.swift"; sourceTree = "<group>"; };
 		8A6283D62199AEE20002913D /* Codable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
@@ -127,11 +135,13 @@
 		8A64566921A306AB00E890F4 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetStream.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTargetType.swift; sourceTree = "<group>"; };
 		8A7B688921A6B90F00062FBD /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
 		8A7B688F21A6F5AB00062FBD /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeTests.swift; sourceTree = "<group>"; };
 		8A8E539321A6B6BC008CFD78 /* JWT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWT.framework; path = Carthage/Build/iOS/JWT.framework; sourceTree = "<group>"; };
 		8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProtocol.swift; sourceTree = "<group>"; };
+		8AA22FDE21C46F11005D2C6E /* Moya+Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Task.swift"; sourceTree = "<group>"; };
 		8AA6BEB5219D711E005B9C98 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
 		8AA6BEB6219D711E005B9C98 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8AA6BEB8219D711F005B9C98 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -274,6 +284,16 @@
 			path = Reactions;
 			sourceTree = "<group>";
 		};
+		8A411C2B21C4046B001BE61F /* User */ = {
+			isa = PBXGroup;
+			children = (
+				8A411C2C21C4047F001BE61F /* Client+User.swift */,
+				8A411C2E21C4048A001BE61F /* UserEndpoint.swift */,
+				8A411C3021C40495001BE61F /* UserProtocol.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		8A6283D12199AEE20002913D /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +302,7 @@
 				8ADCEE86219ECF43001598C1 /* Activity */,
 				8A6283D92199AEE20002913D /* Feed */,
 				8A2856E421C00DC10091A977 /* Reactions */,
+				8A411C2B21C4046B001BE61F /* User */,
 				8ABC207621BAB8120033EE8F /* Files and Images */,
 				8A2856DF21BFF6930091A977 /* Open Graph */,
 				8A6283D22199AEE20002913D /* Moya */,
@@ -295,6 +316,7 @@
 			children = (
 				8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */,
 				8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */,
+				8AA22FDE21C46F11005D2C6E /* Moya+Task.swift */,
 			);
 			path = Moya;
 			sourceTree = "<group>";
@@ -331,6 +353,7 @@
 				8AF44DCE21C29AAE00A3A7B4 /* ResultsContainer.swift */,
 				8A6283DE2199AEE20002913D /* BaseURL.swift */,
 				8A2856E721C016BB0091A977 /* Pagination.swift */,
+				8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -691,6 +714,7 @@
 				8A6284142199CF9C0002913D /* FeedId.swift in Sources */,
 				8A2856EC21C112FB0091A977 /* UUID+Stream.swift in Sources */,
 				8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */,
+				8A411C3121C40495001BE61F /* UserProtocol.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */,
 				8AF44DD121C29ADB00A3A7B4 /* Result+ParseUpload.swift in Sources */,
@@ -698,6 +722,7 @@
 				8AF44DCB21C294F500A3A7B4 /* Result+ParseResponse.swift in Sources */,
 				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
 				8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */,
+				8A411C2D21C4047F001BE61F /* Client+User.swift in Sources */,
 				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
@@ -709,12 +734,15 @@
 				8A6284092199AEE20002913D /* ClientError.swift in Sources */,
 				8A2856F021C15AF70091A977 /* Reaction.swift in Sources */,
 				8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */,
+				8AA22FDF21C46F11005D2C6E /* Moya+Task.swift in Sources */,
 				8A64566A21A306AB00E890F4 /* Follower.swift in Sources */,
 				8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */,
 				8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */,
 				8A2856EA21C0185C0091A977 /* ReactionEndpoint.swift in Sources */,
 				8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
+				8A411C2F21C4048A001BE61F /* UserEndpoint.swift in Sources */,
 				8A6283F12199AEE20002913D /* GetStream.swift in Sources */,
+				8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,
 				8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,
 				8A6284012199AEE20002913D /* BaseURL.swift in Sources */,

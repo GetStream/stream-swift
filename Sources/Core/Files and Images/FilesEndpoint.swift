@@ -18,10 +18,7 @@ enum FilesEndpoint {
     case resizeImage(_ imageProcess: ImageProcess)
 }
 
-extension FilesEndpoint: TargetType {
-    var baseURL: URL {
-        return BaseURL.placeholderURL
-    }
+extension FilesEndpoint: StreamTargetType {
     
     var path: String {
         switch self {
@@ -65,14 +62,6 @@ extension FilesEndpoint: TargetType {
         case let .resizeImage(imageProcess):
             return .requestJSONEncodable(imageProcess)
         }
-    }
-    
-    var headers: [String : String]? {
-        return Client.headers
-    }
-    
-    var sampleData: Data {
-        return Data()
     }
 }
 

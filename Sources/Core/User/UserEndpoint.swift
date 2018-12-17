@@ -1,0 +1,54 @@
+//
+//  UserEndpoint.swift
+//  GetStream-iOS
+//
+//  Created by Alexey Bukhtin on 14/12/2018.
+//  Copyright © 2018 Stream.io Inc. All rights reserved.
+//
+
+import Foundation
+import Moya
+
+enum UserEndpoint {
+    case create(_ user: UserProtocol, _ getOrCreate: Bool)
+    case get(_ userId: String, _ withFollowCounts: Bool)
+    case update(_ user: UserProtocol)
+}
+
+extension UserEndpoint: StreamTargetType {
+    
+    var path: String {
+        switch self {
+        case .create:
+            return "user/"
+        case .get(let id, _):
+            return "user/\(id)/"
+        case .update(let user):
+            return "user/\(user.id)/"
+        }
+    }
+    
+    var method: Moya.Method {
+        switch self {
+        case .create:
+            return .post
+        case .get:
+            return .get
+        case .update:
+            return .put
+        }
+    }
+    
+    var task: Task {
+        switch self {
+        case let .create(user, getOrCreate):
+            return .requestJSONEncodable(user, urlParameters: ["get_or_create": getOrCreate])
+            
+        case .get(_, let withFollowCounts):
+            return .requestParameters(parameters: ["with_follow_counts": withFollowCounts], encoding: URLEncoding.default)
+            
+        case .update(let user):
+            return .requestPlain
+        }
+    }
+}

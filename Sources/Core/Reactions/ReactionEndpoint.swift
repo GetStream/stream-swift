@@ -24,10 +24,7 @@ enum ReactionEndpoint {
     case reactionsByUserId(_ userId: String, _ kind: ReactionKind?, _ pagination: Pagination)
 }
 
-extension ReactionEndpoint: TargetType {
-    var baseURL: URL {
-        return BaseURL.placeholderURL
-    }
+extension ReactionEndpoint: StreamTargetType {
     
     var path: String {
         switch self {
@@ -83,14 +80,6 @@ extension ReactionEndpoint: TargetType {
             
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
-    }
-    
-    var headers: [String : String]? {
-        return Client.headers
-    }
-    
-    var sampleData: Data {
-        return Data()
     }
 }
 
