@@ -45,6 +45,7 @@
 		8A64566A21A306AB00E890F4 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566921A306AB00E890F4 /* Follower.swift */; };
 		8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */; };
 		8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */; };
+		8A79C80E21C7B7B500970C0C /* Result+ParseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C80D21C7B7B500970C0C /* Result+ParseUser.swift */; };
 		8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B688921A6B90F00062FBD /* TokenTests.swift */; };
 		8A8AFEFE21AC07B800A1D512 /* FayeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */; };
 		8A8AFEFF21AC07C700A1D512 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
@@ -136,6 +137,7 @@
 		8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetStream.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTargetType.swift; sourceTree = "<group>"; };
+		8A79C80D21C7B7B500970C0C /* Result+ParseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+ParseUser.swift"; sourceTree = "<group>"; };
 		8A7B688921A6B90F00062FBD /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
 		8A7B688F21A6F5AB00062FBD /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeTests.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				8A411C2C21C4047F001BE61F /* Client+User.swift */,
+				8A79C80D21C7B7B500970C0C /* Result+ParseUser.swift */,
 				8A411C2E21C4048A001BE61F /* UserEndpoint.swift */,
 				8A411C3021C40495001BE61F /* UserProtocol.swift */,
 			);
@@ -717,6 +720,7 @@
 				8A411C3121C40495001BE61F /* UserProtocol.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */,
+				8A79C80E21C7B7B500970C0C /* Result+ParseUser.swift in Sources */,
 				8AF44DD121C29ADB00A3A7B4 /* Result+ParseUpload.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8AF44DCB21C294F500A3A7B4 /* Result+ParseResponse.swift in Sources */,

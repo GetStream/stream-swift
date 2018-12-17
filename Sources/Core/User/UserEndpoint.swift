@@ -13,6 +13,7 @@ enum UserEndpoint {
     case create(_ user: UserProtocol, _ getOrCreate: Bool)
     case get(_ userId: String, _ withFollowCounts: Bool)
     case update(_ user: UserProtocol)
+    case delete(_ userId: String)
 }
 
 extension UserEndpoint: StreamTargetType {
@@ -21,7 +22,7 @@ extension UserEndpoint: StreamTargetType {
         switch self {
         case .create:
             return "user/"
-        case .get(let id, _):
+        case .get(let id, _), .delete(let id):
             return "user/\(id)/"
         case .update(let user):
             return "user/\(user.id)/"
@@ -36,6 +37,8 @@ extension UserEndpoint: StreamTargetType {
             return .get
         case .update:
             return .put
+        case .delete:
+            return .delete
         }
     }
     
@@ -48,6 +51,9 @@ extension UserEndpoint: StreamTargetType {
             return .requestParameters(parameters: ["with_follow_counts": withFollowCounts], encoding: URLEncoding.default)
             
         case .update(let user):
+            return .requestJSONEncodable(user)
+            
+        case .delete:
             return .requestPlain
         }
     }

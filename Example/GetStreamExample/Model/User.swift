@@ -14,7 +14,7 @@ final class User: GetStream.User {
         case name
     }
     
-    let name: String
+    var name: String
     
     init(id: String, name: String) {
         self.name = name
@@ -26,5 +26,12 @@ final class User: GetStream.User {
         let container = try dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         name = try container.decode(String.self, forKey: .name)
         try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var dataContainer = encoder.container(keyedBy: DataCodingKeys.self)
+        var container = dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+        try container.encode(name, forKey: .name)
+        try super.encode(to: encoder)
     }
 }

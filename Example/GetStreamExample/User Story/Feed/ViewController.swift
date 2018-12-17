@@ -17,16 +17,37 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
-        let token = Token(secretData: secretData, userId: "eric")
-        let client = Client(apiKey: "3gmch3yrte9d",
-                            appId: "44738",
-                            token: token,
-                            logsEnabled: true)
+        let token = Token(secretData: secretData, userId: "alex")
+        let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
         user(client)
     }
     
     func user(_ client: Client) {
+        let user = User(id: "alex", name: "Alex")
         
+        client.create(user: user) {
+            print($0)
+            let user = try! $0.dematerialize()
+        
+            client.get(typeOf: User.self, userId: user.id) {
+                print($0)
+                let loadedUser = try? $0.dematerialize()
+                loadedUser?.name = "Alex2"
+                
+                client.update(user: loadedUser!, completion: {
+                    print($0)
+                    let updatedUser = try? $0.dematerialize()
+                    
+                    client.delete(userId: updatedUser!.id, completion: {
+                        print($0)
+                        
+                        client.get(typeOf: User.self, userId: updatedUser!.id) {
+                            print($0)
+                        }
+                    })
+                })
+            }
+        }
     }
     
     func findReactions(_ client: Client) {

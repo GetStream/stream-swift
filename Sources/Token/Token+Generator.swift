@@ -79,6 +79,8 @@ extension Token {
         case feed
         /// Following + Followers Endpoint.
         case follower
+        /// Users Endpoint.
+        case users
     }
 }
 

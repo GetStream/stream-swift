@@ -44,4 +44,18 @@ open class User: UserProtocol {
     public init(id: String) {
         self.id = id
     }
+    
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: UserCodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        created = try container.decodeIfPresent(Date.self, forKey: .created)
+        updated = try container.decodeIfPresent(Date.self, forKey: .updated)
+        followersCount = try container.decodeIfPresent(Int.self, forKey: .followersCount)
+        followingCount = try container.decodeIfPresent(Int.self, forKey: .followingCount)
+    }
+    
+    open func encode(to encoder: Encoder) throws {
+        var idContainer = encoder.container(keyedBy: UserCodingKeys.self)
+        try idContainer.encode(id, forKey: .id)
+    }
 }
