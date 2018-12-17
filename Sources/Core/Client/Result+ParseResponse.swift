@@ -11,8 +11,7 @@ import Moya
 import Result
 
 extension Result where Value == Response, Error == ClientError {
-    
-    func parseStatusCode(completion: @escaping StatusCodeCompletion) {
+    func parseStatusCode(_ completion: @escaping StatusCodeCompletion) {
         do {
             let response = try result.dematerialize()
             completion(.success(response.statusCode))

@@ -11,7 +11,7 @@ import Moya
 import Result
 
 extension Result where Value == Response, Error == ClientError {
-    func parseActivities<T: Decodable>(inContainer: Bool = false, completion: @escaping ActivitiesCompletion<T>) {
+    func parseActivities<T: Decodable>(inContainer: Bool = false, _ completion: @escaping ActivitiesCompletion<T>) {
         if case .success(let response) = self {
             do {
                 if inContainer {

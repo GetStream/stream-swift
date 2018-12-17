@@ -11,7 +11,7 @@ import Moya
 import Result
 
 extension Result where Value == Response, Error == ClientError {
-    func parseUpload(completion: @escaping UploadCompletion) {
+    func parseUpload(_ completion: @escaping UploadCompletion) {
         if case .success(let response) = self {
             do {
                 let json = try response.mapJSON()

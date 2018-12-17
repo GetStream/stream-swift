@@ -12,7 +12,7 @@ import Result
 
 extension Result where Value == Response, Error == ClientError {
     
-    func parseFollowers(completion: @escaping FollowersCompletion) {
+    func parseFollowers(_ completion: @escaping FollowersCompletion) {
         do {
             let response = try dematerialize()
             let container = try JSONDecoder.stream.decode(ResultsContainer<Follower>.self, from: response.data)
@@ -25,7 +25,7 @@ extension Result where Value == Response, Error == ClientError {
         }
     }
     
-    func parseRemoved(completion: @escaping RemovedCompletion) {
+    func parseRemoved(_ completion: @escaping RemovedCompletion) {
         if case .success(let response) = self {
             do {
                 let json = try response.mapJSON()

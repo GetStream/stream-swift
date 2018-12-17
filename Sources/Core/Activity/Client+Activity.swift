@@ -22,7 +22,7 @@ extension Client {
                                          activityIds: [UUID],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) {
-            $0.parseActivities(inContainer: true, completion: completion)
+            $0.parseActivities(inContainer: true, completion)
         }
     }
     
@@ -35,7 +35,7 @@ extension Client {
                                          times: [Date],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.get(foreignIds: foreignIds, times: times)) {
-            $0.parseActivities(inContainer: true, completion: completion)
+            $0.parseActivities(inContainer: true, completion)
         }
     }
     
@@ -49,7 +49,7 @@ extension Client {
     @discardableResult
     public func update<T: ActivityProtocol>(activities: [T], completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.update(activities)) {
-            $0.parseStatusCode(completion: completion)
+            $0.parseStatusCode(completion)
         }
     }
     
@@ -78,7 +78,7 @@ extension Client {
         return request(endpoint: ActivityEndpoint<T>.updateActivityById(setProperties: properties,
                                                                         unsetPropertiesNames: names,
                                                                         activityId: activityId)) {
-                                                                            $0.parseActivities(completion: completion)
+                                                                            $0.parseActivities(completion)
         }
     }
     
@@ -110,7 +110,7 @@ extension Client {
                                                                     unsetPropertiesNames: names,
                                                                     foreignId: foreignId,
                                                                     time: time)) {
-                                                                        $0.parseActivities(completion: completion)
+                                                                        $0.parseActivities(completion)
         }
     }
 }

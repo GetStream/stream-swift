@@ -40,7 +40,7 @@ extension Client {
                                                           targetsFeedIds: [FeedId] = [],
                                                           completion: @escaping ReactionCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.add(activityId, parentReactionId, kind, data, targetsFeedIds)) {
-            $0.parseReaction(completion: completion)
+            $0.parseReaction(completion)
         }
     }
     
@@ -56,7 +56,7 @@ extension Client {
                                                        extraDataTypeOf: T.Type,
                                                        completion: @escaping ReactionCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.get(id)) {
-            $0.parseReaction(completion: completion)
+            $0.parseReaction(completion)
         }
     }
     
@@ -78,7 +78,7 @@ extension Client {
                                                      targetsFeedIds: [FeedId] = [],
                                                      completion: @escaping ReactionCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.update(reactionId, data, targetsFeedIds)) {
-            $0.parseReaction(completion: completion)
+            $0.parseReaction(completion)
         }
     }
     
@@ -87,7 +87,7 @@ extension Client {
     @discardableResult
     public func delete(reactionId: UUID, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: ReactionEndpoint.delete(reactionId)) {
-            $0.parseStatusCode(completion: completion)
+            $0.parseStatusCode(completion)
         }
     }
     
@@ -115,7 +115,7 @@ extension Client {
                                                         withActivityData: Bool = false,
                                                         completion: @escaping ReactionsCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.reactionsByActivityId(activityId, kind, pagination, withActivityData)) {
-            $0.parseReactions(completion: completion)
+            $0.parseReactions(completion)
         }
     }
     
@@ -138,7 +138,7 @@ extension Client {
                                                         pagination: Pagination = .none,
                                                         completion: @escaping ReactionsCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.reactionsByReactionId(reactionId, kind, pagination)) {
-            $0.parseReactions(completion: completion)
+            $0.parseReactions(completion)
         }
     }
     
@@ -161,7 +161,7 @@ extension Client {
                                                         pagination: Pagination = .none,
                                                         completion: @escaping ReactionsCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.reactionsByUserId(userId, kind, pagination)) {
-            $0.parseReactions(completion: completion)
+            $0.parseReactions(completion)
         }
     }
 }
