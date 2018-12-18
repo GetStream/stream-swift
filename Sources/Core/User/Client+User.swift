@@ -23,7 +23,7 @@ extension Client {
     @discardableResult
     public func create<T: UserProtocol>(user: T, getOrCreate: Bool = true, completion: @escaping UserCompletion<T>) -> Cancellable {
         return request(endpoint: UserEndpoint.create(user, getOrCreate)) {
-            $0.parseUser(completion)
+            $0.parse(completion)
         }
     }
     
@@ -51,7 +51,7 @@ extension Client {
                                      withFollowCounts: Bool = false,
                                      completion: @escaping UserCompletion<T>) -> Cancellable {
         return request(endpoint: UserEndpoint.get(userId, withFollowCounts)) {
-            $0.parseUser(completion)
+            $0.parse(completion)
         }
     }
     
@@ -63,7 +63,7 @@ extension Client {
     @discardableResult
     public func update<T: UserProtocol>(user: T, completion: @escaping UserCompletion<T>) -> Cancellable {
         return request(endpoint: UserEndpoint.update(user)) {
-            $0.parseUser(completion)
+            $0.parse(completion)
         }
     }
     

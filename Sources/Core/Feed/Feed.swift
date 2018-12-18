@@ -146,7 +146,7 @@ extension Feed {
         let offset = max(0, min(400, offset))
         
         return client.request(endpoint: FeedEndpoint.followers(feedId, offset: offset, limit: limit)) {
-            $0.parseFollowers(completion)
+            $0.parse(completion)
         }
     }
     
@@ -167,7 +167,7 @@ extension Feed {
         let offset = max(0, min(400, offset))
         
         return client.request(endpoint: FeedEndpoint.following(feedId, filter: filter, offset: offset, limit: limit)) {
-            $0.parseFollowers(completion)
+            $0.parse(completion)
         }
     }
 }

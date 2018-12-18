@@ -25,8 +25,8 @@ open class User: UserProtocol {
     }
     
     public let id: String
-    public var created: Date?
-    public var updated: Date?
+    public var created: Date = Date()
+    public var updated: Date = Date()
     public var followersCount: Int?
     public var followingCount: Int?
     
@@ -37,14 +37,14 @@ open class User: UserProtocol {
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: UserCodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        created = try container.decodeIfPresent(Date.self, forKey: .created)
-        updated = try container.decodeIfPresent(Date.self, forKey: .updated)
+        created = try container.decode(Date.self, forKey: .created)
+        updated = try container.decode(Date.self, forKey: .updated)
         followersCount = try container.decodeIfPresent(Int.self, forKey: .followersCount)
         followingCount = try container.decodeIfPresent(Int.self, forKey: .followingCount)
     }
     
     open func encode(to encoder: Encoder) throws {
-        var idContainer = encoder.container(keyedBy: UserCodingKeys.self)
-        try idContainer.encode(id, forKey: .id)
+        var container = encoder.container(keyedBy: UserCodingKeys.self)
+        try container.encode(id, forKey: .id)
     }
 }

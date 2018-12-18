@@ -70,12 +70,12 @@ import Foundation
 ///     }
 /// ```
 public protocol UserProtocol: Codable {
-    /// User ID. Must not be empty or longer than 255 characters.
+    /// A user Id. Must not be empty or longer than 255 characters.
     var id: String { get }
     /// When the user was created.
-    var created: Date? { get }
+    var created: Date { get }
     /// When the user was last updated.
-    var updated: Date? { get }
+    var updated: Date { get }
     /// Number of users that follow this user.
     var followersCount: Int? { get }
     /// Number of users this user is following.

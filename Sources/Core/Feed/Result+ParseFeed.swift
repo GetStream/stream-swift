@@ -11,20 +11,6 @@ import Moya
 import Result
 
 extension Result where Value == Response, Error == ClientError {
-    
-    func parseFollowers(_ completion: @escaping FollowersCompletion) {
-        do {
-            let response = try dematerialize()
-            let container = try JSONDecoder.stream.decode(ResultsContainer<Follower>.self, from: response.data)
-            completion(.success(container.results))
-            
-        } catch let error as ClientError {
-            completion(.failure(error))
-        } catch {
-            completion(.failure(.unknownError(error.localizedDescription)))
-        }
-    }
-    
     func parseRemoved(_ completion: @escaping RemovedCompletion) {
         if case .success(let response) = self {
             do {
@@ -37,7 +23,7 @@ extension Result where Value == Response, Error == ClientError {
                     completion(.failure(.unexpectedResponse("`removed` parameter not found")))
                 }
             } catch {
-                completion(.failure(ClientError.jsonDecode(error.localizedDescription, data: response.data)))
+                completion(.failure(ClientError.jsonDecode(error.localizedDescription, error, response.data)))
             }
         } else if case .failure(let error) = self {
             completion(.failure(error))
