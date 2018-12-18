@@ -18,12 +18,12 @@ Pod::Spec.new do |s|
     ss.framework = "Foundation"
     ss.dependency "Moya", "~> 12.0"
     ss.dependency "Swime", "~> 3.0"
+    ss.dependency "JSONWebToken", "~> 2.2"
   end
   
   s.subspec "Token" do |ss|
     ss.source_files = "Sources/Token/"
     ss.dependency "GetStream/Core"
-    ss.dependency "JSONWebToken"
   end
   
   s.subspec "Faye" do |ss|

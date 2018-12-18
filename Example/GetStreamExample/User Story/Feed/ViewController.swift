@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         client.create(user: user) {
             print($0)
             let user = try! $0.dematerialize()
-        
+            
             client.get(typeOf: User.self, userId: user.id) {
                 print($0)
                 let loadedUser = try? $0.dematerialize()
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
                     client.delete(userId: updatedUser!.id, completion: {
                         print($0)
                         
-                        client.get(typeOf: User.self, userId: updatedUser!.id) {
+                        client.get(userId: updatedUser!.id) {
                             print($0)
                         }
                     })
@@ -54,19 +54,19 @@ class ViewController: UIViewController {
         client.reactions(forUserId: "eric") {
             let reactions = try! $0.dematerialize()
             print(reactions.reactions)
-
+            
             if let first = reactions.reactions.first, first.kind == .comment {
-//                print(first.data(typeOf: Comment.self))
+                //                print(first.data(typeOf: Comment.self))
             }
         }
         
         let activityId = UUID(uuidString: "0EAD9589-F3E6-11E8-A455-0AAA8DCB8F70")!
-
+        
         client.reactions(forActivityId: activityId, withActivityData: true) {
             let reactions = try! $0.dematerialize()
             print(reactions)
-//            print(reactions.activity)
-//            print(reactions.activity(typeOf: Activity.self))
+            //            print(reactions.activity)
+            //            print(reactions.activity(typeOf: Activity.self))
         }
     }
     
@@ -102,8 +102,8 @@ class ViewController: UIViewController {
                                                 print("2️⃣", updatedReaction.latestChildren(kindOf: .like))
                                                 print("2️⃣", updatedReaction.latestChildren(kindOf: .comment,
                                                                                                 extraDataTypeOf: Comment.self))
-//
-//                                                client.delete(reactionId: updatedReaction.id) { print("✖️", $0) }
+                                                //
+                                                //                                                client.delete(reactionId: updatedReaction.id) { print("✖️", $0) }
                                             }
                                         }
                     }

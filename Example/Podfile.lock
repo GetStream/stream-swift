@@ -6,6 +6,7 @@ PODS:
     - GetStream/Core (= 0.1.0)
     - GetStream/Faye (= 0.1.0)
   - GetStream/Core (0.1.0):
+    - JSONWebToken (~> 2.2)
     - Moya (~> 12.0)
     - Swime (~> 3.0)
   - GetStream/Faye (0.1.0):
@@ -13,7 +14,6 @@ PODS:
     - GetStream/Core
   - GetStream/Token (0.1.0):
     - GetStream/Core
-    - JSONWebToken
   - JSONWebToken (2.2.0)
   - Moya (12.0.1):
     - Moya/Core (= 12.0.1)
@@ -47,7 +47,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Faye: f56a6813132ac536cdafcf63414b48ac44a3ad61
-  GetStream: 291dcfd4d998e502ba98b2a7bc946c352465bdaf
+  GetStream: 56fa0a1bc5e29bd509750e7bf3b1bd16a476a4d3
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713

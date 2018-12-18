@@ -9,6 +9,7 @@
 import Foundation
 import Moya
 import Result
+import JWT
 
 typealias ClientCompletionResult = Result<Response, ClientError>
 typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
@@ -21,6 +22,9 @@ public final class Client {
     let token: Token
     
     private let networkProvider: NetworkProvider
+    
+    public private(set) var currentUserId: String?
+    public var currentUser: UserProtocol?
     
     /// Create a GetStream client for making network requests.
     ///
@@ -49,6 +53,7 @@ public final class Client {
         let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
         let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: callbackQueue, plugins: moyaPlugins)
         self.init(apiKey: apiKey, appId: appId, token: token, networkProvider: moyaProvider)
+        parseUserId()
     }
     
     init(apiKey: String, appId: String, token: Token, networkProvider: NetworkProvider) {
@@ -56,6 +61,13 @@ public final class Client {
         self.appId = appId
         self.token = token
         self.networkProvider = networkProvider
+    }
+    
+    private func parseUserId() {
+        if let claims: ClaimSet = try? JWT.decode(token, algorithm: .none, verify: false),
+            let userId = claims["user_id"] as? String {
+            currentUserId = userId
+        }
     }
 }
 

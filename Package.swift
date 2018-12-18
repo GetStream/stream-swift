@@ -16,11 +16,11 @@ let package = Package(
         .package(url: "https://github.com/daltoniam/Starscream.git", .upToNextMajor(from: "3.0.0")),
     ],
     targets: [
-        .target(name: "GetStream", dependencies: ["Moya"], path: "Sources/Core"),
-        .target(name: "GetStreamToken", dependencies: ["GetStream", "JWT"], path: "Sources/Token"),
+        .target(name: "GetStream", dependencies: ["Moya", "JWT"], path: "Sources/Core"),
+        .target(name: "GetStreamToken", dependencies: ["GetStream"], path: "Sources/Token"),
         .target(name: "Faye", dependencies: ["Starscream"], path: "Faye"),
         .testTarget(name: "GetStreamTests", dependencies: ["GetStream"], path: "Tests/Core"),
 //        .testTarget(name: "GetStreamTokenTests", dependencies: ["GetStreamToken"], path: "Tests/Token"),
     ],
-    swiftLanguageVersions: [.v4, .v4_2]
+    swiftLanguageVersions: [.v4_2]
 )

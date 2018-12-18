@@ -11,6 +11,7 @@
 		8A0935AA21AC012900C64488 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A0935C321AC030400C64488 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0935C221AC030400C64488 /* Client.swift */; };
 		8A0935CB21AC05AD00C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		8A0AD18321C8F72800A3167D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18221C8F72800A3167D /* User.swift */; };
 		8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */; };
 		8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */; };
 		8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E521C00E970091A977 /* Client+Reaction.swift */; };
@@ -105,6 +106,7 @@
 		8A0935C421AC038000C64488 /* Faye.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Faye.plist; sourceTree = "<group>"; };
 		8A0935C621AC038700C64488 /* FayeTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FayeTests.plist; sourceTree = "<group>"; };
 		8A0935CA21AC05AD00C64488 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		8A0AD18221C8F72800A3167D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+OpenGraph.swift"; sourceTree = "<group>"; };
 		8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGraphEndpoint.swift; sourceTree = "<group>"; };
 		8A2856E521C00E970091A977 /* Client+Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Reaction.swift"; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				8A79C80D21C7B7B500970C0C /* Result+ParseUser.swift */,
 				8A411C2E21C4048A001BE61F /* UserEndpoint.swift */,
 				8A411C3021C40495001BE61F /* UserProtocol.swift */,
+				8A0AD18221C8F72800A3167D /* User.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
 				8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
+				8A0AD18321C8F72800A3167D /* User.swift in Sources */,
 				8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */,
 				8A411C2A21C3D38E001BE61F /* Reactions.swift in Sources */,
 				8AE491A421B140B2008F9036 /* ClientFayeExtendable.swift in Sources */,

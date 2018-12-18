@@ -28,8 +28,22 @@ public struct Feed: CustomStringConvertible {
 }
 
 extension Client {
-    /// Get a `Feed` with a given `feedSlug` and `userId`.
+    /// Get a `Feed` with a given feed group `feedSlug` and `userId`.
     public func feed(feedSlug: String, userId: String) -> Feed {
+        return feed(FeedId(feedSlug: feedSlug, userId: userId))
+    }
+    
+    /// Get a `Feed` with a given feed group `feedSlug` for the current user if it specified in the Token.
+    ///
+    /// - Note: If the current user is nil in the Token, then the returned feed would be nil.
+    ///
+    /// - Parameters:
+    ///     - feedSlug: a feed group name.
+    public func feed(feedSlug: String) -> Feed? {
+        guard let userId = currentUserId else {
+            return nil
+        }
+        
         return feed(FeedId(feedSlug: feedSlug, userId: userId))
     }
     

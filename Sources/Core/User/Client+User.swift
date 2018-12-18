@@ -27,9 +27,21 @@ extension Client {
         }
     }
     
+    /// Get a user by default `User` type with a given `userId`.
+    ///
+    /// - Parameters:
+    ///     - userId: a user id string.
+    ///     - withFollowCounts: if true, the followingCount and followersCount will be included in the response. Default: false.
+    ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
+    @discardableResult
+    public func get(userId: String, withFollowCounts: Bool = false, completion: @escaping UserCompletion<User>) -> Cancellable {
+        return get(typeOf: User.self, userId: userId, completion: completion)
+    }
+    
     /// Get a user with a given `userId`.
     ///
     /// - Parameters:
+    ///     - typeOf: a type of an user structure that conformed to `UserProtocol`.
     ///     - userId: a user id string.
     ///     - withFollowCounts: if true, the followingCount and followersCount will be included in the response. Default: false.
     ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
@@ -67,4 +79,3 @@ extension Client {
         }
     }
 }
-
