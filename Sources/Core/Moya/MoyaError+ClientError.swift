@@ -11,6 +11,6 @@ import Moya
 
 extension MoyaError {
     var clientError: ClientError {
-        return .network(errorDescription ?? "Unknown")
+        return .network(errorDescription ?? "Unknown", self)
     }
 }

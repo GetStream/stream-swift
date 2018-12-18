@@ -22,7 +22,7 @@ extension Result where Value == Response, Error == ClientError {
         } catch let error as ClientError {
             completion(.failure(error))
         } catch {
-            completion(.failure(.unknownError(error.localizedDescription)))
+            completion(.failure(.unknownError(error.localizedDescription, error)))
         }
     }
     
@@ -36,7 +36,7 @@ extension Result where Value == Response, Error == ClientError {
         } catch let error as ClientError {
             completion(.failure(error))
         } catch {
-            completion(.failure(.unknownError(error.localizedDescription)))
+            completion(.failure(.unknownError(error.localizedDescription, error)))
         }
     }
 }

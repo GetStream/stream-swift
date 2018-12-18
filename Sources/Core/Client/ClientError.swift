@@ -11,11 +11,11 @@ import Foundation
 public enum ClientError: Error {
     case unexpectedError
     case unexpectedResponse(_ description: String)
-    case unknownError(_ localizedDescription: String)
+    case unknownError(_ localizedDescription: String, _ error: Error?)
     case jsonInvalid
-    case jsonDecode(_ localizedDescription: String, data: Data)
-    case jsonEncode(_ localizedDescription: String)
-    case network(_ description: String)
+    case jsonDecode(_ localizedDescription: String, _ error: Error?, _ data: Data)
+    case jsonEncode(_ localizedDescription: String, _ error: Error?)
+    case network(_ description: String, _ error: Error?)
     case server(_ info: Info)
     
     public var localizedDescription: String {
@@ -24,15 +24,15 @@ public enum ClientError: Error {
             return "Unexpected behaviour"
         case .unexpectedResponse:
             return "Unexpected response"
-        case .unknownError(let localizedDescription):
+        case .unknownError(let localizedDescription, _):
             return "Unexpected behaviour with error: \(localizedDescription)"
         case .jsonInvalid:
             return "A server response is not a JSON"
-        case let .jsonDecode(localizedDescription, data):
+        case let .jsonDecode(localizedDescription, _, data):
             return "JSON decoding error: \(localizedDescription). Data: \(data.count) bytes"
-        case .jsonEncode(let localizedDescription):
+        case .jsonEncode(let localizedDescription, _):
             return "JSON encoding error: \(localizedDescription)"
-        case .network(let description):
+        case .network(let description, _):
             return "Moya error: \(description)"
         case .server(let info):
             return info.description

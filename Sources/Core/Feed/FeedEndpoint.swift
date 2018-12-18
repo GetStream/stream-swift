@@ -169,7 +169,7 @@ extension FeedEndpoint: StreamTargetType {
             if activity.actor == ClientError.jsonInvalid.localizedDescription {
                 json = "[]"
                 
-            } else if activity.actor == ClientError.network("Failed to map data to JSON.").localizedDescription {
+            } else if activity.actor == ClientError.network("Failed to map data to JSON.", nil).localizedDescription {
                 json = "{"
                 
             } else if activity.actor == ClientError.server(.init(json: ["exception": 0])).localizedDescription {

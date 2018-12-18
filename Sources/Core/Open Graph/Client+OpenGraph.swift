@@ -26,7 +26,7 @@ extension Client {
                     completion(.success(ogResponse))
 
                 } catch {
-                    completion(.failure(.jsonDecode(error.localizedDescription, data: response.data)))
+                    completion(.failure(.jsonDecode(error.localizedDescription, error, response.data)))
                 }
             } else if case .failure(let error) = result {
                 completion(.failure(error))

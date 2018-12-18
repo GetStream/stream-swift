@@ -190,7 +190,7 @@ extension Client {
                 } catch let moyaError as MoyaError {
                     completion(.failure(moyaError.clientError))
                 } catch {
-                    completion(.failure(.unknownError(error.localizedDescription)))
+                    completion(.failure(.unknownError(error.localizedDescription, error)))
                 }
             } else if case .failure(let moyaError) = result {
                 completion(.failure(moyaError.clientError))

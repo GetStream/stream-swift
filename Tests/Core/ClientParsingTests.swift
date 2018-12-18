@@ -25,28 +25,7 @@ class ClientParsingTests: TestCase {
         }
         
         expect("error result") { test in
-            ClientCompletionResult.failure(ClientError.unknownError("")).parseActivities { (result: ActivitiesResult<Activity>) in
-                if case .failure(let clientError) = result, case .unknownError = clientError {
-                    test.fulfill()
-                }
-            }
-        }
-    }
-    
-    func testFollowersErrors() {
-        let response = Response(statusCode: 200, data: Data())
-        let responseResult: ClientCompletionResult = .success(response)
-        
-        expect("error json decode") { test in
-            responseResult.parseFollowers { result in
-                if case .failure(let clientError) = result, case .unknownError = clientError {
-                    test.fulfill()
-                }
-            }
-        }
-        
-        expect("error result") { test in
-            ClientCompletionResult.failure(ClientError.unknownError("")).parseFollowers { result in
+            ClientCompletionResult.failure(ClientError.unknownError("", nil)).parseActivities { (result: ActivitiesResult<Activity>) in
                 if case .failure(let clientError) = result, case .unknownError = clientError {
                     test.fulfill()
                 }
@@ -67,7 +46,7 @@ class ClientParsingTests: TestCase {
         }
         
         expect("error result") { test in
-            ClientCompletionResult.failure(ClientError.unknownError("")).parseRemoved { result in
+            ClientCompletionResult.failure(ClientError.unknownError("", nil)).parseRemoved { result in
                 if case .failure(let clientError) = result, case .unknownError = clientError {
                     test.fulfill()
                 }

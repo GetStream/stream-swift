@@ -24,7 +24,7 @@ extension Result where Value == Response, Error == ClientError {
             } catch let error as ClientError {
                 completion(.failure(error))
             } catch {
-                completion(.failure(.jsonDecode(error.localizedDescription, data: response.data)))
+                completion(.failure(.jsonDecode(error.localizedDescription, error, response.data)))
             }
         } else if case .failure(let error) = self {
             completion(.failure(error))

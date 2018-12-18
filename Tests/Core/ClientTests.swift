@@ -163,7 +163,7 @@ final class ClientTests: TestCase {
     }
     
     func testFailedMapDataToJSON() {
-        failRequests(clientError: .network("Failed to map data to JSON."))
+        failRequests(clientError: .network("Failed to map data to JSON.", nil))
     }
     
     func testExceptionInJSON() {
@@ -240,10 +240,14 @@ final class ClientTests: TestCase {
         
         let unknownError = ClientError.unexpectedError
         XCTAssertEqual(unknownError.localizedDescription, "Unexpected behaviour")
-        XCTAssertEqual(ClientError.unknownError(unknownError.localizedDescription).localizedDescription,
+        
+        XCTAssertEqual(ClientError.unknownError(unknownError.localizedDescription, unknownError).localizedDescription,
                        "Unexpected behaviour with error: Unexpected behaviour")
-        XCTAssertEqual(ClientError.jsonEncode("test").localizedDescription, "JSON encoding error: test")
-        XCTAssertEqual(ClientError.jsonDecode("test", data: Data()).localizedDescription, "JSON decoding error: test. Data: 0 bytes")
+        
+        XCTAssertEqual(ClientError.jsonEncode("test", nil).localizedDescription, "JSON encoding error: test")
+        
+        XCTAssertEqual(ClientError.jsonDecode("test", nil, Data()).localizedDescription,
+                       "JSON decoding error: test. Data: 0 bytes")
     }
     
     func testMoyaAuthPlugin() {

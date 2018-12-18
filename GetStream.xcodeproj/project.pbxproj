@@ -12,6 +12,10 @@
 		8A0935C321AC030400C64488 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0935C221AC030400C64488 /* Client.swift */; };
 		8A0935CB21AC05AD00C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		8A0AD18321C8F72800A3167D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18221C8F72800A3167D /* User.swift */; };
+		8A0AD18621C906D600A3167D /* Client+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18521C906D600A3167D /* Client+Collection.swift */; };
+		8A0AD18821C906F100A3167D /* CollectionEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18721C906F100A3167D /* CollectionEndpoint.swift */; };
+		8A0AD18C21C908BB00A3167D /* CollectionObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18B21C908BB00A3167D /* CollectionObjectProtocol.swift */; };
+		8A0AD18E21C9099F00A3167D /* CollectionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18D21C9099F00A3167D /* CollectionObject.swift */; };
 		8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */; };
 		8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */; };
 		8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E521C00E970091A977 /* Client+Reaction.swift */; };
@@ -46,7 +50,6 @@
 		8A64566A21A306AB00E890F4 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566921A306AB00E890F4 /* Follower.swift */; };
 		8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */; };
 		8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */; };
-		8A79C80E21C7B7B500970C0C /* Result+ParseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C80D21C7B7B500970C0C /* Result+ParseUser.swift */; };
 		8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B688921A6B90F00062FBD /* TokenTests.swift */; };
 		8A8AFEFE21AC07B800A1D512 /* FayeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */; };
 		8A8AFEFF21AC07C700A1D512 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
@@ -107,6 +110,10 @@
 		8A0935C621AC038700C64488 /* FayeTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FayeTests.plist; sourceTree = "<group>"; };
 		8A0935CA21AC05AD00C64488 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		8A0AD18221C8F72800A3167D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8A0AD18521C906D600A3167D /* Client+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Collection.swift"; sourceTree = "<group>"; };
+		8A0AD18721C906F100A3167D /* CollectionEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEndpoint.swift; sourceTree = "<group>"; };
+		8A0AD18B21C908BB00A3167D /* CollectionObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionObjectProtocol.swift; sourceTree = "<group>"; };
+		8A0AD18D21C9099F00A3167D /* CollectionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionObject.swift; sourceTree = "<group>"; };
 		8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+OpenGraph.swift"; sourceTree = "<group>"; };
 		8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGraphEndpoint.swift; sourceTree = "<group>"; };
 		8A2856E521C00E970091A977 /* Client+Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Reaction.swift"; sourceTree = "<group>"; };
@@ -139,7 +146,6 @@
 		8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetStream.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTargetType.swift; sourceTree = "<group>"; };
-		8A79C80D21C7B7B500970C0C /* Result+ParseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+ParseUser.swift"; sourceTree = "<group>"; };
 		8A7B688921A6B90F00062FBD /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
 		8A7B688F21A6F5AB00062FBD /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeTests.swift; sourceTree = "<group>"; };
@@ -267,6 +273,17 @@
 			path = Faye;
 			sourceTree = "<group>";
 		};
+		8A0AD18421C906B000A3167D /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				8A0AD18521C906D600A3167D /* Client+Collection.swift */,
+				8A0AD18721C906F100A3167D /* CollectionEndpoint.swift */,
+				8A0AD18B21C908BB00A3167D /* CollectionObjectProtocol.swift */,
+				8A0AD18D21C9099F00A3167D /* CollectionObject.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
 		8A2856DF21BFF6930091A977 /* Open Graph */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				8A411C2C21C4047F001BE61F /* Client+User.swift */,
-				8A79C80D21C7B7B500970C0C /* Result+ParseUser.swift */,
 				8A411C2E21C4048A001BE61F /* UserEndpoint.swift */,
 				8A411C3021C40495001BE61F /* UserProtocol.swift */,
 				8A0AD18221C8F72800A3167D /* User.swift */,
@@ -305,10 +321,11 @@
 			children = (
 				8A6283D82199AEE20002913D /* GetStream.swift */,
 				8A6283DD2199AEE20002913D /* Client */,
+				8A411C2B21C4046B001BE61F /* User */,
 				8ADCEE86219ECF43001598C1 /* Activity */,
 				8A6283D92199AEE20002913D /* Feed */,
 				8A2856E421C00DC10091A977 /* Reactions */,
-				8A411C2B21C4046B001BE61F /* User */,
+				8A0AD18421C906B000A3167D /* Collection */,
 				8ABC207621BAB8120033EE8F /* Files and Images */,
 				8A2856DF21BFF6930091A977 /* Open Graph */,
 				8A6283D22199AEE20002913D /* Moya */,
@@ -714,6 +731,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A0AD18621C906D600A3167D /* Client+Collection.swift in Sources */,
 				8AF44DC921C2931200A3A7B4 /* Result+ParseActivity.swift in Sources */,
 				8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */,
 				8AF44DC721C28D3A00A3A7B4 /* Result+ParseReaction.swift in Sources */,
@@ -723,14 +741,15 @@
 				8A411C3121C40495001BE61F /* UserProtocol.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */,
-				8A79C80E21C7B7B500970C0C /* Result+ParseUser.swift in Sources */,
 				8AF44DD121C29ADB00A3A7B4 /* Result+ParseUpload.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8AF44DCB21C294F500A3A7B4 /* Result+ParseResponse.swift in Sources */,
 				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
 				8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */,
 				8A411C2D21C4047F001BE61F /* Client+User.swift in Sources */,
+				8A0AD18E21C9099F00A3167D /* CollectionObject.swift in Sources */,
 				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
+				8A0AD18C21C908BB00A3167D /* CollectionObjectProtocol.swift in Sources */,
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
 				8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
@@ -741,6 +760,7 @@
 				8AF44DCF21C29AAE00A3A7B4 /* ResultsContainer.swift in Sources */,
 				8A6284092199AEE20002913D /* ClientError.swift in Sources */,
 				8A2856F021C15AF70091A977 /* Reaction.swift in Sources */,
+				8A0AD18821C906F100A3167D /* CollectionEndpoint.swift in Sources */,
 				8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */,
 				8AA22FDF21C46F11005D2C6E /* Moya+Task.swift in Sources */,
 				8A64566A21A306AB00E890F4 /* Follower.swift in Sources */,
@@ -866,7 +886,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -950,7 +969,6 @@
 				INFOPLIST_FILE = Configs/GetStream.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = io.getstream.GetStream;
 				PRODUCT_NAME = GetStream;
 				SKIP_INSTALL = YES;
