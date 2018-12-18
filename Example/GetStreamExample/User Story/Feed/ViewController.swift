@@ -17,9 +17,32 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
-        let token = Token(secretData: secretData, userId: "alex")
+        let token = Token(secretData: secretData, userId: "eric")
         let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
-        user(client)
+//        collection(client)
+    }
+    
+    func collection(_ client: Client) {
+        let food = Food(name: "Burger", id: "burger")
+        
+        client.add(collectionObject: food) {
+            let burger = try! $0.dematerialize()
+            
+            client.get(typeOf: Food.self, collectionName: "food", collectionObjectId: burger.id!) {
+                let burger = try! $0.dematerialize()
+                print(burger.id ?? "<No Id>", burger.name)
+                burger.name = "Cheeseburger"
+                
+                client.update(collectionObject: burger) {
+                    let cheeseburger = try! $0.dematerialize()
+                    print(cheeseburger.id ?? "<No Id>", cheeseburger.name)
+                    
+                    client.delete(collectionObject: burger) {
+                        print($0)
+                    }
+                }
+            }
+        }
     }
     
     func user(_ client: Client) {

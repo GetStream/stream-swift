@@ -1,14 +1,14 @@
 //
-//  UserProtocol.swift
+//  CollectionObjectProtocol.swift
 //  GetStream-iOS
 //
-//  Created by Alexey Bukhtin on 14/12/2018.
+//  Created by Alexey Bukhtin on 18/12/2018.
 //  Copyright © 2018 Stream.io Inc. All rights reserved.
 //
 
 import Foundation
 
-/// A user protocol.
+/// A collection object protocol.
 ///
 /// This protocol describe basic properties. You can extend them with own type,
 /// but you have to implement `Encodable` and `Decodable` protocols in a specific way:
@@ -18,28 +18,30 @@ import Foundation
 /// Here is an example of a JSON responce:
 /// ```
 /// {
-///     "id": "alice123",
-///     "data": { "name": "Alice" },
+///     "id": "burger",
+///     "collection": "food",
+///     "foreign_id":"food:burger"
+///     "data": { "name": "Burger" },
 ///     "created_at": "2018-12-17T15:23:26.591179Z",
 ///     "updated_at": "2018-12-17T15:23:26.591179Z",
 ///     "duration":"0.45ms"
 /// }
 /// ```
 ///
-/// You can extend our opened `User` class for the default protocol properties.
+/// You can extend our opened `CollectionObject` class for the default protocol properties.
 ///
 /// Example with custom properties:
 /// ```
-///     final class User: GetStream.User {
+///     final class Food: CollectionObject {
 ///         private enum CodingKeys: String, CodingKey {
 ///             case name
 ///         }
 ///
 ///         var name: String
 ///
-///         init(id: String, name: String) {
+///         init(name: String, id: String? = nil) {
 ///             self.name = name
-///             super.init(id: id)
+///             super.init(collectionName: "food", id: id)
 ///         }
 ///
 ///         required init(from decoder: Decoder) throws {
@@ -57,27 +59,15 @@ import Foundation
 ///         }
 ///     }
 /// ```
-///
-/// Here is an example how to use a custom User type:
-/// ```
-///     let user = User(id: "alice123", name: "Alice")
-///     client.create(user: user) {
-///         // Let's try retrieve details of the created user and use custom properties.
-///         client.get(typeOf: User.self, userId: "alice123") {
-///             let user = try? $0.dematerialize() // here the user is a custom User type.
-///             print(user?.name) // it will print "Alice".
-///         }
-///     }
-/// ```
-public protocol UserProtocol: Codable {
-    /// A user Id. Must not be empty or longer than 255 characters.
-    var id: String { get }
-    /// When the user was created.
+public protocol CollectionObjectProtocol: Codable {
+    /// A collection name.
+    var collectionName: String { get }
+    /// A collection object id.
+    var id: String? { get }
+    /// An foreign id of the collection object. The format is `<collectionName>:<id>`.
+    var foreignId: String? { get }
+    /// When the collection object was created.
     var created: Date { get }
-    /// When the user was last updated.
+    /// When the collection object was last updated.
     var updated: Date { get }
-    /// Number of users that follow this user.
-    var followersCount: Int? { get }
-    /// Number of users this user is following.
-    var followingCount: Int? { get }
 }

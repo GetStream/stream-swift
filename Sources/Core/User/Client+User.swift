@@ -41,7 +41,7 @@ extension Client {
     /// Get a user with a given `userId`.
     ///
     /// - Parameters:
-    ///     - typeOf: a type of an user structure that conformed to `UserProtocol`.
+    ///     - typeOf: a type of an user type that conformed to `UserProtocol`.
     ///     - userId: a user id string.
     ///     - withFollowCounts: if true, the followingCount and followersCount will be included in the response. Default: false.
     ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.

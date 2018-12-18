@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A0AD19221C935D700A3167D /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19121C935D700A3167D /* Food.swift */; };
 		8A411C3321C4076A001BE61F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C3221C4076A001BE61F /* User.swift */; };
 		8A411C3521C40BA2001BE61F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C3421C40BA2001BE61F /* Comment.swift */; };
 		8A8AABEC2199DA22007DE642 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AABEB2199DA22007DE642 /* Activity.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		05F3A64CF5519772138F8C76 /* Pods-GetStreamExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetStreamExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GetStreamExample/Pods-GetStreamExample.release.xcconfig"; sourceTree = "<group>"; };
+		8A0AD19121C935D700A3167D /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		8A411C3221C4076A001BE61F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8A411C3421C40BA2001BE61F /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8A8AABEB2199DA22007DE642 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				8A8AABEB2199DA22007DE642 /* Activity.swift */,
 				8A411C3221C4076A001BE61F /* User.swift */,
 				8A411C3421C40BA2001BE61F /* Comment.swift */,
+				8A0AD19121C935D700A3167D /* Food.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				8AA8D73A21931DDE008AB02E /* ViewController.swift in Sources */,
 				8AA8D73821931DDE008AB02E /* AppDelegate.swift in Sources */,
 				8A8AABEC2199DA22007DE642 /* Activity.swift in Sources */,
+				8A0AD19221C935D700A3167D /* Food.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
