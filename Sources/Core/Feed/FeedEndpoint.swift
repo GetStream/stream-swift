@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum FeedEndpoint {
-    case get(_ feedId: FeedId, pagination: Pagination, ranking: String, markOption: FeedMarkOption)
+    case get(_ feedId: FeedId, enrich: Bool, pagination: Pagination, ranking: String, markOption: FeedMarkOption)
     case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
@@ -24,7 +24,10 @@ extension FeedEndpoint: StreamTargetType {
     
     var path: String {
         switch self {
-        case .get(let feedId, _, _, _), .add(_, let feedId):
+        case let .get(feedId, enrich, _, _, _):
+            return "\(enrich ? "enrich/" : "")feed/\(feedId.togetherWithSlash)/"
+            
+        case .add(_, let feedId):
             return "feed/\(feedId.togetherWithSlash)/"
             
         case let .deleteById(activityId, feedId):
@@ -62,7 +65,7 @@ extension FeedEndpoint: StreamTargetType {
     
     var task: Task {
         switch self {
-        case let .get(_, pagination, ranking, markOption):
+        case let .get(_, _, pagination, ranking, markOption):
             if case .none = pagination, ranking.isEmpty, case .none = markOption {
                 return .requestPlain
             }
@@ -113,7 +116,7 @@ extension FeedEndpoint: StreamTargetType {
         var json = ""
         
         switch self {
-        case let .get(feedId, pagination: pagination, _, _):
+        case let .get(feedId, _, pagination: pagination, _, _):
             if feedId.feedSlug == "bad", feedId.userId == "json" {
                 json = "{"
                 

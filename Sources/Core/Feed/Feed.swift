@@ -97,11 +97,13 @@ extension Feed {
     ///     - a cancellable object to cancel the request.
     @discardableResult
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
+                                         enrich: Bool = true,
                                          pagination: Pagination = .none,
                                          ranking: String? = nil,
                                          markOption: FeedMarkOption = .none,
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.get(feedId,
+                                                         enrich: enrich,
                                                          pagination: pagination,
                                                          ranking: ranking ?? "",
                                                          markOption: markOption)) {

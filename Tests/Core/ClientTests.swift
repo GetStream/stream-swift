@@ -34,7 +34,7 @@ final class ClientTests: TestCase {
         let feedId = FeedId(feedSlug: "test", userId: "123")
         let apiKey = "testKey"
         let ranking = "r"
-        let target = FeedEndpoint.get(feedId, pagination: .none, ranking: ranking, markOption: .none)
+        let target = FeedEndpoint.get(feedId, enrich: true, pagination: .none, ranking: ranking, markOption: .none)
         let endpoint = Client.endpointMapping(MultiTarget(target), apiKey: apiKey, baseURL: BaseURL())
         
         if case .networkResponse(_, let sampleData) = endpoint.sampleResponseClosure() {
@@ -48,7 +48,7 @@ final class ClientTests: TestCase {
     
     func testFeedEndpointGet() {
         expect("feed") { test in
-            client.request(endpoint: FeedEndpoint.get(feedId, pagination: .none, ranking: "", markOption: .none)) { result in
+            client.request(endpoint: FeedEndpoint.get(feedId, enrich: true, pagination: .none, ranking: "", markOption: .none)) { result in
                 if case .success(let response) = result,
                     let json = (try? response.mapJSON()) as? JSON,
                     let activities = json["results"] as? [Any] {
@@ -183,16 +183,23 @@ final class ClientTests: TestCase {
         }
     }
     
-    func testFeedPagination() {
+    func testEnrich() {
+        var endpoint = FeedEndpoint.get(feedId, enrich: false, pagination: .none, ranking: "", markOption: .none)
+        XCTAssertEqual(endpoint.path, "feed/test/123/")
+        endpoint = FeedEndpoint.get(feedId, enrich: true, pagination: .none, ranking: "", markOption: .none)
+        XCTAssertEqual(endpoint.path, "enrich/feed/test/123/")
+    }
+    
+    func testPagination() {
         // with limit 5.
-        var endpoint = FeedEndpoint.get(feedId, pagination: .limit(5), ranking: "", markOption: .none)
+        var endpoint = FeedEndpoint.get(feedId, enrich: true, pagination: .limit(5), ranking: "", markOption: .none)
         
         if case .requestParameters(let limitParameters, _) = endpoint.task {
             XCTAssertEqual(limitParameters as! [String: Int], ["limit": 5])
         }
         
         // with offset and limit
-        endpoint = .get(feedId, pagination: .offset(1, limit: 1), ranking: "", markOption: .none)
+        endpoint = .get(feedId, enrich: true, pagination: .offset(1, limit: 1), ranking: "", markOption: .none)
         
         if case .requestParameters(let offsetParameters, _) = endpoint.task {
             XCTAssertEqual(offsetParameters as! [String: Int], ["offset": 1, "limit": 1])
@@ -200,7 +207,7 @@ final class ClientTests: TestCase {
         
         // with great then id and limit
         let someId = "someId"
-        endpoint = .get(feedId, pagination: .greaterThan(id: someId, limit: 3), ranking: "", markOption: .none)
+        endpoint = .get(feedId, enrich: true, pagination: .greaterThan(id: someId, limit: 3), ranking: "", markOption: .none)
         
         if case .requestParameters(let idParameters, _) = endpoint.task {
             XCTAssertEqual(idParameters["id_gt"] as! String, someId)
