@@ -26,4 +26,10 @@ public protocol ActivityProtocol: Codable {
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
     var feedIds: FeedIds? { get }
+    /// Include reactions added by current user to all activities.
+    var ownReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]? { get }
+    /// Include recent reactions to activities.
+    var latestReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]? { get }
+    /// Include reaction counts to activities.
+    var reactionCounts: [ReactionKind: Int]? { get }
 }

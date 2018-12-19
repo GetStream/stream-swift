@@ -24,7 +24,7 @@ public struct ReactionNoExtraData: ReactionExtraDataProtocol {
 
 // MARK: - Reaction
 
-public struct Reaction<T: ReactionExtraDataProtocol>: Decodable {
+public struct Reaction<T: ReactionExtraDataProtocol>: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case activityId = "activity_id"
@@ -98,6 +98,8 @@ public struct Reaction<T: ReactionExtraDataProtocol>: Decodable {
             self.dataContainer = dataContainer
         }
     }
+    
+    public func encode(to encoder: Encoder) throws {}
     
     public func data<V: ReactionExtraDataProtocol>(typeOf: V.Type) -> V? {
         if data is V {

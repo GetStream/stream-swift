@@ -91,22 +91,24 @@ extension Feed {
     /// Receive feed activities with a custom activity type.
     ///
     /// - Parameters:
+    ///     - typeOf: a type of activities that conformed to `ActivityProtocol`.
+    ///     - enrich: when using collections, you can request to enrich activities to include them.
     ///     - pagination: a pagination options.
+    ///     - ranking: the custom ranking formula used to sort the feed, must be defined in the dashboard.
+    ///     - markOption: mark options to update feed notifications as read/seen.
+    ///     - reactionsOptions: options to include reactions to activities. Check optionsin docs for `FeedReactionsOptions`
     ///     - completion: a completion handler with Result of a custom activity type.
     /// - Returns:
     ///     - a cancellable object to cancel the request.
     @discardableResult
-    public func get<T: ActivityProtocol>(typeOf type: T.Type,
+    public func get<T: ActivityProtocol>(typeOf: T.Type,
                                          enrich: Bool = true,
                                          pagination: Pagination = .none,
                                          ranking: String? = nil,
                                          markOption: FeedMarkOption = .none,
+                                         reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.get(feedId,
-                                                         enrich: enrich,
-                                                         pagination: pagination,
-                                                         ranking: ranking ?? "",
-                                                         markOption: markOption)) {
+        return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, ranking ?? "", markOption, reactionsOptions)) {
             $0.parseActivities(inContainer: true, completion)
         }
     }

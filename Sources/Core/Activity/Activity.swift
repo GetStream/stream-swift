@@ -20,6 +20,9 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
         case foreignId = "foreign_id"
         case time
         case feedIds = "to"
+        case ownReactions = "own_reactions"
+        case latestReactions = "latest_reactions"
+        case reactionCounts = "reaction_counts"
     }
     
     /// The Stream id of the activity.
@@ -39,6 +42,12 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
     public var feedIds: FeedIds?
+    /// Include reactions added by current user to all activities.
+    public var ownReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]?
+    /// Include recent reactions to activities.
+    public var latestReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]?
+    /// Include reaction counts to activities.
+    public var reactionCounts: [ReactionKind: Int]?
     
     /// Create an activity.
     ///

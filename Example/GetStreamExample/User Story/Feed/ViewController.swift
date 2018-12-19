@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
         let token = Token(secretData: secretData, userId: "eric")
         let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
-//        collection(client)
+        fetchFeed(client.feed(feedSlug: "timeline", userId: "eric"))
     }
     
     func collection(_ client: Client) {
@@ -293,12 +293,12 @@ class ViewController: UIViewController {
         
         print("Following...")
         ericFeed.follow(to: jessicaFeedId) { result in
-            self.fetch(ericFeed) {
-                self.fetch(jessicaFeed) {
+            self.fetchFeed(ericFeed) {
+                self.fetchFeed(jessicaFeed) {
                     print("Unfollowing...")
                     ericFeed.unfollow(from: jessicaFeedId) { _ in
-                        self.fetch(ericFeed) {
-                            self.fetch(jessicaFeed) {}
+                        self.fetchFeed(ericFeed) {
+                            self.fetchFeed(jessicaFeed) {}
                         }
                     }
                 }
@@ -312,19 +312,22 @@ class ViewController: UIViewController {
         feed.add(activity) { result in
             if case .success(let activities) = result {
                 activities.forEach { print($0) }
-                self.fetch(feed)
+                self.fetchFeed(feed)
             } else {
                 print(result)
             }
         }
     }
     
-    func fetch(_ feed: Feed, completion: (() -> Void)? = nil) {
+    func fetchFeed(_ feed: Feed, completion: (() -> Void)? = nil) {
         print("Fetching feed \(feed)...")
         
-        feed.get(typeOf: Activity.self) { result in
+        feed.get(typeOf: Activity.self, reactionsOptions: [.includeOwn, .includeLatest]) { result in
             if case .success(let activities) = result {
-                activities.forEach { print($0) }
+                activities.forEach { activity in
+                    debugPrint(activity)
+                }
+                
                 completion?()
             } else {
                 print(result)

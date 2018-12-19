@@ -10,7 +10,13 @@ import Foundation
 import Moya
 
 enum FeedEndpoint {
-    case get(_ feedId: FeedId, enrich: Bool, pagination: Pagination, ranking: String, markOption: FeedMarkOption)
+    case get(_ feedId: FeedId,
+        _ enrich: Bool,
+        _ pagination: Pagination,
+        _ ranking: String,
+        _ markOption: FeedMarkOption,
+        _ reactionsOptions: FeedReactionsOptions)
+    
     case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
@@ -24,7 +30,7 @@ extension FeedEndpoint: StreamTargetType {
     
     var path: String {
         switch self {
-        case let .get(feedId, enrich, _, _, _):
+        case let .get(feedId, enrich, _, _, _, _):
             return "\(enrich ? "enrich/" : "")feed/\(feedId.togetherWithSlash)/"
             
         case .add(_, let feedId):
@@ -65,8 +71,8 @@ extension FeedEndpoint: StreamTargetType {
     
     var task: Task {
         switch self {
-        case let .get(_, _, pagination, ranking, markOption):
-            if case .none = pagination, ranking.isEmpty, case .none = markOption {
+        case let .get(_, _, pagination, ranking, markOption, reactionsOptions):
+            if case .none = pagination, ranking.isEmpty, case .none = markOption, reactionsOptions == [] {
                 return .requestPlain
             }
             
@@ -76,6 +82,22 @@ extension FeedEndpoint: StreamTargetType {
                 parameters["ranking"] = ranking
             }
             
+            if reactionsOptions.contains(.includeOwn) {
+                parameters["withOwnReactions"] = true
+            }
+            
+            if reactionsOptions.contains(.includeOwnChildren) {
+                parameters["withOwnChildren"] = true
+            }
+
+            if reactionsOptions.contains(.includeLatest) {
+                parameters["withRecentReactions"] = true
+            }
+            
+            if reactionsOptions.contains(.includeCounts) {
+                parameters["withReactionCounts"] = true
+            }
+
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
             
         case .add(let activity, feedId: _):
@@ -116,7 +138,7 @@ extension FeedEndpoint: StreamTargetType {
         var json = ""
         
         switch self {
-        case let .get(feedId, _, pagination: pagination, _, _):
+        case let .get(feedId, _, pagination, _, _, _):
             if feedId.feedSlug == "bad", feedId.userId == "json" {
                 json = "{"
                 
@@ -211,7 +233,7 @@ extension FeedEndpoint: StreamTargetType {
             if keepHistory {
                 json = "[]"
             }
-
+            
         case .followers(let feedId, _, _):
             json = """
             {"results": [
@@ -259,4 +281,31 @@ public enum FeedMarkOption {
             return ["mark_read": feedIds.value ]
         }
     }
+}
+
+// MARK: - Reactions Option
+
+/// A feed reaction options to include reaction for activities.
+/// - Available options:
+///     - `includeOwn`: include reactions added by current user to all activities.
+///     - `includeOwnChildren`: include reactions added by current user to all reactions.
+///     - `includeRecent`: include recent reactions to activities.
+///     - `includeCounts`: include reaction counts to activities.
+public struct FeedReactionsOptions: OptionSet {
+    public let rawValue: Int
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+    
+    /// Include reactions added by current user to all activities.
+    public static let includeOwn = FeedReactionsOptions(rawValue: 1 << 0)
+    /// Include reactions added by current user to all reactions.
+    public static let includeOwnChildren = FeedReactionsOptions(rawValue: 1 << 1)
+    /// Include recent reactions to activities.
+    public static let includeLatest = FeedReactionsOptions(rawValue: 1 << 2)
+    /// Include reaction counts to activities.
+    public static let includeCounts = FeedReactionsOptions(rawValue: 1 << 3)
+    /// Include all reactions options to activities.
+    public static let includeAll: FeedReactionsOptions = [.includeOwn, .includeOwnChildren, .includeLatest, .includeCounts]
 }
