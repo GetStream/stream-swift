@@ -19,51 +19,60 @@ public enum Pagination {
     
     /// The offset of requesting activities.
     /// - Note: Using `lessThan` or `lessThanOrEqual` for pagination is preferable to using `offset`.
-    case offset(_ offset: Int, limit: Int)
+    case offset(_ offset: Int)
     
     /// Filter the feed on ids greater than the given value.
-    case greaterThan(id: String, limit: Int)
+    case greaterThan(_ id: String)
     
     /// Filter the feed on ids greater than or equal to the given value.
-    case greaterThanOrEqual(id: String, limit: Int)
+    case greaterThanOrEqual(_ id: String)
     
     /// Filter the feed on ids smaller than the given value.
-    case lessThan(id: String, limit: Int)
+    case lessThan(_ id: String)
     
     /// Filter the feed on ids smaller than or equal to the given value.
-    case lessThanOrEqual(id: String, limit: Int)
+    case lessThanOrEqual(_ id: String)
+    
+    /// Combine `Pagination`'s with each other.
+    ///
+    /// It's easy to use with the `+` operator. Example:
+    /// ```
+    /// .limit(10) + .greaterThan("news123") + .lessThan("news987")
+    /// ```
+    indirect case and(pagination: Pagination, another: Pagination)
     
     /// Parameters for a request.
     var parameters: [String: Any] {
-        var addLimit: Int = Pagination.defaultLimit
         var params: [String: Any] = [:]
         
         switch self {
         case .none:
             return [:]
         case .limit(let limit):
-            addLimit = limit
-        case let .offset(offset, limit):
+            params["limit"] = limit
+        case let .offset(offset):
             params["offset"] = offset
-            addLimit = limit
-        case let .greaterThan(id, limit):
+        case let .greaterThan(id):
             params["id_gt"] = id
-            addLimit = limit
-        case let .greaterThanOrEqual(id, limit):
+        case let .greaterThanOrEqual(id):
             params["id_gte"] = id
-            addLimit = limit
-        case let .lessThan(id, limit):
+        case let .lessThan(id):
             params["id_lt"] = id
-            addLimit = limit
-        case let .lessThanOrEqual(id, limit):
+        case let .lessThanOrEqual(id):
             params["id_lte"] = id
-            addLimit = limit
-        }
-        
-        if addLimit != Pagination.defaultLimit {
-            params["limit"] = addLimit
+        case let .and(pagination1, pagination2):
+             params = pagination1.parameters.merged(with: pagination2.parameters)
         }
         
         return params
+    }
+}
+
+// MARK: - Helper Operator
+
+extension Pagination {
+    /// An operator for combining Pagination's.
+    public static func +(lhs: Pagination, rhs: Pagination) -> Pagination {
+        return .and(pagination: lhs, another: rhs)
     }
 }

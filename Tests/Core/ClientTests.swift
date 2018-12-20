@@ -227,19 +227,21 @@ final class ClientTests: TestCase {
         }
         
         // with offset and limit
-        endpoint = .get(feedId, true, .offset(1, limit: 1), "", .none, [])
+        endpoint = .get(feedId, true, .limit(5), "", .none, [])
         
         if case .requestParameters(let offsetParameters, _) = endpoint.task {
-            XCTAssertEqual(offsetParameters as! [String: Int], ["offset": 1, "limit": 1])
+            XCTAssertEqual(offsetParameters as! [String: Int], ["limit": 5])
         }
         
         // with great then id and limit
-        let someId = "someId"
-        endpoint = .get(feedId, true, .greaterThan(id: someId, limit: 3), "", .none, [])
+        let someId1 = "someId1"
+        let someId2 = "someId2"
+        endpoint = .get(feedId, true, .limit(5) + .greaterThan(someId1) + .lessThan(someId2), "", .none, [])
         
-        if case .requestParameters(let idParameters, _) = endpoint.task {
-            XCTAssertEqual(idParameters["id_gt"] as! String, someId)
-            XCTAssertEqual(idParameters["limit"] as! Int, 3)
+        if case .requestParameters(let parameters, _) = endpoint.task {
+            XCTAssertEqual(parameters["id_gt"] as! String, someId1)
+            XCTAssertEqual(parameters["id_lt"] as! String, someId2)
+            XCTAssertEqual(parameters["limit"] as! Int, 5)
         }
     }
     
