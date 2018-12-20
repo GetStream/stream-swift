@@ -236,12 +236,14 @@ final class ClientTests: TestCase {
         // with great then id and limit
         let someId1 = "someId1"
         let someId2 = "someId2"
-        endpoint = .get(feedId, true, .limit(5) + .greaterThan(someId1) + .lessThan(someId2), "", .none, [])
+        var pagination: Pagination = .limit(5) + .greaterThan(someId1)
+        pagination += .lessThan(someId2)
+        endpoint = .get(feedId, true,  pagination, "", .none, [])
         
         if case .requestParameters(let parameters, _) = endpoint.task {
+            XCTAssertEqual(parameters["limit"] as! Int, 5)
             XCTAssertEqual(parameters["id_gt"] as! String, someId1)
             XCTAssertEqual(parameters["id_lt"] as! String, someId2)
-            XCTAssertEqual(parameters["limit"] as! Int, 5)
         }
     }
     

@@ -35,9 +35,14 @@ public enum Pagination {
     
     /// Combine `Pagination`'s with each other.
     ///
-    /// It's easy to use with the `+` operator. Example:
+    /// It's easy to use with the `+` operator. Examples:
     /// ```
-    /// .limit(10) + .greaterThan("news123") + .lessThan("news987")
+    /// var pagination = .limit(10) + .greaterThan("news123")
+    /// pagination += .lessThan("news987")
+    /// print(pagination)
+    /// // It will print:
+    /// // and(pagination: .and(pagination: .limit(10), another: .greaterThan("news123")),
+    /// //     another: .lessThan("news987"))
     /// ```
     indirect case and(pagination: Pagination, another: Pagination)
     
@@ -74,5 +79,10 @@ extension Pagination {
     /// An operator for combining Pagination's.
     public static func +(lhs: Pagination, rhs: Pagination) -> Pagination {
         return .and(pagination: lhs, another: rhs)
+    }
+    
+    /// An operator for combining Pagination's.
+    public static func +=(lhs: inout Pagination, rhs: Pagination) {
+        lhs = .and(pagination: lhs, another: rhs)
     }
 }
