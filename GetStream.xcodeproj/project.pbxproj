@@ -16,6 +16,10 @@
 		8A0AD18821C906F100A3167D /* CollectionEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18721C906F100A3167D /* CollectionEndpoint.swift */; };
 		8A0AD18C21C908BB00A3167D /* CollectionObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18B21C908BB00A3167D /* CollectionObjectProtocol.swift */; };
 		8A0AD18E21C9099F00A3167D /* CollectionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18D21C9099F00A3167D /* CollectionObject.swift */; };
+		8A0AD19421CBB2B100A3167D /* AggregatedFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19321CBB2B100A3167D /* AggregatedFeed.swift */; };
+		8A0AD19721CBBE9400A3167D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19621CBBE9400A3167D /* Group.swift */; };
+		8A0AD19921CBC9BD00A3167D /* FlatFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19821CBC9BD00A3167D /* FlatFeed.swift */; };
+		8A0AD19B21CBCBF800A3167D /* Result+ParseGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19A21CBCBF800A3167D /* Result+ParseGroup.swift */; };
 		8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */; };
 		8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */; };
 		8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E521C00E970091A977 /* Client+Reaction.swift */; };
@@ -114,6 +118,10 @@
 		8A0AD18721C906F100A3167D /* CollectionEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEndpoint.swift; sourceTree = "<group>"; };
 		8A0AD18B21C908BB00A3167D /* CollectionObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionObjectProtocol.swift; sourceTree = "<group>"; };
 		8A0AD18D21C9099F00A3167D /* CollectionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionObject.swift; sourceTree = "<group>"; };
+		8A0AD19321CBB2B100A3167D /* AggregatedFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedFeed.swift; sourceTree = "<group>"; };
+		8A0AD19621CBBE9400A3167D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		8A0AD19821CBC9BD00A3167D /* FlatFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatFeed.swift; sourceTree = "<group>"; };
+		8A0AD19A21CBCBF800A3167D /* Result+ParseGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+ParseGroup.swift"; sourceTree = "<group>"; };
 		8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+OpenGraph.swift"; sourceTree = "<group>"; };
 		8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGraphEndpoint.swift; sourceTree = "<group>"; };
 		8A2856E521C00E970091A977 /* Client+Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Reaction.swift"; sourceTree = "<group>"; };
@@ -284,6 +292,16 @@
 			path = Collection;
 			sourceTree = "<group>";
 		};
+		8A0AD19521CBBDBE00A3167D /* Aggregated Feed */ = {
+			isa = PBXGroup;
+			children = (
+				8A0AD19321CBB2B100A3167D /* AggregatedFeed.swift */,
+				8A0AD19A21CBCBF800A3167D /* Result+ParseGroup.swift */,
+				8A0AD19621CBBE9400A3167D /* Group.swift */,
+			);
+			path = "Aggregated Feed";
+			sourceTree = "<group>";
+		};
 		8A2856DF21BFF6930091A977 /* Open Graph */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,9 +376,11 @@
 			isa = PBXGroup;
 			children = (
 				8A6284132199CF9C0002913D /* FeedId.swift */,
-				8A6283DC2199AEE20002913D /* Feed.swift */,
 				8A6283DA2199AEE20002913D /* FeedEndpoint.swift */,
 				8AF44DCC21C2994700A3A7B4 /* Result+ParseFeed.swift */,
+				8A6283DC2199AEE20002913D /* Feed.swift */,
+				8A0AD19821CBC9BD00A3167D /* FlatFeed.swift */,
+				8A0AD19521CBBDBE00A3167D /* Aggregated Feed */,
 				8A64566921A306AB00E890F4 /* Follower.swift */,
 			);
 			path = Feed;
@@ -731,6 +751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A0AD19421CBB2B100A3167D /* AggregatedFeed.swift in Sources */,
 				8A0AD18621C906D600A3167D /* Client+Collection.swift in Sources */,
 				8AF44DC921C2931200A3A7B4 /* Result+ParseActivity.swift in Sources */,
 				8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */,
@@ -744,11 +765,13 @@
 				8AF44DD121C29ADB00A3A7B4 /* Result+ParseUpload.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8AF44DCB21C294F500A3A7B4 /* Result+ParseResponse.swift in Sources */,
+				8A0AD19721CBBE9400A3167D /* Group.swift in Sources */,
 				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
 				8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */,
 				8A411C2D21C4047F001BE61F /* Client+User.swift in Sources */,
 				8A0AD18E21C9099F00A3167D /* CollectionObject.swift in Sources */,
 				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
+				8A0AD19921CBC9BD00A3167D /* FlatFeed.swift in Sources */,
 				8A0AD18C21C908BB00A3167D /* CollectionObjectProtocol.swift in Sources */,
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
 				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
@@ -770,6 +793,7 @@
 				8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
 				8A411C2F21C4048A001BE61F /* UserEndpoint.swift in Sources */,
 				8A6283F12199AEE20002913D /* GetStream.swift in Sources */,
+				8A0AD19B21CBCBF800A3167D /* Result+ParseGroup.swift in Sources */,
 				8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,
 				8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,

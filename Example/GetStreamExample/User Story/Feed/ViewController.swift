@@ -16,10 +16,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
-        let token = Token(secretData: secretData, userId: "eric")
-        let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
-        fetchFeed(client.feed(feedSlug: "timeline", userId: "eric"))
+//        let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
+//        let token = Token(secretData: secretData, userId: "eric")
+//        let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
+        
+        let secretData = "7j7exnksc4nxy399fdxvjqyqsqdahax3nfgtp27pumpc7sfm9um688pzpxjpjbf2".data(using: .utf8)!
+        let token = Token(secretData: secretData, resource: .all, permission: .all, feedId: .any)
+        let client = Client(apiKey: "gp6e8sxxzud6", appId: "44738", token: token, logsEnabled: true)
+        
+//        let flatFeed = client.flatFeed(feedSlug: "aggregated", userId: "777")
+        let aggregatedFeed = client.aggregatedFeed(feedSlug: "aggregated", userId: "777")
+//
+//        flatFeed.get {
+//            print($0)
+//        }
+        
+        aggregatedFeed.get(typeOf: Sport.self) {
+            print($0)
+        }
     }
     
     func collection(_ client: Client) {
@@ -94,7 +108,7 @@ class ViewController: UIViewController {
     }
     
     func reactions(_ client: Client) {
-        let ericFeed = client.feed(feedSlug: "timeline", userId: "eric")
+        let ericFeed = client.flatFeed(feedSlug: "timeline", userId: "eric")
         
         ericFeed.get(typeOf: Activity.self) { activitiesResult in
             let activity = (try! activitiesResult.dematerialize()).first!
@@ -171,7 +185,7 @@ class ViewController: UIViewController {
     }
     
     func checkSubscriptions(_ client: Client) {
-        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
+        let ericFeed = client.flatFeed(feedSlug: "user", userId: "eric")
         
         subscription = ericFeed.subscribe(typeOf: Activity.self) { result in
             print(#function, result)
@@ -204,7 +218,7 @@ class ViewController: UIViewController {
         let token = Token(secretData: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!)
         let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
         
-        let ericFeed = client.feed(feedSlug: "timeline", userId: "eric")
+        let ericFeed = client.flatFeed(feedSlug: "timeline", userId: "eric")
         //        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
         
         //        let activity = Activity(actor: "eric", tweet: "A test tweet.")
@@ -219,7 +233,7 @@ class ViewController: UIViewController {
     }
     
     func followers(_ client: Client) {
-        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
+        let ericFeed = client.flatFeed(feedSlug: "user", userId: "eric")
         //        let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
         //        jessicaFeed.follow(to: ericFeed.feedId) {
         //            print($0)
@@ -265,7 +279,7 @@ class ViewController: UIViewController {
     }
     
     func updateActivity(_ client: Client) {
-        let ericFeed = client.feed(feedSlug: "user", userId: "eric")
+        let ericFeed = client.flatFeed(feedSlug: "user", userId: "eric")
         
         ericFeed.get(typeOf: Activity.self) { result in
             if case .success(let activities) = result, let first = activities.first {
@@ -288,8 +302,8 @@ class ViewController: UIViewController {
     func follow(client: Client) {
         let ericFeedId = FeedId(feedSlug: "user", userId: "eric")
         let jessicaFeedId = FeedId(feedSlug: "timeline", userId: "jessica")
-        let ericFeed = client.feed(ericFeedId)
-        let jessicaFeed = client.feed(jessicaFeedId)
+        let ericFeed = client.flatFeed(ericFeedId)
+        let jessicaFeed = client.flatFeed(jessicaFeedId)
         
         print("Following...")
         ericFeed.follow(to: jessicaFeedId) { result in
@@ -306,7 +320,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func add(activity: Activity, to feed: Feed) {
+    func add(activity: Activity, to feed: FlatFeed) {
         print("Adding to \(feed)...", activity)
         
         feed.add(activity) { result in
@@ -319,10 +333,10 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchFeed(_ feed: Feed, completion: (() -> Void)? = nil) {
+    func fetchFeed(_ feed: FlatFeed, completion: (() -> Void)? = nil) {
         print("Fetching feed \(feed)...")
         
-        feed.get(typeOf: Activity.self, reactionsOptions: [.includeOwn, .includeLatest]) { result in
+        feed.get(typeOf: Activity.self) { result in
             if case .success(let activities) = result {
                 activities.forEach { activity in
                     debugPrint(activity)

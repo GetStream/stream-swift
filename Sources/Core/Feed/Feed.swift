@@ -13,7 +13,7 @@ import Result
 public typealias RemovedCompletion = (_ result: Result<String, ClientError>) -> Void
 public typealias FollowersCompletion = (_ result: Result<[Follower], ClientError>) -> Void
 
-public struct Feed: CustomStringConvertible {
+public class Feed: CustomStringConvertible {
     public let feedId: FeedId
     let client: Client
     
@@ -24,32 +24,6 @@ public struct Feed: CustomStringConvertible {
     public init(_ feedId: FeedId, client: Client) {
         self.feedId = feedId
         self.client = client
-    }
-}
-
-extension Client {
-    /// Get a `Feed` with a given feed group `feedSlug` and `userId`.
-    public func feed(feedSlug: String, userId: String) -> Feed {
-        return feed(FeedId(feedSlug: feedSlug, userId: userId))
-    }
-    
-    /// Get a `Feed` with a given feed group `feedSlug` for the current user if it specified in the Token.
-    ///
-    /// - Note: If the current user is nil in the Token, then the returned feed would be nil.
-    ///
-    /// - Parameters:
-    ///     - feedSlug: a feed group name.
-    public func feed(feedSlug: String) -> Feed? {
-        guard let userId = currentUserId else {
-            return nil
-        }
-        
-        return feed(FeedId(feedSlug: feedSlug, userId: userId))
-    }
-    
-    /// Get a `Feed` with a given `feedId`.
-    public func feed(_ feedId: FeedId) -> Feed {
-        return Feed(feedId, client: self)
     }
 }
 
@@ -81,35 +55,6 @@ extension Feed {
     public func remove(by foreignId: String, completion: @escaping RemovedCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) {
             $0.parseRemoved(completion)
-        }
-    }
-}
-
-// MARK: - Receive Feed Activities
-
-extension Feed {
-    /// Receive feed activities with a custom activity type.
-    ///
-    /// - Parameters:
-    ///     - typeOf: a type of activities that conformed to `ActivityProtocol`.
-    ///     - enrich: when using collections, you can request to enrich activities to include them.
-    ///     - pagination: a pagination options.
-    ///     - ranking: the custom ranking formula used to sort the feed, must be defined in the dashboard.
-    ///     - markOption: mark options to update feed notifications as read/seen.
-    ///     - reactionsOptions: options to include reactions to activities. Check optionsin docs for `FeedReactionsOptions`
-    ///     - completion: a completion handler with Result of a custom activity type.
-    /// - Returns:
-    ///     - a cancellable object to cancel the request.
-    @discardableResult
-    public func get<T: ActivityProtocol>(typeOf: T.Type,
-                                         enrich: Bool = true,
-                                         pagination: Pagination = .none,
-                                         ranking: String? = nil,
-                                         markOption: FeedMarkOption = .none,
-                                         reactionsOptions: FeedReactionsOptions = [],
-                                         completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, ranking ?? "", markOption, reactionsOptions)) {
-            $0.parseActivities(inContainer: true, completion)
         }
     }
 }
