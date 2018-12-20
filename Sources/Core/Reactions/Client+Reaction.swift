@@ -9,11 +9,6 @@
 import Foundation
 import Result
 
-public typealias ReactionCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reaction<T>, ClientError>) -> Void
-public typealias ReactionsCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reactions<T>, ClientError>) -> Void
-
-// MARK: - Client Reactions
-
 extension Client {
     
     // MARK: - Add

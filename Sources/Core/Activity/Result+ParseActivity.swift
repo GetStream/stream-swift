@@ -10,6 +10,9 @@ import Foundation
 import Moya
 import Result
 
+public typealias ActivitiesResult<T> = Result<[T], ClientError>
+public typealias ActivitiesCompletion<T> = (_ result: ActivitiesResult<T>) -> Void
+
 extension Result where Value == Response, Error == ClientError {
     func parseActivities<T: Decodable>(inContainer: Bool = false, _ completion: @escaping ActivitiesCompletion<T>) {
         if case .success(let response) = self {

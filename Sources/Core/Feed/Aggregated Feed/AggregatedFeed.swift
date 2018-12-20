@@ -9,8 +9,6 @@
 import Foundation
 import Result
 
-public typealias GroupCompletion<T: ActivityProtocol> = (_ result: Result<[Group<T>], ClientError>) -> Void
-
 public final class AggregatedFeed: Feed {
     
     /// Receive an aggregated feed activities type of `Activity`.
@@ -18,24 +16,18 @@ public final class AggregatedFeed: Feed {
     /// - Parameters:
     ///     - enrich: when using collections, you can request to enrich activities to include them.
     ///     - pagination: a pagination options.
-    ///     - ranking: the custom ranking formula used to sort the feed, must be defined in the dashboard.
-    ///     - markOption: mark options to update feed notifications as read/seen.
     ///     - reactionsOptions: options to include reactions to activities. Check optionsin docs for `FeedReactionsOptions`
-    ///     - completion: a completion handler with Result of `Activity`.
+    ///     - completion: a completion handler with a group of the `Activity` type.
     /// - Returns:
     ///     - a cancellable object to cancel the request.
     @discardableResult
     public func get(enrich: Bool = true,
                     pagination: Pagination = .none,
-                    ranking: String? = nil,
-                    markOption: FeedMarkOption = .none,
                     reactionsOptions: FeedReactionsOptions = [],
-                    completion: @escaping GroupCompletion<Activity>) -> Cancellable {
+                    completion: @escaping GroupCompletion<Activity, Group<Activity>>) -> Cancellable {
         return get(typeOf: Activity.self,
                    enrich: enrich,
                    pagination: pagination,
-                   ranking: ranking,
-                   markOption: markOption,
                    reactionsOptions: reactionsOptions,
                    completion: completion)
     }
@@ -46,21 +38,17 @@ public final class AggregatedFeed: Feed {
     ///     - typeOf: a type of activities that conformed to `ActivityProtocol`.
     ///     - enrich: when using collections, you can request to enrich activities to include them.
     ///     - pagination: a pagination options.
-    ///     - ranking: the custom ranking formula used to sort the feed, must be defined in the dashboard.
-    ///     - markOption: mark options to update feed notifications as read/seen.
     ///     - reactionsOptions: options to include reactions to activities. Check optionsin docs for `FeedReactionsOptions`
-    ///     - completion: a completion handler with Result of a custom activity type.
+    ///     - completion: a completion handler with a group with a custom activity type.
     /// - Returns:
     ///     - a cancellable object to cancel the request.
     @discardableResult
     public func get<T: ActivityProtocol>(typeOf: T.Type,
                                          enrich: Bool = true,
                                          pagination: Pagination = .none,
-                                         ranking: String? = nil,
-                                         markOption: FeedMarkOption = .none,
                                          reactionsOptions: FeedReactionsOptions = [],
-                                         completion: @escaping GroupCompletion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, ranking ?? "", markOption, reactionsOptions)) {
+                                         completion: @escaping GroupCompletion<T, Group<T>>) -> Cancellable {
+        return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, "", .none, reactionsOptions)) {
             $0.parseGroup(completion)
         }
     }

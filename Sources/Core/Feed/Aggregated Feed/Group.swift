@@ -20,7 +20,7 @@ public class Group<T: ActivityProtocol>: Decodable {
         case activities
     }
     
-    public let id: UUID
+    public let id: String
     public let group: String
     public let verb: String
     public let activitiesCount: Int

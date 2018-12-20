@@ -16,22 +16,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
-//        let token = Token(secretData: secretData, userId: "eric")
-//        let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
-        
-        let secretData = "7j7exnksc4nxy399fdxvjqyqsqdahax3nfgtp27pumpc7sfm9um688pzpxjpjbf2".data(using: .utf8)!
+        let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
+        let token = Token(secretData: secretData, userId: "eric")
+        let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
+    }
+    
+    func aggregation() {
         let token = Token(secretData: secretData, resource: .all, permission: .all, feedId: .any)
         let client = Client(apiKey: "gp6e8sxxzud6", appId: "44738", token: token, logsEnabled: true)
         
-//        let flatFeed = client.flatFeed(feedSlug: "aggregated", userId: "777")
         let aggregatedFeed = client.aggregatedFeed(feedSlug: "aggregated", userId: "777")
-//
-//        flatFeed.get {
-//            print($0)
-//        }
         
         aggregatedFeed.get(typeOf: Sport.self) {
+            print($0)
+        }
+        
+        let notificationFeed = client.notificationFeed(feedSlug: "notification", userId: "1")
+        
+        notificationFeed.get {
             print($0)
         }
     }

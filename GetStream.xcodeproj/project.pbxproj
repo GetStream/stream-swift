@@ -20,6 +20,8 @@
 		8A0AD19721CBBE9400A3167D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19621CBBE9400A3167D /* Group.swift */; };
 		8A0AD19921CBC9BD00A3167D /* FlatFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19821CBC9BD00A3167D /* FlatFeed.swift */; };
 		8A0AD19B21CBCBF800A3167D /* Result+ParseGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19A21CBCBF800A3167D /* Result+ParseGroup.swift */; };
+		8A0AD1A021CBD88B00A3167D /* NotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19F21CBD88B00A3167D /* NotificationFeed.swift */; };
+		8A0AD1A221CBD8BB00A3167D /* NotificationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD1A121CBD8BB00A3167D /* NotificationGroup.swift */; };
 		8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */; };
 		8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */; };
 		8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E521C00E970091A977 /* Client+Reaction.swift */; };
@@ -122,6 +124,8 @@
 		8A0AD19621CBBE9400A3167D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		8A0AD19821CBC9BD00A3167D /* FlatFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatFeed.swift; sourceTree = "<group>"; };
 		8A0AD19A21CBCBF800A3167D /* Result+ParseGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+ParseGroup.swift"; sourceTree = "<group>"; };
+		8A0AD19F21CBD88B00A3167D /* NotificationFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFeed.swift; sourceTree = "<group>"; };
+		8A0AD1A121CBD8BB00A3167D /* NotificationGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationGroup.swift; sourceTree = "<group>"; };
 		8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+OpenGraph.swift"; sourceTree = "<group>"; };
 		8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGraphEndpoint.swift; sourceTree = "<group>"; };
 		8A2856E521C00E970091A977 /* Client+Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Reaction.swift"; sourceTree = "<group>"; };
@@ -302,6 +306,15 @@
 			path = "Aggregated Feed";
 			sourceTree = "<group>";
 		};
+		8A0AD19E21CBD84B00A3167D /* Notification Feed */ = {
+			isa = PBXGroup;
+			children = (
+				8A0AD19F21CBD88B00A3167D /* NotificationFeed.swift */,
+				8A0AD1A121CBD8BB00A3167D /* NotificationGroup.swift */,
+			);
+			path = "Notification Feed";
+			sourceTree = "<group>";
+		};
 		8A2856DF21BFF6930091A977 /* Open Graph */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +394,7 @@
 				8A6283DC2199AEE20002913D /* Feed.swift */,
 				8A0AD19821CBC9BD00A3167D /* FlatFeed.swift */,
 				8A0AD19521CBBDBE00A3167D /* Aggregated Feed */,
+				8A0AD19E21CBD84B00A3167D /* Notification Feed */,
 				8A64566921A306AB00E890F4 /* Follower.swift */,
 			);
 			path = Feed;
@@ -785,9 +799,11 @@
 				8A2856F021C15AF70091A977 /* Reaction.swift in Sources */,
 				8A0AD18821C906F100A3167D /* CollectionEndpoint.swift in Sources */,
 				8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */,
+				8A0AD1A021CBD88B00A3167D /* NotificationFeed.swift in Sources */,
 				8AA22FDF21C46F11005D2C6E /* Moya+Task.swift in Sources */,
 				8A64566A21A306AB00E890F4 /* Follower.swift in Sources */,
 				8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */,
+				8A0AD1A221CBD8BB00A3167D /* NotificationGroup.swift in Sources */,
 				8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */,
 				8A2856EA21C0185C0091A977 /* ReactionEndpoint.swift in Sources */,
 				8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,

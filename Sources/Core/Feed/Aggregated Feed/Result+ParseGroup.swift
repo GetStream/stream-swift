@@ -10,11 +10,13 @@ import Foundation
 import Moya
 import Result
 
+public typealias GroupCompletion<T: ActivityProtocol, G: Group<T>> = (_ result: Result<[G], ClientError>) -> Void
+
 extension Result where Value == Response, Error == ClientError {
-    func parseGroup<T: Decodable>(_ completion: @escaping GroupCompletion<T>) {
+    func parseGroup<T: ActivityProtocol, G: Group<T>>(_ completion: @escaping GroupCompletion<T, G>) {
         if case .success(let response) = self {
             do {
-                let container = try JSONDecoder.stream.decode(ResultsContainer<Group<T>>.self, from: response.data)
+                let container = try JSONDecoder.stream.decode(ResultsContainer<G>.self, from: response.data)
                 completion(.success(container.results))
             } catch let error as ClientError {
                 completion(.failure(error))

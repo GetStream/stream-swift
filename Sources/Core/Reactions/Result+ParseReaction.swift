@@ -10,6 +10,9 @@ import Foundation
 import Moya
 import Result
 
+public typealias ReactionCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reaction<T>, ClientError>) -> Void
+public typealias ReactionsCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reactions<T>, ClientError>) -> Void
+
 extension Result where Value == Response, Error == ClientError {
     
     /// Parse the result with a given reaction completion block.
