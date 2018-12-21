@@ -9,16 +9,20 @@
 import Foundation
 
 public protocol ActivityProtocol: Codable {
+    associatedtype ActorType = Enrichable
+    associatedtype ObjectType = Enrichable
+    associatedtype TargetType = Enrichable
+    
     /// The Stream id of the activity.
     var id: UUID? { get }
     /// The actor performing the activity.
-    var actor: String { get }
+    var actor: ActorType { get }
     /// The verb of the activity.
     var verb: String { get }
     /// The object of the activity.
-    var object: String { get }
+    var object: ObjectType { get }
     /// The optional target of the activity.
-    var target: String? { get }
+    var target: TargetType? { get }
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
     var foreignId: String? { get }
     /// The optional time of the activity, isoformat. Default is the current time.

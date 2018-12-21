@@ -62,9 +62,9 @@ final class ClientTests: TestCase {
     func testFeedEndpointAddActivity() {
         expect("add activity to the feed") { test in
             let activity = Activity(actor: "tester", verb: "test", object: "add activity")
-            XCTAssertEqual(activity.description, "Activity<<no id>> foreignId: <n/a>, tester test add activity  at <n/a> to: []")
+            XCTAssertEqual(activity.description, "EnrichedActivity<String, String, String><n/a> foreignId: n/a tester test add activity at <n/a> feedIds: []")
             
-            client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
+            client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
                 if case .success(let response) = result,
                     let json = (try? response.mapJSON()) as? JSON {
                     XCTAssertEqual(json["actor"] as! String, activity.actor)
@@ -174,7 +174,7 @@ final class ClientTests: TestCase {
         expect(clientError.localizedDescription) { test in
             let activity = Activity(actor: clientError.localizedDescription, verb: "", object: "")
             
-            client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) { result in
+            client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
                 if case .failure(let error) = result {
                     XCTAssertEqual(error.localizedDescription, clientError.localizedDescription)
                     test.fulfill()

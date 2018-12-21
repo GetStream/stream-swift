@@ -59,7 +59,7 @@ import Foundation
 ///         }
 ///     }
 /// ```
-public protocol CollectionObjectProtocol: Codable {
+public protocol CollectionObjectProtocol: Enrichable {
     /// A collection name.
     var collectionName: String { get }
     /// A collection object id.
@@ -70,4 +70,16 @@ public protocol CollectionObjectProtocol: Codable {
     var created: Date { get }
     /// When the collection object was last updated.
     var updated: Date { get }
+}
+
+// MARK: - Enrichable
+
+extension CollectionObjectProtocol {
+    public var referenceId: String {
+        guard let id = id, !id.isEmpty else {
+            return "SO:\(collectionName)"
+        }
+        
+        return "SO:\(collectionName):\(id)"
+    }
 }

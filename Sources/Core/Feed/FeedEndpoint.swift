@@ -9,6 +9,66 @@
 import Foundation
 import Moya
 
+// MARK: - Feed Activity Endpoint
+
+enum FeedActivityEndpoint<T: ActivityProtocol> {
+    case add(_ activity: T, feedId: FeedId)
+}
+
+extension FeedActivityEndpoint: StreamTargetType {
+    var path: String {
+        switch self {
+        case .add(_, let feedId):
+            return "feed/\(feedId.togetherWithSlash)/"
+        }
+    }
+    
+    var method: Moya.Method {
+        return .post
+    }
+    
+    var task: Task {
+        switch self {
+        case .add(let activity, feedId: _):
+            return .requestCustomJSONEncodable(activity, encoder: JSONEncoder.stream)
+        }
+    }
+    
+    var sampleData: Data {
+        var json = ""
+        
+        switch self {
+        case .add(let activity, feedId: _):
+            if (activity.actor as! String) == ClientError.jsonInvalid.localizedDescription {
+                json = "[]"
+                
+            } else if (activity.actor as! String) == ClientError.network("Failed to map data to JSON.", nil).localizedDescription {
+                json = "{"
+                
+            } else if (activity.actor as! String) == ClientError.server(.init(json: ["exception": 0])).localizedDescription {
+                json = "{\"exception\": 0}"
+                
+            } else {
+                json = """
+                {"actor":"\((activity.actor as! Enrichable).referenceId)",
+                "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+                "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
+                "object":"\((activity.object as! Enrichable).referenceId)",
+                "origin":null,
+                "target":"\((activity.target as? Enrichable)?.referenceId ?? "")",
+                "time":"2018-11-14T15:54:45.268000",
+                "to":["timeline:jessica"],
+                "verb":"\(activity.verb)"}
+                """
+            }
+        }
+        
+        return json.data(using: .utf8)!
+    }
+}
+
+// MARK: - Feed Endpoint
+
 enum FeedEndpoint {
     case get(_ feedId: FeedId,
         _ enrich: Bool,
@@ -17,7 +77,6 @@ enum FeedEndpoint {
         _ markOption: FeedMarkOption,
         _ reactionsOptions: FeedReactionsOptions)
     
-    case add(_ activity: ActivityProtocol, feedId: FeedId)
     case deleteById(_ id: UUID, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
     case follow(_ feedId: FeedId, target: FeedId, activityCopyLimit: Int)
@@ -32,9 +91,6 @@ extension FeedEndpoint: StreamTargetType {
         switch self {
         case let .get(feedId, enrich, _, _, _, _):
             return "\(enrich ? "enrich/" : "")feed/\(feedId.togetherWithSlash)/"
-            
-        case .add(_, let feedId):
-            return "feed/\(feedId.togetherWithSlash)/"
             
         case let .deleteById(activityId, feedId):
             return "feed/\(feedId.togetherWithSlash)/\(activityId.lowercasedString)/"
@@ -60,10 +116,8 @@ extension FeedEndpoint: StreamTargetType {
         switch self {
         case .get, .followers, .following:
             return .get
-            
-        case .add, .follow:
+        case .follow:
             return .post
-            
         case .deleteById, .deleteByForeignId, .unfollow:
             return .delete
         }
@@ -99,9 +153,6 @@ extension FeedEndpoint: StreamTargetType {
             }
 
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
-            
-        case .add(let activity, feedId: _):
-            return .requestCustomJSONEncodable(activity, encoder: JSONEncoder.stream)
             
         case .deleteById:
             return .requestPlain
@@ -187,30 +238,6 @@ extension FeedEndpoint: StreamTargetType {
                 "verb":"tweet"}],
                 "next":"",
                 "duration":"15.73ms"}
-                """
-            }
-            
-        case .add(let activity, feedId: _):
-            if activity.actor == ClientError.jsonInvalid.localizedDescription {
-                json = "[]"
-                
-            } else if activity.actor == ClientError.network("Failed to map data to JSON.", nil).localizedDescription {
-                json = "{"
-                
-            } else if activity.actor == ClientError.server(.init(json: ["exception": 0])).localizedDescription {
-                json = "{\"exception\": 0}"
-                
-            } else {
-                json = """
-                {"actor":"\(activity.actor)",
-                "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
-                "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
-                "object":"\(activity.object)",
-                "origin":null,
-                "target":"\(activity.target ?? "")",
-                "time":"2018-11-14T15:54:45.268000",
-                "to":["timeline:jessica"],
-                "verb":"\(activity.verb)"}
                 """
             }
             

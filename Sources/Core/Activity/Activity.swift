@@ -8,7 +8,9 @@
 
 import Foundation
 
-open class Activity: ActivityProtocol, CustomStringConvertible {
+public typealias Activity = EnrichedActivity<String, String, String>
+
+open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: ActivityProtocol, CustomStringConvertible {
     /// - Note: These reserved words must not be used as field names:
     ///         activity_id, activity, analytics, extra_context, id, is_read, is_seen, origin, score, site_id, to
     private enum CodingKeys: String, CodingKey {
@@ -28,13 +30,13 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     /// The Stream id of the activity.
     public var id: UUID?
     /// The actor performing the activity.
-    public let actor: String
+    public let actor: A
     /// The verb of the activity.
     public let verb: String
     /// The object of the activity.
-    public let object: String
+    public let object: O
     /// The optional target of the activity.
-    public let target: String?
+    public let target: T?
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
     public var foreignId: String?
     /// The optional time of the activity, isoformat. Default is the current time.
@@ -59,10 +61,10 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
     ///     - foreignId: a unique ID from your application for this activity.
     ///     - time: a time of the activity, isoformat. Default is the current time.
     ///     - feedIds: an array allows you to specify a list of feeds to which the activity should be copied.
-    public init(actor: String,
+    public init(actor: A,
                 verb: String,
-                object: String,
-                target: String? = nil,
+                object: O,
+                target: T? = nil,
                 foreignId: String? = nil,
                 time: Date? = nil,
                 feedIds: FeedIds? = nil) {
@@ -75,8 +77,21 @@ open class Activity: ActivityProtocol, CustomStringConvertible {
         self.feedIds = feedIds
     }
     
+    open func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encode(actor.referenceId, forKey: .actor)
+        try container.encode(verb, forKey: .verb)
+        try container.encode(object.referenceId, forKey: .object)
+        try container.encodeIfPresent(target?.referenceId, forKey: .target)
+        try container.encodeIfPresent(foreignId, forKey: .foreignId)
+        try container.encodeIfPresent(time, forKey: .time)
+        try container.encodeIfPresent(feedIds, forKey: .feedIds)
+    }
+    
     open var description: String {
-        return "\(type(of: self))<\(id?.lowercasedString ?? "<no id>")> foreignId: <\(foreignId ?? "n/a")>, "
-            + "\(actor) \(verb) \(object) \(target ?? "") at \(time?.description ?? "<n/a>") to: \(feedIds?.description ?? "[]")"
+        return "\(type(of: self))\(id?.lowercasedString ?? "<n/a>") foreignId: \(foreignId ?? "n/a") "
+            + "\(actor.referenceId) \(verb) \(object.referenceId) at \(time?.description ?? "<n/a>") "
+            + "feedIds: \(feedIds?.description ?? "[]")"
     }
 }

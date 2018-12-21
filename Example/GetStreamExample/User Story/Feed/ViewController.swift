@@ -16,12 +16,38 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let secretData = "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!
+        let secretData = "wwzpjxsththuh56373u65rnw9bcjqxb6jxfhu5ux33b6xzyuw6vrdp9bjxg247u6".data(using: .utf8)!
         let token = Token(secretData: secretData, userId: "eric")
-        let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token, logsEnabled: true)
+        let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44738", token: token, logsEnabled: true)
+        enrich(client)
+    }
+    
+    func enrich(_ client: Client) {
+        let user = User(id: "eric", name: "Eric")
+        let burger = Food(name: "Burger", id: "burger")
+        let feed = client.flatFeed(feedSlug: "timeline", userId: "eric")
+        
+//        client.create(user: user) {
+//            print($0)
+//            client.add(collectionObject: burger) {
+//                print($0)
+//
+//        let activity = UserFoodActivity(actor: user, verb: "preparing", object: burger)
+//
+//        feed.add(activity) {
+//            print($0)
+        
+        feed.get(typeOf: UserFoodActivity.self) {
+                print($0)
+            }
+//        }
+//            }
+//        }
     }
     
     func aggregation() {
+        // Java client.
+        let secretData = "7j7exnksc4nxy399fdxvjqyqsqdahax3nfgtp27pumpc7sfm9um688pzpxjpjbf2".data(using: .utf8)!
         let token = Token(secretData: secretData, resource: .all, permission: .all, feedId: .any)
         let client = Client(apiKey: "gp6e8sxxzud6", appId: "44738", token: token, logsEnabled: true)
         
@@ -112,7 +138,7 @@ class ViewController: UIViewController {
     func reactions(_ client: Client) {
         let ericFeed = client.flatFeed(feedSlug: "timeline", userId: "eric")
         
-        ericFeed.get(typeOf: Activity.self) { activitiesResult in
+        ericFeed.get(typeOf: Tweet.self) { activitiesResult in
             let activity = (try! activitiesResult.dematerialize()).first!
             
             client.addReaction(to: activity.id!, kindOf: .comment, data: Comment(text: "Hello!")) {
@@ -189,12 +215,12 @@ class ViewController: UIViewController {
     func checkSubscriptions(_ client: Client) {
         let ericFeed = client.flatFeed(feedSlug: "user", userId: "eric")
         
-        subscription = ericFeed.subscribe(typeOf: Activity.self) { result in
+        subscription = ericFeed.subscribe(typeOf: Tweet.self) { result in
             print(#function, result)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let activity = Activity(actor: "eric", tweet: "realtime")
+            let activity = Tweet(actor: "eric", tweet: "realtime")
             activity.foreignId = "realtime"
             
             ericFeed.add(activity, completion: { result in
@@ -228,7 +254,7 @@ class ViewController: UIViewController {
         //        ericFeed.add(activity) {
         //            print($0)
         
-        ericFeed.get(typeOf: Activity.self, ranking: "popular") { result in
+        ericFeed.get(typeOf: Tweet.self, ranking: "popular") { result in
             print(try! result.dematerialize())
         }
         //        }
@@ -245,14 +271,14 @@ class ViewController: UIViewController {
     }
     
     func setUnsetProperties(_ client: Client) {
-        client.updateActivity(typeOf: Activity.self,
+        client.updateActivity(typeOf: Tweet.self,
                               setProperties: ["tweet": "new"],
                               activityId: UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0")!) {
                                 print($0)
                                 self.fetchActivities(client)
         }
         
-        client.updateActivity(typeOf: Activity.self,
+        client.updateActivity(typeOf: Tweet.self,
                               setProperties: ["tweet": "new2"],
                               foreignId: "D05B0F4D-4DDB-4154-9565-DD424CC70A67",
                               time: "2018-11-16T12:58:06.664401".streamDate!) {
@@ -265,7 +291,7 @@ class ViewController: UIViewController {
         let activityIds = [UUID(uuidString: "42EC2427-E99F-11E8-A1AD-127939012AF0")!,
                            UUID(uuidString: "815B4FA0-E7FC-11E8-8080-80007911093A")!]
         
-        client.get(typeOf: Activity.self, activityIds: activityIds) { result in
+        client.get(typeOf: Tweet.self, activityIds: activityIds) { result in
             print(result)
         }
         
@@ -275,7 +301,7 @@ class ViewController: UIViewController {
         let times = ["2018-11-16T12:58:06.664401".streamDate!,
                      "2018-11-14T11:00:32.282000".streamDate!]
         
-        client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
+        client.get(typeOf: Tweet.self, foreignIds: foreignIds, times: times) { result in
             print(result)
         }
     }
@@ -283,7 +309,7 @@ class ViewController: UIViewController {
     func updateActivity(_ client: Client) {
         let ericFeed = client.flatFeed(feedSlug: "user", userId: "eric")
         
-        ericFeed.get(typeOf: Activity.self) { result in
+        ericFeed.get(typeOf: Tweet.self) { result in
             if case .success(let activities) = result, let first = activities.first {
                 print(first)
                 
@@ -322,7 +348,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func add(activity: Activity, to feed: FlatFeed) {
+    func add(activity: Tweet, to feed: FlatFeed) {
         print("Adding to \(feed)...", activity)
         
         feed.add(activity) { result in
@@ -338,7 +364,7 @@ class ViewController: UIViewController {
     func fetchFeed(_ feed: FlatFeed, completion: (() -> Void)? = nil) {
         print("Fetching feed \(feed)...")
         
-        feed.get(typeOf: Activity.self) { result in
+        feed.get(typeOf: Tweet.self) { result in
             if case .success(let activities) = result {
                 activities.forEach { activity in
                     debugPrint(activity)
@@ -351,7 +377,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func removeFirstAndLastActivities(_ activities: [Activity], in feed: Feed) {
+    func removeFirstAndLastActivities(_ activities: [Tweet], in feed: Feed) {
         if let first = activities.first, let foreignId = first.foreignId {
             print("Deleting from \(feed)...", first)
             
@@ -369,11 +395,11 @@ class ViewController: UIViewController {
         }
     }
     
-    func codable(_ activity: Activity) {
+    func codable(_ activity: Tweet) {
         let data = try! JSONEncoder.stream.encode(activity)
         print(String(data: data, encoding: .utf8)!)
         
-        let decodedActivity = try! JSONDecoder.stream.decode(Activity.self, from: data)
+        let decodedActivity = try! JSONDecoder.stream.decode(Tweet.self, from: data)
         print(decodedActivity)
     }
 }

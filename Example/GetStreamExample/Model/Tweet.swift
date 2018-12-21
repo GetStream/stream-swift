@@ -9,7 +9,7 @@
 import Foundation
 import GetStream
 
-final class Activity: GetStream.Activity {
+final class Tweet: Activity {
     private enum CodingKeys: String, CodingKey {
         case tweet
     }
@@ -27,7 +27,7 @@ final class Activity: GetStream.Activity {
         try super.init(from: decoder)
     }
     
-    override func encode(to encoder: Encoder) throws {
+    override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(tweet, forKey: .tweet)
         try super.encode(to: encoder)

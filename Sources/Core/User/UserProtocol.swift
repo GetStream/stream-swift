@@ -69,7 +69,7 @@ import Foundation
 ///         }
 ///     }
 /// ```
-public protocol UserProtocol: Codable {
+public protocol UserProtocol: Enrichable {
     /// A user Id. Must not be empty or longer than 255 characters.
     var id: String { get }
     /// When the user was created.
@@ -80,4 +80,10 @@ public protocol UserProtocol: Codable {
     var followersCount: Int? { get }
     /// Number of users this user is following.
     var followingCount: Int? { get }
+}
+
+extension UserProtocol {
+    public var referenceId: String {
+        return "SU:\(id)"
+    }
 }

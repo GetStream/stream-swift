@@ -22,6 +22,7 @@
 		8A0AD19B21CBCBF800A3167D /* Result+ParseGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19A21CBCBF800A3167D /* Result+ParseGroup.swift */; };
 		8A0AD1A021CBD88B00A3167D /* NotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD19F21CBD88B00A3167D /* NotificationFeed.swift */; };
 		8A0AD1A221CBD8BB00A3167D /* NotificationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD1A121CBD8BB00A3167D /* NotificationGroup.swift */; };
+		8A0AD1A421CBEA6000A3167D /* Enrichable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD1A321CBEA6000A3167D /* Enrichable.swift */; };
 		8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */; };
 		8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */; };
 		8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E521C00E970091A977 /* Client+Reaction.swift */; };
@@ -126,6 +127,7 @@
 		8A0AD19A21CBCBF800A3167D /* Result+ParseGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+ParseGroup.swift"; sourceTree = "<group>"; };
 		8A0AD19F21CBD88B00A3167D /* NotificationFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFeed.swift; sourceTree = "<group>"; };
 		8A0AD1A121CBD8BB00A3167D /* NotificationGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationGroup.swift; sourceTree = "<group>"; };
+		8A0AD1A321CBEA6000A3167D /* Enrichable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enrichable.swift; sourceTree = "<group>"; };
 		8A2856E021BFF6A80091A977 /* Client+OpenGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+OpenGraph.swift"; sourceTree = "<group>"; };
 		8A2856E221BFF70A0091A977 /* OpenGraphEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGraphEndpoint.swift; sourceTree = "<group>"; };
 		8A2856E521C00E970091A977 /* Client+Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Reaction.swift"; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				8A6283DE2199AEE20002913D /* BaseURL.swift */,
 				8A2856E721C016BB0091A977 /* Pagination.swift */,
 				8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */,
+				8A0AD1A321CBEA6000A3167D /* Enrichable.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				8AF44DCB21C294F500A3A7B4 /* Result+ParseResponse.swift in Sources */,
 				8A0AD19721CBBE9400A3167D /* Group.swift in Sources */,
 				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
+				8A0AD1A421CBEA6000A3167D /* Enrichable.swift in Sources */,
 				8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */,
 				8A411C2D21C4047F001BE61F /* Client+User.swift in Sources */,
 				8A0AD18E21C9099F00A3167D /* CollectionObject.swift in Sources */,

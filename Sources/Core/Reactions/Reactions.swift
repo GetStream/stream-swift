@@ -18,7 +18,7 @@ public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
     }
     
     public let reactions: [Reaction<T>]
-    public var activity: Activity?
+    public var activity: Activity? // TODO: EnrichedActivity
     private var activityContainer: KeyedDecodingContainer<Reactions<T>.ActivityCodingKeys>?
     
     public init(from decoder: Decoder) throws {

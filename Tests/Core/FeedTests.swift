@@ -68,7 +68,7 @@ final class FeedTests: TestCase {
         expect("activities") { test in
             let feed = client.flatFeed(feedSlug: "s", userId: "u")
             
-            feed.get(typeOf: Activity.self, pagination: .limit(1), ranking: "popularity") { result in
+            feed.get(pagination: .limit(1), ranking: "popularity") { result in
                 if case .success(let activities) = result, activities.count == 1 {
                     test.fulfill()
                 }

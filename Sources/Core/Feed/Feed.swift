@@ -32,7 +32,7 @@ extension Feed {
     /// Add a new activity.
     @discardableResult
     public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.add(activity, feedId: feedId)) {
+        return client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) {
             $0.parseActivities(completion)
         }
     }
