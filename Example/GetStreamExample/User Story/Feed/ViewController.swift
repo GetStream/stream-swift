@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         let secretData = "wwzpjxsththuh56373u65rnw9bcjqxb6jxfhu5ux33b6xzyuw6vrdp9bjxg247u6".data(using: .utf8)!
         let token = Token(secretData: secretData, userId: "eric")
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44738", token: token, logsEnabled: true)
-        checkFilesAndImages(client)
+        checkOG(client)
     }
     
     func enrich(_ client: Client) {

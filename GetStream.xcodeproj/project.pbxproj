@@ -46,6 +46,7 @@
 		8A5150E521D0EED60070199F /* NotificationFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5150E421D0EED60070199F /* NotificationFeedTests.swift */; };
 		8A5150E721D0F4690070199F /* CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5150E621D0F4690070199F /* CollectionTests.swift */; };
 		8A5150E921D11FF70070199F /* FilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5150E821D11FF70070199F /* FilesTests.swift */; };
+		8A5150EB21D139E50070199F /* OGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5150EA21D139E50070199F /* OGTests.swift */; };
 		8A6283E12199AEE20002913D /* AuthorizationMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */; };
 		8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */; };
 		8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D62199AEE20002913D /* Codable+Extensions.swift */; };
@@ -150,6 +151,7 @@
 		8A5150E421D0EED60070199F /* NotificationFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFeedTests.swift; sourceTree = "<group>"; };
 		8A5150E621D0F4690070199F /* CollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTests.swift; sourceTree = "<group>"; };
 		8A5150E821D11FF70070199F /* FilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTests.swift; sourceTree = "<group>"; };
+		8A5150EA21D139E50070199F /* OGTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGTests.swift; sourceTree = "<group>"; };
 		8A6283D32199AEE20002913D /* AuthorizationMoyaPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationMoyaPlugin.swift; sourceTree = "<group>"; };
 		8A6283D42199AEE20002913D /* MoyaError+ClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MoyaError+ClientError.swift"; sourceTree = "<group>"; };
 		8A6283D62199AEE20002913D /* Codable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				8A5150E421D0EED60070199F /* NotificationFeedTests.swift */,
 				8A5150E621D0F4690070199F /* CollectionTests.swift */,
 				8A5150E821D11FF70070199F /* FilesTests.swift */,
+				8A5150EA21D139E50070199F /* OGTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				8AE7F99D21A59C8B0074DA21 /* TestCase.swift in Sources */,
 				8A3A4906219C68810010D831 /* ClientTests.swift in Sources */,
 				8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */,
+				8A5150EB21D139E50070199F /* OGTests.swift in Sources */,
 				8A5150E321D0E5170070199F /* AggregatedFeedTests.swift in Sources */,
 				8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */,
 			);

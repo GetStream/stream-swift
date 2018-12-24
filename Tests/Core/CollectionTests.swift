@@ -37,7 +37,6 @@ fileprivate final class Food: CollectionObject {
 }
 
 class CollectionTests: TestCase {
-    let client = Client.test
     
     func testAdd() {
         let burger = Food(name: "Burger", id: "123")

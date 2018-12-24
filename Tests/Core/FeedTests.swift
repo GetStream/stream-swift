@@ -13,8 +13,6 @@ import Result
 
 final class FeedTests: TestCase {
     
-    lazy var client = Client.test
-    
     func testFeed() {
         let feedId = FeedId(feedSlug: "s1", userId: "u1")
         XCTAssertEqual(feedId.together, "s1u1")

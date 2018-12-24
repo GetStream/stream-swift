@@ -10,7 +10,6 @@ import XCTest
 @testable import GetStream
 
 class AggregatedFeedTests: TestCase {
-    let client = Client.test
     lazy var aggregated = client.aggregatedFeed(feedSlug: "aggregated")
 
     func testAggregated() {

@@ -10,7 +10,6 @@ import XCTest
 @testable import GetStream
 
 class FilesTests: TestCase {
-    let client = Client.test
     
     let data = Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==")!
     
