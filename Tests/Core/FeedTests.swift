@@ -17,8 +17,18 @@ final class FeedTests: TestCase {
     
     func testFeed() {
         let feedId = FeedId(feedSlug: "s1", userId: "u1")
+        XCTAssertEqual(feedId.together, "s1u1")
+        XCTAssertEqual(FeedId(feedSlug: "empty", userId: "").togetherWithSlash, "empty")
+        
         XCTAssertEqual(Feed(feedId, client: client).description, "s1:u1")
         XCTAssertEqual(client.flatFeed(feedSlug: "s2", userId: "u2").description, "s2:u2")
+        XCTAssertEqual(client.flatFeed(feedSlug: "flat")!.description, "flat:eric")
+        
+        XCTAssertNil(Client(apiKey: "1",
+                            appId: "2",
+                            token: "3",
+                            networkProvider: NetworkProvider(stubClosure: NetworkProvider.immediatelyStub))
+            .flatFeed(feedSlug: "flat"))
     }
     
     func testFeedAdd() {
