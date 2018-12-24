@@ -12,6 +12,7 @@ public enum ClientError: Error {
     case unexpectedError
     case unexpectedResponse(_ description: String)
     case unknownError(_ localizedDescription: String, _ error: Error?)
+    case parameterInvalid(_ name: AnyKeyPath)
     case jsonInvalid
     case jsonDecode(_ localizedDescription: String, _ error: Error?, _ data: Data)
     case jsonEncode(_ localizedDescription: String, _ error: Error?)
@@ -26,6 +27,8 @@ public enum ClientError: Error {
             return "Unexpected response"
         case .unknownError(let localizedDescription, _):
             return "Unexpected behaviour with error: \(localizedDescription)"
+        case .parameterInvalid(let name):
+            return "Parameter is not valid: \(name)"
         case .jsonInvalid:
             return "A server response is not a JSON"
         case let .jsonDecode(localizedDescription, _, data):

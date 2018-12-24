@@ -18,8 +18,7 @@ public final class AggregatedFeed: Feed {
     ///     - pagination: a pagination options.
     ///     - reactionsOptions: options to include reactions to activities. Check optionsin docs for `FeedReactionsOptions`
     ///     - completion: a completion handler with a group of the `Activity` type.
-    /// - Returns:
-    ///     - a cancellable object to cancel the request.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func get(enrich: Bool = true,
                     pagination: Pagination = .none,
@@ -40,8 +39,7 @@ public final class AggregatedFeed: Feed {
     ///     - pagination: a pagination options.
     ///     - reactionsOptions: options to include reactions to activities. Check optionsin docs for `FeedReactionsOptions`
     ///     - completion: a completion handler with a group with a custom activity type.
-    /// - Returns:
-    ///     - a cancellable object to cancel the request.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func get<T: ActivityProtocol>(typeOf: T.Type,
                                          enrich: Bool = true,

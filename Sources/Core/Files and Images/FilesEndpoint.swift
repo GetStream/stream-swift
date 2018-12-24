@@ -63,6 +63,33 @@ extension FilesEndpoint: StreamTargetType {
             return .requestJSONEncodable(imageProcess)
         }
     }
+    
+    var sampleData: Data {
+        var json = ""
+        
+        switch self {
+        case .uploadFile(let file):
+            if file.data.count > 0 {
+                json = """
+                {"file":"http://uploaded.getstream.io/\(file.name)"}
+                """
+            }
+        case .uploadImage(let file):
+            if file.data.count > 0 {
+                json = """
+                {"file":"http://images.getstream.io/\(file.name)"}
+                """
+            }
+        case .resizeImage(let imageProcess):
+                json = """
+                {"file":"http://images.getstream.io/jpg?crop=\(imageProcess.crop)&h=\(Int(imageProcess.height))&w=\(Int(imageProcess.width))&resize=\(imageProcess.resize.rawValue)&url=\(imageProcess.url)"}
+                """
+        case .deleteFile, .deleteImage:
+            json = "{}"
+        }
+        
+        return json.data(using: .utf8)!
+    }
 }
 
 extension FilesEndpoint {

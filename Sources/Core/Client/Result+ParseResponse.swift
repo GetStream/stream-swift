@@ -15,6 +15,7 @@ typealias CompletionObjects<T> = (_ result: Result<[T], ClientError>) -> Void
 
 extension Result where Value == Response, Error == ClientError {
     
+    /// Parse a response and return the status code.
     func parseStatusCode(_ completion: @escaping StatusCodeCompletion) {
         do {
             let response = try result.dematerialize()

@@ -53,7 +53,6 @@ public final class Client {
         let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
         let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: callbackQueue, plugins: moyaPlugins)
         self.init(apiKey: apiKey, appId: appId, token: token, networkProvider: moyaProvider)
-        parseUserId()
     }
     
     init(apiKey: String, appId: String, token: Token, networkProvider: NetworkProvider) {
@@ -61,6 +60,7 @@ public final class Client {
         self.appId = appId
         self.token = token
         self.networkProvider = networkProvider
+        parseUserId()
     }
     
     private func parseUserId() {

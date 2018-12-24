@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         let secretData = "wwzpjxsththuh56373u65rnw9bcjqxb6jxfhu5ux33b6xzyuw6vrdp9bjxg247u6".data(using: .utf8)!
         let token = Token(secretData: secretData, userId: "eric")
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44738", token: token, logsEnabled: true)
-        enrich(client)
+        checkFilesAndImages(client)
     }
     
     func enrich(_ client: Client) {
@@ -65,9 +65,9 @@ class ViewController: UIViewController {
     }
     
     func collection(_ client: Client) {
-        let food = Food(name: "Burger", id: "burger")
+        let burger = Food(name: "Burger", id: "burger")
         
-        client.add(collectionObject: food) {
+        client.add(collectionObject: burger) {
             let burger = try! $0.dematerialize()
             
             client.get(typeOf: Food.self, collectionName: "food", collectionObjectId: burger.id!) {
@@ -141,36 +141,36 @@ class ViewController: UIViewController {
         ericFeed.get(typeOf: Tweet.self) { activitiesResult in
             let activity = (try! activitiesResult.dematerialize()).first!
             
-            client.addReaction(to: activity.id!, kindOf: .comment, data: Comment(text: "Hello!")) {
+            client.add(reactionTo: activity.id!, kindOf: .comment, data: Comment(text: "Hello!")) {
                 let commentReaction = try! $0.dematerialize()
                 print(commentReaction)
                 
-                client.addReaction(to: activity.id!, parentReactionId: commentReaction.id, kindOf: .like) {
+                client.add(reactionTo: activity.id!, parentReactionId: commentReaction.id, kindOf: .like) {
                     let likeReaction = try! $0.dematerialize()
                     print(likeReaction)
                     
-                    client.addReaction(to: activity.id!,
-                                       parentReactionId: commentReaction.id,
-                                       kindOf: .comment,
-                                       data: Comment(text: "Hey!")) { result in
-                                        let heyReaction = try! result.dematerialize()
-                                        print(heyReaction)
-                                        
-                                        client.reaction(id: commentReaction.id, extraDataTypeOf: Comment.self) {
-                                            let loadedReaction = try! $0.dematerialize()
-                                            print(loadedReaction)
-                                            
-                                            client.update(reactionId: loadedReaction.id, data: Comment(text: "Hi!")) {
-                                                let updatedReaction = try! $0.dematerialize()
-                                                print("1️⃣", updatedReaction)
-                                                self.findReactions(client, reaction: updatedReaction)
-                                                print("2️⃣", updatedReaction.latestChildren(kindOf: .like))
-                                                print("2️⃣", updatedReaction.latestChildren(kindOf: .comment,
-                                                                                                extraDataTypeOf: Comment.self))
-                                                //
-                                                //                                                client.delete(reactionId: updatedReaction.id) { print("✖️", $0) }
-                                            }
-                                        }
+                    client.add(reactionTo: activity.id!,
+                               parentReactionId: commentReaction.id,
+                               kindOf: .comment,
+                               data: Comment(text: "Hey!")) { result in
+                                let heyReaction = try! result.dematerialize()
+                                print(heyReaction)
+                                
+                                client.get(reactionId: commentReaction.id, extraDataTypeOf: Comment.self) {
+                                    let loadedReaction = try! $0.dematerialize()
+                                    print(loadedReaction)
+                                    
+                                    client.update(reactionId: loadedReaction.id, data: Comment(text: "Hi!")) {
+                                        let updatedReaction = try! $0.dematerialize()
+                                        print("1️⃣", updatedReaction)
+                                        self.findReactions(client, reaction: updatedReaction)
+                                        print("2️⃣", updatedReaction.latestChildren(kindOf: .like))
+                                        print("2️⃣", updatedReaction.latestChildren(kindOf: .comment,
+                                                                                        extraDataTypeOf: Comment.self))
+                                        //
+                                        //                                                client.delete(reactionId: updatedReaction.id) { print("✖️", $0) }
+                                    }
+                                }
                     }
                 }
             }

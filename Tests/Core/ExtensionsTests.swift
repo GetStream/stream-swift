@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Moya
 @testable import GetStream
 
 final class ExtensionsTests: XCTestCase {
@@ -109,5 +110,26 @@ final class ExtensionsTests: XCTestCase {
         formatter.dateStyle = .full
         formatter.timeStyle = .full
         XCTAssertEqual(formatter.string(from: date), formatter.string(from: streamDate))
+    }
+    
+    func testStreamTargetType() {
+        struct Test: StreamTargetType {
+            var path: String = ""
+            var method: Moya.Method = Moya.Method.get
+            var task: Task = .requestPlain
+        }
+        
+        let test = Test()
+        
+        XCTAssertEqual(test.baseURL, URL(string: "https://getstream.io")!)
+        XCTAssertEqual(test.headers, ["X-Stream-Client": "stream-swift-client-\(Client.version)"])
+        XCTAssertEqual(test.sampleData, Data())
+    }
+    
+    func testSimpleCancellable() {
+        let cancellable = SimpleCancellable()
+        XCTAssertFalse(cancellable.isCancelled)
+        cancellable.cancel()
+        XCTAssertTrue(cancellable.isCancelled)
     }
 }

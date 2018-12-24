@@ -52,4 +52,23 @@ extension CollectionEndpoint: StreamTargetType {
             return .requestJSONEncodable(collectionObject)
         }
     }
+    
+    var sampleData: Data {
+        var json = ""
+        
+        switch self {
+        case .add, .get:
+            json = """
+            {"duration":"4.15ms","id":"123","collection":"food","foreign_id":"food:123","data":{ "name": "Burger" },"created_at":"2018-12-24T13:35:02.290307Z","updated_at":"2018-12-24T13:35:02.290307Z"}
+            """
+        case .update:
+            json = """
+            {"duration":"4.15ms","id":"123","collection":"food","foreign_id":"food:123","data":{ "name": "Burger2" },"created_at":"2018-12-24T13:35:02.290307Z","updated_at":"2018-12-24T13:35:02.290307Z"}
+            """
+        case .delete:
+            json = "{}"
+        }
+        
+        return json.data(using: .utf8)!
+    }
 }

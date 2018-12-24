@@ -13,13 +13,14 @@ public typealias UserCompletion<T: UserProtocol> = (_ result: Result<T, ClientEr
 
 extension Client {
     
-    /// Create or add a user with a given data.
+    /// Create or add an user with a given data.
     ///
     /// - Parameters:
-    ///     - user: a user of type `UserProtocol`, where `id` must not be empty or longer than 255 characters.
+    ///     - user: an user of type `UserProtocol`, where `id` must not be empty or longer than 255 characters.
     ///     - getOrCreate: if true, if a user with the same `id` already exists, it will be returned.
     ///                    Otherwise, the endpoint will return `409 Conflict`. Default: true.
     ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func create<T: UserProtocol>(user: T, getOrCreate: Bool = true, completion: @escaping UserCompletion<T>) -> Cancellable {
         return request(endpoint: UserEndpoint.create(user, getOrCreate)) {
@@ -27,24 +28,26 @@ extension Client {
         }
     }
     
-    /// Get a user by default `User` type with a given `userId`.
+    /// Get an user by default `User` type with a given `userId`.
     ///
     /// - Parameters:
-    ///     - userId: a user id string.
+    ///     - userId: an user id string.
     ///     - withFollowCounts: if true, the followingCount and followersCount will be included in the response. Default: false.
     ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func get(userId: String, withFollowCounts: Bool = false, completion: @escaping UserCompletion<User>) -> Cancellable {
         return get(typeOf: User.self, userId: userId, completion: completion)
     }
     
-    /// Get a user with a given `userId`.
+    /// Get an user with a given `userId`.
     ///
     /// - Parameters:
     ///     - typeOf: a type of an user type that conformed to `UserProtocol`.
-    ///     - userId: a user id string.
+    ///     - userId: an user id string.
     ///     - withFollowCounts: if true, the followingCount and followersCount will be included in the response. Default: false.
     ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func get<T: UserProtocol>(typeOf: T.Type,
                                      userId: String,
@@ -55,11 +58,12 @@ extension Client {
         }
     }
     
-    /// Update user data.
+    /// Update the user data.
     ///
     /// - Parameters:
-    ///     - user: a user of type `UserProtocol`, where `id` must not be empty or longer than 255 characters.
+    ///     - user: the user of type `UserProtocol`, where `id` must not be empty or longer than 255 characters.
     ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func update<T: UserProtocol>(user: T, completion: @escaping UserCompletion<T>) -> Cancellable {
         return request(endpoint: UserEndpoint.update(user)) {
@@ -70,8 +74,9 @@ extension Client {
     /// Delete a user with a given `userId`.
     ///
     /// - Parameters:
-    ///     - userId: a user id string.
+    ///     - userId: an user id string.
     ///     - completion: a completion block with a response status code.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func delete(userId: String, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: UserEndpoint.delete(userId)) {

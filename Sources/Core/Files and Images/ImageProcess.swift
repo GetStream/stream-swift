@@ -24,11 +24,11 @@ public struct ImageProcess: Codable {
     /// Cropping modes as a comma separated list. Allowed values are top, bottom, left, right, center.
     let crop: String
     /// Width of the processed image.
-    let width: Float
+    let width: Int
     /// Height of the processed image.
-    let height: Float
+    let height: Int
     
-    public init(url: URL, resize: ResizeStrategy = .clip, crop: CropMode = .center, width: Float, height: Float) {
+    public init(url: URL, resize: ResizeStrategy = .clip, crop: CropMode = .center, width: Int, height: Int) {
         self.url = url
         self.resize = resize
         self.crop = crop.description

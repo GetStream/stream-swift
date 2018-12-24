@@ -18,6 +18,7 @@ extension Client {
     /// - Parameters:
     ///     - collectionObject: a collection object.
     ///     - completion: a completion block with a collection object that was added.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func add<T: CollectionObjectProtocol>(collectionObject: T,
                                                  completion: @escaping CollectionObjectCompletion<T>) -> Cancellable {
@@ -33,6 +34,7 @@ extension Client {
     ///     - collectionName: a collection name.
     ///     - collectionObjectId: a collection object id.
     ///     - completion: a completion block with a requested collection object.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func get<T: CollectionObjectProtocol>(typeOf: T.Type,
                                                  collectionName: String,
@@ -48,6 +50,7 @@ extension Client {
     /// - Parameters:
     ///     - collectionObject: a collection object.
     ///     - completion: a completion block with an updated collection object.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func update<T: CollectionObjectProtocol>(collectionObject: T,
                                                     completion: @escaping CollectionObjectCompletion<T>) -> Cancellable {
@@ -56,6 +59,12 @@ extension Client {
         }
     }
     
+    /// Delete a collection object.
+    ///
+    /// - Parameters:
+    ///     - collectionObject: a collection object.
+    ///     - completion: a completion block with a response status code.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func delete<T: CollectionObjectProtocol>(collectionObject: T,
                                                     completion: @escaping StatusCodeCompletion) -> Cancellable {
@@ -66,13 +75,14 @@ extension Client {
         
         return delete(collectionName: collectionObject.collectionName, collectionObjectId: objectId, completion: completion)
     }
-
-    /// Delete a collection object.
+    
+    /// Delete a collection object with a given collection name and object id.
     ///
     /// - Parameters:
     ///     - collectionName: a collection name.
     ///     - collectionObjectId: a collection object id.
     ///     - completion: a completion block with a response status code.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func delete(collectionName: String,
                        collectionObjectId: String,

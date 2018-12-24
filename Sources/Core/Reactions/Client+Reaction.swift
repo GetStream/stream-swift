@@ -13,27 +13,46 @@ extension Client {
     
     // MARK: - Add
     
+    /// Add a reaction to the activity without any extra data.
+    ///
+    /// - Parameters:
+    ///     - activityId: the activity id for the reaction. Must be a valid activity id.
+    ///     - parentReactionId: the id of the parent reaction. If provided, it must be the id of a reaction that has no parents.
+    ///     - kind: the type of the reaction. Must not be empty or longer than 255 characters.
+    ///     - targetsFeedIds: target feeds for the reaction.
+    ///     - completion: a completion block with a created reaction.
+    /// - Returns: an object to cancel the request.
     @discardableResult
-    public func addReaction(to activityId: UUID,
-                            parentReactionId: UUID? = nil,
-                            kindOf kind: ReactionKind,
-                            targetsFeedIds: [FeedId] = [],
-                            completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
-        return addReaction(to: activityId,
-                           parentReactionId: parentReactionId,
-                           kindOf: kind,
-                           data: ReactionNoExtraData.shared,
-                           targetsFeedIds: targetsFeedIds,
-                           completion: completion)
+    public func add(reactionTo activityId: UUID,
+                    parentReactionId: UUID? = nil,
+                    kindOf kind: ReactionKind,
+                    targetsFeedIds: [FeedId] = [],
+                    completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
+        return add(reactionTo: activityId,
+                   parentReactionId: parentReactionId,
+                   kindOf: kind,
+                   data: ReactionNoExtraData.shared,
+                   targetsFeedIds: targetsFeedIds,
+                   completion: completion)
     }
     
+    /// Add a reaction to the activity with extra data type of `ReactionExtraDataProtocol`.
+    ///
+    /// - Parameters:
+    ///     - activityId: the activity id for the reaction. Must be a valid activity id.
+    ///     - parentReactionId: the id of the parent reaction. If provided, it must be the id of a reaction that has no parents.
+    ///     - kind: the type of the reaction. Must not be empty or longer than 255 characters.
+    ///     - data: an extra data for the reaction. Should be an object type of `ReactionExtraDataProtocol`.
+    ///     - targetsFeedIds: target feeds for the reaction.
+    ///     - completion: a completion block with a created reaction.
+    /// - Returns: an object to cancel the request.
     @discardableResult
-    public func addReaction<T: ReactionExtraDataProtocol>(to activityId: UUID,
-                                                          parentReactionId: UUID? = nil,
-                                                          kindOf kind: ReactionKind,
-                                                          data: T,
-                                                          targetsFeedIds: [FeedId] = [],
-                                                          completion: @escaping ReactionCompletion<T>) -> Cancellable {
+    public func add<T: ReactionExtraDataProtocol>(reactionTo activityId: UUID,
+                                                  parentReactionId: UUID? = nil,
+                                                  kindOf kind: ReactionKind,
+                                                  data: T,
+                                                  targetsFeedIds: [FeedId] = [],
+                                                  completion: @escaping ReactionCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.add(activityId, parentReactionId, kind, data, targetsFeedIds)) {
             $0.parseReaction(completion)
         }
@@ -41,22 +60,25 @@ extension Client {
     
     // MARK: - Get
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
-    public func reaction(id: UUID, completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
-        return reaction(id: id, extraDataTypeOf: ReactionNoExtraData.self, completion: completion)
+    public func get(reactionId: UUID, completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
+        return get(reactionId: reactionId, extraDataTypeOf: ReactionNoExtraData.self, completion: completion)
     }
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
-    public func reaction<T: ReactionExtraDataProtocol>(id: UUID,
-                                                       extraDataTypeOf: T.Type,
-                                                       completion: @escaping ReactionCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.get(id)) {
+    public func get<T: ReactionExtraDataProtocol>(reactionId: UUID,
+                                                  extraDataTypeOf: T.Type,
+                                                  completion: @escaping ReactionCompletion<T>) -> Cancellable {
+        return request(endpoint: ReactionEndpoint.get(reactionId)) {
             $0.parseReaction(completion)
         }
     }
     
     // MARK: - Update
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func update(reactionId: UUID,
                        targetsFeedIds: [FeedId] = [],
@@ -67,6 +89,7 @@ extension Client {
                       completion: completion)
     }
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func update<T: ReactionExtraDataProtocol>(reactionId: UUID,
                                                      data: T,
@@ -79,6 +102,7 @@ extension Client {
     
     // MARK: - Delete
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func delete(reactionId: UUID, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: ReactionEndpoint.delete(reactionId)) {
@@ -88,6 +112,7 @@ extension Client {
     
     // MARK: - Fetch Reactions
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func reactions(forActivityId activityId: UUID,
                           kindOf kind: ReactionKind? = nil,
@@ -102,6 +127,7 @@ extension Client {
                          completion: completion)
     }
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func reactions<T: ReactionExtraDataProtocol>(forActivityId activityId: UUID,
                                                         kindOf kind: ReactionKind? = nil,
@@ -114,6 +140,7 @@ extension Client {
         }
     }
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func reactions(forReactionId reactionId: UUID,
                           kindOf kind: ReactionKind? = nil,
@@ -126,6 +153,7 @@ extension Client {
                          completion: completion)
     }
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func reactions<T: ReactionExtraDataProtocol>(forReactionId reactionId: UUID,
                                                         kindOf kind: ReactionKind? = nil,
@@ -137,6 +165,7 @@ extension Client {
         }
     }
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func reactions(forUserId userId: String,
                           kindOf kind: ReactionKind? = nil,
@@ -149,6 +178,7 @@ extension Client {
                          completion: completion)
     }
     
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func reactions<T: ReactionExtraDataProtocol>(forUserId userId: String,
                                                         kindOf kind: ReactionKind? = nil,
