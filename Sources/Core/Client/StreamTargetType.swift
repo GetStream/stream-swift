@@ -9,7 +9,9 @@
 import Foundation
 import Moya
 
-protocol StreamTargetType: TargetType {}
+protocol StreamTargetType: TargetType {
+    var sampleJSON: String { get }
+}
 
 extension StreamTargetType {
     var baseURL: URL {
@@ -20,7 +22,11 @@ extension StreamTargetType {
         return Client.headers
     }
     
+    var sampleJSON: String {
+        return ""
+    }
+    
     var sampleData: Data {
-        return Data()
+        return sampleJSON.data(using: .utf8)!
     }
 }

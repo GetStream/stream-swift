@@ -34,36 +34,29 @@ extension FeedActivityEndpoint: StreamTargetType {
         }
     }
     
-    var sampleData: Data {
-        var json = ""
-        
+    var sampleJSON: String {
         switch self {
         case .add(let activity, feedId: _):
             if (activity.actor as! String) == ClientError.jsonInvalid.localizedDescription {
-                json = "[]"
-                
+                return "[]"
             } else if (activity.actor as! String) == ClientError.network("Failed to map data to JSON.", nil).localizedDescription {
-                json = "{"
-                
+                return "{"
             } else if (activity.actor as! String) == ClientError.server(.init(json: ["exception": 0])).localizedDescription {
-                json = "{\"exception\": 0}"
-                
-            } else {
-                json = """
-                {"actor":"\((activity.actor as! Enrichable).referenceId)",
-                "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
-                "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
-                "object":"\((activity.object as! Enrichable).referenceId)",
-                "origin":null,
-                "target":"\((activity.target as? Enrichable)?.referenceId ?? "")",
-                "time":"2018-11-14T15:54:45.268000",
-                "to":["timeline:jessica"],
-                "verb":"\(activity.verb)"}
-                """
+                return "{\"exception\": 0}"
             }
+            
+            return """
+            {"actor":"\((activity.actor as! Enrichable).referenceId)",
+            "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+            "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
+            "object":"\((activity.object as! Enrichable).referenceId)",
+            "origin":null,
+            "target":"\((activity.target as? Enrichable)?.referenceId ?? "")",
+            "time":"2018-11-14T15:54:45.268000",
+            "to":["timeline:jessica"],
+            "verb":"\(activity.verb)"}
+            """
         }
-        
-        return json.data(using: .utf8)!
     }
 }
 
@@ -185,59 +178,51 @@ extension FeedEndpoint: StreamTargetType {
         }
     }
     
-    var sampleData: Data {
-        var json = ""
-        
+    var sampleJSON: String {
         switch self {
         case let .get(feedId, _, pagination, _, _, _):
             if feedId.feedSlug == "bad" {
-                json = "{"
+                return ""
             } else if feedId.feedSlug == "aggregated" {
-                json = """
+                return """
                 {"results":[{"activities":[{"actor":"Me","foreign_id":"","id":"2e7ef88c-0505-11e9-94fe-0a9265761cda","nr_of_penalty":2,"nr_of_score":3,"object":"Message","origin":null,"target":"","time":"2018-12-21T09:45:42.455925","type":"football","verb":"verb"},{"actor":"Me","foreign_id":"","id":"2e6df127-0505-11e9-aafe-1231d51167b4","nr_of_blocked":1,"nr_of_served":1,"object":"Message","origin":null,"target":"","time":"2018-12-21T09:45:42.344324","type":"volley","verb":"verb"}],"activity_count":2,"actor_count":1,"created_at":"2018-12-21T09:45:42.348570","group":"verb_2018-12-21","id":"2e7ef88c-0505-11e9-94fe-0a9265761cda","updated_at":"2018-12-21T09:45:42.461997","verb":"verb"},{"activities":[{"actor":"Me","foreign_id":"","id":"a79f4090-ddfa-11e8-9c6f-1231d51167b4","nr_of_penalty":2,"nr_of_score":3,"object":"Message","origin":null,"target":"","time":"2018-11-01T17:22:05.859445","type":"football","verb":"verb"},{"actor":"Me","foreign_id":"","id":"a78f74a5-ddfa-11e8-9c6c-1231d51167b4","nr_of_blocked":1,"nr_of_served":1,"object":"Message","origin":null,"target":"","time":"2018-11-01T17:22:05.755921","type":"volley","verb":"verb"}],"activity_count":2,"actor_count":1,"created_at":"2018-11-01T17:22:05.760803","group":"verb_2018-11-01","id":"a79f4090-ddfa-11e8-9c6f-1231d51167b4","updated_at":"2018-11-01T17:22:05.864280","verb":"verb"}],"next":"","duration":"18.25ms"}
                 """
             } else if feedId.feedSlug == "notifications" {
-                json = """
+                return """
                 {"results":[{"activities":[{"actor":"test","foreign_id":"","id":"79d41147-d2f2-11e8-bf25-1231d51167b4","object":"test","origin":null,"target":"","time":"2018-10-18T16:25:50.265991","verb":"test"},{"actor":"test","foreign_id":"","id":"796e2993-d2f2-11e8-a318-0a9265761cda","object":"test","origin":null,"target":"","time":"2018-10-18T16:25:49.598146","verb":"test"},{"actor":"test","foreign_id":"","id":"22c058de-d2f2-11e8-a18a-0a9265761cda","object":"test","origin":null,"target":"","time":"2018-10-18T16:23:24.174973","verb":"test"},{"actor":"test","foreign_id":"","id":"225c7acc-d2f2-11e8-a189-0a9265761cda","object":"test","origin":null,"target":"","time":"2018-10-18T16:23:23.520482","verb":"test"},{"actor":"test","foreign_id":"","id":"352686cf-d2f1-11e8-b9c2-1231d51167b4","object":"test","origin":null,"target":"","time":"2018-10-18T16:16:45.546875","verb":"test"},{"actor":"test","foreign_id":"","id":"34c3afcc-d2f1-11e8-b9bc-1231d51167b4","object":"test","origin":null,"target":"","time":"2018-10-18T16:16:44.899118","verb":"test"}],"activity_count":6,"actor_count":1,"created_at":"2018-10-18T16:16:44.904186","group":"test_2018-10-18","id":"79d41147-d2f2-11e8-bf25-1231d51167b4.test_2018-10-18","is_read":false,"is_seen":true,"updated_at":"2018-10-18T16:25:50.272399","verb":"test"}],"next":"","duration":"9.98ms","unseen":0,"unread":1}
                 """
                 
             } else if feedId.feedSlug == "enrich" {
-                json = """
+                return """
                 {"results":[{"actor":{"created_at":"2018-12-20T15:41:25.181144Z","updated_at":"2018-12-20T15:41:25.181144Z","id":"eric","data":{}},"foreign_id":"","id":"ce918867-0520-11e9-a11e-0a286b200b2e","object":{"id":"burger","collection":"food","foreign_id":"food:burger","data":{},"created_at":"2018-12-20T16:07:14.726306Z","updated_at":"2018-12-20T16:07:14.726306Z"},"origin":null,"target":"","time":"2018-12-21T13:03:27.424727","verb":"preparing"}],"next":"","duration":"15.71ms"}
                 """
                 
             } else if case .limit(let limit) = pagination, limit == 1 {
-                json = """
+                return """
                 {"results":[{"actor":"eric","foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D","id":"9b5b3540-e825-11e8-8080-800016ff21e4","object":"Hello world 3","origin":null,"target":"","time":"2018-11-14T15:54:45.268000","to":["timeline:jessica"],"verb":"tweet"}],"next":"","duration":"2.31ms"}
                 """
             } else {
-                json = """
+                return """
                 {"results":[{"actor":"eric","foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D","id":"9b5b3540-e825-11e8-8080-800016ff21e4","object":"Hello world 3","origin":null,"target":"","time":"2018-11-14T15:54:45.268000","to":["timeline:jessica"],"verb":"tweet"},{"actor":"eric","foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6","id":"815b4fa0-e7fc-11e8-8080-80007911093a","object":"Hello world 2","origin":null,"target":"","time":"2018-11-14T11:00:32.282000","verb":"tweet"},{"actor":"eric","foreign_id":"FFBE449A-54B1-4701-A1E1-79E5DD5AF4BD","id":"2737dc60-e7fb-11e8-8080-80014193e462","object":"Hello world 1","origin":null,"target":"","time":"2018-11-14T10:50:51.558000","verb":"tweet"}],"next":"","duration":"15.73ms"}
                 """
             }
             
         case .deleteById(let activityId, _):
-            json = "{\"removed\":\"\(activityId.lowercasedString)\"}"
+            return "{\"removed\":\"\(activityId.lowercasedString)\"}"
             
         case .deleteByForeignId(let foreignId, _):
-            json = "{\"removed\":\"\(foreignId)\"}"
+            return "{\"removed\":\"\(foreignId)\"}"
             
         case .follow(_, let target, _):
             if target.description == "s2:u2" {
-                json = "{}"
+                return "{}"
             }
             
         case let .unfollow(_, target, keepHistory):
-            if target.description == "s2:u2" {
-                json = "{}"
-            }
-            
-            if keepHistory {
-                json = "[]"
-            }
+            return keepHistory ? "[]" : (target.description == "s2:u2" ? "{}" : "")
             
         case .followers(let feedId, _, _):
-            json = """
+            return """
             {"results": [
             {"feed_id": "\(feedId.togetherWithColon)",
             "target_id": "s2:u2",
@@ -246,7 +231,7 @@ extension FeedEndpoint: StreamTargetType {
             """
             
         case .following(let feedId, _, _, _):
-            json = """
+            return """
             {"results": [
             {"feed_id": "\(feedId.togetherWithColon)",
             "target_id": "s2:u2",
@@ -255,7 +240,7 @@ extension FeedEndpoint: StreamTargetType {
             """
         }
         
-        return json.data(using: .utf8)!
+        return ""
     }
 }
 

@@ -64,31 +64,29 @@ extension FilesEndpoint: StreamTargetType {
         }
     }
     
-    var sampleData: Data {
-        var json = ""
-        
+    var sampleJSON: String {
         switch self {
         case .uploadFile(let file):
             if file.data.count > 0 {
-                json = """
+                return """
                 {"file":"http://uploaded.getstream.io/\(file.name)"}
                 """
             }
         case .uploadImage(let file):
             if file.data.count > 0 {
-                json = """
+                return """
                 {"file":"http://images.getstream.io/\(file.name)"}
                 """
             }
         case .resizeImage(let imageProcess):
-                json = """
+                return """
                 {"file":"http://images.getstream.io/jpg?crop=\(imageProcess.crop)&h=\(Int(imageProcess.height))&w=\(Int(imageProcess.width))&resize=\(imageProcess.resize.rawValue)&url=\(imageProcess.url)"}
                 """
         case .deleteFile, .deleteImage:
-            json = "{}"
+            return "{}"
         }
         
-        return json.data(using: .utf8)!
+        return ""
     }
 }
 

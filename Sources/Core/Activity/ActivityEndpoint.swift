@@ -69,13 +69,11 @@ extension ActivityEndpoint: StreamTargetType {
         }
     }
     
-    var sampleData: Data {
-        var json: String = ""
-        
+    var sampleJSON: String {
         switch self {
         case .getByIds(let activitiesIds):
             if activitiesIds.count == 2 {
-                json = """
+                return """
                 {"results":[
                 {"actor":"eric",
                 "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
@@ -100,7 +98,7 @@ extension ActivityEndpoint: StreamTargetType {
             }
         case let .get(foreignIds, times):
             if foreignIds.count == 2 {
-                json = """
+                return """
                 {"results":[
                 {"actor":"eric",
                 "foreign_id":"\(foreignIds[0])",
@@ -124,12 +122,12 @@ extension ActivityEndpoint: StreamTargetType {
                 """
             }
         case .update:
-            json = "{}"
+            return "{}"
         case let .updateActivityById(setProperties, unsetPropertiesNames, activityId):
             if let setProperties = setProperties as? [String: String],
                 let unsetPropertiesNames = unsetPropertiesNames,
                 unsetPropertiesNames.contains("image") {
-                json = """
+                return """
                 {"actor":"eric",
                 "foreign_id":"",
                 "id":"\(activityId.lowercasedString)",
@@ -145,7 +143,7 @@ extension ActivityEndpoint: StreamTargetType {
             if let setProperties = setProperties as? [String: String],
                 let unsetPropertiesNames = unsetPropertiesNames,
                 unsetPropertiesNames.contains("image") {
-                json = """
+                return """
                 {"actor":"eric",
                 "foreign_id":"\(foreignId)",
                 "id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
@@ -159,7 +157,7 @@ extension ActivityEndpoint: StreamTargetType {
             }
         }
         
-        return json.data(using: .utf8)!
+        return ""
     }
 }
 
