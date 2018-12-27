@@ -23,9 +23,9 @@ extension Client {
 class TestCase: XCTestCase {
     lazy var client = Client.test
     
-    func expect(_ description: String, callback: (_ test: XCTestExpectation) -> Void) {
+    func expect(_ description: String, timeout: TimeInterval = TimeInterval(1), callback: (_ test: XCTestExpectation) -> Void) {
         let test = expectation(description: "⏳ expecting \(description)")
         callback(test)
-        wait(for: [test], timeout: TimeInterval(1))
+        wait(for: [test], timeout: timeout)
     }
 }
