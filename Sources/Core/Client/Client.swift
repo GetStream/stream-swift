@@ -176,24 +176,22 @@ extension Client {
     @discardableResult
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
         return networkProvider.request(MultiTarget(endpoint)) { result in
-            if case .success(let response) = result {
-                do {
-                    if let json = try response.mapJSON() as? JSON {
-                        if json["exception"] != nil {
-                            completion(.failure(.server(.init(json: json))))
-                        } else {
-                            completion(.success(response))
-                        }
+            do {
+                let response = try result.dematerialize()
+                
+                if let json = try response.mapJSON() as? JSON {
+                    if json["exception"] != nil {
+                        completion(.failure(.server(.init(json: json))))
                     } else {
-                        completion(.failure(.jsonInvalid))
+                        completion(.success(response))
                     }
-                } catch let moyaError as MoyaError {
-                    completion(.failure(moyaError.clientError))
-                } catch {
-                    completion(.failure(.unknownError(error.localizedDescription, error)))
+                } else {
+                    completion(.failure(.jsonInvalid))
                 }
-            } else if case .failure(let moyaError) = result {
+            } catch let moyaError as MoyaError {
                 completion(.failure(moyaError.clientError))
+            } catch {
+                completion(.failure(.unknownError(error.localizedDescription, error)))
             }
         }
     }

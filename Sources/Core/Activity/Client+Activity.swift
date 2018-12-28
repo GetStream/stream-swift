@@ -9,6 +9,9 @@
 import Foundation
 import Result
 
+public typealias ActivityCompletion<T> = (_ result: Result<T, ClientError>) -> Void
+public typealias ActivitiesCompletion<T> = (_ result: Result<[T], ClientError>) -> Void
+
 extension Client {
     
     /// Receive activities by activity ids with a custom activity type.
@@ -19,7 +22,7 @@ extension Client {
                                          activityIds: [UUID],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) {
-            $0.parseActivities(inContainer: true, completion)
+            $0.parse(completion)
         }
     }
     
@@ -32,7 +35,7 @@ extension Client {
                                          times: [Date],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.get(foreignIds: foreignIds, times: times)) {
-            $0.parseActivities(inContainer: true, completion)
+            $0.parse(completion)
         }
     }
     
@@ -71,11 +74,11 @@ extension Client {
                                                     setProperties properties: Properties? = nil,
                                                     unsetPropertiesNames names: [String]? = nil,
                                                     activityId: UUID,
-                                                    completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
+                                                    completion: @escaping ActivityCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.updateActivityById(setProperties: properties,
                                                                         unsetPropertiesNames: names,
                                                                         activityId: activityId)) {
-                                                                            $0.parseActivities(completion)
+                                                                            $0.parse(completion)
         }
     }
     
@@ -102,12 +105,12 @@ extension Client {
                                                     unsetPropertiesNames names: [String]? = nil,
                                                     foreignId: String,
                                                     time: Date,
-                                                    completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
+                                                    completion: @escaping ActivityCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.updateActivity(setProperties: properties,
                                                                     unsetPropertiesNames: names,
                                                                     foreignId: foreignId,
                                                                     time: time)) {
-                                                                        $0.parseActivities(completion)
+                                                                        $0.parse(completion)
         }
     }
 }

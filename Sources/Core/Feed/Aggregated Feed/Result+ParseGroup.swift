@@ -14,17 +14,12 @@ public typealias GroupCompletion<T: ActivityProtocol, G: Group<T>> = (_ result: 
 
 extension Result where Value == Response, Error == ClientError {
     func parseGroup<T: ActivityProtocol, G: Group<T>>(_ completion: @escaping GroupCompletion<T, G>) {
-        if case .success(let response) = self {
-            do {
-                let container = try JSONDecoder.stream.decode(ResultsContainer<G>.self, from: response.data)
-                completion(.success(container.results))
-            } catch let error as ClientError {
-                completion(.failure(error))
-            } catch {
-                completion(.failure(.jsonDecode(error.localizedDescription, error, response.data)))
-            }
-        } else if case .failure(let error) = self {
-            completion(.failure(error))
-        }
+        parse(block: {
+            let response = try dematerialize()
+            let container = try JSONDecoder.stream.decode(ResultsContainer<G>.self, from: response.data)
+            completion(.success(container.results))
+        }, catch: {
+            completion(.failure($0))
+        })
     }
 }

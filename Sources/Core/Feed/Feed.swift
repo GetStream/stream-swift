@@ -33,10 +33,10 @@ extension Feed {
     ///
     /// - Parameters:
     ///     - activity: an activity to add.
-    ///     - completion: a completion block with activities that was added.
+    ///     - completion: a completion block with the activity that was added.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
+    public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping ActivityCompletion<T>) -> Cancellable {
         return client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) {
             if case .failure(let clientError) = $0 {
                 completion(.failure(clientError))
@@ -46,31 +46,28 @@ extension Feed {
             /// The response is always for a not enriched activity.
             /// Check if the given activity is not enriched.
             if T.ActorType.self == String.self, T.ObjectType.self == String.self, T.TargetType.self == String.self {
-                $0.parseActivities(completion)
+                $0.parse(completion)
                 return
             }
             
             /// Parse the response with the default `Activity` and populate the given activity with `id` and `time` properties.
-            let activityCompletion: ActivitiesCompletion<Activity> = {
+            let activityCompletion: ActivityCompletion<Activity> = {
                 do {
-                    if let addedActivity = try $0.dematerialize().first {
-                        var activity = activity
-                        activity.id = addedActivity.id
-                        
-                        if activity.time == nil {
-                            activity.time = addedActivity.time
-                        }
-                        
-                        completion(.success([activity]))
-                    } else {
-                        completion(.failure(.unexpectedError))
+                    let addedActivity = try $0.dematerialize()
+                    var activity = activity
+                    activity.id = addedActivity.id
+                    
+                    if activity.time == nil {
+                        activity.time = addedActivity.time
                     }
+                    
+                    completion(.success(activity))
                 } catch {
                     completion(.failure(.unexpectedError))
                 }
             }
             
-            $0.parseActivities(activityCompletion)
+            $0.parse(activityCompletion)
         }
     }
 }

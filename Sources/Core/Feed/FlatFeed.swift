@@ -53,7 +53,7 @@ public final class FlatFeed: Feed {
                                          reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, ranking ?? "", .none, reactionsOptions)) {
-            $0.parseActivities(inContainer: true, completion)
+            $0.parse(completion)
         }
     }
 }

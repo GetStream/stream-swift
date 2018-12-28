@@ -20,17 +20,13 @@ extension Client {
     @discardableResult
     public func og(url: URL, completion: @escaping OGCompletion) -> Cancellable {
         return request(endpoint: OpenGraphEndpoint.og(url)) { result in
-            if case .success(let response) = result {
-                do {
-                    let ogResponse = try JSONDecoder().decode(OGResponse.self, from: response.data)
-                    completion(.success(ogResponse))
-
-                } catch {
-                    completion(.failure(.jsonDecode(error.localizedDescription, error, response.data)))
-                }
-            } else if case .failure(let error) = result {
-                completion(.failure(error))
-            }
+            result.parse(block: {
+                let response = try result.dematerialize()
+                let ogResponse = try JSONDecoder().decode(OGResponse.self, from: response.data)
+                completion(.success(ogResponse))
+            }, catch: {
+                completion(.failure($0))
+            })
         }
     }
 }

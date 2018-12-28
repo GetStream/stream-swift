@@ -35,10 +35,10 @@ final class FeedTests: TestCase {
             let activity = Activity(actor: "tester", verb: "add", object: "activity")
             
             feed.add(activity) { result in
-                if case .success(let activities) = result, activities.count == 1, let first = activities.first {
-                    XCTAssertEqual(first.actor, activity.actor)
-                    XCTAssertEqual(first.verb, activity.verb)
-                    XCTAssertEqual(first.object, activity.object)
+                if case .success(let resultActivity) = result {
+                    XCTAssertEqual(resultActivity.actor, activity.actor)
+                    XCTAssertEqual(resultActivity.verb, activity.verb)
+                    XCTAssertEqual(resultActivity.object, activity.object)
                     test.fulfill()
                 }
             }

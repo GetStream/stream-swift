@@ -24,15 +24,15 @@ class ViewController: UIViewController {
         
         let ericFeed = client.flatFeed(feedSlug: "user", userId: "eric")
         
-//        ericFeed.add(Activity(actor: "1", verb: "2", object: "3")) {
-//            print($0)
-//
-//            if let activity = (try? $0.dematerialize())?.first {
-//                ericFeed.remove(byActivityId: activity.id!) {
-//                    print($0)
-//                }
-//            }
-//        }
+        ericFeed.add(Activity(actor: "1", verb: "2", object: "3")) {
+            print($0)
+
+            if let activity = try? $0.dematerialize() {
+                ericFeed.remove(activityId: activity.id!) {
+                    print($0)
+                }
+            }
+        }
         
         let user = User(id: "eric", name: "Eric")
         let burger = Food(name: "Burger", id: "burger")
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         ericFeed.add(UserFoodActivity(actor: user, verb: "preparing", object: burger)) {
             print($0)
 
-            if let activity = (try? $0.dematerialize())?.first {
+            if let activity = try? $0.dematerialize() {
                 ericFeed.remove(activityId: activity.id!) {
                     print($0)
                 }
@@ -250,10 +250,10 @@ class ViewController: UIViewController {
             
             ericFeed.add(activity, completion: { result in
                 print(result)
-                let activities = try? result.dematerialize()
+                let activity = try? result.dematerialize()
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    if let activityId = activities?.first?.foreignId {
+                    if let activityId = activity?.foreignId {
                         ericFeed.remove(foreignId: activityId, completion: { result in
                             print(result)
                             
@@ -377,8 +377,8 @@ class ViewController: UIViewController {
         print("Adding to \(feed)...", activity)
         
         feed.add(activity) { result in
-            if case .success(let activities) = result {
-                activities.forEach { print($0) }
+            if case .success(let activity) = result {
+                print(activity)
                 self.fetchFeed(feed)
             } else {
                 print(result)

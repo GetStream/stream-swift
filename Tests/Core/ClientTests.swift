@@ -122,7 +122,7 @@ final class ClientTests: TestCase {
                                   setProperties: ["object": "updated"],
                                   unsetPropertiesNames: ["image"],
                                   activityId: .test1) { result in
-                                    if case .success(let activities) = result, let activity = activities.first {
+                                    if case .success(let activity) = result {
                                         XCTAssertEqual(activity.id!, .test1)
                                         XCTAssertEqual(activity.object, "updated")
                                         test.fulfill()
@@ -139,7 +139,7 @@ final class ClientTests: TestCase {
                                   unsetPropertiesNames: ["image"],
                                   foreignId: "f1",
                                   time: time) { result in
-                                    if case .success(let activities) = result, let activity = activities.first {
+                                    if case .success(let activity) = result {
                                         XCTAssertEqual(activity.foreignId, "f1")
                                         XCTAssertEqual(activity.object, "updated")
                                         XCTAssertEqual(activity.time!.stream, time.stream)
@@ -188,7 +188,7 @@ final class ClientTests: TestCase {
             XCTFail()
             return
         }
-
+        
         endpoint = FeedEndpoint.get(feedId, false, .none, "", .none, .includeOwn)
         
         if case .requestParameters(let parameters, _) = endpoint.task {
@@ -196,7 +196,7 @@ final class ClientTests: TestCase {
         } else {
             XCTFail()
         }
-
+        
         endpoint = FeedEndpoint.get(feedId, false, .none, "", .none, .includeAll)
         
         if case .requestParameters(let parameters, _) = endpoint.task {
