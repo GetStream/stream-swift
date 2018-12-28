@@ -37,11 +37,11 @@ extension FeedActivityEndpoint: StreamTargetType {
     var sampleJSON: String {
         switch self {
         case .add(let activity, feedId: _):
-            if (activity.actor as! String) == ClientError.jsonInvalid.localizedDescription {
+            if (activity.actor as? String) == ClientError.jsonInvalid.localizedDescription {
                 return "[]"
-            } else if (activity.actor as! String) == ClientError.network("Failed to map data to JSON.", nil).localizedDescription {
+            } else if (activity.actor as? String) == ClientError.network("Failed to map data to JSON.", nil).localizedDescription {
                 return "{"
-            } else if (activity.actor as! String) == ClientError.server(.init(json: ["exception": 0])).localizedDescription {
+            } else if (activity.actor as? String) == ClientError.server(.init(json: ["exception": 0])).localizedDescription {
                 return "{\"exception\": 0}"
             }
             
@@ -194,7 +194,7 @@ extension FeedEndpoint: StreamTargetType {
                 
             } else if feedId.feedSlug == "enrich" {
                 return """
-                {"results":[{"actor":{"created_at":"2018-12-20T15:41:25.181144Z","updated_at":"2018-12-20T15:41:25.181144Z","id":"eric","data":{}},"foreign_id":"","id":"ce918867-0520-11e9-a11e-0a286b200b2e","object":{"id":"burger","collection":"food","foreign_id":"food:burger","data":{},"created_at":"2018-12-20T16:07:14.726306Z","updated_at":"2018-12-20T16:07:14.726306Z"},"origin":null,"target":"","time":"2018-12-21T13:03:27.424727","verb":"preparing"}],"next":"","duration":"15.71ms"}
+                {"results":[{"actor":{"created_at":"2018-12-20T15:41:25.181144Z","updated_at":"2018-12-20T15:41:25.181144Z","id":"eric","data":{"name":"Eric"}},"foreign_id":"","id":"ce918867-0520-11e9-a11e-0a286b200b2e","object":{"id":"burger","collection":"food","foreign_id":"food:burger","data":{"name":"Burger"},"created_at":"2018-12-20T16:07:14.726306Z","updated_at":"2018-12-20T16:07:14.726306Z"},"origin":null,"target":"","time":"2018-12-21T13:03:27.424727","verb":"eat"}],"next":"","duration":"15.71ms"}
                 """
                 
             } else if case .limit(let limit) = pagination, limit == 1 {

@@ -9,7 +9,7 @@
 import XCTest
 @testable import GetStream
 
-fileprivate final class Food: CollectionObject {
+final class Food: CollectionObject {
     private enum CodingKeys: String, CodingKey {
         case name
     }

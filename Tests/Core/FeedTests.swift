@@ -11,6 +11,8 @@ import Moya
 import Result
 @testable import GetStream
 
+typealias UserFoodActivity = EnrichedActivity<CustomUser, Food, String>
+
 final class FeedTests: TestCase {
     
     func testFeed() {
@@ -83,6 +85,40 @@ final class FeedTests: TestCase {
             }
         }
     }
+    
+    func testAddEnrichedActivity() {
+        expect("add an enriched activity") { test in
+            let feed = client.flatFeed(feedSlug: "s", userId: "u")
+            let user = CustomUser(id: "eric", name: "Eric")
+            let burger = Food(name: "Burger", id: "burger")
+            let activity = UserFoodActivity(actor: user, verb: "eat", object: burger)
+            
+            feed.add(activity) { result in
+                if case .success(let resultActivity) = result {
+                    XCTAssertEqual(resultActivity.actor.name, activity.actor.name)
+                    XCTAssertEqual(resultActivity.verb, activity.verb)
+                    XCTAssertEqual(resultActivity.object.name, activity.object.name)
+                    test.fulfill()
+                }
+            }
+        }
+    }
+    
+    func testGetEnrichedActivity() {
+        expect("get an enriched activity") { test in
+            let feed = client.flatFeed(feedSlug: "enrich", userId: "u")
+            
+            feed.get(typeOf: UserFoodActivity.self) { result in
+                let activity = try! result.dematerialize().first!
+                XCTAssertEqual(activity.actor.name, "Eric")
+                XCTAssertEqual(activity.verb, "eat")
+                XCTAssertEqual(activity.object.name, "Burger")
+                test.fulfill()
+            }
+        }
+    }
+
+    // MARK: - Following
     
     func testFeedFollow() {
         expect("a code status") { test in
