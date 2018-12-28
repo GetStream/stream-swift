@@ -86,5 +86,10 @@ class ReactionTests: TestCase {
             XCTAssertEqual(reactions.reactions.count, 2)
         }
         
+        client.reactions(forActivityId: UUID(uuidString: "ce918867-0520-11e9-a11e-0a286b200b2e")!, withActivityData: true) {
+            let reactions = try! $0.dematerialize()
+            XCTAssertEqual(reactions.reactions.count, 3)
+            XCTAssertNotNil(reactions.activity)
+        }
     }
 }

@@ -25,14 +25,17 @@ public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
     public let reactions: [Reaction<T>]
     private var activityContainer: KeyedDecodingContainer<Reactions<T>.ActivityCodingKeys>?
     
+    public var activity: Activity? {
+        return try? activity(typeOf: Activity.self)
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         reactions = try container.decode([Reaction<T>].self, forKey: .reactions)
         activityContainer = try decoder.container(keyedBy: ActivityCodingKeys.self)
     }
     
-    /// Get an enriched activity for reactions by activityId.
-    ///
+    /// Get an activity for reactions that was requested by `activityId` and the `withActivityData` property.
     public func activity<A: ActivityProtocol>(typeOf type: A.Type) throws -> A {
         guard let activityContainer = activityContainer else {
             throw ReactionsError.reactionsHaveNoActivity
