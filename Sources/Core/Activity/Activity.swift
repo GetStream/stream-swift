@@ -13,7 +13,7 @@ public typealias Activity = EnrichedActivity<String, String, String>
 open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: ActivityProtocol, CustomStringConvertible {
     /// - Note: These reserved words must not be used as field names:
     ///         activity_id, activity, analytics, extra_context, id, is_read, is_seen, origin, score, site_id, to
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case actor
         case verb
@@ -94,4 +94,20 @@ open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: Activi
             + "\(actor.referenceId) \(verb) \(object.referenceId) at \(time?.description ?? "<n/a>") "
             + "feedIds: \(feedIds?.description ?? "[]")"
     }
+}
+
+// MARK: - Error Activity
+
+public struct EnrichingActivityError: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case error
+        case referenceId = "reference"
+        case referenceType = "reference_type"
+    }
+    
+    public let id: String
+    public let error: String
+    public let referenceId: String
+    public let referenceType: String
 }

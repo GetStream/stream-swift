@@ -17,9 +17,35 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let secretData = "wwzpjxsththuh56373u65rnw9bcjqxb6jxfhu5ux33b6xzyuw6vrdp9bjxg247u6".data(using: .utf8)!
-        let token = Token(secretData: secretData, userId: "eric")
+//        let token = Token(secretData: secretData, userId: "eric")
+        let token = Token(secretData: secretData, resource: .all, permission: .all, feedId: .any)
         let client = Client(apiKey: "8vcd7t9ke4vy", appId: "44738", token: token, logsEnabled: true)
-        checkOG(client)
+//        enrich(client)
+        
+        let ericFeed = client.flatFeed(feedSlug: "user", userId: "eric")
+        
+//        ericFeed.add(Activity(actor: "1", verb: "2", object: "3")) {
+//            print($0)
+//
+//            if let activity = (try? $0.dematerialize())?.first {
+//                ericFeed.remove(byActivityId: activity.id!) {
+//                    print($0)
+//                }
+//            }
+//        }
+        
+        let user = User(id: "eric", name: "Eric")
+        let burger = Food(name: "Burger", id: "burger")
+
+        ericFeed.add(UserFoodActivity(actor: user, verb: "preparing", object: burger)) {
+            print($0)
+
+            if let activity = (try? $0.dematerialize())?.first {
+                ericFeed.remove(activityId: activity.id!) {
+                    print($0)
+                }
+            }
+        }
     }
     
     func enrich(_ client: Client) {
@@ -27,22 +53,22 @@ class ViewController: UIViewController {
         let burger = Food(name: "Burger", id: "burger")
         let feed = client.flatFeed(feedSlug: "timeline", userId: "eric")
         
-//        client.create(user: user) {
+        client.create(user: user) { _ in
 //            print($0)
 //            client.add(collectionObject: burger) {
 //                print($0)
 //
-//        let activity = UserFoodActivity(actor: user, verb: "preparing", object: burger)
-//
-//        feed.add(activity) {
-//            print($0)
-        
-        feed.get(typeOf: UserFoodActivity.self) {
+        let activity = UserFoodActivity(actor: user, verb: "preparing", object: burger)
+            
+            feed.add(activity) {
                 print($0)
+                
+                feed.get(typeOf: UserFoodActivity.self) {
+                    print($0)
+                }
             }
-//        }
 //            }
-//        }
+        }
     }
     
     func aggregation() {
@@ -88,7 +114,7 @@ class ViewController: UIViewController {
     }
     
     func user(_ client: Client) {
-        let user = User(id: "alex", name: "Alex")
+        let user = User(id: "eric", name: "Eric")
         
         client.create(user: user) {
             print($0)
@@ -116,32 +142,31 @@ class ViewController: UIViewController {
     }
     
     func findReactions(_ client: Client) {
-        client.reactions(forUserId: "eric") {
-            let reactions = try! $0.dematerialize()
-            print(reactions.reactions)
-            
-            if let first = reactions.reactions.first, first.kind == .comment {
-                //                print(first.data(typeOf: Comment.self))
-            }
-        }
+//        client.reactions(forUserId: "eric", kindOf: .comment) {
+//            let reactions = try! $0.dematerialize()
+//            print(reactions.reactions)
+//        }
+//
+//        client.reactions(forReactionId: UUID(uuidString: "50539e71-d6bf-422d-ad21-c8717df0c325")!) {
+//            let reactions = try! $0.dematerialize()
+//            print(reactions)
+//        }
         
-        let activityId = UUID(uuidString: "0EAD9589-F3E6-11E8-A455-0AAA8DCB8F70")!
-        
-        client.reactions(forActivityId: activityId, withActivityData: true) {
+        client.reactions(forActivityId: UUID(uuidString: "ce918867-0520-11e9-a11e-0a286b200b2e")!, withActivityData: true) {
             let reactions = try! $0.dematerialize()
             print(reactions)
-            //            print(reactions.activity)
-            //            print(reactions.activity(typeOf: Activity.self))
+            print(reactions.reactions)
+            print(try! reactions.activity(typeOf: EnrichedActivity<User, Food, String>.self))
         }
     }
     
     func reactions(_ client: Client) {
         let ericFeed = client.flatFeed(feedSlug: "timeline", userId: "eric")
         
-        ericFeed.get(typeOf: Tweet.self) { activitiesResult in
+        ericFeed.get(typeOf: Tweet.self, enrich: false) { activitiesResult in
             let activity = (try! activitiesResult.dematerialize()).first!
             
-            client.add(reactionTo: activity.id!, kindOf: .comment, data: Comment(text: "Hello!")) {
+            client.add(reactionTo: activity.id!, kindOf: .comment, extraData: Comment(text: "Hello!")) {
                 let commentReaction = try! $0.dematerialize()
                 print(commentReaction)
                 
@@ -152,7 +177,7 @@ class ViewController: UIViewController {
                     client.add(reactionTo: activity.id!,
                                parentReactionId: commentReaction.id,
                                kindOf: .comment,
-                               data: Comment(text: "Hey!")) { result in
+                               extraData: Comment(text: "Hey!")) { result in
                                 let heyReaction = try! result.dematerialize()
                                 print(heyReaction)
                                 
@@ -160,7 +185,7 @@ class ViewController: UIViewController {
                                     let loadedReaction = try! $0.dematerialize()
                                     print(loadedReaction)
                                     
-                                    client.update(reactionId: loadedReaction.id, data: Comment(text: "Hi!")) {
+                                    client.update(reactionId: loadedReaction.id, extraData: Comment(text: "Hi!")) {
                                         let updatedReaction = try! $0.dematerialize()
                                         print("1️⃣", updatedReaction)
                                         self.findReactions(client, reaction: updatedReaction)
@@ -229,7 +254,7 @@ class ViewController: UIViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     if let activityId = activities?.first?.foreignId {
-                        ericFeed.remove(by: activityId, completion: { result in
+                        ericFeed.remove(foreignId: activityId, completion: { result in
                             print(result)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -314,7 +339,7 @@ class ViewController: UIViewController {
                 print(first)
                 
                 guard let foreignId = first.foreignId, !foreignId.isEmpty else {
-                    ericFeed.remove(by: first.id!, completion: { result in
+                    ericFeed.remove(activityId: first.id!, completion: { result in
                         print(result)
                     })
                     return
@@ -381,7 +406,7 @@ class ViewController: UIViewController {
         if let first = activities.first, let foreignId = first.foreignId {
             print("Deleting from \(feed)...", first)
             
-            feed.remove(by: foreignId) { result in
+            feed.remove(foreignId: foreignId) { result in
                 print("Deleted by foreignId", result)
             }
         }
@@ -389,7 +414,7 @@ class ViewController: UIViewController {
         if let last = activities.last, let activityId = last.id {
             print("Deleting from \(feed)...", last)
             
-            feed.remove(by: activityId) { result in
+            feed.remove(activityId: activityId) { result in
                 print("Deleted by activityId", result)
             }
         }

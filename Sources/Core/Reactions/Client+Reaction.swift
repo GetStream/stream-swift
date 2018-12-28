@@ -31,7 +31,7 @@ extension Client {
         return add(reactionTo: activityId,
                    parentReactionId: parentReactionId,
                    kindOf: kind,
-                   data: ReactionNoExtraData.shared,
+                   extraData: ReactionNoExtraData.shared,
                    targetsFeedIds: targetsFeedIds,
                    completion: completion)
     }
@@ -50,10 +50,10 @@ extension Client {
     public func add<T: ReactionExtraDataProtocol>(reactionTo activityId: UUID,
                                                   parentReactionId: UUID? = nil,
                                                   kindOf kind: ReactionKind,
-                                                  data: T,
+                                                  extraData: T,
                                                   targetsFeedIds: [FeedId] = [],
                                                   completion: @escaping ReactionCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.add(activityId, parentReactionId, kind, data, targetsFeedIds)) {
+        return request(endpoint: ReactionEndpoint.add(activityId, parentReactionId, kind, extraData, targetsFeedIds)) {
             $0.parseReaction(completion)
         }
     }
@@ -84,7 +84,7 @@ extension Client {
                        targetsFeedIds: [FeedId] = [],
                        completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
         return update(reactionId: reactionId,
-                      data: ReactionNoExtraData.shared,
+                      extraData: ReactionNoExtraData.shared,
                       targetsFeedIds: targetsFeedIds,
                       completion: completion)
     }
@@ -92,10 +92,10 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func update<T: ReactionExtraDataProtocol>(reactionId: UUID,
-                                                     data: T,
+                                                     extraData: T,
                                                      targetsFeedIds: [FeedId] = [],
                                                      completion: @escaping ReactionCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.update(reactionId, data, targetsFeedIds)) {
+        return request(endpoint: ReactionEndpoint.update(reactionId, extraData, targetsFeedIds)) {
             $0.parseReaction(completion)
         }
     }

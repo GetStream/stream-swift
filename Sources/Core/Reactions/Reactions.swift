@@ -8,6 +8,11 @@
 
 import Foundation
 
+public enum ReactionsError: Error {
+    case reactionsHaveNoActivity
+    case enrichingActivityError(_ error: EnrichingActivityError)
+}
+
 public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
     private enum CodingKeys: String, CodingKey {
         case reactions = "results"
@@ -18,27 +23,39 @@ public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
     }
     
     public let reactions: [Reaction<T>]
-    public var activity: Activity? // TODO: EnrichedActivity
     private var activityContainer: KeyedDecodingContainer<Reactions<T>.ActivityCodingKeys>?
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         reactions = try container.decode([Reaction<T>].self, forKey: .reactions)
-        
-        let activityContainer = try decoder.container(keyedBy: ActivityCodingKeys.self)
-        activity = try activityContainer.decodeIfPresent(Activity.self, forKey: .activity)
-        self.activityContainer = activityContainer
+        activityContainer = try decoder.container(keyedBy: ActivityCodingKeys.self)
     }
     
-    public func activity<A: ActivityProtocol>(typeOf type: A.Type) -> A? {
+    /// Get an enriched activity for reactions by activityId.
+    ///
+    public func activity<A: ActivityProtocol>(typeOf type: A.Type) throws -> A {
         guard let activityContainer = activityContainer else {
-            return nil
+            throw ReactionsError.reactionsHaveNoActivity
         }
         
         do {
-            return try activityContainer.decodeIfPresent(type, forKey: .activity)
+            return try activityContainer.decode(type, forKey: .activity)
         } catch {
-            return nil
+            if let container = try? activityContainer.nestedContainer(keyedBy: Activity.CodingKeys.self, forKey: .activity) {
+                if let actor = try? container.decode(EnrichingActivityError.self, forKey: .actor) {
+                    throw ReactionsError.enrichingActivityError(actor)
+                }
+                
+                if let object = try? container.decode(EnrichingActivityError.self, forKey: .object) {
+                    throw ReactionsError.enrichingActivityError(object)
+                }
+                
+                if let target = try? container.decode(EnrichingActivityError.self, forKey: .target) {
+                    throw ReactionsError.enrichingActivityError(target)
+                }
+            }
+            
+            throw error
         }
     }
 }
