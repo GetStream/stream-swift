@@ -18,7 +18,7 @@ extension ReactionKind {
     static let comment = "comment"
 }
 
-public struct ReactionNoExtraData: ReactionExtraDataProtocol {
+public struct ReactionNoExtraData: ReactionExtraDataProtocol, Equatable {
     static let shared = ReactionNoExtraData()
 }
 

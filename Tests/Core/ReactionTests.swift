@@ -36,14 +36,22 @@ class ReactionTests: TestCase {
     
     func testGet() {
         client.get(reactionId: .test1) {
-            let commentReaction = try! $0.dematerialize()
-            XCTAssertEqual(commentReaction.kind, .like)
+            let reaction = try! $0.dematerialize()
+            XCTAssertEqual(reaction.kind, .like)
+            XCTAssertEqual(reaction.data, ReactionNoExtraData.shared)
         }
         
         client.get(reactionId: .test2, extraDataTypeOf: Comment.self) {
-            let commentReaction = try! $0.dematerialize()
-            XCTAssertEqual(commentReaction.kind, .comment)
-            XCTAssertEqual(commentReaction.data.text, "Hello!")
+            let reaction = try! $0.dematerialize()
+            XCTAssertEqual(reaction.kind, .comment)
+            XCTAssertEqual(reaction.data.text, "Hello!")
+        }
+        
+        client.get(reactionId: .test2) {
+            let reaction = try! $0.dematerialize()
+            XCTAssertEqual(reaction.kind, .comment)
+            XCTAssertEqual(reaction.data, ReactionNoExtraData.shared)
+            XCTAssertEqual(reaction.data(typeOf: Comment.self)?.text, "Hello!")
         }
     }
     
@@ -52,6 +60,7 @@ class ReactionTests: TestCase {
             let commentReaction = try! $0.dematerialize()
             XCTAssertEqual(commentReaction.kind, .comment)
             XCTAssertEqual(commentReaction.data.text, "Hi!")
+            XCTAssertEqual(commentReaction.data(typeOf: Comment.self)?.text, "Hi!")
             
             let lastLike = commentReaction.latestChildren(kindOf: .like).first!
             XCTAssertEqual(lastLike.kind, .like)
