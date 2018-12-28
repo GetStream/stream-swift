@@ -189,7 +189,7 @@ final class ClientTests: TestCase {
             return
         }
         
-        endpoint = FeedEndpoint.get(feedId, false, .none, "", .none, .includeOwn)
+        endpoint = FeedEndpoint.get(feedId, false, .none, "", .none, .own)
         
         if case .requestParameters(let parameters, _) = endpoint.task {
             XCTAssertEqual(parameters as! [String: Bool], ["withOwnReactions": true])
@@ -197,7 +197,7 @@ final class ClientTests: TestCase {
             XCTFail()
         }
         
-        endpoint = FeedEndpoint.get(feedId, false, .none, "", .none, .includeAll)
+        endpoint = FeedEndpoint.get(feedId, false, .none, "", .none, .all)
         
         if case .requestParameters(let parameters, _) = endpoint.task {
             XCTAssertEqual(parameters as! [String: Bool], ["withOwnReactions": true,

@@ -24,13 +24,13 @@ public final class NotificationFeed: Feed {
     public func get(enrich: Bool = true,
                     pagination: Pagination = .none,
                     markOption: FeedMarkOption = .none,
-                    reactionsOptions: FeedReactionsOptions = [],
+                    includeReactions reactionsOptions: FeedReactionsOptions = [],
                     completion: @escaping GroupCompletion<Activity, NotificationGroup<Activity>>) -> Cancellable {
         return get(typeOf: Activity.self,
                    enrich: enrich,
                    pagination: pagination,
                    markOption: markOption,
-                   reactionsOptions: reactionsOptions,
+                   includeReactions: reactionsOptions,
                    completion: completion)
     }
     
@@ -50,7 +50,7 @@ public final class NotificationFeed: Feed {
                                          enrich: Bool = true,
                                          pagination: Pagination = .none,
                                          markOption: FeedMarkOption = .none,
-                                         reactionsOptions: FeedReactionsOptions = [],
+                                         includeReactions reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping GroupCompletion<T, NotificationGroup<T>>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, "", markOption, reactionsOptions)) {
             $0.parseGroup(completion)

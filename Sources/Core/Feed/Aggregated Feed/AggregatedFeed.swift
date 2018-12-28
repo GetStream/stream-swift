@@ -22,12 +22,12 @@ public final class AggregatedFeed: Feed {
     @discardableResult
     public func get(enrich: Bool = true,
                     pagination: Pagination = .none,
-                    reactionsOptions: FeedReactionsOptions = [],
+                    includeReactions reactionsOptions: FeedReactionsOptions = [],
                     completion: @escaping GroupCompletion<Activity, Group<Activity>>) -> Cancellable {
         return get(typeOf: Activity.self,
                    enrich: enrich,
                    pagination: pagination,
-                   reactionsOptions: reactionsOptions,
+                   includeReactions: reactionsOptions,
                    completion: completion)
     }
     
@@ -44,7 +44,7 @@ public final class AggregatedFeed: Feed {
     public func get<T: ActivityProtocol>(typeOf: T.Type,
                                          enrich: Bool = true,
                                          pagination: Pagination = .none,
-                                         reactionsOptions: FeedReactionsOptions = [],
+                                         includeReactions reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping GroupCompletion<T, Group<T>>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, "", .none, reactionsOptions)) {
             $0.parseGroup(completion)

@@ -16,7 +16,7 @@ public final class FlatFeed: Feed {
     ///     - enrich: when using collections, you can request to enrich activities to include them.
     ///     - pagination: a pagination options.
     ///     - ranking: the custom ranking formula used to sort the feed, must be defined in the dashboard.
-    ///     - reactionsOptions: options to include reactions to activities. Check optionsin docs for `FeedReactionsOptions`
+    ///     - reactionsOptions: options to include reactions to activities. Check options in docs for `FeedReactionsOptions`
     ///     - completion: a completion handler with an array of the `Activity` type.
     /// - Returns:
     ///     - a cancellable object to cancel the request.
@@ -24,13 +24,13 @@ public final class FlatFeed: Feed {
     public func get(enrich: Bool = true,
                     pagination: Pagination = .none,
                     ranking: String? = nil,
-                    reactionsOptions: FeedReactionsOptions = [],
+                    includeReactions reactionsOptions: FeedReactionsOptions = [],
                     completion: @escaping ActivitiesCompletion<Activity>) -> Cancellable {
         return get(typeOf: Activity.self,
                    enrich: enrich,
                    pagination: pagination,
                    ranking: ranking,
-                   reactionsOptions: reactionsOptions,
+                   includeReactions: reactionsOptions,
                    completion: completion)
     }
     
@@ -41,7 +41,7 @@ public final class FlatFeed: Feed {
     ///     - enrich: when using collections, you can request to enrich activities to include them.
     ///     - pagination: a pagination options.
     ///     - ranking: the custom ranking formula used to sort the feed, must be defined in the dashboard.
-    ///     - reactionsOptions: options to include reactions to activities. Check optionsin docs for `FeedReactionsOptions`
+    ///     - reactionsOptions: options to include reactions to activities. Check options in docs for `FeedReactionsOptions`
     ///     - completion: a completion handler with an array of a custom activity type.
     /// - Returns:
     ///     - a cancellable object to cancel the request.
@@ -50,7 +50,7 @@ public final class FlatFeed: Feed {
                                          enrich: Bool = true,
                                          pagination: Pagination = .none,
                                          ranking: String? = nil,
-                                         reactionsOptions: FeedReactionsOptions = [],
+                                         includeReactions reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, ranking ?? "", .none, reactionsOptions)) {
             $0.parse(completion)

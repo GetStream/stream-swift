@@ -129,19 +129,19 @@ extension FeedEndpoint: StreamTargetType {
                 parameters["ranking"] = ranking
             }
             
-            if reactionsOptions.contains(.includeOwn) {
+            if reactionsOptions.contains(.own) {
                 parameters["withOwnReactions"] = true
             }
             
-            if reactionsOptions.contains(.includeOwnChildren) {
+            if reactionsOptions.contains(.ownChildren) {
                 parameters["withOwnChildren"] = true
             }
 
-            if reactionsOptions.contains(.includeLatest) {
+            if reactionsOptions.contains(.latest) {
                 parameters["withRecentReactions"] = true
             }
             
-            if reactionsOptions.contains(.includeCounts) {
+            if reactionsOptions.contains(.counts) {
                 parameters["withReactionCounts"] = true
             }
 
@@ -286,13 +286,13 @@ public struct FeedReactionsOptions: OptionSet {
     }
     
     /// Include reactions added by current user to all activities.
-    public static let includeOwn = FeedReactionsOptions(rawValue: 1 << 0)
+    public static let own = FeedReactionsOptions(rawValue: 1 << 0)
     /// Include reactions added by current user to all reactions.
-    public static let includeOwnChildren = FeedReactionsOptions(rawValue: 1 << 1)
+    public static let ownChildren = FeedReactionsOptions(rawValue: 1 << 1)
     /// Include recent reactions to activities.
-    public static let includeLatest = FeedReactionsOptions(rawValue: 1 << 2)
+    public static let latest = FeedReactionsOptions(rawValue: 1 << 2)
     /// Include reaction counts to activities.
-    public static let includeCounts = FeedReactionsOptions(rawValue: 1 << 3)
+    public static let counts = FeedReactionsOptions(rawValue: 1 << 3)
     /// Include all reactions options to activities.
-    public static let includeAll: FeedReactionsOptions = [.includeOwn, .includeOwnChildren, .includeLatest, .includeCounts]
+    public static let all: FeedReactionsOptions = [.own, .ownChildren, .latest, .counts]
 }
