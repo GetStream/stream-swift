@@ -30,10 +30,47 @@ public class Feed: CustomStringConvertible {
 
 extension Feed {
     /// Add a new activity.
+    ///
+    /// - Parameters:
+    ///     - activity: an activity to add.
+    ///     - completion: a completion block with activities that was added.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) {
-            $0.parseActivities(completion)
+            if case .failure(let clientError) = $0 {
+                completion(.failure(clientError))
+                return
+            }
+            
+            /// The response is always for a not enriched activity.
+            /// Check if the given activity is not enriched.
+            if T.ActorType.self == String.self, T.ObjectType.self == String.self, T.TargetType.self == String.self {
+                $0.parseActivities(completion)
+                return
+            }
+            
+            /// Parse the response with the default `Activity` and populate the given activity with `id` and `time` properties.
+            let activityCompletion: ActivitiesCompletion<Activity> = {
+                do {
+                    if let addedActivity = try $0.dematerialize().first {
+                        var activity = activity
+                        activity.id = addedActivity.id
+                        
+                        if activity.time == nil {
+                            activity.time = addedActivity.time
+                        }
+                        
+                        completion(.success([activity]))
+                    } else {
+                        completion(.failure(.unexpectedError))
+                    }
+                } catch {
+                    completion(.failure(.unexpectedError))
+                }
+            }
+            
+            $0.parseActivities(activityCompletion)
         }
     }
 }
@@ -42,16 +79,26 @@ extension Feed {
 
 extension Feed {
     /// Remove an activity by the activityId.
+    ///
+    /// - Parameters:
+    ///     - activityId: an activityId to remove.
+    ///     - completion: a completion block with removed activityId.
+    /// - Returns: an object to cancel the request.
     @discardableResult
-    public func remove(by activityId: UUID, completion: @escaping RemovedCompletion) -> Cancellable {
+    public func remove(activityId: UUID, completion: @escaping RemovedCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) {
             $0.parseRemoved(completion)
         }
     }
     
     /// Remove an activity by the foreignId.
+    ///
+    /// - Parameters:
+    ///     - foreignId: an foreignId to remove.
+    ///     - completion: a completion block with removed activityId.
+    /// - Returns: an object to cancel the request.
     @discardableResult
-    public func remove(by foreignId: String, completion: @escaping RemovedCompletion) -> Cancellable {
+    public func remove(foreignId: String, completion: @escaping RemovedCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) {
             $0.parseRemoved(completion)
         }
@@ -66,6 +113,7 @@ extension Feed {
     /// - Parameters:
     ///     - target: the target feed this feed should follow, e.g. user:44.
     ///     - activityCopyLimit: how many activities should be copied from the target feed, max 1000, default 100.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func follow(to target: FeedId, activityCopyLimit: Int = 100, completion: @escaping StatusCodeCompletion) -> Cancellable {
         let activityCopyLimit = max(0, min(1000, activityCopyLimit))
@@ -88,6 +136,7 @@ extension Feed {
     ///     - limit: amount of results per request, max 500, default 25.
     ///     - completion: a result with `Follower`'s or an error.
     /// - Note: the number of followers that can be retrieved is limited to 1000.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func followers(offset: Int = 0, limit: Int = 25, completion: @escaping FollowersCompletion) -> Cancellable {
         let limit = max(0, min(500, limit))
@@ -106,6 +155,7 @@ extension Feed {
     ///     - limit: amount of results per request, max 500, default 25.
     ///     - completion: a result with `Follower`'s or an error.
     /// - Note: the number of followers that can be retrieved is limited to 1000.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func following(filter: FeedIds = [],
                           offset: Int = 0,

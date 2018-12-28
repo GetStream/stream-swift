@@ -14,7 +14,7 @@ public protocol ActivityProtocol: Codable {
     associatedtype TargetType = Enrichable
     
     /// The Stream id of the activity.
-    var id: UUID? { get }
+    var id: UUID? { get set }
     /// The actor performing the activity.
     var actor: ActorType { get }
     /// The verb of the activity.
@@ -24,12 +24,12 @@ public protocol ActivityProtocol: Codable {
     /// The optional target of the activity.
     var target: TargetType? { get }
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
-    var foreignId: String? { get }
+    var foreignId: String? { get set }
     /// The optional time of the activity, isoformat. Default is the current time.
-    var time: Date? { get }
+    var time: Date? { get set }
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
-    var feedIds: FeedIds? { get }
+    var feedIds: FeedIds? { get set }
     /// Include reactions added by current user to all activities.
     var ownReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]? { get }
     /// Include recent reactions to activities.
