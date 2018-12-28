@@ -1,55 +1,52 @@
 //: [Previous](@previous)
 //: ## Quick start
+//: The quickstart below shows you how to build a scalable social network. It higlights the most common API calls:
 import PlaygroundSupport
 import GetStream
 PlaygroundPage.current.needsIndefiniteExecution = true
-
-// Setup the Stream client
-// This token must be received from your server.
-let token = Token(secretData: "xwnkc2rdvm7bp7gn8ddzc6ngbgvskahf6v3su7qj5gp6utyu8rtek8k2vq2ssaav".data(using: .utf8)!)
-
-let client = Client(apiKey: "3gmch3yrte9d", appId: "44738", token: token)
-
-// Setup Eric feed.
-let ericFeed = client.feed(feedSlug: "user", userId: "eric")
-
 startSync()
 
-ericFeed.add(Activity(actor: "eric", verb: "add", object: "picture:10")) { result in
-    if case .success(let activities) = result {
-        print("Eric added activities:\n", activities)
-    } else {
-        print(result)
-    }
-    
+// This token should be received from your server.
+let token = Token(secretData: "<#Secret#>".data(using: .utf8)!)
+
+// Setup Stream client.
+let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: token)
+
+// Create Chris's user feed.
+let chrisFeed = client.flatFeed(feedSlug: "user", userId: "chris")
+
+// Create an Activity. You can make own Activity class or stryct with custom properties.
+let activity = Activity(actor: "chris", verb: "add", object: "picture:10", foreignId: "picture:10")
+
+chrisFeed.add(activity) { result in
+    // A result of the adding of the activity.
+    print(result)
+    endSync() // playground: end async code.
+}
+
+waitSync() // playground: wait the end of the prev async code
+
+// Create a following relationship between Jack's "timeline" feed and Chris' "user" feed:
+let jackFeed = client.flatFeed(feedSlug: "timeline", userId: "jack")
+jackFeed.follow(to: chrisFeed.feedId, activityCopyLimit: 1) { result in
+    print(result)
     endSync()
 }
 
 waitSync()
 
-// Setup Jessica feed.
-let jessicaFeed = client.feed(feedSlug: "timeline", userId: "jessica")
-
-// Jessica will follow to Eric's feed.
-jessicaFeed.follow(to: ericFeed.feedId) { result in
-    if case .success = result {
-        print("Jessica is following to the Eric's feed.")
-    }
-    
+// Read Jack's timeline and Chris' post appears in the feed:
+jackFeed.get(pagination: .limit(10)) { result in
+    let activities = try! result.dematerialize()
+    print(activities)
     endSync()
 }
 
 waitSync()
 
-// Get Jessica's feed activities.
-jessicaFeed.get(typeOf: Activity.self) { result in
-    if case .success(let activities) = result {
-        print("Jessica feed:")
-        activities.forEach { print($0) }
-    } else {
-        print(result)
-    }
-    
-    endSync(true)
+// Remove an activity by referencing it's foreignId
+chrisFeed.remove(foreignId: "picture:10") { result in
+    print(result)
+    endSync(finishPlayground: true)
 }
 //: [Next](@next)
