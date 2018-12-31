@@ -185,3 +185,186 @@ user1.add(secondActivity) { result in
 /// The unique combination of `foreignId` and `time` ensure that both
 /// activities are unique and therefore the `firstActivityId != secondActivityId`
 ```
+
+## Follows
+
+### Following Feeds
+```swift
+let timelineFeed1 = client.flatFeed(feedSlug: "timeline", userId: "timeline_feed_1"))
+
+// `timeline:timeline_feed_1` follows `user:user_42`:
+timelineFeed1.follow(to: FeedId(feedSlug: "user", userId: "user_42")) { result in /* ... */ }
+
+// Follow feed without copying the activities:
+timelineFeed1.follow(to: FeedId(feedSlug: "user", userId: "user_42"), activityCopyLimit: 0) { result in /* ... */ }
+```
+
+### Unfollowing Feeds
+```swift
+// Stop following feed user_42 - purging history:
+timelineFeed1.unfollow(from: FeedId(feedSlug: "user", userId: "user_42")) { result in /* ... */ }
+
+// Stop following feed user_42 but keep history of activities:
+timelineFeed1.unfollow(from: FeedId(feedSlug: "user", userId: "user_42"), keepHistory: true) { result in /* ... */ }
+```
+
+### Reading Feed Followers
+```swift
+// List followers
+user1.followers(offset: 10, limit: 10) { result in /* ... */ }
+```
+
+### Reading Followed Feeds
+```swift
+// Retrieve last 10 feeds followed by user_feed_1
+user1.following(limit: 10) { result in /* ... */ }
+
+// Retrieve 10 feeds followed by user_feed_1 starting from the 11th
+user1.following(offset: 10, limit: 10) { result in /* ... */ }
+
+// Check if user1 follows specific feeds
+user1.following(filter: [FeedId(feedSlug: "user", userId: "42"),
+                         FeedId(feedSlug: "user", userId: "43")], limit: 2) { result in /* ... */ }
+```
+
+## Feed Groups
+
+### Notification Feeds
+```swift
+// Mark all activities in the feed as seen:
+notificationFeed.get(markOption: .seenAll) { result in /* ... */ }
+
+// Mark some activities as read via specific Activity Group Ids:
+notificationFeed.get(markOption: .read(["activityGroupIdOne", "activityGroupIdTwo"]) { result in /* ... */ }
+```
+
+## Ranking
+
+### Custom Ranking
+```swift
+// Create a custom Activity class with `popularity` property.
+final class PopularityActivity: Activity {
+    private enum CodingKeys: String, CodingKey {
+        case popularity
+    }
+
+    var popularity: Int
+
+    init(actor: String, verb: String, object: String, popularity: Int) {
+        super.init(actor: actor, verb: verb, object: object)
+        self.popularity = popularity
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        popularity = try container.decode(Int.self, forKey: .popularity)
+        try super.init(from: decoder)
+    }
+
+    override public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(popularity, forKey: .popularity)
+        try super.encode(to: encoder)
+    }
+}
+
+// Add Activity.
+let activity = PopularityActivity(actor: "User:2", verb: "pin", object: "Place:42", popularity: 5)
+user1.add(activity) { result in /* ... */ }
+```
+
+### Retrieving Activities
+```swift
+// Get activities sorted by the ranking method labelled 'activity_popularity' (Ranked Feeds Enabled):
+user1.get(ranking: "activity_popularity")
+```
+
+## Concepts
+
+### Targeting Using the "TO" Field
+#### Use Case: Mentions
+```swift
+// Add the activity to Eric's feed and to Jessica's notification feed:
+let activity = TweetActivity(actor: "user:Eric", 
+                             verb: "tweet", 
+                             object: "tweet:id",
+                             feedIds: [FeedId(feedSlug: "notification", userId: "Jessica")],
+                             message: "@Jessica check out getstream.io it's awesome!")
+
+userFeed1.add(activity) { result in /* ... */ }
+// In production use user ids, not their usernames.
+```
+
+#### Use Case: Organizations & Topics
+```swift
+// The TO field ensures the activity is send to the player, match and team feed
+let activity = MatchActivity(actor: "Player:Suarez",
+                             verb: "foul",
+                             object: "Player:Ramos",
+                             match: Match(name: "El Clasico", id: 10),
+                             feedIds: [FeedId(feedSlug: "team", userId: "barcelona"),
+                                       FeedId(feedSlug: "match", userId: "1")]) 
+
+playerFeed1.add(activity) { result in /* ... */ }
+```
+
+## Advanced
+
+### Retrieving activities by ID
+```swift
+// retrieve two activities by ID:
+client.get(typeOf: Activity.self, activityIds: [UUID(uuidString: "01b3c1dd-e7ab-4649-b5b3-b4371d8f7045")!,
+                                                UUID(uuidString: "ed2837a6-0a3b-4679-adc1-778a1704852d")!]) { result in
+    /* ... */ 
+}
+
+// retrieve an activity by foreign ID and time
+client.get(typeOf: Activity.self, 
+           foreignIds: ["like:1", "post:2"],
+           times: ["2018-07-08T14:09:36.000000".streamDate!, "2018-07-09T20:30:40.000000".streamDate!]) { result in
+    /* ... */ 
+}
+```
+
+## Web&Mobile
+
+### Realtime updates
+```swift
+let notificationFeed = client.flatFeed(feedSlug: "notification", userId: "1")
+
+var subscription: Subscription? = notificationFeed.subscribe(typeOf: Activity.self) { result in /* ... */ }
+
+// Keep `subscription` object until you need realtime updates and then to unsubscribe set it to nil:
+subscription = nil
+```
+
+## Reactions
+
+### Add reactions
+```swift
+
+```
+
+### Notify other feeds
+```swift
+```
+
+### Read feeds with reactions
+```swift
+```
+
+### Retrieving reactions
+```swift
+```
+
+### Child reactions
+```swift
+```
+
+### Updating Reactions
+```swift
+```
+
+### Removing Reactions
+```swift
+```

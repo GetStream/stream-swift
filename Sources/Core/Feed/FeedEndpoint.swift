@@ -249,9 +249,9 @@ extension FeedEndpoint: StreamTargetType {
 public enum FeedMarkOption {
     case none
     case seenAll
-    case seen(_ feedIds: FeedIds)
+    case seen(_ groupIds: [String])
     case readAll
-    case read(_ feedIds: FeedIds)
+    case read(_ groupIds: [String])
     
     /// Parameters for a request.
     fileprivate var parameters: [String: Any] {
@@ -260,12 +260,21 @@ public enum FeedMarkOption {
             return [:]
         case .seenAll:
             return ["mark_seen": true]
-        case .seen(let feedIds):
-            return ["mark_seen": feedIds.value ]
+        case .seen:
+            return ["mark_seen": groupIdsValue() ]
         case .readAll:
             return ["mark_read": true]
-        case .read(let feedIds):
-            return ["mark_read": feedIds.value ]
+        case .read:
+            return ["mark_read": groupIdsValue() ]
+        }
+    }
+    
+    private func groupIdsValue() -> String {
+        switch self {
+        case .seen(let groupIds), .read(let groupIds):
+            return groupIds.map { $0.description }.joined(separator: ",")
+        default:
+            return ""
         }
     }
 }
