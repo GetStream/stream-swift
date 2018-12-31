@@ -54,41 +54,56 @@ user1.add(activity) { result in
 ### Custom fields
 ```swift
 // Create a custom Activity class.
-final class Exercise: Activity {
+final class Activity: GetStream.Activity {
     private enum CodingKeys: String, CodingKey {
-        case locationType
-        case coordinates
+        case course
+        case participants
+        case startDate = "started_at"
     }
     
-    var locationType: String = "point"
-    var coordinates: [Float] = []
+    var course: Course
+    var participants: [String] = []
+    var startDate: Date = Date()
     
-    init(actor: String, verb: String, object: String, locationType: String, coordinates: [Float]) {
-    super.init(actor: actor, verb: verb, object: object)
-        self.locationType = locationType
-        self.coordinates = coordinates
+    init(actor: String, 
+         verb: String, 
+         object: String, 
+         course: Course,
+         participants: [String],
+         startDate: Date = Date()) {
+        super.init(actor: actor, verb: verb, object: object)
+        self.course = course
+        self.participants = participants
+        self.startDate = startDate
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.locationType = try container.decode(String.self, forKey: .locationType)
-        self.coordinates = try container.decode([Float].self, forKey: .coordinates)
+        course = try container.decode(Course.self, forKey: .course)
+        participants = try container.decode([String].self, forKey: .participants)
+        startDate = try container.decode(Date.self, forKey: .startDate)
         try super.init(from: decoder)
     }
     
     override public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(locationType, forKey: .locationType)
-        try container.encode(coordinates, forKey: .coordinates)
+        try container.encode(course, forKey: .course)
+        try container.encode(participants, forKey: .participants)
+        try container.encode(startDate, forKey: .startDate)
         try super.encode(to: encoder)
     }
 }
 
-let exercise = Exercise(actor: "User:1",
+struct Course: Codable {
+    let name: String
+    let distance: Float
+}
+
+let exercise = Activity(actor: "User:1",
                         verb: "run", 
                         object: "Exercise:42", 
-                        locationType: "point", 
-                        coordinates: [37.769722, -122.476944])
+                        course: Course(name: "Golden Gate Park", distance: 10), 
+                        participants: ["Thierry", "Tommaso"])
 
 user1.add(exercise) { result in
     print(result)
@@ -124,5 +139,49 @@ user1.remove(foreignId: "run:1")
 
 ### Updating Activities
 ```swift
+// Create a custom activity with a `popularity` property.
+let activity = Activity(actor: "1", verb: "like", object: "3", popularity: 100)
 
+user1.add(activity) { _ in
+    activity.popularity = 10
+    client.update(activities: [activity]) { result in /* ... */ }
+}
+```
+
+### Activity partial update
+```swift
+client.updateActivity(typeOf: ProductActivity.self,
+                      setProperties: ["product.price": 19.99, 
+                                      "shares": ["facebook": "...", "twitter": "..."]],
+                      unsetProperties: ["daily_likes", "popularity"],
+                      activityId: UUID(uuidString: "54a60c1e-4ee3-494b-a1e3-50c06acb5ed4")!) { result in /* ... */ }
+
+client.updateActivity(typeOf: ProductActivity.self,
+                      setProperties: [...],
+                      unsetProperties: [...],
+                      foreignId: "product:123",
+                      time: "2016-11-10T13:20:00.000000".streamDate!) { result in /* ... */ }
+```
+
+### Uniqueness & Foreign ID
+```swift
+let firstActivity = Activity(actor: "1", verb: "add", object: "1", foreignId: "activity_1", time: Date())
+
+// Add activity to activity feed:
+var firstActivityId: UUID?
+user1.add(firstActivity) { result in
+    let addedActivity = try! result.dematerialize()
+    firstActivityId = addedActivity.id 
+}
+
+let secondActivity = Activity(actor: "1", verb: "add", object: "1", foreignId: "activity_2", time: Date())
+
+var secondActivityId: UUID?
+user1.add(secondActivity) { result in
+    let addedActivity = try! result.dematerialize()
+    secondActivityId = addedActivity.id 
+}
+
+/// The unique combination of `foreignId` and `time` ensure that both
+/// activities are unique and therefore the `firstActivityId != secondActivityId`
 ```
