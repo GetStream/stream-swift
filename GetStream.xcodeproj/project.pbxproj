@@ -149,6 +149,7 @@
 		8A411C2C21C4047F001BE61F /* Client+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+User.swift"; sourceTree = "<group>"; };
 		8A411C2E21C4048A001BE61F /* UserEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoint.swift; sourceTree = "<group>"; };
 		8A411C3021C40495001BE61F /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
+		8A4B11EF21DD340B00D19ADB /* Faye.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Faye.podspec; sourceTree = SOURCE_ROOT; };
 		8A5150E221D0E5170070199F /* AggregatedFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedFeedTests.swift; sourceTree = "<group>"; };
 		8A5150E421D0EED60070199F /* NotificationFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFeedTests.swift; sourceTree = "<group>"; };
 		8A5150E621D0F4690070199F /* CollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTests.swift; sourceTree = "<group>"; };
@@ -277,6 +278,7 @@
 				DD7502731C68FC20006590AF /* Tests */,
 				8A7B688F21A6F5AB00062FBD /* Package.swift */,
 				8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */,
+				8A4B11EF21DD340B00D19ADB /* Faye.podspec */,
 				8AD1A0FB21DD063900996BE6 /* Cartfile */,
 			);
 			path = Configs;

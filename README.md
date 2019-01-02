@@ -70,7 +70,7 @@ jackFeed.follow(toTarget: chrisFeed.feedId, activityCopyLimit: 1) { result in
 
 // Read Jack's timeline and Chris' post appears in the feed:
 jackFeed.get(typeOf: Activity.self, pagination: .limit(10)) { result in
-    let activities = try! result.dematerialize()
+    let activities = try! result.get()
     print(activities)
 }
 
@@ -214,7 +214,7 @@ let firstActivity = Activity(actor: "1", verb: "add", object: "1", foreignId: "a
 // Add activity to activity feed:
 var firstActivityId: String?
 user1.add(firstActivity) { result in
-    let addedActivity = try! result.dematerialize()
+    let addedActivity = try! result.get()
     firstActivityId = addedActivity.id 
 }
 
@@ -222,7 +222,7 @@ let secondActivity = Activity(actor: "1", verb: "add", object: "1", foreignId: "
 
 var secondActivityId: String?
 user1.add(secondActivity) { result in
-    let addedActivity = try! result.dematerialize()
+    let addedActivity = try! result.get()
     secondActivityId = addedActivity.id 
 }
 
@@ -403,7 +403,7 @@ extension ReactionKind {
 
 // first let's read current user's timeline feed and pick one activity
 client.flatFeed(feedSlug: "timeline", userId: "mike").get { result in
-    if let activities = try? result.dematerialize(), let activity = activities.first, let activityId = activity.id {
+    if let activities = try? result.get(), let activity = activities.first, let activityId = activity.id {
         // then let's add a like reaction to that activity
         client.add(reactionTo: activityId, kindOf: .like) { result in
             print(result) // will print a reaction object in the result.
@@ -537,7 +537,7 @@ client.add(collectionObject: cheeseBurger) { _ in
     userFeed.add(UserFoodActivity(actor: client.currentUser!, verb: 'grill', object: cheeseBurger)) { _ in
         // if we now read the feed, the activity we just added will include the entire full object
         userFeed.get(typeOf: UserFoodActivity.self) { result in
-            let activities = try! result.dematerialize()
+            let activities = try! result.get()
             
             // we can then update the object and Stream will propagate the change to all activities
             cheeseBurger.name = "Amazing Cheese Burger"
@@ -574,7 +574,7 @@ let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: <#Token#>)
 let user = User(id: "john-doe")
 
 client.create(user: user) { result in
-    if let createdUser = try? result.dematerialize() {
+    if let createdUser = try? result.get() {
         client.currentUser = createdUser
     }
 }
@@ -614,10 +614,10 @@ let userFeed = client.flatFeed(feedSlug: "user", userId: "jack")
 typealias UserPostActivity = EnrichedActivity<User, Post, String>
 
 client.create(user: User(id: "jack")) { result in
-    client.currentUser = try! result.dematerialize()
+    client.currentUser = try! result.get()
     
     client.add(collectionObject: Post(text: "...", id: "42-ways-to-improve-your-feed")) { _ in
-        let post = try! result.dematerialize()
+        let post = try! result.get()
         userFeed.add(UserPostActivity(actor: client.currentUser!, verb: "post", object: post)) { _ in
             // if we now read Jack's feed we will get automatically the enriched data
             userFeed.get(typeOf: UserPostActivity.self) { result in 

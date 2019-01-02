@@ -177,7 +177,7 @@ extension Client {
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
         return networkProvider.request(MultiTarget(endpoint)) { result in
             do {
-                let response = try result.dematerialize()
+                let response = try result.get()
                 
                 if let json = try response.mapJSON() as? JSON {
                     if json["exception"] != nil {

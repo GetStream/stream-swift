@@ -12,6 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "12.0.0")),
+        .package(url: "https://github.com/antitypical/Result.git", .upToNextMajor(from: "4.1.0")),
         .package(url: "https://github.com/kylef/JSONWebToken.swift.git", .upToNextMajor(from: "2.2.0")),
         .package(url: "https://github.com/daltoniam/Starscream.git", .upToNextMajor(from: "3.0.0")),
     ],
@@ -20,7 +21,6 @@ let package = Package(
         .target(name: "GetStreamToken", dependencies: ["GetStream"], path: "Sources/Token"),
         .target(name: "Faye", dependencies: ["Starscream"], path: "Faye"),
         .testTarget(name: "GetStreamTests", dependencies: ["GetStream"], path: "Tests/Core"),
-//        .testTarget(name: "GetStreamTokenTests", dependencies: ["GetStreamToken"], path: "Tests/Token"),
     ],
     swiftLanguageVersions: [.v4_2]
 )

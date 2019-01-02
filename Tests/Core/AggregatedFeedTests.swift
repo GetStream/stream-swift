@@ -18,7 +18,7 @@ class AggregatedFeedTests: TestCase {
         
         expect("get aggregated") { test in
             aggregated!.get { result in
-                let groups = try! result.dematerialize()
+                let groups = try! result.get()
                 XCTAssertEqual(groups.count, 2)
                 XCTAssertEqual(groups.first!.verb, "verb")
                 XCTAssertEqual(groups.first!.activitiesCount, 2)

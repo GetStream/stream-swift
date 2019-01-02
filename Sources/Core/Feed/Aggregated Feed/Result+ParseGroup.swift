@@ -15,7 +15,7 @@ public typealias GroupCompletion<T: ActivityProtocol, G: Group<T>> = (_ result: 
 extension Result where Value == Response, Error == ClientError {
     func parseGroup<T: ActivityProtocol, G: Group<T>>(_ completion: @escaping GroupCompletion<T, G>) {
         parse(block: {
-            let response = try dematerialize()
+            let response = try get()
             let container = try JSONDecoder.stream.decode(ResultsContainer<G>.self, from: response.data)
             completion(.success(container.results))
         }, catch: {

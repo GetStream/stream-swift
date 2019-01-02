@@ -43,21 +43,21 @@ class UserTests: TestCase {
         expect("create user") { test in
             client.create(user: user) {
                 print($0)
-                let created = try! $0.dematerialize()
+                let created = try! $0.get()
                 XCTAssertEqual(created.name, user.name)
                 
                 self.client.get(typeOf: CustomUser.self, userId: user.id) {
-                    let loaded = try! $0.dematerialize()
+                    let loaded = try! $0.get()
                     XCTAssertEqual(loaded.name, user.name)
                     loaded.name = "Eric Updated"
                     XCTAssertNotEqual(loaded.name, user.name)
                     
                     self.client.update(user: loaded) {
-                        let updated = try! $0.dematerialize()
+                        let updated = try! $0.get()
                         XCTAssertEqual(updated.name, loaded.name)
                         
                         self.client.delete(userId: updated.id) {
-                            XCTAssertEqual(try! $0.dematerialize(), 200)
+                            XCTAssertEqual(try! $0.get(), 200)
                             test.fulfill()
                         }
                     }

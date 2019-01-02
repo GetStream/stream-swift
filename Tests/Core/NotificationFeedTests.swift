@@ -15,7 +15,7 @@ class NotificationFeedTests: TestCase {
     func testNotioficationsFeed() {
         expect("get notifications") { test in
             notificationsFeed?.get(completion: { result in
-                let notifications = try! result.dematerialize()
+                let notifications = try! result.get()
                 
                 XCTAssertEqual(notifications.count, 1)
                 XCTAssertEqual(notifications.first!.isSeen, true)

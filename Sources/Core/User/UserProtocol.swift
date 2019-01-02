@@ -64,7 +64,7 @@ import Foundation
 ///     client.create(user: user) {
 ///         // Let's try retrieve details of the created user and use custom properties.
 ///         client.get(typeOf: User.self, userId: "alice123") {
-///             let user = try? $0.dematerialize() // here the user is a custom User type.
+///             let user = try? $0.get() // here the user is a custom User type.
 ///             print(user?.name) // it will print "Alice".
 ///         }
 ///     }

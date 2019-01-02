@@ -109,7 +109,7 @@ final class FeedTests: TestCase {
             let feed = client.flatFeed(feedSlug: "enrich", userId: "u")
             
             feed.get(typeOf: UserFoodActivity.self) { result in
-                let activity = try! result.dematerialize().first!
+                let activity = try! result.get().first!
                 XCTAssertEqual(activity.actor.name, "Eric")
                 XCTAssertEqual(activity.verb, "eat")
                 XCTAssertEqual(activity.object.name, "Burger")

@@ -18,7 +18,7 @@ extension Result where Value == Response, Error == ClientError {
     /// Parse a response and return the status code.
     func parseStatusCode(_ completion: @escaping StatusCodeCompletion) {
         do {
-            let response = try result.dematerialize()
+            let response = try result.get()
             completion(.success(response.statusCode))
         } catch {
             if let clientError = error as? ClientError {
@@ -30,7 +30,7 @@ extension Result where Value == Response, Error == ClientError {
     /// Parse a `Decodable` object.
     func parse<T: Decodable>(_ completion: @escaping CompletionObject<T>) {
         parse(block: {
-            let response = try dematerialize()
+            let response = try get()
             let object = try JSONDecoder.stream.decode(T.self, from: response.data)
             completion(.success(object))
         }, catch: {
@@ -41,7 +41,7 @@ extension Result where Value == Response, Error == ClientError {
     /// Parse `Decodable` objects with `ResultsContainer`.
     func parse<T: Decodable>(_ completion: @escaping CompletionObjects<T>) {
         parse(block: {
-            let response = try dematerialize()
+            let response = try get()
             let container = try JSONDecoder.stream.decode(ResultsContainer<T>.self, from: response.data)
             completion(.success(container.results))
         }, catch: {

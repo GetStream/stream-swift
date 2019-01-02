@@ -18,7 +18,7 @@ extension Result where Value == Response, Error == ClientError {
     /// Parse the result with a given reaction completion block.
     func parseReaction<T: ReactionExtraDataProtocol>(_ completion: @escaping ReactionCompletion<T>) {
         parse(block: {
-            let response = try dematerialize()
+            let response = try get()
             let reaction = try JSONDecoder.stream.decode(Reaction<T>.self, from: response.data)
             completion(.success(reaction))
         }, catch: {
@@ -29,7 +29,7 @@ extension Result where Value == Response, Error == ClientError {
     /// Parse the result with a given reaction completion block.
     func parseReactions<T: ReactionExtraDataProtocol>(_ completion: @escaping ReactionsCompletion<T>) {
         parse(block: {
-            let response = try dematerialize()
+            let response = try get()
             let reactions = try JSONDecoder.stream.decode(Reactions<T>.self, from: response.data)
             completion(.success(reactions))
         }, catch: {

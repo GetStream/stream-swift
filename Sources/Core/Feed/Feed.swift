@@ -53,7 +53,7 @@ extension Feed {
             /// Parse the response with the default `Activity` and populate the given activity with `id` and `time` properties.
             let activityCompletion: ActivityCompletion<Activity> = {
                 do {
-                    let addedActivity = try $0.dematerialize()
+                    let addedActivity = try $0.get()
                     var activity = activity
                     activity.id = addedActivity.id
                     

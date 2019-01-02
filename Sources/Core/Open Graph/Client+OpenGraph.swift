@@ -21,7 +21,7 @@ extension Client {
     public func og(url: URL, completion: @escaping OGCompletion) -> Cancellable {
         return request(endpoint: OpenGraphEndpoint.og(url)) { result in
             result.parse(block: {
-                let response = try result.dematerialize()
+                let response = try result.get()
                 let ogResponse = try JSONDecoder().decode(OGResponse.self, from: response.data)
                 completion(.success(ogResponse))
             }, catch: {

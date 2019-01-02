@@ -44,7 +44,7 @@ class CollectionTests: TestCase {
         
         expect("add collection object") { test in
             client.add(collectionObject: burger) { result in
-                let addedBurger = try! result.dematerialize()
+                let addedBurger = try! result.get()
                 XCTAssertEqual(addedBurger.collectionName, "food")
                 XCTAssertEqual(addedBurger.foreignId, "food:123")
                 XCTAssertEqual(addedBurger.name, "Burger")
@@ -56,7 +56,7 @@ class CollectionTests: TestCase {
     func testGet() {
         expect("get collection object") { test in
             client.get(typeOf: Food.self, collectionName: "test", collectionObjectId: "obj") { result in
-                let burger = try! result.dematerialize()
+                let burger = try! result.get()
                 XCTAssertEqual(burger.id, "123")
                 XCTAssertEqual(burger.collectionName, "food")
                 XCTAssertEqual(burger.name, "Burger")
@@ -70,7 +70,7 @@ class CollectionTests: TestCase {
         
         expect("update collection object") { test in
             client.update(collectionObject: burger) { result in
-                let addedBurger = try! result.dematerialize()
+                let addedBurger = try! result.get()
                 XCTAssertEqual(addedBurger.name, "Burger2")
                 test.fulfill()
             }
@@ -92,7 +92,7 @@ class CollectionTests: TestCase {
             let burger = Food(name: "Burger", id: "123")
             
             client.delete(collectionObject: burger) { result in
-                let status = try! result.dematerialize()
+                let status = try! result.get()
                 XCTAssertEqual(status, 200)
                 test.fulfill()
             }
