@@ -59,33 +59,28 @@ public struct Reaction<T: ReactionExtraDataProtocol>: Codable {
         }
     }
     
-    public let id: UUID
-    public let activityId: UUID
+    public let id: String
+    public let activityId: String
     public let userId: String
     public let kind: ReactionKind
     public let created: Date
     public let updated: Date?
     public let data: T
-    public var parentId: UUID?
+    public var parentId: String?
     public let childrenCounts: [ReactionKind: Int]
     private var latestChildrenContainer: KeyedDecodingContainer<Reaction<T>.ChildrenCodingKeys>?
     private var dataContainer: KeyedDecodingContainer<Reaction<T>.DataCodingKeys>?
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(UUID.self, forKey: .id)
-        activityId = try container.decode(UUID.self, forKey: .activityId)
+        id = try container.decode(String.self, forKey: .id)
+        activityId = try container.decode(String.self, forKey: .activityId)
         userId = try container.decode(String.self, forKey: .userId)
         kind = try container.decode(String.self, forKey: .kind)
         created = try container.decode(Date.self, forKey: .created)
         updated = try container.decode(Date.self, forKey: .updated)
         childrenCounts = try container.decode([ReactionKind: Int].self, forKey: .childrenCounts)
-        
-        let parentIdString = try container.decode(String.self, forKey: .parentId)
-        
-        if !parentIdString.isEmpty {
-            parentId = UUID(uuidString: parentIdString)
-        }
+        parentId = try container.decodeIfPresent(String.self, forKey: .parentId)
         
         if !childrenCounts.isEmpty {
             latestChildrenContainer = try? container.nestedContainer(keyedBy: ChildrenCodingKeys.self, forKey: .latestChildren)

@@ -16,10 +16,10 @@ import Moya
 public typealias Properties = [String: Encodable]
 
 enum ActivityEndpoint<T: ActivityProtocol> {
-    case getByIds(_ activitiesIds: [UUID])
+    case getByIds(_ activitiesIds: [String])
     case get(foreignIds: [String], times: [Date])
     case update(_ activities: [T])
-    case updateActivityById(setProperties: Properties?, unsetPropertiesNames: [String]?, activityId: UUID)
+    case updateActivityById(setProperties: Properties?, unsetPropertiesNames: [String]?, activityId: String)
     case updateActivity(setProperties: Properties?, unsetPropertiesNames: [String]?, foreignId: String, time: Date)
 }
 
@@ -48,7 +48,7 @@ extension ActivityEndpoint: StreamTargetType {
     var task: Task {
         switch self {
         case .getByIds(let ids):
-            let ids = ids.map { $0.lowercasedString }.joined(separator: ",")
+            let ids = ids.map { $0 }.joined(separator: ",")
             return .requestParameters(parameters: ["ids" : ids], encoding: URLEncoding.default)
             
         case let .get(foreignIds: foreignIds, times: times):
@@ -58,7 +58,7 @@ extension ActivityEndpoint: StreamTargetType {
             return .requestCustomJSONEncodable(["activities": activities], encoder: JSONEncoder.stream)
             
         case let .updateActivityById(setProperties, unsetPropertiesNames, activityId):
-            let parameters: [String: Any] = ["id": activityId.lowercasedString]
+            let parameters: [String: Any] = ["id": activityId]
                 .merged(with: setUnsetParameters(setProperties: setProperties, unsetPropertiesNames: unsetPropertiesNames))
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
             
@@ -77,7 +77,7 @@ extension ActivityEndpoint: StreamTargetType {
                 {"results":[
                 {"actor":"eric",
                 "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
-                "id":"\(activitiesIds[0].lowercasedString)",
+                "id":"\(activitiesIds[0])",
                 "object":"Hello world 3",
                 "origin":null,
                 "target":"",
@@ -86,7 +86,7 @@ extension ActivityEndpoint: StreamTargetType {
                 "verb":"tweet"},
                 {"actor":"eric",
                 "foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
-                "id":"\(activitiesIds[1].lowercasedString)",
+                "id":"\(activitiesIds[1])",
                 "object":"Hello world 2",
                 "origin":null,
                 "target":"",
@@ -130,7 +130,7 @@ extension ActivityEndpoint: StreamTargetType {
                 return """
                 {"actor":"eric",
                 "foreign_id":"",
-                "id":"\(activityId.lowercasedString)",
+                "id":"\(activityId)",
                 "object":"\(setProperties["object"]!)",
                 "origin":null,
                 "target":"",

@@ -69,7 +69,7 @@ jackFeed.follow(toTarget: chrisFeed.feedId, activityCopyLimit: 1) { result in
 }
 
 // Read Jack's timeline and Chris' post appears in the feed:
-jackFeed.get(pagination: .limit(10)) { result in
+jackFeed.get(typeOf: Activity.self, pagination: .limit(10)) { result in
     let activities = try! result.dematerialize()
     print(activities)
 }
@@ -175,7 +175,7 @@ user1.get(enrich: true, pagination: .limit(5), includeReactions: [.own, .latest,
 ### Removing Activities
 ```swift
 // Remove an activity by its id.
-user1.remove(activityId: UUID(uuidString: "50539e71-d6bf-422d-ad21-c8717df0c325"))
+user1.remove(activityId: "50539e71-d6bf-422d-ad21-c8717df0c325")
 
 // Remove activities foreign_id 'run:1'.
 user1.remove(foreignId: "run:1")
@@ -198,7 +198,7 @@ client.updateActivity(typeOf: ProductActivity.self,
                       setProperties: ["product.price": 19.99, 
                                       "shares": ["facebook": "...", "twitter": "..."]],
                       unsetProperties: ["daily_likes", "popularity"],
-                      activityId: UUID(uuidString: "54a60c1e-4ee3-494b-a1e3-50c06acb5ed4")!) { result in /* ... */ }
+                      activityId: "54a60c1e-4ee3-494b-a1e3-50c06acb5ed4") { result in /* ... */ }
 
 client.updateActivity(typeOf: ProductActivity.self,
                       setProperties: [...],
@@ -212,7 +212,7 @@ client.updateActivity(typeOf: ProductActivity.self,
 let firstActivity = Activity(actor: "1", verb: "add", object: "1", foreignId: "activity_1", time: Date())
 
 // Add activity to activity feed:
-var firstActivityId: UUID?
+var firstActivityId: String?
 user1.add(firstActivity) { result in
     let addedActivity = try! result.dematerialize()
     firstActivityId = addedActivity.id 
@@ -220,7 +220,7 @@ user1.add(firstActivity) { result in
 
 let secondActivity = Activity(actor: "1", verb: "add", object: "1", foreignId: "activity_2", time: Date())
 
-var secondActivityId: UUID?
+var secondActivityId: String?
 user1.add(secondActivity) { result in
     let addedActivity = try! result.dematerialize()
     secondActivityId = addedActivity.id 
@@ -357,8 +357,8 @@ playerFeed1.add(activity) { result in /* ... */ }
 ### Retrieving activities by ID
 ```swift
 // retrieve two activities by ID:
-client.get(typeOf: Activity.self, activityIds: [UUID(uuidString: "01b3c1dd-e7ab-4649-b5b3-b4371d8f7045")!,
-                                                UUID(uuidString: "ed2837a6-0a3b-4679-adc1-778a1704852d")!]) { result in
+client.get(typeOf: Activity.self, activityIds: ["01b3c1dd-e7ab-4649-b5b3-b4371d8f7045",
+                                                "ed2837a6-0a3b-4679-adc1-778a1704852d"]) { result in
     /* ... */ 
 }
 
@@ -435,15 +435,15 @@ client.flatFeed(feedSlug: "timeline", userId: "bob")
 ### Retrieving reactions
 ```swift
 // retrieve all kind of reactions for an activity
-client.reactions(forActivityId: UUID(uuidString: "ed2837a6-0a3b-4679-adc1-778a1704852d")!) { result in /* ... */ }
+client.reactions(forActivityId: "ed2837a6-0a3b-4679-adc1-778a1704852d") { result in /* ... */ }
 
 // retrieve first 10 likes for an activity
-client.reactions(forActivityId: UUID(uuidString: "ed2837a6-0a3b-4679-adc1-778a1704852d")!,
+client.reactions(forActivityId: "ed2837a6-0a3b-4679-adc1-778a1704852d",
                  kindOf: "like",
                  pagination: .limit(10)) { result in /* ... */ }
 
 // retrieve the next 10 likes using the id_lt param
-client.reactions(forActivityId: UUID(uuidString: "ed2837a6-0a3b-4679-adc1-778a1704852d")!,
+client.reactions(forActivityId: "ed2837a6-0a3b-4679-adc1-778a1704852d",
                  kindOf: "like",
                  pagination: .lessThan("e561de8f-00f1-11e4-b400-0cc47a024be0")) { result in /* ... */ }
 ```

@@ -23,8 +23,8 @@ extension Client {
     ///     - completion: a completion block with an added reaction.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func add(reactionTo activityId: UUID,
-                    parentReactionId: UUID? = nil,
+    public func add(reactionTo activityId: String,
+                    parentReactionId: String? = nil,
                     kindOf kind: ReactionKind,
                     targetsFeedIds: FeedIds = [],
                     completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
@@ -47,8 +47,8 @@ extension Client {
     ///     - completion: a completion block with an added reaction.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func add<T: ReactionExtraDataProtocol>(reactionTo activityId: UUID,
-                                                  parentReactionId: UUID? = nil,
+    public func add<T: ReactionExtraDataProtocol>(reactionTo activityId: String,
+                                                  parentReactionId: String? = nil,
                                                   kindOf kind: ReactionKind,
                                                   extraData: T,
                                                   targetsFeedIds: FeedIds = [],
@@ -111,7 +111,7 @@ extension Client {
     ///     - completion: a completion block with a reaction.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func get(reactionId: UUID, completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
+    public func get(reactionId: String, completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
         return get(reactionId: reactionId, extraDataTypeOf: ReactionNoExtraData.self, completion: completion)
     }
     
@@ -123,7 +123,7 @@ extension Client {
     ///     - completion: a completion block with a reaction.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func get<T: ReactionExtraDataProtocol>(reactionId: UUID,
+    public func get<T: ReactionExtraDataProtocol>(reactionId: String,
                                                   extraDataTypeOf: T.Type,
                                                   completion: @escaping ReactionCompletion<T>) -> Cancellable {
         return request(endpoint: ReactionEndpoint.get(reactionId)) {
@@ -142,7 +142,7 @@ extension Client {
     ///     - completion: a completion block with an updated reaction.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func update<T: ReactionExtraDataProtocol>(reactionId: UUID,
+    public func update<T: ReactionExtraDataProtocol>(reactionId: String,
                                                      extraData: T,
                                                      targetsFeedIds: FeedIds = [],
                                                      completion: @escaping ReactionCompletion<T>) -> Cancellable {
@@ -160,7 +160,7 @@ extension Client {
     ///     - completion: a completion block with a status code of the request.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func delete(reactionId: UUID, completion: @escaping StatusCodeCompletion) -> Cancellable {
+    public func delete(reactionId: String, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: ReactionEndpoint.delete(reactionId)) {
             $0.parseStatusCode(completion)
         }
@@ -178,7 +178,7 @@ extension Client {
     ///     - completion: a completion block with reactions and activity (optional).
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func reactions(forActivityId activityId: UUID,
+    public func reactions(forActivityId activityId: String,
                           kindOf kind: ReactionKind? = nil,
                           pagination: Pagination = .none,
                           withActivityData: Bool = false,
@@ -202,7 +202,7 @@ extension Client {
     ///     - completion: a completion block with reactions and activity (optional).
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func reactions<T: ReactionExtraDataProtocol>(forActivityId activityId: UUID,
+    public func reactions<T: ReactionExtraDataProtocol>(forActivityId activityId: String,
                                                         kindOf kind: ReactionKind? = nil,
                                                         extraDataTypeOf: T.Type,
                                                         pagination: Pagination = .none,
@@ -222,7 +222,7 @@ extension Client {
     ///     - completion: a completion block with reactions.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func reactions(forReactionId reactionId: UUID,
+    public func reactions(forReactionId reactionId: String,
                           kindOf kind: ReactionKind? = nil,
                           pagination: Pagination = .none,
                           completion: @escaping ReactionsCompletion<ReactionNoExtraData>) -> Cancellable {
@@ -243,7 +243,7 @@ extension Client {
     ///     - completion: a completion block with reactions.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func reactions<T: ReactionExtraDataProtocol>(forReactionId reactionId: UUID,
+    public func reactions<T: ReactionExtraDataProtocol>(forReactionId reactionId: String,
                                                         kindOf kind: ReactionKind? = nil,
                                                         extraDataTypeOf: T.Type,
                                                         pagination: Pagination = .none,

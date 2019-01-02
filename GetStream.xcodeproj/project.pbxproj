@@ -28,7 +28,6 @@
 		8A2856E621C00E970091A977 /* Client+Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E521C00E970091A977 /* Client+Reaction.swift */; };
 		8A2856E821C016BB0091A977 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E721C016BB0091A977 /* Pagination.swift */; };
 		8A2856EA21C0185C0091A977 /* ReactionEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856E921C0185C0091A977 /* ReactionEndpoint.swift */; };
-		8A2856EC21C112FB0091A977 /* UUID+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856EB21C112FB0091A977 /* UUID+Stream.swift */; };
 		8A2856F021C15AF70091A977 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2856EF21C15AF70091A977 /* Reaction.swift */; };
 		8A33004021D4D5B50035BBFB /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A33003F21D4D5B50035BBFB /* UserTests.swift */; };
 		8A33004221D4E0840035BBFB /* ReactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A33004121D4E0840035BBFB /* ReactionTests.swift */; };
@@ -79,7 +78,7 @@
 		8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */; };
 		8AE491A421B140B2008F9036 /* ClientFayeExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE491A321B140B2008F9036 /* ClientFayeExtendable.swift */; };
 		8AE7F99D21A59C8B0074DA21 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
-		8AE7F9A021A59EE30074DA21 /* UUID+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */; };
+		8AE7F9A021A59EE30074DA21 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99F21A59EE30074DA21 /* String+Extensions.swift */; };
 		8AE7F9A321A5A8850074DA21 /* ClientParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */; };
 		8AEFF2BC21A587FA006887AB /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEFF2BB21A587FA006887AB /* FeedTests.swift */; };
 		8AF44DC721C28D3A00A3A7B4 /* Result+ParseReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF44DC621C28D3A00A3A7B4 /* Result+ParseReaction.swift */; };
@@ -139,7 +138,6 @@
 		8A2856E521C00E970091A977 /* Client+Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Reaction.swift"; sourceTree = "<group>"; };
 		8A2856E721C016BB0091A977 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		8A2856E921C0185C0091A977 /* ReactionEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionEndpoint.swift; sourceTree = "<group>"; };
-		8A2856EB21C112FB0091A977 /* UUID+Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Stream.swift"; sourceTree = "<group>"; };
 		8A2856EF21C15AF70091A977 /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 		8A33003F21D4D5B50035BBFB /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		8A33004121D4E0840035BBFB /* ReactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionTests.swift; sourceTree = "<group>"; };
@@ -194,7 +192,7 @@
 		8AE491A121B13FDA008F9036 /* Client+Faye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Faye.swift"; sourceTree = "<group>"; };
 		8AE491A321B140B2008F9036 /* ClientFayeExtendable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFayeExtendable.swift; sourceTree = "<group>"; };
 		8AE7F99C21A59C8B0074DA21 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
-		8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Extensions.swift"; sourceTree = "<group>"; };
+		8AE7F99F21A59EE30074DA21 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		8AE7F9A221A5A8850074DA21 /* ClientParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientParsingTests.swift; sourceTree = "<group>"; };
 		8AEFF2BB21A587FA006887AB /* FeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTests.swift; sourceTree = "<group>"; };
 		8AF44DC621C28D3A00A3A7B4 /* Result+ParseReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+ParseReaction.swift"; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 			children = (
 				8A6283D62199AEE20002913D /* Codable+Extensions.swift */,
 				8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */,
-				8A2856EB21C112FB0091A977 /* UUID+Stream.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -544,7 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				8AE7F99C21A59C8B0074DA21 /* TestCase.swift */,
-				8AE7F99F21A59EE30074DA21 /* UUID+Extensions.swift */,
+				8AE7F99F21A59EE30074DA21 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -805,7 +802,6 @@
 				8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */,
 				8AF44DC721C28D3A00A3A7B4 /* Result+ParseReaction.swift in Sources */,
 				8A6284142199CF9C0002913D /* FeedId.swift in Sources */,
-				8A2856EC21C112FB0091A977 /* UUID+Stream.swift in Sources */,
 				8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */,
 				8A411C3121C40495001BE61F /* UserProtocol.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
@@ -858,7 +854,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AE7F9A021A59EE30074DA21 /* UUID+Extensions.swift in Sources */,
+				8AE7F9A021A59EE30074DA21 /* String+Extensions.swift in Sources */,
 				8A5150E721D0F4690070199F /* CollectionTests.swift in Sources */,
 				8AE7F9A321A5A8850074DA21 /* ClientParsingTests.swift in Sources */,
 				8A5150E521D0EED60070199F /* NotificationFeedTests.swift in Sources */,

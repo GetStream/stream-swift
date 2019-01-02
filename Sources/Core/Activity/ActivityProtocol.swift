@@ -14,7 +14,7 @@ public protocol ActivityProtocol: Codable {
     associatedtype TargetType = Enrichable
     
     /// The Stream id of the activity.
-    var id: UUID? { get set }
+    var id: String { get set }
     /// The actor performing the activity.
     var actor: ActorType { get }
     /// The verb of the activity.

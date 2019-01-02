@@ -10,17 +10,17 @@ import Foundation
 import Moya
 
 enum ReactionEndpoint {
-    case add(_ activityId: UUID,
-        _ parentReactionId: UUID?,
+    case add(_ activityId: String,
+        _ parentReactionId: String?,
         _ kind: ReactionKind,
         _ data: ReactionExtraDataProtocol,
         _ feedIds: FeedIds)
     
-    case get(_ reactionId: UUID)
-    case delete(_ reactionId: UUID)
-    case update(_ reactionId: UUID, _ data: ReactionExtraDataProtocol, _ feedIds: FeedIds)
-    case reactionsByActivityId(_ activityId: UUID, _ kind: ReactionKind?, _ pagination: Pagination, _ withActivityData: Bool)
-    case reactionsByReactionId(_ reactionId: UUID, _ kind: ReactionKind?, _ pagination: Pagination)
+    case get(_ reactionId: String)
+    case delete(_ reactionId: String)
+    case update(_ reactionId: String, _ data: ReactionExtraDataProtocol, _ feedIds: FeedIds)
+    case reactionsByActivityId(_ activityId: String, _ kind: ReactionKind?, _ pagination: Pagination, _ withActivityData: Bool)
+    case reactionsByReactionId(_ reactionId: String, _ kind: ReactionKind?, _ pagination: Pagination)
     case reactionsByUserId(_ userId: String, _ kind: ReactionKind?, _ pagination: Pagination)
 }
 
@@ -31,11 +31,11 @@ extension ReactionEndpoint: StreamTargetType {
         case .add:
             return "reaction/"
         case .get(let reactionId), .delete(let reactionId), .update(let reactionId, _, _):
-            return "reaction/\(reactionId.lowercasedString)/"
+            return "reaction/\(reactionId)/"
         case let .reactionsByActivityId(activityId, kind, _, _):
-            return "reaction/activity_id/\(activityId.lowercasedString)/\((kind == nil ? "" : "\(kind ?? "")/"))"
+            return "reaction/activity_id/\(activityId)/\((kind == nil ? "" : "\(kind ?? "")/"))"
         case let .reactionsByReactionId(reactionId, kind, _):
-            return "reaction/reaction_id/\(reactionId.lowercasedString)/\((kind == nil ? "" : "\(kind ?? "")/"))"
+            return "reaction/reaction_id/\(reactionId)/\((kind == nil ? "" : "\(kind ?? "")/"))"
         case let .reactionsByUserId(userId, kind, _):
             return "reaction/user_id/\(userId)/\((kind == nil ? "" : "\(kind ?? "")/"))"
         }
@@ -57,8 +57,8 @@ extension ReactionEndpoint: StreamTargetType {
     var task: Task {
         switch self {
         case let .add(activityId, parentReactionId, kind, data, feedIds):
-            return .requestJSONEncodable(ReactionAddParameters(activityId: activityId.lowercasedString,
-                                                               parentReactionId: parentReactionId?.lowercasedString,
+            return .requestJSONEncodable(ReactionAddParameters(activityId: activityId,
+                                                               parentReactionId: parentReactionId,
                                                                kind: kind,
                                                                data: AnyEncodable(data),
                                                                feedIds: feedIds))
@@ -93,7 +93,7 @@ extension ReactionEndpoint: StreamTargetType {
             {"created_at":"2018-12-27T13:02:03.128831Z","updated_at":"2018-12-27T13:02:03.128831Z","id":"c7752fd7-e0dd-46c0-893a-0de07ec47739","user_id":"eric","kind":"like","activity_id":"ce918867-0520-11e9-a11e-0a286b200b2e","data":{},"parent":"50539e71-d6bf-422d-ad21-c8717df0c325","latest_children":{},"children_counts":{},"duration":"6.19ms"}
             """
         case .get(let reactionId):
-            return reactionId == UUID(uuidString: "00000000-0000-0000-0000-000000000002")!
+            return reactionId == "00000000-0000-0000-0000-000000000002"
                 ? """
             {"created_at":"2018-12-27T13:02:03.013191Z","updated_at":"2018-12-27T13:02:03.013191Z","id":"50539e71-d6bf-422d-ad21-c8717df0c325","user_id":"eric","kind":"comment","activity_id":"ce918867-0520-11e9-a11e-0a286b200b2e","data":{"text":"Hello!"},"parent":"","latest_children":{},"children_counts":{},"duration":"6.58ms"}
             """

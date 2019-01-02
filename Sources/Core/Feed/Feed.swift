@@ -82,7 +82,7 @@ extension Feed {
     ///     - completion: a completion block with removed activityId.
     /// - Returns: an object to cancel the request.
     @discardableResult
-    public func remove(activityId: UUID, completion: @escaping RemovedCompletion) -> Cancellable {
+    public func remove(activityId: String, completion: @escaping RemovedCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) {
             $0.parseRemoved(completion)
         }

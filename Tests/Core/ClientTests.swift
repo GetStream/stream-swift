@@ -53,7 +53,7 @@ final class ClientTests: TestCase {
     func testFeedEndpointAddActivity() {
         expect("add activity to the feed") { test in
             let activity = Activity(actor: "tester", verb: "test", object: "add activity")
-            XCTAssertEqual(activity.description, "EnrichedActivity<String, String, String><n/a> foreignId: n/a tester test add activity at <n/a> feedIds: []")
+            XCTAssertEqual(activity.description, "EnrichedActivity<String, String, String><n/a, n/a> tester test add activity at <n/a> feedIds: []")
             
             client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
                 if case .success(let response) = result,
@@ -77,8 +77,8 @@ final class ClientTests: TestCase {
             client.get(typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
                 if case .success(let activities) = result {
                     XCTAssertEqual(activities.count, 2)
-                    XCTAssertEqual(activities[0].id!, .test1)
-                    XCTAssertEqual(activities[1].id!, .test2)
+                    XCTAssertEqual(activities[0].id, .test1)
+                    XCTAssertEqual(activities[1].id, .test2)
                     test.fulfill()
                 }
             }
@@ -123,7 +123,7 @@ final class ClientTests: TestCase {
                                   unsetPropertiesNames: ["image"],
                                   activityId: .test1) { result in
                                     if case .success(let activity) = result {
-                                        XCTAssertEqual(activity.id!, .test1)
+                                        XCTAssertEqual(activity.id, .test1)
                                         XCTAssertEqual(activity.object, "updated")
                                         test.fulfill()
                                     }

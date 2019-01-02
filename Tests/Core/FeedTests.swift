@@ -53,7 +53,7 @@ final class FeedTests: TestCase {
             
             feed.remove(activityId: .test1) { result in
                 if case .success(let activityId) = result {
-                    XCTAssertEqual(activityId, UUID.test1.lowercasedString)
+                    XCTAssertEqual(activityId, String.test1)
                     test.fulfill()
                 }
             }

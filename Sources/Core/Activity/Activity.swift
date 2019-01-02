@@ -28,7 +28,7 @@ open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: Activi
     }
     
     /// The Stream id of the activity.
-    public var id: UUID?
+    public var id: String = ""
     /// The actor performing the activity.
     public let actor: A
     /// The verb of the activity.
@@ -90,7 +90,7 @@ open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: Activi
     }
     
     open var description: String {
-        return "\(type(of: self))\(id?.lowercasedString ?? "<n/a>") foreignId: \(foreignId ?? "n/a") "
+        return "\(type(of: self))<\(id.isEmpty ? "n/a" : id), \(foreignId ?? "n/a")> "
             + "\(actor.referenceId) \(verb) \(object.referenceId) at \(time?.description ?? "<n/a>") "
             + "feedIds: \(feedIds?.description ?? "[]")"
     }

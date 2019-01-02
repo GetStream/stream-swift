@@ -96,12 +96,12 @@ class ReactionTests: TestCase {
             XCTAssertEqual(reactions.reactions[1].data.text, "Hi!")
         }
         
-        client.reactions(forReactionId: UUID(uuidString: "50539e71-d6bf-422d-ad21-c8717df0c325")!) {
+        client.reactions(forReactionId: "50539e71-d6bf-422d-ad21-c8717df0c325") {
             let reactions = try! $0.dematerialize()
             XCTAssertEqual(reactions.reactions.count, 2)
         }
         
-        client.reactions(forActivityId: UUID(uuidString: "ce918867-0520-11e9-a11e-0a286b200b2e")!, withActivityData: true) {
+        client.reactions(forActivityId: "ce918867-0520-11e9-a11e-0a286b200b2e", withActivityData: true) {
             let reactions = try! $0.dematerialize()
             XCTAssertEqual(reactions.reactions.count, 3)
             XCTAssertNotNil(reactions.activity)

@@ -19,7 +19,7 @@ extension Client {
     /// - Note: A maximum length of list of activityIds is 100.
     @discardableResult
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
-                                         activityIds: [UUID],
+                                         activityIds: [String],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) {
             $0.parse(completion)
@@ -73,7 +73,7 @@ extension Client {
     public func updateActivity<T: ActivityProtocol>(typeOf type: T.Type,
                                                     setProperties properties: Properties? = nil,
                                                     unsetPropertiesNames names: [String]? = nil,
-                                                    activityId: UUID,
+                                                    activityId: String,
                                                     completion: @escaping ActivityCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.updateActivityById(setProperties: properties,
                                                                         unsetPropertiesNames: names,

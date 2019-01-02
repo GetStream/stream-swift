@@ -70,7 +70,7 @@ enum FeedEndpoint {
         _ markOption: FeedMarkOption,
         _ reactionsOptions: FeedReactionsOptions)
     
-    case deleteById(_ id: UUID, feedId: FeedId)
+    case deleteById(_ id: String, feedId: FeedId)
     case deleteByForeignId(_ foreignId: String, feedId: FeedId)
     case follow(_ feedId: FeedId, target: FeedId, activityCopyLimit: Int)
     case unfollow(_ feedId: FeedId, target: FeedId, keepHistory: Bool)
@@ -86,7 +86,7 @@ extension FeedEndpoint: StreamTargetType {
             return "\(enrich ? "enrich/" : "")feed/\(feedId.togetherWithSlash)/"
             
         case let .deleteById(activityId, feedId):
-            return "feed/\(feedId.togetherWithSlash)/\(activityId.lowercasedString)/"
+            return "feed/\(feedId.togetherWithSlash)/\(activityId)/"
             
         case let .deleteByForeignId(foreignId, feedId):
             return "feed/\(feedId.togetherWithSlash)/\(foreignId)/"
@@ -208,7 +208,7 @@ extension FeedEndpoint: StreamTargetType {
             }
             
         case .deleteById(let activityId, _):
-            return "{\"removed\":\"\(activityId.lowercasedString)\"}"
+            return "{\"removed\":\"\(activityId)\"}"
             
         case .deleteByForeignId(let foreignId, _):
             return "{\"removed\":\"\(foreignId)\"}"
