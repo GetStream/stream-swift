@@ -5,10 +5,11 @@ Pod::Spec.new do |s|
   s.homepage = "https://github.com/GetStream/stream-swift"
   s.license = { :type => "BSD-3", :file => "LICENSE" }
   s.author = { "Alexey Bukhtin" => "alexey@getstream.io" }
-  s.social_media_url   = ""
+  s.social_media_url = "https://getstream.io"
+  s.swift_version = "4.2"
   s.ios.deployment_target = "9.0"
   s.osx.deployment_target = "10.10"
-  s.watchos.deployment_target = "2.0"
+  s.watchos.deployment_target = "3.0"
   s.tvos.deployment_target = "9.0"
   s.source = { :git => "https://github.com/GetStream/stream-swift.git", :tag => s.version.to_s }
   s.default_subspecs = "Core"
@@ -19,6 +20,7 @@ Pod::Spec.new do |s|
     ss.dependency "Moya", "~> 12.0"
     ss.dependency "Swime", "~> 3.0"
     ss.dependency "JSONWebToken", "~> 2.2"
+    ss.dependency "Starscream", "~> 3.0"
   end
   
   s.subspec "Token" do |ss|

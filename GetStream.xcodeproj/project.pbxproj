@@ -188,6 +188,7 @@
 		8ACD0E8221BFEC9100B7CC4E /* Swime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swime.framework; path = Carthage/Build/iOS/Swime.framework; sourceTree = "<group>"; };
 		8AD1A0F721DCF51800996BE6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		8AD1A0F921DCFEA800996BE6 /* Feed+Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+Following.swift"; sourceTree = "<group>"; };
+		8AD1A0FB21DD063900996BE6 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		8ADCEE87219ECF78001598C1 /* Client+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Activity.swift"; sourceTree = "<group>"; };
 		8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEndpoint.swift; sourceTree = "<group>"; };
 		8AE491A121B13FDA008F9036 /* Client+Faye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Faye.swift"; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 				DD7502731C68FC20006590AF /* Tests */,
 				8A7B688F21A6F5AB00062FBD /* Package.swift */,
 				8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */,
+				8AD1A0FB21DD063900996BE6 /* Cartfile */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
