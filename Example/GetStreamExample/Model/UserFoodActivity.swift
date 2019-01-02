@@ -9,5 +9,4 @@
 import Foundation
 import GetStream
 
-final class UserFoodActivity: EnrichedActivity<User, Food, String> {
-}
+typealias UserFoodActivity = EnrichedActivity<User, Food, String>

@@ -371,25 +371,269 @@ client.flatFeed(feedSlug: "timeline", userId: "mike").get { result in
 ### Notify other feeds
 ```swift
 // adds a comment reaction to the activity and notifies Thierry's notification feed
-client.add(reactionTo: activityId, kindOf: "comment", extraData: Comment(text: "awesome post!")) { result in /* ... */ }
+client.add(reactionTo: activityId, 
+           kindOf: "comment", 
+           extraData: Comment(text: "awesome post!"),
+           targetsFeedIds: [FeedId(feedSlug: "notification", userId: "thierry")]) { result in /* ... */ }
 ```
 
 ### Read feeds with reactions
 ```swift
+// read bob's timeline and include most recent reactions to all activities and their total count
+client.flatFeed(feedSlug: "timeline", userId: "bob")
+    .get(includeReactions: [.latest, .counts]) { result in /* ... */ }
+    
+// read bob's timeline and include most recent reactions to all activities and her own reactions
+client.flatFeed(feedSlug: "timeline", userId: "bob")
+    .get(includeReactions: [.own, .latest, .counts]) { result in /* ... */ }
 ```
 
 ### Retrieving reactions
 ```swift
+// retrieve all kind of reactions for an activity
+client.reactions(forActivityId: UUID(uuidString: "ed2837a6-0a3b-4679-adc1-778a1704852d")!) { result in /* ... */ }
+
+// retrieve first 10 likes for an activity
+client.reactions(forActivityId: UUID(uuidString: "ed2837a6-0a3b-4679-adc1-778a1704852d")!,
+                 kindOf: "like",
+                 pagination: .limit(10)) { result in /* ... */ }
+
+// retrieve the next 10 likes using the id_lt param
+client.reactions(forActivityId: UUID(uuidString: "ed2837a6-0a3b-4679-adc1-778a1704852d")!,
+                 kindOf: "like",
+                 pagination: .lessThan("e561de8f-00f1-11e4-b400-0cc47a024be0")) { result in /* ... */ }
 ```
 
 ### Child reactions
 ```swift
+// add a like reaction to the previously created comment
+client.add(reactionToParentReaction: commentReaction, kindOf: "like") { result in /* ... */ }
 ```
 
 ### Updating Reactions
 ```swift
+client.update(reactionId: reactionId, extraData: Comment(text: "love it!")) { result in /* ... */ }
 ```
 
 ### Removing Reactions
 ```swift
+client.delete(reactionId: reactionId) { result in /* ... */ }
+```
+
+## Collections
+
+### Adding collection entries
+```swift
+// create a new collection object type with custom properties
+final class Food: CollectionObject {
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case rating
+    }
+    
+    var name: String
+    var rating: Float
+    
+    init(name: String, rating: Float, id: String? = nil) {
+        self.name = name
+        self.rating = rating
+        // For example, set the collection name here for all instances of Food.
+        super.init(collectionName: "food", id: id)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let dataContainer = try decoder.container(keyedBy: DataCodingKeys.self)
+        let container = try dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+        name = try container.decode(String.self, forKey: .name)
+        rating = try container.decode(Float.self, forKey: .rating)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var dataContainer = encoder.container(keyedBy: DataCodingKeys.self)
+        var container = dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+        try container.encode(name, forKey: .name)
+        try container.encode(rating, forKey: .rating)
+        try super.encode(to: encoder)
+    }
+}
+
+
+client.add(collectionObject: Food(name: "Cheese Burger", rating: 4, id: "cheese-burger")) { result in /* ... */ }
+
+// if you don't have an id on your side, just use nil as the ID and Stream will generate a unique ID
+client.add(collectionObject: Food(name: "Cheese Burger", rating: 4)) { result in /* ... */ }
+```
+
+### Retrieving collection entries
+```swift
+client.get(typeOf: Food.self, collectionName: "food", collectionObjectId: "cheese-burger") { result in /* ... */ }
+```
+
+### Deleting collection entries
+```swift
+client.delete(collectionName: "food", collectionObjectId: "cheese-burger") { result in /* ... */ }
+```
+
+### Updating collection entries
+```swift
+client.update(collectionObject: Food(name: "Cheese Burger", rating: 1, id: "cheese-burger")) { result in /* ... */ }
+```
+
+### Enrichment of collection entries
+```swift
+// first we add our object to the food collection
+let cheeseBurger = Food(name: "Cheese Burger", rating: 4, id: "cheese-burger")
+
+// setup an enriched activity type
+typealias UserFoodActivity = EnrichedActivity<User, Food, String>
+
+client.add(collectionObject: cheeseBurger) { _ in
+    // the object returned by .add can be embedded directly inside of an activity
+    userFeed.add(UserFoodActivity(actor: client.currentUser!, verb: 'grill', object: cheeseBurger)) { _ in
+        // if we now read the feed, the activity we just added will include the entire full object
+        userFeed.get(typeOf: UserFoodActivity.self) { result in
+            let activities = try! result.dematerialize()
+            
+            // we can then update the object and Stream will propagate the change to all activities
+            cheeseBurger.name = "Amazing Cheese Burger"
+            client.update(collectionObject: cheeseBurger) { result in /* ... */ }
+        }
+    }
+}
+```
+
+### References
+```swift
+// First create a collection entry with upsert api
+let cheeseBurger = Food(name: "Cheese Burger", rating: 4, id: "cheese-burger")
+
+client.add(collectionObject: cheeseBurger) { _ in
+    // Then create a user
+    let user = User(id: "john-doe")
+    client.create(user: user) { _ in
+        // Since we know their IDs we can create references to both without reading from APIs
+        // The `CollectionObjectProtocol` and `UserProtocol` conformed to the `Enrichable` protocol.
+        let cheeseBurgerRef = cheeseBurger.referenceId
+        let johnDoeRef = user.referenceId
+        
+        client.flatFeed(feedSlug: "user", userId: "john")
+              .add(Activity(actor: johnDoeRef, verb: "eat", object: cheeseBurgerRef)) { result in /* ... */ }
+    }
+}
+```
+
+## Users
+
+```swift
+let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: <#Token#>)
+let user = User(id: "john-doe")
+
+client.create(user: user) { result in
+    if let createdUser = try? result.dematerialize() {
+        client.currentUser = createdUser
+    }
+}
+```
+
+### Adding users
+```swift
+// create a new user, if the user already exist an error is returned
+client.create(user: User(id: "john-doe"), getOrCreate: false) { result in /* ... */ }
+
+// get or create a new user, if the user already exist the user is returned
+client.create(user: User(id: "john-doe"), getOrCreate: true) { result in /* ... */ }
+```
+
+### Retrieving users
+```swift
+client.get(userId: "123") { result in /* ... */ }
+```
+
+### Removing users
+```swift
+client.delete(userId: "123") { result in /* ... */ }
+```
+
+### Updating users
+```swift
+client.update(user: User(id: "john-doe")) { result in /* ... */ }
+```
+
+## Enrichment
+
+### Collections and Users
+```swift
+let userFeed = client.flatFeed(feedSlug: "user", userId: "jack")
+
+// setup an enriched activity type with the `Post` as the subclass of `CollectionObject`
+typealias UserPostActivity = EnrichedActivity<User, Post, String>
+
+client.create(user: User(id: "jack")) { result in
+    client.currentUser = try! result.dematerialize()
+    
+    client.add(collectionObject: Post(text: "...", id: "42-ways-to-improve-your-feed")) { _ in
+        let post = try! result.dematerialize()
+        userFeed.add(UserPostActivity(actor: client.currentUser!, verb: "post", object: post)) { _ in
+            // if we now read Jack's feed we will get automatically the enriched data
+            userFeed.get(typeOf: UserPostActivity.self) { result in 
+                print(result)
+                
+                // we can also update Jack's post and get the new version 
+                // automatically propagated to his feed and its followers
+                post.text = "new version of the post"
+                client.update(collectionObject: post) { _ in
+                    userFeed.get(typeOf: UserPostActivity.self) { result in 
+                        // jack's feed now has the new version of the data
+                        print(result)
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+## Files and Images
+
+### Upload
+```swift
+// uploading an `UIImage` as PNG data
+client.upload(image: File(name: "image.png", pngImage: image)) { result in /* ... */ }
+
+// uploading an `UIImage` as JPEG data
+client.upload(image: File(name: "image.jpg", jpegImage: image, compressionQuality: 0.9)) { result in /* ... */ }
+
+// uploading a file
+client.upload(file: File(name: "file", data: fileData)) { result in /* ... */ }
+```
+
+### Delete
+```swift
+// deleting an image using the url returned by the APIs
+client.delete(imageURL: imageURL) { result in /* ... */ }
+
+// deleting a file using the url returned by the APIs
+client.delete(fileURL: fileURL) { result in /* ... */ }
+```
+
+### Process images
+```swift
+// create a 50x50 thumbnail and crop from center.
+// `ImageProcess` has the `crop` parameter as `.center` by default.
+client.resizeImage(imageProcess: ImageProcess(url: url, resize: .crop, width: 50, height: 50)) { result in /* ... */ }
+
+// create a 50x50 thumbnail using clipping (keeps aspect ratio).
+// `ImageProcess` has the `resize` parameter as `.clip` by default.
+client.resizeImage(imageProcess: ImageProcess(url: url, width: 50, height: 50)) { result in /* ... */ }
+```
+
+## Open Graph
+
+### Scrape Open Graph Metadata from URLs
+```swift
+client.og(url: URL(string: "https://www.imdb.com/title/tt0117500/")!) { result in
+    // An `OGResponse` object would be in the result.
+    print(result)  
+}
 ```

@@ -14,11 +14,11 @@ enum ReactionEndpoint {
         _ parentReactionId: UUID?,
         _ kind: ReactionKind,
         _ data: ReactionExtraDataProtocol,
-        _ feedIds: [FeedId])
+        _ feedIds: FeedIds)
     
     case get(_ reactionId: UUID)
     case delete(_ reactionId: UUID)
-    case update(_ reactionId: UUID, _ data: ReactionExtraDataProtocol, _ feedIds: [FeedId])
+    case update(_ reactionId: UUID, _ data: ReactionExtraDataProtocol, _ feedIds: FeedIds)
     case reactionsByActivityId(_ activityId: UUID, _ kind: ReactionKind?, _ pagination: Pagination, _ withActivityData: Bool)
     case reactionsByReactionId(_ reactionId: UUID, _ kind: ReactionKind?, _ pagination: Pagination)
     case reactionsByUserId(_ userId: String, _ kind: ReactionKind?, _ pagination: Pagination)
@@ -140,13 +140,13 @@ extension ReactionEndpoint {
         var parentReactionId: String?
         var kind: ReactionKind?
         let data: AnyEncodable?
-        let feedIds: [FeedId]?
+        let feedIds: FeedIds?
         
         init(activityId: String? = nil,
              parentReactionId: String? = nil,
              kind: ReactionKind? = nil,
              data: AnyEncodable,
-             feedIds: [FeedId]) {
+             feedIds: FeedIds) {
             self.activityId = activityId
             self.parentReactionId = parentReactionId
             self.kind = kind
