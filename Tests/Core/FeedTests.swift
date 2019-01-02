@@ -124,7 +124,7 @@ final class FeedTests: TestCase {
         expect("a code status") { test in
             let feed = client.flatFeed(feedSlug: "s1", userId: "u1")
             
-            feed.follow(to: FeedId(feedSlug: "s2", userId: "u2")) { result in
+            feed.follow(toTarget: FeedId(feedSlug: "s2", userId: "u2")) { result in
                 if case .success(let codeStatus) = result, codeStatus == 200 {
                     test.fulfill()
                 }
@@ -136,7 +136,7 @@ final class FeedTests: TestCase {
         let feed = client.flatFeed(feedSlug: "s1", userId: "u1")
         
         expect("a code status") { test in
-            feed.unfollow(from: FeedId(feedSlug: "s2", userId: "u2")) { result in
+            feed.unfollow(fromTarget: FeedId(feedSlug: "s2", userId: "u2")) { result in
                 if case .success(let codeStatus) = result, codeStatus == 200 {
                     test.fulfill()
                 }
@@ -144,7 +144,7 @@ final class FeedTests: TestCase {
         }
         
         expect("a bad code status") { test in
-            feed.unfollow(from: FeedId(feedSlug: "s2", userId: "u2"), keepHistory: true) { result in
+            feed.unfollow(fromTarget: FeedId(feedSlug: "s2", userId: "u2"), keepHistory: true) { result in
                 if case .failure(let clientError) = result, case .jsonInvalid = clientError {
                     test.fulfill()
                 }

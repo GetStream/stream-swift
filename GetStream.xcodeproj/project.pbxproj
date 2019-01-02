@@ -74,6 +74,7 @@
 		8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */; };
 		8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207D21BE5D680033EE8F /* ImageProcess.swift */; };
 		8ACD0E8321BFEC9100B7CC4E /* Swime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACD0E8221BFEC9100B7CC4E /* Swime.framework */; };
+		8AD1A0FA21DCFEA800996BE6 /* Feed+Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1A0F921DCFEA800996BE6 /* Feed+Following.swift */; };
 		8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE87219ECF78001598C1 /* Client+Activity.swift */; };
 		8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */; };
 		8AE491A421B140B2008F9036 /* ClientFayeExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE491A321B140B2008F9036 /* ClientFayeExtendable.swift */; };
@@ -186,6 +187,7 @@
 		8ABC207D21BE5D680033EE8F /* ImageProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcess.swift; sourceTree = "<group>"; };
 		8ACD0E8221BFEC9100B7CC4E /* Swime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swime.framework; path = Carthage/Build/iOS/Swime.framework; sourceTree = "<group>"; };
 		8AD1A0F721DCF51800996BE6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		8AD1A0F921DCFEA800996BE6 /* Feed+Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+Following.swift"; sourceTree = "<group>"; };
 		8ADCEE87219ECF78001598C1 /* Client+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Activity.swift"; sourceTree = "<group>"; };
 		8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEndpoint.swift; sourceTree = "<group>"; };
 		8AE491A121B13FDA008F9036 /* Client+Faye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Faye.swift"; sourceTree = "<group>"; };
@@ -253,6 +255,8 @@
 				52D6D99C1BEFF38C002C0205 /* Configs */,
 				8AA6BEB4219D7087005B9C98 /* Frameworks */,
 				52D6D97D1BEFF229002C0205 /* Products */,
+				8A79F98421D67FD500C58F40 /* README.md */,
+				8AD1A0F721DCF51800996BE6 /* LICENSE */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,8 +278,6 @@
 				DD7502731C68FC20006590AF /* Tests */,
 				8A7B688F21A6F5AB00062FBD /* Package.swift */,
 				8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */,
-				8A79F98421D67FD500C58F40 /* README.md */,
-				8AD1A0F721DCF51800996BE6 /* LICENSE */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -410,7 +412,7 @@
 				8A0AD19821CBC9BD00A3167D /* FlatFeed.swift */,
 				8A0AD19521CBBDBE00A3167D /* Aggregated Feed */,
 				8A0AD19E21CBD84B00A3167D /* Notification Feed */,
-				8A64566921A306AB00E890F4 /* Follower.swift */,
+				8AD1A0F821DCFE9000996BE6 /* Following */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -506,6 +508,15 @@
 				8ABC207D21BE5D680033EE8F /* ImageProcess.swift */,
 			);
 			path = "Files and Images";
+			sourceTree = "<group>";
+		};
+		8AD1A0F821DCFE9000996BE6 /* Following */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1A0F921DCFEA800996BE6 /* Feed+Following.swift */,
+				8A64566921A306AB00E890F4 /* Follower.swift */,
+			);
+			path = Following;
 			sourceTree = "<group>";
 		};
 		8ADCEE86219ECF43001598C1 /* Activity */ = {
@@ -796,6 +807,7 @@
 				8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */,
 				8A411C3121C40495001BE61F /* UserProtocol.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
+				8AD1A0FA21DCFEA800996BE6 /* Feed+Following.swift in Sources */,
 				8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */,
 				8AF44DD121C29ADB00A3A7B4 /* Result+ParseUpload.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,

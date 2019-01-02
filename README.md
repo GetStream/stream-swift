@@ -34,7 +34,7 @@ Then run `carthage update`.
 
 ## Credits & Contributors
 
-Project is maintained by [Alexey Bukhtin](buh).
+Project is maintained by [Alexey Bukhtin](https://github.com/buh).
 
 We continue to welcome pull requests from community members.
 
@@ -64,7 +64,7 @@ chrisFeed.add(activity) { result in
 // Create a following relationship between Jack's "timeline" feed and Chris' "user" feed:
 let jackFeed = client.flatFeed(feedSlug: "timeline", userId: "jack")
 
-jackFeed.follow(to: chrisFeed.feedId, activityCopyLimit: 1) { result in
+jackFeed.follow(toTarget: chrisFeed.feedId, activityCopyLimit: 1) { result in
     print(result)
 }
 
@@ -237,19 +237,19 @@ user1.add(secondActivity) { result in
 let timelineFeed1 = client.flatFeed(feedSlug: "timeline", userId: "timeline_feed_1"))
 
 // `timeline:timeline_feed_1` follows `user:user_42`:
-timelineFeed1.follow(to: FeedId(feedSlug: "user", userId: "user_42")) { result in /* ... */ }
+timelineFeed1.follow(toTarget: FeedId(feedSlug: "user", userId: "user_42")) { result in /* ... */ }
 
 // Follow feed without copying the activities:
-timelineFeed1.follow(to: FeedId(feedSlug: "user", userId: "user_42"), activityCopyLimit: 0) { result in /* ... */ }
+timelineFeed1.follow(toTarget: FeedId(feedSlug: "user", userId: "user_42"), activityCopyLimit: 0) { result in /* ... */ }
 ```
 
 ### Unfollowing Feeds
 ```swift
 // Stop following feed user_42 - purging history:
-timelineFeed1.unfollow(from: FeedId(feedSlug: "user", userId: "user_42")) { result in /* ... */ }
+timelineFeed1.unfollow(fromTarget: FeedId(feedSlug: "user", userId: "user_42")) { result in /* ... */ }
 
 // Stop following feed user_42 but keep history of activities:
-timelineFeed1.unfollow(from: FeedId(feedSlug: "user", userId: "user_42"), keepHistory: true) { result in /* ... */ }
+timelineFeed1.unfollow(fromTarget: FeedId(feedSlug: "user", userId: "user_42"), keepHistory: true) { result in /* ... */ }
 ```
 
 ### Reading Feed Followers
