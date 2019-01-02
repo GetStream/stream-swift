@@ -342,11 +342,36 @@ subscription = nil
 
 ### Add reactions
 ```swift
+// add a like reaction to the activity with id activityId
+client.add(reactionTo: activityId, kindOf: "like") { result in /* ... */ }
 
+// adds a comment reaction to the activity with id activityId
+client.add(reactionTo: activityId, kindOf: "comment", extraData: Comment(text: "awesome post!")) { result in /* ... */ }
+```
+
+Here's a complete example:
+```swift
+// we recommend to add reaction kinds to the extention of the `ReactionKind` to avoid typos
+extension ReactionKind {
+    static let like = "like"
+    static let comment = "comment"
+}
+
+// first let's read current user's timeline feed and pick one activity
+client.flatFeed(feedSlug: "timeline", userId: "mike").get { result in
+    if let activities = try? result.dematerialize(), let activity = activities.first, let activityId = activity.id {
+        // then let's add a like reaction to that activity
+        client.add(reactionTo: activityId, kindOf: .like) { result in
+            print(result) // will print a reaction object in the result.
+        }
+    }
+}
 ```
 
 ### Notify other feeds
 ```swift
+// adds a comment reaction to the activity and notifies Thierry's notification feed
+client.add(reactionTo: activityId, kindOf: "comment", extraData: Comment(text: "awesome post!")) { result in /* ... */ }
 ```
 
 ### Read feeds with reactions
