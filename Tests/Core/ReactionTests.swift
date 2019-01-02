@@ -31,6 +31,12 @@ class ReactionTests: TestCase {
                 XCTAssertEqual(likeReaction.kind, .like)
                 XCTAssertEqual(likeReaction.parentId, commentReaction.id)
             }
+            
+            self.client.add(reactionToParentReaction: commentReaction, kindOf: .like) {
+                let likeReaction = try! $0.dematerialize()
+                XCTAssertEqual(likeReaction.kind, .like)
+                XCTAssertEqual(likeReaction.parentId, commentReaction.id)
+            }
         }
     }
     

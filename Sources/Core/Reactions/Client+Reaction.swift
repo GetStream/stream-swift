@@ -71,8 +71,7 @@ extension Client {
                                                   kindOf kind: ReactionKind,
                                                   targetsFeedIds: FeedIds = [],
                                                   completion: @escaping ReactionCompletion<ReactionNoExtraData>) -> Cancellable {
-        return add(reactionTo: parentReaction.activityId,
-                   parentReactionId: parentReaction.id,
+        return add(reactionToParentReaction: parentReaction,
                    kindOf: kind,
                    extraData: ReactionNoExtraData.shared,
                    targetsFeedIds: targetsFeedIds,
