@@ -8,10 +8,9 @@ You can sign up for a Stream account at https://getstream.io/get_started.
 
 ### CocoaPods
 
-For Stream, use the following entry in your Podfile:
+For Stream, use the following entry in your `Podfile`:
 ```
-pod 'GetStream', '~> 0.1'
-pod 'Faye', '~> 0.1'
+pod 'GetStream', '~> 1.0'
 ```
 Then run `pod install`.
 
@@ -21,7 +20,7 @@ In any file you'd like to use Stream in, don't forget to import the framework wi
 
 To integrate using Apple's Swift package manager, add the following as a dependency to your `Package.swift`:
 ```
-.package(url: "https://github.com/GetStream/stream-swift.git", .upToNextMajor(from: "0.1.0"))
+.package(url: "https://github.com/GetStream/stream-swift.git", .upToNextMajor(from: "1.0.0"))
 ```
 
 ### Carthage
@@ -98,7 +97,7 @@ user1.add(activity) { result in
 ### Custom fields
 ```swift
 // Create a custom Activity class.
-final class Activity: GetStream.Activity {
+final class ExerciseActivity: Activity {
     private enum CodingKeys: String, CodingKey {
         case course
         case participants
@@ -143,13 +142,19 @@ struct Course: Codable {
     let distance: Float
 }
 
-let exercise = Activity(actor: "User:1",
-                        verb: "run", 
-                        object: "Exercise:42", 
-                        course: Course(name: "Golden Gate Park", distance: 10), 
-                        participants: ["Thierry", "Tommaso"])
+let exerciseActivity = ExerciseActivity(actor: "User:1",
+                                        verb: "run", 
+                                        object: "Exercise:42", 
+                                        course: Course(name: "Golden Gate Park", distance: 10), 
+                                        participants: ["Thierry", "Tommaso"])
 
-user1.add(exercise) { result in
+// Add the exercise activity to the  `user1` feed. 
+user1.add(exerciseActivity) { result in
+    print(result)
+}
+
+// Get a list of exercise activities.
+user1.get(typeOf: ExerciseActivity.self) { result in
     print(result)
 }
 ```
