@@ -43,6 +43,7 @@
 		8A411C2D21C4047F001BE61F /* Client+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C2C21C4047F001BE61F /* Client+User.swift */; };
 		8A411C2F21C4048A001BE61F /* UserEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C2E21C4048A001BE61F /* UserEndpoint.swift */; };
 		8A411C3121C40495001BE61F /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C3021C40495001BE61F /* UserProtocol.swift */; };
+		8A4B11F121DE368700D19ADB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4B11F021DE368700D19ADB /* Token.swift */; };
 		8A5150E321D0E5170070199F /* AggregatedFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5150E221D0E5170070199F /* AggregatedFeedTests.swift */; };
 		8A5150E521D0EED60070199F /* NotificationFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5150E421D0EED60070199F /* NotificationFeedTests.swift */; };
 		8A5150E721D0F4690070199F /* CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5150E621D0F4690070199F /* CollectionTests.swift */; };
@@ -150,6 +151,7 @@
 		8A411C2E21C4048A001BE61F /* UserEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndpoint.swift; sourceTree = "<group>"; };
 		8A411C3021C40495001BE61F /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
 		8A4B11EF21DD340B00D19ADB /* Faye.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Faye.podspec; sourceTree = SOURCE_ROOT; };
+		8A4B11F021DE368700D19ADB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		8A5150E221D0E5170070199F /* AggregatedFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedFeedTests.swift; sourceTree = "<group>"; };
 		8A5150E421D0EED60070199F /* NotificationFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFeedTests.swift; sourceTree = "<group>"; };
 		8A5150E621D0F4690070199F /* CollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTests.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 		8A6283DD2199AEE20002913D /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				8A4B11F021DE368700D19ADB /* Token.swift */,
 				8A6283DF2199AEE20002913D /* Client.swift */,
 				8AE491A321B140B2008F9036 /* ClientFayeExtendable.swift */,
 				8A6283E02199AEE20002913D /* ClientError.swift */,
@@ -814,6 +817,7 @@
 				8AF44DCB21C294F500A3A7B4 /* Result+ParseResponse.swift in Sources */,
 				8A0AD19721CBBE9400A3167D /* Group.swift in Sources */,
 				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
+				8A4B11F121DE368700D19ADB /* Token.swift in Sources */,
 				8A0AD1A421CBEA6000A3167D /* Enrichable.swift in Sources */,
 				8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */,
 				8A411C2D21C4047F001BE61F /* Client+User.swift in Sources */,

@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 import Result
-import JWT
 
 typealias ClientCompletionResult = Result<Response, ClientError>
 typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
@@ -64,8 +63,7 @@ public final class Client {
     }
     
     private func parseUserId() {
-        if let claims: ClaimSet = try? JWT.decode(token, algorithm: .none, verify: false),
-            let userId = claims["user_id"] as? String {
+        if let payloadJSON = token.payload, let userId = payloadJSON["user_id"] as? String {
             currentUserId = userId
         }
     }
