@@ -92,7 +92,3 @@ extension Token {
         case delete
     }
 }
-
-extension FeedId {
-    public static let any = FeedId(feedSlug: "*", userId: "")
-}

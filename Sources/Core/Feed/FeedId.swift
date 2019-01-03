@@ -78,6 +78,10 @@ extension FeedId: Equatable {
     }
 }
 
+extension FeedId {
+    public static let any = FeedId(feedSlug: "*", userId: "")
+}
+
 // MARK: - FeedIds
 
 public typealias FeedIds = [FeedId]

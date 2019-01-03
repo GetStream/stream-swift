@@ -64,7 +64,6 @@
 		8A64566A21A306AB00E890F4 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566921A306AB00E890F4 /* Follower.swift */; };
 		8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */; };
 		8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */; };
-		8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B688921A6B90F00062FBD /* TokenTests.swift */; };
 		8A8AFEFE21AC07B800A1D512 /* FayeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */; };
 		8A8AFEFF21AC07C700A1D512 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
 		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
@@ -864,7 +863,6 @@
 				8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */,
 				8A5150EB21D139E50070199F /* OGTests.swift in Sources */,
 				8A5150E321D0E5170070199F /* AggregatedFeedTests.swift in Sources */,
-				8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */,
 				8A33004021D4D5B50035BBFB /* UserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
