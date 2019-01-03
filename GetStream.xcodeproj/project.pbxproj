@@ -67,8 +67,6 @@
 		8A7B688A21A6B90F00062FBD /* TokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7B688921A6B90F00062FBD /* TokenTests.swift */; };
 		8A8AFEFE21AC07B800A1D512 /* FayeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */; };
 		8A8AFEFF21AC07C700A1D512 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
-		8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62840E2199B4630002913D /* Token+Generator.swift */; };
-		8A8E539421A6B6BC008CFD78 /* JWT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E539321A6B6BC008CFD78 /* JWT.framework */; };
 		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
 		8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207921BAB8D10033EE8F /* Client+Files.swift */; };
 		8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */; };
@@ -178,7 +176,6 @@
 		8A7B688921A6B90F00062FBD /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
 		8A7B688F21A6F5AB00062FBD /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeTests.swift; sourceTree = "<group>"; };
-		8A8E539321A6B6BC008CFD78 /* JWT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWT.framework; path = Carthage/Build/iOS/JWT.framework; sourceTree = "<group>"; };
 		8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProtocol.swift; sourceTree = "<group>"; };
 		8AA6BEB5219D711E005B9C98 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
 		8AA6BEB6219D711E005B9C98 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -215,7 +212,6 @@
 				8A33F72E21B16AEF006399A6 /* Faye.framework in Frameworks */,
 				8A391C5921AC0AF700F645CC /* Moya.framework in Frameworks */,
 				8A391C5D21AC0AFE00F645CC /* Alamofire.framework in Frameworks */,
-				8A8E539421A6B6BC008CFD78 /* JWT.framework in Frameworks */,
 				8ACD0E8321BFEC9100B7CC4E /* Swime.framework in Frameworks */,
 				8A391C6121AC0B0700F645CC /* Result.framework in Frameworks */,
 			);
@@ -494,7 +490,6 @@
 			isa = PBXGroup;
 			children = (
 				8AA6BEB6219D711E005B9C98 /* Alamofire.framework */,
-				8A8E539321A6B6BC008CFD78 /* JWT.framework */,
 				8AA6BEB5219D711E005B9C98 /* Moya.framework */,
 				8AA6BEB8219D711F005B9C98 /* Result.framework */,
 				8ACD0E8221BFEC9100B7CC4E /* Swime.framework */,
@@ -756,7 +751,6 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/JWT.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Swime.framework",
@@ -766,7 +760,6 @@
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/JWT.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Moya.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Result.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Swime.framework",
@@ -816,7 +809,6 @@
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8AF44DCB21C294F500A3A7B4 /* Result+ParseResponse.swift in Sources */,
 				8A0AD19721CBBE9400A3167D /* Group.swift in Sources */,
-				8A8E538F21A6A99A008CFD78 /* Token+Generator.swift in Sources */,
 				8A4B11F121DE368700D19ADB /* Token.swift in Sources */,
 				8A0AD1A421CBEA6000A3167D /* Enrichable.swift in Sources */,
 				8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */,

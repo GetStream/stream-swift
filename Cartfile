@@ -1,5 +1,4 @@
-github "Moya/Moya"
-github "daltoniam/Starscream"
-github "huynguyen-n/JSONWebToken.swift" "develop" # 0dda17fb7574175dbb47c3d639c02031061e7d32
-github "sendyhalim/Swime"
+github "Moya/Moya" ~> 12.0
+github "daltoniam/Starscream" ~> 3.0
+github "sendyhalim/Swime" ~> 3.0
 github "antitypical/Result" ~> 4.1
