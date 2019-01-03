@@ -72,6 +72,7 @@
 		8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207D21BE5D680033EE8F /* ImageProcess.swift */; };
 		8ACD0E8321BFEC9100B7CC4E /* Swime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACD0E8221BFEC9100B7CC4E /* Swime.framework */; };
 		8AD1A0FA21DCFEA800996BE6 /* Feed+Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1A0F921DCFEA800996BE6 /* Feed+Following.swift */; };
+		8AD458B921DE5605007C51B5 /* Client+Faye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE491A121B13FDA008F9036 /* Client+Faye.swift */; };
 		8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE87219ECF78001598C1 /* Client+Activity.swift */; };
 		8ADCEE8D219ECFD1001598C1 /* ActivityEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */; };
 		8AE491A421B140B2008F9036 /* ClientFayeExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE491A321B140B2008F9036 /* ClientFayeExtendable.swift */; };
@@ -823,6 +824,7 @@
 				8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */,
 				8A411C2A21C3D38E001BE61F /* Reactions.swift in Sources */,
 				8AE491A421B140B2008F9036 /* ClientFayeExtendable.swift in Sources */,
+				8AD458B921DE5605007C51B5 /* Client+Faye.swift in Sources */,
 				8AF44DCF21C29AAE00A3A7B4 /* ResultsContainer.swift in Sources */,
 				8A6284092199AEE20002913D /* ClientError.swift in Sources */,
 				8A2856F021C15AF70091A977 /* Reaction.swift in Sources */,
