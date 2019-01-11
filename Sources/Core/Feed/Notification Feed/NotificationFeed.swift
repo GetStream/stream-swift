@@ -9,7 +9,10 @@
 import Foundation
 import Result
 
+/// The `NotificationFeed` type makes it easy to add notifications to your app. Notifications cannot be followed by other feeds,
+/// but you can write directly to a Notification feed.
 public final class NotificationFeed: Feed {
+    
     /// Receive a notification feed activities type of `Activity`.
     ///
     /// - Parameters:

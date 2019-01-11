@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// `FlatFeed` are the only feeds that can be followed, and therefore are a good type to setup for adding activities.
+/// `FlatFeed` can also be used to consume activities from other feeds - in a "timeline"-like manner.
 public final class FlatFeed: Feed {
     
     /// Receive a feed activities type of `Activity`.
@@ -58,7 +60,7 @@ public final class FlatFeed: Feed {
     }
 }
 
-// MARK: - Client Feed
+// MARK: - Client Flat Feed
 
 extension Client {
     /// Get a flat feed with a given feed group `feedSlug` and `userId`.

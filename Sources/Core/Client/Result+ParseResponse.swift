@@ -13,6 +13,8 @@ import Result
 typealias CompletionObject<T: Decodable> = (_ result: Result<T, ClientError>) -> Void
 typealias CompletionObjects<T: Decodable> = (_ result: Result<Response<T>, ClientError>) -> Void
 
+// MARK: - Result Parsing
+
 extension Result where Value == Moya.Response, Error == ClientError {
     
     /// Parse a response and return the status code.

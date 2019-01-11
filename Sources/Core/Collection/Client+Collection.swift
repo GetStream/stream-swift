@@ -11,6 +11,8 @@ import Result
 
 public typealias CollectionObjectCompletion<T: CollectionObjectProtocol> = (_ result: Result<T, ClientError>) -> Void
 
+// MARK: - Client Collections
+
 extension Client {
     
     /// Add a collection object to the collection with a given name.

@@ -12,21 +12,28 @@ import Result
 
 public typealias FollowersCompletion = (_ result: Result<Response<Follower>, ClientError>) -> Void
 
+/// A superclass for feeds: `FlatFeed`, `AggregatedFeed` and `NotificationFeed`.
 public class Feed: CustomStringConvertible {
     public let feedId: FeedId
     let client: Client
     
+    /// Returns a feedId description of the feed.
     public var description: String {
         return feedId.description
     }
     
+    /// Create a general feed.
+    ///
+    /// - Parameters:
+    ///     - feedId: a `FeedId`
+    ///     - client: a Stream client.
     public init(_ feedId: FeedId, client: Client) {
         self.feedId = feedId
         self.client = client
     }
 }
 
-// MARK: - Add a new Activity
+// MARK: - Feed Activity
 
 extension Feed {
     /// Add a new activity.
@@ -70,11 +77,7 @@ extension Feed {
             $0.parse(activityCompletion)
         }
     }
-}
-
-// MARK: - Delete a new Activity
-
-extension Feed {
+    
     /// Remove an activity by the activityId.
     ///
     /// - Parameters:

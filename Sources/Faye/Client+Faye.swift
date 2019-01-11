@@ -10,10 +10,12 @@ import Foundation
 import Faye
 import Result
 
-// MARK: - Client + Faye
+// MARK: - Client Faye for Subscriptions
 
 fileprivate var fayeClientKey: UInt8 = 0
 fileprivate var fayeFeedChannelKey: UInt8 = 0
+
+// MARK: - Client Faye
 
 extension Client {
     /// Setup a Faye client.
@@ -30,8 +32,6 @@ extension Client {
     }
 }
 
-// MARK: - Feed Subscription
-
 public typealias Subscription<T: ActivityProtocol> = (_ result: Result<SubscriptionResponse<T>, SubscriptionError>) -> Void
 
 public enum SubscriptionError: Error {
@@ -39,6 +39,8 @@ public enum SubscriptionError: Error {
     case decoding(_ error: DecodingError)
     case unexpected(_ error: Error)
 }
+
+// MARK: - Feed Subscription
 
 extension Feed {
     

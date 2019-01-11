@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - JSONDecoder
+// MARK: - JSONDecoder Stream
 
 extension JSONDecoder {
     public static let stream: JSONDecoder = {
@@ -34,7 +34,7 @@ extension JSONDecoder {
     }()
 }
 
-// MARK: - JSONEncoder
+// MARK: - JSONEncoder Stream
 
 extension JSONEncoder {
     public static let stream: JSONEncoder = {
@@ -96,11 +96,15 @@ extension DateFormatter {
     }
 }
 
+// MARK: - Date Stream
+
 extension Date {
     public var stream: String {
         return DateFormatter.Stream.default.string(from: self)
     }
 }
+
+// MARK: - String Date Stream
 
 extension String {
     public var streamDate: Date? {

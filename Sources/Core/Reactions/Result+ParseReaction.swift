@@ -13,6 +13,8 @@ import Result
 public typealias ReactionCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reaction<T>, ClientError>) -> Void
 public typealias ReactionsCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reactions<T>, ClientError>) -> Void
 
+// MARK: - Result Reactions Parsing
+
 extension Result where Value == Moya.Response, Error == ClientError {
     
     /// Parse the result with a given reaction completion block.

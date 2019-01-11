@@ -11,6 +11,8 @@ import Result
 
 public typealias UserCompletion<T: UserProtocol> = (_ result: Result<T, ClientError>) -> Void
 
+// MARK: - Client User
+
 extension Client {
     
     /// Create or add an user with a given data.

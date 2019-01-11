@@ -12,6 +12,8 @@ import Result
 
 public typealias GroupCompletion<T: ActivityProtocol, G: Group<T>> = (_ result: Result<Response<G>, ClientError>) -> Void
 
+// MARK: - Result Group Parsing
+
 extension Result where Value == Moya.Response, Error == ClientError {
     func parseGroup<T: ActivityProtocol, G: Group<T>>(_ completion: @escaping GroupCompletion<T, G>) {
         parse(block: {

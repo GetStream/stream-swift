@@ -12,6 +12,8 @@ import Result
 public typealias ActivityCompletion<T: Decodable> = (_ result: Result<T, ClientError>) -> Void
 public typealias ActivitiesCompletion<T: Decodable> = (_ result: Result<Response<T>, ClientError>) -> Void
 
+// MARK: - Client Activities
+
 extension Client {
     
     /// Receive activities by activity ids with a custom activity type.

@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: - Feed Following
+
 extension Feed {
     /// Follows a target feed.
     ///

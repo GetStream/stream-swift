@@ -11,6 +11,8 @@ import Result
 
 public typealias OGCompletion = (_ result: Result<OGResponse, ClientError>) -> Void
 
+// MARK: - Client Open Graph
+
 extension Client {
     
     /// The Open Graph can be used to scrape (GET) open graph data from a website.

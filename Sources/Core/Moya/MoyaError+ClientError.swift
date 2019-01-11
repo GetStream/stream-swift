@@ -9,6 +9,8 @@
 import Foundation
 import Moya
 
+// MARK: - Moya Client Error
+
 extension MoyaError {
     var clientError: ClientError {
         return .network(errorDescription ?? "Unknown", self)

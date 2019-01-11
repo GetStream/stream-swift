@@ -68,6 +68,7 @@
 		8A8AFEFF21AC07C700A1D512 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
 		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
 		8AAD3E7321E8C4C500FDB25D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAD3E7221E8C4C500FDB25D /* Response.swift */; };
+		8AAD3E7521E8EB3B00FDB25D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAD3E7421E8EB3B00FDB25D /* File.swift */; };
 		8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207921BAB8D10033EE8F /* Client+Files.swift */; };
 		8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */; };
 		8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207D21BE5D680033EE8F /* ImageProcess.swift */; };
@@ -180,6 +181,7 @@
 		8AA6BEB6219D711E005B9C98 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8AA6BEB8219D711F005B9C98 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		8AAD3E7221E8C4C500FDB25D /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		8AAD3E7421E8EB3B00FDB25D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		8ABC207921BAB8D10033EE8F /* Client+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Files.swift"; sourceTree = "<group>"; };
 		8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesEndpoint.swift; sourceTree = "<group>"; };
 		8ABC207D21BE5D680033EE8F /* ImageProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcess.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 				8ABC207921BAB8D10033EE8F /* Client+Files.swift */,
 				8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */,
 				8AF44DD021C29ADB00A3A7B4 /* Result+ParseUpload.swift */,
+				8AAD3E7421E8EB3B00FDB25D /* File.swift */,
 				8ABC207D21BE5D680033EE8F /* ImageProcess.swift */,
 			);
 			path = "Files and Images";
@@ -820,6 +823,7 @@
 				8A0AD18321C8F72800A3167D /* User.swift in Sources */,
 				8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */,
 				8A411C2A21C3D38E001BE61F /* Reactions.swift in Sources */,
+				8AAD3E7521E8EB3B00FDB25D /* File.swift in Sources */,
 				8AD458B921DE5605007C51B5 /* Client+Faye.swift in Sources */,
 				8A6284092199AEE20002913D /* ClientError.swift in Sources */,
 				8A2856F021C15AF70091A977 /* Reaction.swift in Sources */,

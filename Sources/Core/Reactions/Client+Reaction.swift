@@ -9,9 +9,9 @@
 import Foundation
 import Result
 
+// MARK: - Client Reactions
+
 extension Client {
-    
-    // MARK: - Add
     
     /// Add a reaction to the activity without any extra data.
     ///
@@ -102,8 +102,6 @@ extension Client {
                        completion: completion)
     }
     
-    // MARK: - Get
-    
     /// Add a reaction by id without any extra data.
     ///
     /// - Parameters:
@@ -131,8 +129,6 @@ extension Client {
         }
     }
     
-    // MARK: - Update
-    
     /// Update a reaction by id with extra data type of `ReactionExtraDataProtocol`.
     ///
     /// - Parameters:
@@ -151,8 +147,6 @@ extension Client {
         }
     }
     
-    // MARK: - Delete
-    
     /// Delete a reaction by id.
     ///
     /// - Parameters:
@@ -165,8 +159,6 @@ extension Client {
             $0.parseStatusCode(completion)
         }
     }
-    
-    // MARK: - Fetch Reactions
     
     /// Fetch reactions without any extra data for the activityId.
     ///

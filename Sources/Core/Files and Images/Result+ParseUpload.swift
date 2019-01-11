@@ -12,6 +12,8 @@ import Result
 
 public typealias UploadCompletion = (_ result: Result<URL, ClientError>) -> Void
 
+// MARK: - Result Upload Parsing
+
 extension Result where Value == Moya.Response, Error == ClientError {
     func parseUpload(_ completion: @escaping UploadCompletion) {
         if case .success(let response) = self {

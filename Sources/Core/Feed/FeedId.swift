@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A feed identifier based on `feedSlug` and `userId`.
 public struct FeedId: CustomStringConvertible, Codable {
     
     /// The name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline.
