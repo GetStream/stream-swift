@@ -19,15 +19,15 @@ class AggregatedFeedTests: TestCase {
         expect("get aggregated") { test in
             aggregated!.get { result in
                 let groups = try! result.get()
-                XCTAssertEqual(groups.count, 2)
-                XCTAssertEqual(groups.first!.verb, "verb")
-                XCTAssertEqual(groups.first!.activitiesCount, 2)
-                XCTAssertEqual(groups.first!.activities.count, 2)
-                XCTAssertEqual(groups.first!.actorsCount, 1)
-                XCTAssertTrue(groups.first!.group.hasPrefix("verb_"))
-                XCTAssertEqual(groups.first!.activities.first!.actor, "Me")
-                XCTAssertEqual(groups.first!.activities.first!.verb, "verb")
-                XCTAssertEqual(groups.first!.activities.first!.object, "Message")
+                XCTAssertEqual(groups.results.count, 2)
+                XCTAssertEqual(groups.results.first!.verb, "verb")
+                XCTAssertEqual(groups.results.first!.activitiesCount, 2)
+                XCTAssertEqual(groups.results.first!.activities.count, 2)
+                XCTAssertEqual(groups.results.first!.actorsCount, 1)
+                XCTAssertTrue(groups.results.first!.group.hasPrefix("verb_"))
+                XCTAssertEqual(groups.results.first!.activities.first!.actor, "Me")
+                XCTAssertEqual(groups.results.first!.activities.first!.verb, "verb")
+                XCTAssertEqual(groups.results.first!.activities.first!.object, "Message")
                 
                 test.fulfill()
             }

@@ -79,7 +79,7 @@ final class FeedTests: TestCase {
             let feed = client.flatFeed(feedSlug: "s", userId: "u")
             
             feed.get(pagination: .limit(1), ranking: "popularity") { result in
-                if case .success(let activities) = result, activities.count == 1 {
+                if case .success(let response) = result, response.results.count == 1 {
                     test.fulfill()
                 }
             }
@@ -109,7 +109,7 @@ final class FeedTests: TestCase {
             let feed = client.flatFeed(feedSlug: "enrich", userId: "u")
             
             feed.get(typeOf: UserFoodActivity.self) { result in
-                let activity = try! result.get().first!
+                let activity = try! result.get().results.first!
                 XCTAssertEqual(activity.actor.name, "Eric")
                 XCTAssertEqual(activity.verb, "eat")
                 XCTAssertEqual(activity.object.name, "Burger")
@@ -167,8 +167,10 @@ final class FeedTests: TestCase {
         }
     }
     
-    private func followerFollowing(feedId: FeedId, test: XCTestExpectation, result: Result<[Follower], ClientError>) {
-        if case .success(let followers) = result, followers.count == 1, let follower = followers.first {
+    private func followerFollowing(feedId: FeedId,
+                                   test: XCTestExpectation,
+                                   result: Result<GetStream.Response<Follower>, ClientError>) {
+        if case .success(let response) = result, response.results.count == 1, let follower = response.results.first {
             XCTAssertEqual(follower.feedId, feedId)
             XCTAssertEqual(follower.targetFeedId, FeedId(feedSlug: "s2", userId: "u2"))
             test.fulfill()

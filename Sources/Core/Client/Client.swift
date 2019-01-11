@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import Result
 
-typealias ClientCompletionResult = Result<Response, ClientError>
+typealias ClientCompletionResult = Result<Moya.Response, ClientError>
 typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void
 typealias NetworkProvider = MoyaProvider<MultiTarget>
 
@@ -203,7 +203,7 @@ extension Client {
         public let remaining: Int
         public let resetDate: Date
         
-        init?(response: Response) {
+        init?(response: Moya.Response) {
             guard let headers = response.response?.allHeaderFields as? [String : Any],
                 let limitString = headers["x-ratelimit-limit"] as? String,
                 let limit = Int(limitString),

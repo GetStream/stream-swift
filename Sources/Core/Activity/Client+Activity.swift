@@ -9,8 +9,8 @@
 import Foundation
 import Result
 
-public typealias ActivityCompletion<T> = (_ result: Result<T, ClientError>) -> Void
-public typealias ActivitiesCompletion<T> = (_ result: Result<[T], ClientError>) -> Void
+public typealias ActivityCompletion<T: Decodable> = (_ result: Result<T, ClientError>) -> Void
+public typealias ActivitiesCompletion<T: Decodable> = (_ result: Result<Response<T>, ClientError>) -> Void
 
 extension Client {
     

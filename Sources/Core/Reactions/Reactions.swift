@@ -16,6 +16,7 @@ public enum ReactionsError: Error {
 public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
     private enum CodingKeys: String, CodingKey {
         case reactions = "results"
+        case next
     }
     
     private enum ActivityCodingKeys: String, CodingKey {
@@ -23,6 +24,7 @@ public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
     }
     
     public let reactions: [Reaction<T>]
+    public private(set) var next: Pagination?
     private var activityContainer: KeyedDecodingContainer<Reactions<T>.ActivityCodingKeys>?
     
     public var activity: Activity? {
@@ -32,6 +34,12 @@ public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         reactions = try container.decode([Reaction<T>].self, forKey: .reactions)
+        next = try container.decodeIfPresent(Pagination.self, forKey: .next)
+        
+        if let next = next, case .none = next {
+            self.next = nil
+        }
+        
         activityContainer = try decoder.container(keyedBy: ActivityCodingKeys.self)
     }
     

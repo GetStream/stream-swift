@@ -13,7 +13,7 @@ import Result
 public typealias ReactionCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reaction<T>, ClientError>) -> Void
 public typealias ReactionsCompletion<T: ReactionExtraDataProtocol> = (_ result: Result<Reactions<T>, ClientError>) -> Void
 
-extension Result where Value == Response, Error == ClientError {
+extension Result where Value == Moya.Response, Error == ClientError {
     
     /// Parse the result with a given reaction completion block.
     func parseReaction<T: ReactionExtraDataProtocol>(_ completion: @escaping ReactionCompletion<T>) {

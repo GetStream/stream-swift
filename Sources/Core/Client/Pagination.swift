@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Pagination {
+public enum Pagination: Decodable {
     public static let defaultLimit = 25
     
     /// Default limit is 25. (Defined in `FeedPagination.defaultLimit`)
@@ -46,6 +46,41 @@ public enum Pagination {
     /// ```
     indirect case and(pagination: Pagination, another: Pagination)
     
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let urlString = try container.decode(String.self)
+        var pagination: Pagination = .none
+        
+        if let urlComponents = URLComponents(string: urlString), let queryItems = urlComponents.queryItems {
+            queryItems.forEach { queryItem in
+                if let value = queryItem.value, !value.isEmpty {
+                    switch queryItem.name {
+                    case "limit":
+                        if let intValue = Int(value) {
+                            pagination += .limit(intValue)
+                        }
+                    case "offset":
+                        if let intValue = Int(value) {
+                            pagination += .offset(intValue)
+                        }
+                    case "id_gt":
+                        pagination += .greaterThan(value)
+                    case "id_gte":
+                        pagination += .greaterThanOrEqual(value)
+                    case "id_lt":
+                        pagination += .lessThan(value)
+                    case "id_lte":
+                        pagination += .lessThanOrEqual(value)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
+        self = pagination
+    }
+    
     /// Parameters for a request.
     var parameters: [String: Any] {
         var params: [String: Any] = [:]
@@ -78,11 +113,19 @@ public enum Pagination {
 extension Pagination {
     /// An operator for combining Pagination's.
     public static func +(lhs: Pagination, rhs: Pagination) -> Pagination {
+        if case .none = lhs {
+            return rhs
+        }
+        
+        if case .none = rhs {
+            return lhs
+        }
+        
         return .and(pagination: lhs, another: rhs)
     }
     
     /// An operator for combining Pagination's.
     public static func +=(lhs: inout Pagination, rhs: Pagination) {
-        lhs = .and(pagination: lhs, another: rhs)
+        lhs = lhs + rhs
     }
 }

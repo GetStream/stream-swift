@@ -12,7 +12,7 @@ import Result
 
 public typealias RemovedCompletion = (_ result: Result<String, ClientError>) -> Void
 
-extension Result where Value == Response, Error == ClientError {
+extension Result where Value == Moya.Response, Error == ClientError {
     func parseRemoved(_ completion: @escaping RemovedCompletion) {
         if case .success(let response) = self {
             do {

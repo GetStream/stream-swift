@@ -17,14 +17,14 @@ class NotificationFeedTests: TestCase {
             notificationsFeed?.get(completion: { result in
                 let notifications = try! result.get()
                 
-                XCTAssertEqual(notifications.count, 1)
-                XCTAssertEqual(notifications.first!.isSeen, true)
-                XCTAssertEqual(notifications.first!.isRead, false)
-                XCTAssertEqual(notifications.first!.activitiesCount, 6)
-                XCTAssertEqual(notifications.first!.activities.count, 6)
-                XCTAssertEqual(notifications.first!.verb, "test")
-                XCTAssertTrue(notifications.first!.group.hasPrefix("test_"))
-                XCTAssertEqual(notifications.first!.activities.first!.verb, "test")
+                XCTAssertEqual(notifications.results.count, 1)
+                XCTAssertEqual(notifications.results.first!.isSeen, true)
+                XCTAssertEqual(notifications.results.first!.isRead, false)
+                XCTAssertEqual(notifications.results.first!.activitiesCount, 6)
+                XCTAssertEqual(notifications.results.first!.activities.count, 6)
+                XCTAssertEqual(notifications.results.first!.verb, "test")
+                XCTAssertTrue(notifications.results.first!.group.hasPrefix("test_"))
+                XCTAssertEqual(notifications.results.first!.activities.first!.verb, "test")
                 
                 test.fulfill()
             })

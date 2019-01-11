@@ -47,7 +47,7 @@ See the file "[LICENSE](https://github.com/GetStream/stream-swift/blob/master/LI
 
 ```swift
 // Setup Stream client.
-let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: <#Token#>)
+let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#>")
 
 // Create Chris's user feed.
 let chrisFeed = client.flatFeed(feedSlug: "user", userId: "chris")
@@ -69,8 +69,8 @@ jackFeed.follow(toTarget: chrisFeed.feedId, activityCopyLimit: 1) { result in
 
 // Read Jack's timeline and Chris' post appears in the feed:
 jackFeed.get(typeOf: Activity.self, pagination: .limit(10)) { result in
-    let activities = try! result.get()
-    print(activities)
+    let response = try! result.get()
+    print(response.results)
 }
 
 // Remove an activity by referencing it's foreignId
@@ -408,7 +408,7 @@ extension ReactionKind {
 
 // first let's read current user's timeline feed and pick one activity
 client.flatFeed(feedSlug: "timeline", userId: "mike").get { result in
-    if let activities = try? result.get(), let activity = activities.first, let activityId = activity.id {
+    if let response = try? result.get(), let activity = response.results.first, let activityId = activity.id {
         // then let's add a like reaction to that activity
         client.add(reactionTo: activityId, kindOf: .like) { result in
             print(result) // will print a reaction object in the result.
@@ -542,7 +542,7 @@ client.add(collectionObject: cheeseBurger) { _ in
     userFeed.add(UserFoodActivity(actor: client.currentUser!, verb: 'grill', object: cheeseBurger)) { _ in
         // if we now read the feed, the activity we just added will include the entire full object
         userFeed.get(typeOf: UserFoodActivity.self) { result in
-            let activities = try! result.get()
+            let activities = try! result.get().results
             
             // we can then update the object and Stream will propagate the change to all activities
             cheeseBurger.name = "Amazing Cheese Burger"
@@ -575,7 +575,7 @@ client.add(collectionObject: cheeseBurger) { _ in
 ## Users
 
 ```swift
-let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: <#Token#>)
+let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#>")
 let user = User(id: "john-doe")
 
 client.create(user: user) { result in

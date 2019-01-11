@@ -10,10 +10,10 @@ import Foundation
 import Moya
 import Result
 
-typealias CompletionObject<T> = (_ result: Result<T, ClientError>) -> Void
-typealias CompletionObjects<T> = (_ result: Result<[T], ClientError>) -> Void
+typealias CompletionObject<T: Decodable> = (_ result: Result<T, ClientError>) -> Void
+typealias CompletionObjects<T: Decodable> = (_ result: Result<Response<T>, ClientError>) -> Void
 
-extension Result where Value == Response, Error == ClientError {
+extension Result where Value == Moya.Response, Error == ClientError {
     
     /// Parse a response and return the status code.
     func parseStatusCode(_ completion: @escaping StatusCodeCompletion) {
@@ -41,9 +41,14 @@ extension Result where Value == Response, Error == ClientError {
     /// Parse `Decodable` objects with `ResultsContainer`.
     func parse<T: Decodable>(_ completion: @escaping CompletionObjects<T>) {
         parse(block: {
-            let response = try get()
-            let container = try JSONDecoder.stream.decode(ResultsContainer<T>.self, from: response.data)
-            completion(.success(container.results))
+            let moyaResponse = try get()
+            var response = try JSONDecoder.stream.decode(Response<T>.self, from: moyaResponse.data)
+            
+            if let next = response.next, case .none = next {
+                response.next = nil
+            }
+            
+            completion(.success(response))
         }, catch: {
             completion(.failure($0))
         })

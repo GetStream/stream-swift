@@ -75,10 +75,10 @@ final class ClientTests: TestCase {
     func testClientActivityGetByIds() {
         expect("get an activity by id") { test in
             client.get(typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
-                if case .success(let activities) = result {
-                    XCTAssertEqual(activities.count, 2)
-                    XCTAssertEqual(activities[0].id, .test1)
-                    XCTAssertEqual(activities[1].id, .test2)
+                if case .success(let response) = result {
+                    XCTAssertEqual(response.results.count, 2)
+                    XCTAssertEqual(response.results[0].id, .test1)
+                    XCTAssertEqual(response.results[1].id, .test2)
                     test.fulfill()
                 }
             }
@@ -91,12 +91,12 @@ final class ClientTests: TestCase {
             let times = [Date(timeIntervalSinceNow: -10), Date(timeIntervalSinceNow: -20)]
             
             client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
-                if case .success(let activities) = result {
-                    XCTAssertEqual(activities.count, 2)
-                    XCTAssertEqual(activities[0].foreignId!, foreignIds[0])
-                    XCTAssertEqual(activities[1].foreignId!, foreignIds[1])
-                    XCTAssertEqual(activities[0].time!.stream, times[0].stream)
-                    XCTAssertEqual(activities[1].time!.stream, times[1].stream)
+                if case .success(let response) = result {
+                    XCTAssertEqual(response.results.count, 2)
+                    XCTAssertEqual(response.results[0].foreignId!, foreignIds[0])
+                    XCTAssertEqual(response.results[1].foreignId!, foreignIds[1])
+                    XCTAssertEqual(response.results[0].time!.stream, times[0].stream)
+                    XCTAssertEqual(response.results[1].time!.stream, times[1].stream)
                     test.fulfill()
                 }
             }
