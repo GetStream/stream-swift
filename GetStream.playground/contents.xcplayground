@@ -3,7 +3,6 @@
     <pages>
         <page name='Table of Contents'/>
         <page name='Quick start'/>
-        <page name='Activities'/>
         <page name='Faye'/>
     </pages>
 </playground>

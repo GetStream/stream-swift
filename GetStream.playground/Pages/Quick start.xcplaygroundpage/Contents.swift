@@ -7,10 +7,8 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 startSync()
 
 // This token should be received from your server.
-let token = Token(secretData: "<#Secret#>".data(using: .utf8)!)
-
 // Setup Stream client.
-let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: token)
+let client = Client(apiKey: "<#API_KEY#>", appId: "<#APP_ID#>", token: "<#TOKEN#>")
 
 // Create Chris's user feed.
 let chrisFeed = client.flatFeed(feedSlug: "user", userId: "chris")
@@ -28,7 +26,7 @@ waitSync() // playground: wait the end of the prev async code
 
 // Create a following relationship between Jack's "timeline" feed and Chris' "user" feed:
 let jackFeed = client.flatFeed(feedSlug: "timeline", userId: "jack")
-jackFeed.follow(to: chrisFeed.feedId, activityCopyLimit: 1) { result in
+jackFeed.follow(toTarget: chrisFeed.feedId, activityCopyLimit: 1) { result in
     print(result)
     endSync()
 }
@@ -37,8 +35,12 @@ waitSync()
 
 // Read Jack's timeline and Chris' post appears in the feed:
 jackFeed.get(pagination: .limit(10)) { result in
-    let activities = try! result.dematerialize()
-    print(activities)
+    if let activities = try? result.get() {
+        print(activities)
+    } else {
+        print(result)
+    }
+    
     endSync()
 }
 
