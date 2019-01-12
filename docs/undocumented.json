@@ -772,7 +772,14 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/File.swift",
-      "line": 13,
+      "line": 14,
+      "symbol": "Image",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/File.swift",
+      "line": 20,
       "symbol": "File",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
