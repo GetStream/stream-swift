@@ -13,7 +13,7 @@ class FilesTests: TestCase {
     
     let data = Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==")!
     
-    lazy var image = UIImage(data: data)!
+    lazy var image = Image(data: data)!
     
     func testUpload() {
         expect("upload file") { test in
