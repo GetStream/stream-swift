@@ -1,4 +1,4 @@
-# stream-swift
+# Stream Swift Client
 
 [stream-swift](https://github.com/GetStream/stream-swift) is a Swift client for [Stream](https://getstream.io/).
 
@@ -292,8 +292,9 @@ notificationFeed.get(markOption: .read(["activityGroupIdOne", "activityGroupIdTw
 ## Ranking
 
 ### Custom Ranking
+<details><summary>Setup a class <code>PopularityActivity</code></summary>
+
 ```swift
-// Create a custom Activity class with `popularity` property.
 final class PopularityActivity: Activity {
     private enum CodingKeys: String, CodingKey {
         case popularity
@@ -318,7 +319,12 @@ final class PopularityActivity: Activity {
         try super.encode(to: encoder)
     }
 }
+```
 
+</details>
+
+
+```swift
 // Add Activity.
 let activity = PopularityActivity(actor: "User:2", verb: "pin", object: "Place:42", popularity: 5)
 user1.add(activity) { result in /* ... */ }
@@ -474,8 +480,9 @@ client.delete(reactionId: reactionId) { result in /* ... */ }
 ## Collections
 
 ### Adding collection entries
+<details><summary>Setup a class <code>Food</code> of <code>CollectionObject</code></summary>
+
 ```swift
-// create a new collection object type with custom properties
 final class Food: CollectionObject {
     private enum CodingKeys: String, CodingKey {
         case name
@@ -508,8 +515,12 @@ final class Food: CollectionObject {
         try super.encode(to: encoder)
     }
 }
+```
+
+</details>
 
 
+```swift
 client.add(collectionObject: Food(name: "Cheese Burger", rating: 4, id: "cheese-burger")) { result in /* ... */ }
 
 // if you don't have an id on your side, just use nil as the ID and Stream will generate a unique ID
