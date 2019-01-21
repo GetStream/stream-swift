@@ -60,7 +60,7 @@ final class ClientTests: TestCase {
                 if case .success(let response) = result,
                     let json = (try? response.mapJSON()) as? JSON {
                     XCTAssertEqual(json["actor"] as! String, activity.actor)
-                    XCTAssertEqual(json["verb"] as! String, activity.verb)
+                    XCTAssertEqual(json["verb"] as! Verb, activity.verb)
                     XCTAssertEqual(json["object"] as! String, activity.object)
                     test.fulfill()
                 }

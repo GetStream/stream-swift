@@ -28,7 +28,7 @@ open class EnrichedActivity<ActorType: Enrichable, ObjectType: Enrichable, Targe
     }
     
     /// The Stream id of the activity.
-    public var id: ActivityId = ""
+    public var id: String = ""
     /// The actor performing the activity.
     public let actor: ActorType
     /// The verb of the activity.

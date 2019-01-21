@@ -111,7 +111,7 @@ final class ExerciseActivity: Activity {
     var startDate: Date = Date()
     
     init(actor: String, 
-         verb: String, 
+         verb: Verb, 
          object: String, 
          course: Course,
          participants: [String],
@@ -184,7 +184,7 @@ user1.get(enrich: true, pagination: .limit(5), includeReactions: [.own, .latest,
 // Remove an activity by its id.
 user1.remove(activityId: "50539e71-d6bf-422d-ad21-c8717df0c325")
 
-// Remove activities foreign_id 'run:1'.
+// Remove activities foreign_id "run:1".
 user1.remove(foreignId: "run:1")
 ```
 
@@ -302,7 +302,7 @@ final class PopularityActivity: Activity {
 
     var popularity: Int
 
-    init(actor: String, verb: String, object: String, popularity: Int) {
+    init(actor: String, verb: Verb, object: String, popularity: Int) {
         super.init(actor: actor, verb: verb, object: object)
         self.popularity = popularity
     }
@@ -332,7 +332,7 @@ user1.add(activity) { result in /* ... */ }
 
 ### Retrieving Activities
 ```swift
-// Get activities sorted by the ranking method labelled 'activity_popularity' (Ranked Feeds Enabled):
+// Get activities sorted by the ranking method labelled "activity_popularity" (Ranked Feeds Enabled):
 user1.get(ranking: "activity_popularity")
 ```
 
@@ -552,7 +552,7 @@ typealias UserFoodActivity = EnrichedActivity<User, Food, String>
 
 client.add(collectionObject: cheeseBurger) { _ in
     // the object returned by .add can be embedded directly inside of an activity
-    userFeed.add(UserFoodActivity(actor: client.currentUser!, verb: 'grill', object: cheeseBurger)) { _ in
+    userFeed.add(UserFoodActivity(actor: client.currentUser!, verb: "grill", object: cheeseBurger)) { _ in
         // if we now read the feed, the activity we just added will include the entire full object
         userFeed.get(typeOf: UserFoodActivity.self) { result in
             let activities = try! result.get().results

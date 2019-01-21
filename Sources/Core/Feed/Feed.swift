@@ -15,7 +15,7 @@ public typealias FollowersCompletion = (_ result: Result<Response<Follower>, Cli
 /// A superclass for feeds: `FlatFeed`, `AggregatedFeed` and `NotificationFeed`.
 public class Feed: CustomStringConvertible {
     public let feedId: FeedId
-    let client: Client
+    public let client: Client
     
     /// Returns a feedId description of the feed.
     public var description: String {

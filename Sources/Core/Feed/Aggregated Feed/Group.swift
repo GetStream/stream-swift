@@ -22,7 +22,7 @@ public class Group<T: ActivityProtocol>: Decodable {
     
     public let id: String
     public let group: String
-    public let verb: String
+    public let verb: Verb
     public let activitiesCount: Int
     public let actorsCount: Int
     public let created: Date

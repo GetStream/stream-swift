@@ -79,9 +79,7 @@ extension Client {
                                                     completion: @escaping ActivityCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.updateActivityById(setProperties: properties,
                                                                         unsetPropertiesNames: names,
-                                                                        activityId: activityId)) {
-                                                                            $0.parse(completion)
-        }
+                                                                        activityId: activityId)) { $0.parse(completion) }
     }
     
     
@@ -111,8 +109,6 @@ extension Client {
         return request(endpoint: ActivityEndpoint<T>.updateActivity(setProperties: properties,
                                                                     unsetPropertiesNames: names,
                                                                     foreignId: foreignId,
-                                                                    time: time)) {
-                                                                        $0.parse(completion)
-        }
+                                                                    time: time)) { $0.parse(completion) }
     }
 }
