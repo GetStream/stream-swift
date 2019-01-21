@@ -27,7 +27,8 @@ final class FeedTests: TestCase {
         XCTAssertNil(Client(apiKey: "1",
                             appId: "2",
                             token: "3",
-                            networkProvider: NetworkProvider(stubClosure: NetworkProvider.immediatelyStub))
+                            networkProvider: NetworkProvider(stubClosure: NetworkProvider.immediatelyStub),
+                            callbackQueue: DispatchQueue.main)
             .flatFeed(feedSlug: "flat"))
     }
     

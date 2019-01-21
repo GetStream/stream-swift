@@ -15,25 +15,25 @@ public typealias UploadCompletion = (_ result: Result<URL, ClientError>) -> Void
 // MARK: - Result Upload Parsing
 
 extension Result where Value == Moya.Response, Error == ClientError {
-    func parseUpload(_ completion: @escaping UploadCompletion) {
+    func parseUpload(_ callbackQueue: DispatchQueue, _ completion: @escaping UploadCompletion) {
         if case .success(let response) = self {
             do {
                 let json = try response.mapJSON()
                 
                 if let json = json as? JSON, let urlString = json["file"] as? String, let url = URL(string: urlString) {
-                    completion(.success(url))
+                    callbackQueue.async { completion(.success(url)) }
                 } else {
                     ClientError.warning(for: json, missedParameter: "file")
-                    completion(.failure(.unexpectedResponse("`file` parameter not found")))
+                    callbackQueue.async { completion(.failure(.unexpectedResponse("`file` parameter not found"))) }
                 }
                 
             } catch {
                 if let clientError = error as? ClientError {
-                    completion(.failure(clientError))
+                    callbackQueue.async { completion(.failure(clientError)) }
                 }
             }
         } else if case .failure(let error) = self {
-            completion(.failure(error))
+            callbackQueue.async { completion(.failure(error)) }
         }
     }
 }

@@ -15,22 +15,22 @@ public typealias RemovedCompletion = (_ result: Result<String, ClientError>) -> 
 // MARK: - Result Removed Parsing
 
 extension Result where Value == Moya.Response, Error == ClientError {
-    func parseRemoved(_ completion: @escaping RemovedCompletion) {
+    func parseRemoved(_ callbackQueue: DispatchQueue, _ completion: @escaping RemovedCompletion) {
         if case .success(let response) = self {
             do {
                 let json = try response.mapJSON()
                 
                 if let json = json as? [String: Any], let removedId = json["removed"] as? String {
-                    completion(.success(removedId))
+                    callbackQueue.async { completion(.success(removedId)) }
                 } else {
                     ClientError.warning(for: json, missedParameter: "removed")
-                    completion(.failure(.unexpectedResponse("`removed` parameter not found")))
+                    callbackQueue.async { completion(.failure(.unexpectedResponse("`removed` parameter not found"))) }
                 }
             } catch {
-                completion(.failure(ClientError.jsonDecode(error.localizedDescription, error, response.data)))
+                callbackQueue.async { completion(.failure(ClientError.jsonDecode(error.localizedDescription, error, response.data))) }
             }
         } else if case .failure(let error) = self {
-            completion(.failure(error))
+            callbackQueue.async { completion(.failure(error)) }
         }
     }
 }

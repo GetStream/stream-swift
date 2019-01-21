@@ -54,8 +54,11 @@ public final class FlatFeed: Feed {
                                          ranking: String? = nil,
                                          includeReactions reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, ranking ?? "", .none, reactionsOptions)) {
-            $0.parse(completion)
+        let endpoint = FeedEndpoint.get(feedId, enrich, pagination, ranking ?? "", .none, reactionsOptions)
+        return client.request(endpoint: endpoint) { [weak self] result in
+            if let self = self {
+                result.parse(self.client.callbackQueue, completion)
+            }
         }
     }
 }

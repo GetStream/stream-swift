@@ -23,8 +23,10 @@ extension Client {
     public func get<T: ActivityProtocol>(typeOf type: T.Type,
                                          activityIds: [String],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) {
-            $0.parse(completion)
+        return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -36,8 +38,10 @@ extension Client {
                                          foreignIds: [String],
                                          times: [Date],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return request(endpoint: ActivityEndpoint<T>.get(foreignIds: foreignIds, times: times)) {
-            $0.parse(completion)
+        return request(endpoint: ActivityEndpoint<T>.get(foreignIds: foreignIds, times: times)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -50,8 +54,10 @@ extension Client {
     /// - Note: When updating an activity any changes to the `feedIds` property are ignored.
     @discardableResult
     public func update<T: ActivityProtocol>(activities: [T], completion: @escaping StatusCodeCompletion) -> Cancellable {
-        return request(endpoint: ActivityEndpoint<T>.update(activities)) {
-            $0.parseStatusCode(completion)
+        return request(endpoint: ActivityEndpoint<T>.update(activities)) { [weak self] result in
+            if let self = self {
+                result.parseStatusCode(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -79,7 +85,11 @@ extension Client {
                                                     completion: @escaping ActivityCompletion<T>) -> Cancellable {
         return request(endpoint: ActivityEndpoint<T>.updateActivityById(setProperties: properties,
                                                                         unsetPropertiesNames: names,
-                                                                        activityId: activityId)) { $0.parse(completion) }
+                                                                        activityId: activityId)) { [weak self] result in
+                                                                            if let self = self {
+                                                                                result.parse(self.callbackQueue, completion)
+                                                                            }
+        }
     }
     
     
@@ -109,6 +119,10 @@ extension Client {
         return request(endpoint: ActivityEndpoint<T>.updateActivity(setProperties: properties,
                                                                     unsetPropertiesNames: names,
                                                                     foreignId: foreignId,
-                                                                    time: time)) { $0.parse(completion) }
+                                                                    time: time)) { [weak self] result in
+                                                                        if let self = self {
+                                                                            result.parse(self.callbackQueue, completion)
+                                                                        }
+        }
     }
 }

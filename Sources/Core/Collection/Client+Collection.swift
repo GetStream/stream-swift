@@ -24,8 +24,10 @@ extension Client {
     @discardableResult
     public func add<T: CollectionObjectProtocol>(collectionObject: T,
                                                  completion: @escaping CollectionObjectCompletion<T>) -> Cancellable {
-        return request(endpoint: CollectionEndpoint.add(collectionObject)) {
-            $0.parse(completion)
+        return request(endpoint: CollectionEndpoint.add(collectionObject)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -42,8 +44,10 @@ extension Client {
                                                  collectionName: String,
                                                  collectionObjectId: String,
                                                  completion: @escaping CollectionObjectCompletion<T>) -> Cancellable {
-        return request(endpoint: CollectionEndpoint.get(collectionName, collectionObjectId)) {
-            $0.parse(completion)
+        return request(endpoint: CollectionEndpoint.get(collectionName, collectionObjectId)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -56,8 +60,10 @@ extension Client {
     @discardableResult
     public func update<T: CollectionObjectProtocol>(collectionObject: T,
                                                     completion: @escaping CollectionObjectCompletion<T>) -> Cancellable {
-        return request(endpoint: CollectionEndpoint.update(collectionObject)) {
-            $0.parse(completion)
+        return request(endpoint: CollectionEndpoint.update(collectionObject)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -71,7 +77,7 @@ extension Client {
     public func delete<T: CollectionObjectProtocol>(collectionObject: T,
                                                     completion: @escaping StatusCodeCompletion) -> Cancellable {
         guard let objectId = collectionObject.id else {
-            completion(.failure(.jsonInvalid))
+            callbackQueue.async { completion(.failure(.jsonInvalid)) }
             return SimpleCancellable()
         }
         
@@ -89,8 +95,10 @@ extension Client {
     public func delete(collectionName: String,
                        collectionObjectId: String,
                        completion: @escaping StatusCodeCompletion) -> Cancellable {
-        return request(endpoint: CollectionEndpoint.delete(collectionName, collectionObjectId)) {
-            $0.parseStatusCode(completion)
+        return request(endpoint: CollectionEndpoint.delete(collectionName, collectionObjectId)) { [weak self] result in
+            if let self = self {
+                result.parseStatusCode(self.callbackQueue, completion)
+            }
         }
     }
 }

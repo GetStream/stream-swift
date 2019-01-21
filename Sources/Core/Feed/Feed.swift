@@ -44,16 +44,20 @@ extension Feed {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func add<T: ActivityProtocol>(_ activity: T, completion: @escaping ActivityCompletion<T>) -> Cancellable {
-        return client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) {
-            if case .failure(let clientError) = $0 {
-                completion(.failure(clientError))
+        return client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            
+            if case .failure(let clientError) = result {
+                self.client.callbackQueue.async { completion(.failure(clientError)) }
                 return
             }
             
             /// The response is always for a not enriched activity.
             /// Check if the given activity is not enriched.
             if T.ActorType.self == String.self, T.ObjectType.self == String.self, T.TargetType.self == String.self {
-                $0.parse(completion)
+                result.parse(self.client.callbackQueue, completion)
                 return
             }
             
@@ -68,13 +72,13 @@ extension Feed {
                         activity.time = addedActivity.time
                     }
                     
-                    completion(.success(activity))
+                    self.client.callbackQueue.async { completion(.success(activity)) }
                 } catch {
-                    completion(.failure(.unexpectedError))
+                    self.client.callbackQueue.async { completion(.failure(.unexpectedError)) }
                 }
             }
             
-            $0.parse(activityCompletion)
+            result.parse(self.client.callbackQueue, activityCompletion)
         }
     }
     
@@ -86,8 +90,10 @@ extension Feed {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func remove(activityId: String, completion: @escaping RemovedCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) {
-            $0.parseRemoved(completion)
+        return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) { [weak self] result in
+            if let self = self {
+                result.parseRemoved(self.client.callbackQueue, completion)
+            }
         }
     }
     
@@ -99,8 +105,10 @@ extension Feed {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func remove(foreignId: String, completion: @escaping RemovedCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) {
-            $0.parseRemoved(completion)
+        return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) { [weak self] result in
+            if let self = self {
+                result.parseRemoved(self.client.callbackQueue, completion)
+            }
         }
     }
 }

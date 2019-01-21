@@ -53,8 +53,11 @@ extension Client {
                                                   extraData: T,
                                                   targetsFeedIds: FeedIds = [],
                                                   completion: @escaping ReactionCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.add(activityId, parentReactionId, kind, extraData, targetsFeedIds)) {
-            $0.parseReaction(completion)
+        let endpoint = ReactionEndpoint.add(activityId, parentReactionId, kind, extraData, targetsFeedIds)
+        return request(endpoint: endpoint) {  [weak self] result in
+            if let self = self  {
+                result.parseReaction(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -124,8 +127,10 @@ extension Client {
     public func get<T: ReactionExtraDataProtocol>(reactionId: String,
                                                   extraDataTypeOf: T.Type,
                                                   completion: @escaping ReactionCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.get(reactionId)) {
-            $0.parseReaction(completion)
+        return request(endpoint: ReactionEndpoint.get(reactionId)) { [weak self] result in
+            if let self = self {
+                result.parseReaction(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -142,8 +147,10 @@ extension Client {
                                                      extraData: T,
                                                      targetsFeedIds: FeedIds = [],
                                                      completion: @escaping ReactionCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.update(reactionId, extraData, targetsFeedIds)) {
-            $0.parseReaction(completion)
+        return request(endpoint: ReactionEndpoint.update(reactionId, extraData, targetsFeedIds)) { [weak self] result in
+            if let self = self {
+                result.parseReaction(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -155,8 +162,10 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func delete(reactionId: String, completion: @escaping StatusCodeCompletion) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.delete(reactionId)) {
-            $0.parseStatusCode(completion)
+        return request(endpoint: ReactionEndpoint.delete(reactionId)) { [weak self] result in
+            if let self = self {
+                result.parseStatusCode(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -200,8 +209,11 @@ extension Client {
                                                         pagination: Pagination = .none,
                                                         withActivityData: Bool = false,
                                                         completion: @escaping ReactionsCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.reactionsByActivityId(activityId, kind, pagination, withActivityData)) {
-            $0.parseReactions(completion)
+        let endpoint = ReactionEndpoint.reactionsByActivityId(activityId, kind, pagination, withActivityData)
+        return request(endpoint: endpoint) { [weak self] result in
+            if let self = self {
+                result.parseReactions(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -240,8 +252,10 @@ extension Client {
                                                         extraDataTypeOf: T.Type,
                                                         pagination: Pagination = .none,
                                                         completion: @escaping ReactionsCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.reactionsByReactionId(reactionId, kind, pagination)) {
-            $0.parseReactions(completion)
+        return request(endpoint: ReactionEndpoint.reactionsByReactionId(reactionId, kind, pagination)) { [weak self] result in
+            if let self = self {
+                result.parseReactions(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -280,8 +294,10 @@ extension Client {
                                                         extraDataTypeOf: T.Type,
                                                         pagination: Pagination = .none,
                                                         completion: @escaping ReactionsCompletion<T>) -> Cancellable {
-        return request(endpoint: ReactionEndpoint.reactionsByUserId(userId, kind, pagination)) {
-            $0.parseReactions(completion)
+        return request(endpoint: ReactionEndpoint.reactionsByUserId(userId, kind, pagination)) { [weak self] result in
+            if let self = self {
+                result.parseReactions(self.callbackQueue, completion)
+            }
         }
     }
 }

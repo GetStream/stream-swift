@@ -11,7 +11,8 @@ import Moya
 @testable import GetStream
 
 class ClientParsingTests: TestCase {
-    
+    let queue = DispatchQueue.main
+
     func testResultsErrors() {
         let response = Response(statusCode: 200, data: Data())
         let responseResult: ClientCompletionResult = .success(response)
@@ -23,7 +24,7 @@ class ClientParsingTests: TestCase {
                 }
             }
             
-            responseResult.parse(completion)
+            responseResult.parse(queue, completion)
         }
         
         expect("error result") { test in
@@ -33,7 +34,7 @@ class ClientParsingTests: TestCase {
                 }
             }
             
-            ClientCompletionResult.failure(ClientError.unknownError("", nil)).parse(completion)
+            ClientCompletionResult.failure(ClientError.unknownError("", nil)).parse(queue, completion)
         }
     }
     
@@ -42,7 +43,7 @@ class ClientParsingTests: TestCase {
         let responseResult: ClientCompletionResult = .success(response)
         
         expect("error json decode") { test in
-            responseResult.parseRemoved { result in
+            responseResult.parseRemoved(queue) { result in
                 if case .failure(let clientError) = result, case .jsonDecode = clientError {
                     test.fulfill()
                 }
@@ -50,7 +51,7 @@ class ClientParsingTests: TestCase {
         }
         
         expect("error result") { test in
-            ClientCompletionResult.failure(ClientError.unknownError("", nil)).parseRemoved { result in
+            ClientCompletionResult.failure(ClientError.unknownError("", nil)).parseRemoved(queue) { result in
                 if case .failure(let clientError) = result, case .unknownError = clientError {
                     test.fulfill()
                 }

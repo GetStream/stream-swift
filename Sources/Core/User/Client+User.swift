@@ -25,8 +25,10 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func create<T: UserProtocol>(user: T, getOrCreate: Bool = true, completion: @escaping UserCompletion<T>) -> Cancellable {
-        return request(endpoint: UserEndpoint.create(user, getOrCreate)) {
-            $0.parse(completion)
+        return request(endpoint: UserEndpoint.create(user, getOrCreate)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -55,8 +57,10 @@ extension Client {
                                      userId: String,
                                      withFollowCounts: Bool = false,
                                      completion: @escaping UserCompletion<T>) -> Cancellable {
-        return request(endpoint: UserEndpoint.get(userId, withFollowCounts)) {
-            $0.parse(completion)
+        return request(endpoint: UserEndpoint.get(userId, withFollowCounts)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -68,8 +72,10 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func update<T: UserProtocol>(user: T, completion: @escaping UserCompletion<T>) -> Cancellable {
-        return request(endpoint: UserEndpoint.update(user)) {
-            $0.parse(completion)
+        return request(endpoint: UserEndpoint.update(user)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, completion)
+            }
         }
     }
     
@@ -81,8 +87,10 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func delete(userId: String, completion: @escaping StatusCodeCompletion) -> Cancellable {
-        return request(endpoint: UserEndpoint.delete(userId)) {
-            $0.parseStatusCode(completion)
+        return request(endpoint: UserEndpoint.delete(userId)) { [weak self] result in
+            if let self = self {
+                result.parseStatusCode(self.callbackQueue, completion)
+            }
         }
     }
 }

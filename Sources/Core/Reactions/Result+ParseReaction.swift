@@ -18,24 +18,26 @@ public typealias ReactionsCompletion<T: ReactionExtraDataProtocol> = (_ result: 
 extension Result where Value == Moya.Response, Error == ClientError {
     
     /// Parse the result with a given reaction completion block.
-    func parseReaction<T: ReactionExtraDataProtocol>(_ completion: @escaping ReactionCompletion<T>) {
+    func parseReaction<T: ReactionExtraDataProtocol>(_ callbackQueue: DispatchQueue,
+                                                     _ completion: @escaping ReactionCompletion<T>) {
         parse(block: {
             let response = try get()
             let reaction = try JSONDecoder.stream.decode(Reaction<T>.self, from: response.data)
-            completion(.success(reaction))
-        }, catch: {
-            completion(.failure($0))
+            callbackQueue.async { completion(.success(reaction)) }
+        }, catch: { error in
+            callbackQueue.async { completion(.failure(error)) }
         })
     }
     
     /// Parse the result with a given reaction completion block.
-    func parseReactions<T: ReactionExtraDataProtocol>(_ completion: @escaping ReactionsCompletion<T>) {
+    func parseReactions<T: ReactionExtraDataProtocol>(_ callbackQueue: DispatchQueue,
+                                                      _ completion: @escaping ReactionsCompletion<T>) {
         parse(block: {
             let response = try get()
             let reactions = try JSONDecoder.stream.decode(Reactions<T>.self, from: response.data)
-            completion(.success(reactions))
-        }, catch: {
-            completion(.failure($0))
+            callbackQueue.async { completion(.success(reactions)) }
+        }, catch: { error in
+            callbackQueue.async { completion(.failure(error)) }
         })
     }
 }

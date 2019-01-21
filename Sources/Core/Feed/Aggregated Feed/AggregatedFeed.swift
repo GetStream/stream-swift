@@ -48,8 +48,11 @@ public final class AggregatedFeed: Feed {
                                          pagination: Pagination = .none,
                                          includeReactions reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping GroupCompletion<T, Group<T>>) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.get(feedId, enrich, pagination, "", .none, reactionsOptions)) {
-            $0.parseGroup(completion)
+        let endpoint = FeedEndpoint.get(feedId, enrich, pagination, "", .none, reactionsOptions)
+        return client.request(endpoint: endpoint) { [weak self] result in
+            if let self = self {
+                result.parseGroup(self.client.callbackQueue, completion)
+            }
         }
     }
 }

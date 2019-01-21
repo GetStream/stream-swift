@@ -19,6 +19,7 @@ public final class Client {
     let apiKey: String
     let appId: String
     let token: Token
+    let callbackQueue: DispatchQueue
     
     private let networkProvider: NetworkProvider
     
@@ -38,7 +39,7 @@ public final class Client {
                             appId: String,
                             token: Token,
                             baseURL: BaseURL = BaseURL(),
-                            callbackQueue: DispatchQueue? = nil,
+                            callbackQueue: DispatchQueue = DispatchQueue.main,
                             logsEnabled: Bool = false) {
         var moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
         
@@ -46,19 +47,18 @@ public final class Client {
             moyaPlugins.append(NetworkLoggerPlugin(verbose: true))
         }
         
-        let callbackQueue = callbackQueue
-            ?? DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
-        
+        let workingQueue = DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
         let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
-        let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: callbackQueue, plugins: moyaPlugins)
-        self.init(apiKey: apiKey, appId: appId, token: token, networkProvider: moyaProvider)
+        let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: workingQueue, plugins: moyaPlugins)
+        self.init(apiKey: apiKey, appId: appId, token: token, networkProvider: moyaProvider, callbackQueue: callbackQueue)
     }
     
-    init(apiKey: String, appId: String, token: Token, networkProvider: NetworkProvider) {
+    init(apiKey: String, appId: String, token: Token, networkProvider: NetworkProvider, callbackQueue: DispatchQueue) {
         self.apiKey = apiKey
         self.appId = appId
         self.token = token
         self.networkProvider = networkProvider
+        self.callbackQueue = callbackQueue
         parseUserId()
     }
     

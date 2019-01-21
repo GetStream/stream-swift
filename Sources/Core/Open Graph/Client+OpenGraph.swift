@@ -21,13 +21,19 @@ extension Client {
     ///     - url: URL to scrape.
     @discardableResult
     public func og(url: URL, completion: @escaping OGCompletion) -> Cancellable {
-        return request(endpoint: OpenGraphEndpoint.og(url)) { result in
+        return request(endpoint: OpenGraphEndpoint.og(url)) { [weak self] result in
             result.parse(block: {
                 let response = try result.get()
                 let ogResponse = try JSONDecoder().decode(OGResponse.self, from: response.data)
-                completion(.success(ogResponse))
-            }, catch: {
-                completion(.failure($0))
+                
+                if let self = self  {
+                    self.callbackQueue.async { completion(.success(ogResponse)) }
+                }
+                
+            }, catch: { error in
+                if let self = self  {
+                    self.callbackQueue.async { completion(.failure(error)) }
+                }
             })
         }
     }

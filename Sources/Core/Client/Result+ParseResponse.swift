@@ -18,30 +18,30 @@ typealias CompletionObjects<T: Decodable> = (_ result: Result<Response<T>, Clien
 extension Result where Value == Moya.Response, Error == ClientError {
     
     /// Parse a response and return the status code.
-    func parseStatusCode(_ completion: @escaping StatusCodeCompletion) {
+    func parseStatusCode(_ callbackQueue: DispatchQueue, _ completion: @escaping StatusCodeCompletion) {
         do {
             let response = try result.get()
-            completion(.success(response.statusCode))
+            callbackQueue.async { completion(.success(response.statusCode)) }
         } catch {
             if let clientError = error as? ClientError {
-                completion(.failure(clientError))
+                callbackQueue.async { completion(.failure(clientError)) }
             }
         }
     }
     
     /// Parse a `Decodable` object.
-    func parse<T: Decodable>(_ completion: @escaping CompletionObject<T>) {
+    func parse<T: Decodable>(_ callbackQueue: DispatchQueue, _ completion: @escaping CompletionObject<T>) {
         parse(block: {
             let response = try get()
             let object = try JSONDecoder.stream.decode(T.self, from: response.data)
-            completion(.success(object))
-        }, catch: {
-            completion(.failure($0))
+            callbackQueue.async { completion(.success(object)) }
+        }, catch: { error in
+            callbackQueue.async { completion(.failure(error)) }
         })
     }
     
     /// Parse `Decodable` objects with `ResultsContainer`.
-    func parse<T: Decodable>(_ completion: @escaping CompletionObjects<T>) {
+    func parse<T: Decodable>(_ callbackQueue: DispatchQueue, _ completion: @escaping CompletionObjects<T>) {
         parse(block: {
             let moyaResponse = try get()
             var response = try JSONDecoder.stream.decode(Response<T>.self, from: moyaResponse.data)
@@ -50,9 +50,9 @@ extension Result where Value == Moya.Response, Error == ClientError {
                 response.next = nil
             }
             
-            completion(.success(response))
-        }, catch: {
-            completion(.failure($0))
+            callbackQueue.async { completion(.success(response)) }
+        }, catch: { error in
+            callbackQueue.async { completion(.failure(error)) }
         })
     }
     
