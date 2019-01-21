@@ -8,17 +8,20 @@
 
 import Foundation
 
+public typealias ActivityId = String
+public typealias Verb = String
+
 public protocol ActivityProtocol: Codable {
     associatedtype ActorType = Enrichable
     associatedtype ObjectType = Enrichable
     associatedtype TargetType = Enrichable
     
     /// The Stream id of the activity.
-    var id: String { get set }
+    var id: ActivityId { get set }
     /// The actor performing the activity.
     var actor: ActorType { get }
     /// The verb of the activity.
-    var verb: String { get }
+    var verb: Verb { get }
     /// The object of the activity.
     var object: ObjectType { get }
     /// The optional target of the activity.

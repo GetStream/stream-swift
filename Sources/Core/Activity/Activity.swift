@@ -10,7 +10,7 @@ import Foundation
 
 public typealias Activity = EnrichedActivity<String, String, String>
 
-open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: ActivityProtocol, CustomStringConvertible {
+open class EnrichedActivity<ActorType: Enrichable, ObjectType: Enrichable, TargetType: Enrichable>: ActivityProtocol {
     /// - Note: These reserved words must not be used as field names:
     ///         activity_id, activity, analytics, extra_context, id, is_read, is_seen, origin, score, site_id, to
     enum CodingKeys: String, CodingKey {
@@ -28,15 +28,15 @@ open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: Activi
     }
     
     /// The Stream id of the activity.
-    public var id: String = ""
+    public var id: ActivityId = ""
     /// The actor performing the activity.
-    public let actor: A
+    public let actor: ActorType
     /// The verb of the activity.
-    public let verb: String
+    public let verb: Verb
     /// The object of the activity.
-    public let object: O
+    public let object: ObjectType
     /// The optional target of the activity.
-    public let target: T?
+    public let target: TargetType?
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
     public var foreignId: String?
     /// The optional time of the activity, isoformat. Default is the current time.
@@ -61,10 +61,10 @@ open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: Activi
     ///     - foreignId: a unique ID from your application for this activity.
     ///     - time: a time of the activity, isoformat. Default is the current time.
     ///     - feedIds: an array allows you to specify a list of feeds to which the activity should be copied.
-    public init(actor: A,
-                verb: String,
-                object: O,
-                target: T? = nil,
+    public init(actor: ActorType,
+                verb: Verb,
+                object: ObjectType,
+                target: TargetType? = nil,
                 foreignId: String? = nil,
                 time: Date? = nil,
                 feedIds: FeedIds? = nil) {
@@ -88,7 +88,9 @@ open class EnrichedActivity<A: Enrichable, O: Enrichable, T: Enrichable>: Activi
         try container.encodeIfPresent(time, forKey: .time)
         try container.encodeIfPresent(feedIds, forKey: .feedIds)
     }
-    
+}
+
+extension EnrichedActivity: CustomStringConvertible {
     open var description: String {
         return "\(type(of: self))<\(id.isEmpty ? "n/a" : id), \(foreignId ?? "n/a")> "
             + "\(actor.referenceId) \(verb) \(object.referenceId) at \(time?.description ?? "<n/a>") "

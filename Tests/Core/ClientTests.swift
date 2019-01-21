@@ -53,7 +53,8 @@ final class ClientTests: TestCase {
     func testFeedEndpointAddActivity() {
         expect("add activity to the feed") { test in
             let activity = Activity(actor: "tester", verb: "test", object: "add activity")
-            XCTAssertEqual(activity.description, "EnrichedActivity<String, String, String><n/a, n/a> tester test add activity at <n/a> feedIds: []")
+            XCTAssertEqual(activity.description,
+                           "EnrichedActivity<String, String, String><n/a, n/a> tester test add activity at <n/a> feedIds: []")
             
             client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
                 if case .success(let response) = result,
