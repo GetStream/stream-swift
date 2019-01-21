@@ -33,9 +33,53 @@ public protocol ActivityProtocol: Codable {
     /// One way to think about it is as the CC functionality of email.
     var feedIds: FeedIds? { get set }
     /// Include reactions added by current user to all activities.
-    var ownReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]? { get }
+    var ownReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]? { get set }
     /// Include recent reactions to activities.
-    var latestReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]? { get }
+    var latestReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]? { get set }
     /// Include reaction counts to activities.
-    var reactionCounts: [ReactionKind: Int]? { get }
+    var reactionCounts: [ReactionKind: Int]? { get set }
+}
+
+// MARK: - Own reactions
+
+extension ActivityProtocol {
+    
+    /// Update the activity with a new own reaction.
+    ///
+    /// - Parameter reaction: a new own reaction.
+    public mutating func addOwnReaction(_ reaction: Reaction<ReactionNoExtraData>) {
+        var ownReactions = self.ownReactions ?? [:]
+        var latestReactions = self.latestReactions ?? [:]
+        var reactionCounts = self.reactionCounts ?? [:]
+        ownReactions[reaction.kind, default: []].append(reaction)
+        latestReactions[reaction.kind, default: []].append(reaction)
+        reactionCounts[reaction.kind, default: 0] += 1
+        self.ownReactions = ownReactions
+        self.latestReactions = latestReactions
+        self.reactionCounts = reactionCounts
+    }
+    
+    /// Delete an existing own reaction for the activity.
+    ///
+    /// - Parameter reaction: an existing own reaction.
+    public mutating func deleteOwnReaction(_ reaction: Reaction<ReactionNoExtraData>) {
+        var ownReactions = self.ownReactions ?? [:]
+        var latestReactions = self.latestReactions ?? [:]
+        var reactionCounts = self.reactionCounts ?? [:]
+        
+        if let firstIndex = ownReactions[reaction.kind]?.firstIndex(of: reaction) {
+            ownReactions[reaction.kind, default: []].remove(at: firstIndex)
+            self.ownReactions = ownReactions
+            
+            if let firstIndex = latestReactions[reaction.kind]?.firstIndex(of: reaction) {
+                latestReactions[reaction.kind, default: []].remove(at: firstIndex)
+                self.latestReactions = latestReactions
+            }
+            
+            if let count = reactionCounts[reaction.kind], count > 0 {
+                reactionCounts[reaction.kind, default: 0] = count - 1
+                self.reactionCounts = reactionCounts
+            }
+        }
+    }
 }
