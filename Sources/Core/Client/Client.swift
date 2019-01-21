@@ -33,7 +33,7 @@ public final class Client {
     ///     - appId: the Stream APP id
     ///     - token: the client token
     ///     - baseURL: the client URL
-    ///     - callbackQueue: propagated to Alamofire as callback queue. If nil a GetStream default queue will be used.
+    ///     - callbackQueue: a callback queue for completion requests.
     ///     - logsEnabled: if enabled the client will show logs for requests.
     public convenience init(apiKey: String,
                             appId: String,

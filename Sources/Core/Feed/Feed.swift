@@ -14,8 +14,12 @@ public typealias FollowersCompletion = (_ result: Result<Response<Follower>, Cli
 
 /// A superclass for feeds: `FlatFeed`, `AggregatedFeed` and `NotificationFeed`.
 public class Feed: CustomStringConvertible {
+    /// A feed id.
     public let feedId: FeedId
+    /// A Stream client.
     public let client: Client
+    /// A separated callback queue from `client.callbackQueue` for completion requests.
+    public var callbackQueue: DispatchQueue
     
     /// Returns a feedId description of the feed.
     public var description: String {
@@ -27,9 +31,11 @@ public class Feed: CustomStringConvertible {
     /// - Parameters:
     ///     - feedId: a `FeedId`
     ///     - client: a Stream client.
-    public init(_ feedId: FeedId, client: Client) {
+    ///     - callbackQueue: a callback queue for completion requests. If nil, then `client.callbackQueue` would be used.
+    public init(_ feedId: FeedId, client: Client, callbackQueue: DispatchQueue? = nil) {
         self.feedId = feedId
         self.client = client
+        self.callbackQueue = callbackQueue ?? client.callbackQueue
     }
 }
 
@@ -50,14 +56,14 @@ extension Feed {
             }
             
             if case .failure(let clientError) = result {
-                self.client.callbackQueue.async { completion(.failure(clientError)) }
+                self.callbackQueue.async { completion(.failure(clientError)) }
                 return
             }
             
             /// The response is always for a not enriched activity.
             /// Check if the given activity is not enriched.
             if T.ActorType.self == String.self, T.ObjectType.self == String.self, T.TargetType.self == String.self {
-                result.parse(self.client.callbackQueue, completion)
+                result.parse(self.callbackQueue, completion)
                 return
             }
             
@@ -72,13 +78,13 @@ extension Feed {
                         activity.time = addedActivity.time
                     }
                     
-                    self.client.callbackQueue.async { completion(.success(activity)) }
+                    self.callbackQueue.async { completion(.success(activity)) }
                 } catch {
-                    self.client.callbackQueue.async { completion(.failure(.unexpectedError)) }
+                    self.callbackQueue.async { completion(.failure(.unexpectedError)) }
                 }
             }
             
-            result.parse(self.client.callbackQueue, activityCompletion)
+            result.parse(self.callbackQueue, activityCompletion)
         }
     }
     
@@ -92,7 +98,7 @@ extension Feed {
     public func remove(activityId: String, completion: @escaping RemovedCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.deleteById(activityId, feedId: feedId)) { [weak self] result in
             if let self = self {
-                result.parseRemoved(self.client.callbackQueue, completion)
+                result.parseRemoved(self.callbackQueue, completion)
             }
         }
     }
@@ -107,7 +113,7 @@ extension Feed {
     public func remove(foreignId: String, completion: @escaping RemovedCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.deleteByForeignId(foreignId, feedId: feedId)) { [weak self] result in
             if let self = self {
-                result.parseRemoved(self.client.callbackQueue, completion)
+                result.parseRemoved(self.callbackQueue, completion)
             }
         }
     }

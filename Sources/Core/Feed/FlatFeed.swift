@@ -57,7 +57,7 @@ public final class FlatFeed: Feed {
         let endpoint = FeedEndpoint.get(feedId, enrich, pagination, ranking ?? "", .none, reactionsOptions)
         return client.request(endpoint: endpoint) { [weak self] result in
             if let self = self {
-                result.parse(self.client.callbackQueue, completion)
+                result.parse(self.callbackQueue, completion)
             }
         }
     }

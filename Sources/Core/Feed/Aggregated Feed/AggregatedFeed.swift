@@ -51,7 +51,7 @@ public final class AggregatedFeed: Feed {
         let endpoint = FeedEndpoint.get(feedId, enrich, pagination, "", .none, reactionsOptions)
         return client.request(endpoint: endpoint) { [weak self] result in
             if let self = self {
-                result.parseGroup(self.client.callbackQueue, completion)
+                result.parseGroup(self.callbackQueue, completion)
             }
         }
     }

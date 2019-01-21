@@ -24,7 +24,7 @@ extension Feed {
         
         return client.request(endpoint: endpoint) { [weak self] result in
             if let self = self {
-                result.parseStatusCode(self.client.callbackQueue, completion)
+                result.parseStatusCode(self.callbackQueue, completion)
             }
         }
     }
@@ -35,7 +35,7 @@ extension Feed {
                                                               target: target,
                                                               keepHistory: keepHistory)) { [weak self] result in
                                                                 if let self = self {
-                                                                    result.parseStatusCode(self.client.callbackQueue, completion)
+                                                                    result.parseStatusCode(self.callbackQueue, completion)
                                                                 }
         }
     }
@@ -55,7 +55,7 @@ extension Feed {
         
         return client.request(endpoint: FeedEndpoint.followers(feedId, offset: offset, limit: limit)) { [weak self] result in
             if let self = self {
-                result.parse(self.client.callbackQueue, completion)
+                result.parse(self.callbackQueue, completion)
             }
         }
     }
@@ -82,7 +82,7 @@ extension Feed {
                                                                offset: offset,
                                                                limit: limit)) { [weak self] result in
                                                                 if let self = self {
-                                                                    result.parse(self.client.callbackQueue, completion)
+                                                                    result.parse(self.callbackQueue, completion)
                                                                 }
         }
     }

@@ -58,7 +58,7 @@ public final class NotificationFeed: Feed {
         let endpoint = FeedEndpoint.get(feedId, enrich, pagination, "", markOption, reactionsOptions)
         return client.request(endpoint: endpoint) { [weak self] result in
             if let self = self {
-                result.parseGroup(self.client.callbackQueue, completion)
+                result.parseGroup(self.callbackQueue, completion)
             }
         }
     }

@@ -90,6 +90,8 @@ open class EnrichedActivity<ActorType: Enrichable, ObjectType: Enrichable, Targe
     }
 }
 
+// MARK: - Description
+
 extension EnrichedActivity: CustomStringConvertible {
     open var description: String {
         return "\(type(of: self))<\(id.isEmpty ? "n/a" : id), \(foreignId ?? "n/a")> "
