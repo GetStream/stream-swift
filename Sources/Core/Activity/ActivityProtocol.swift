@@ -8,9 +8,12 @@
 
 import Foundation
 
+/// A verb type of the Activity.
+/// - Note: Verb type is useful for the making of static verb strings in the extension of the Verb type.
 public typealias Verb = String
 
-public protocol ActivityProtocol: Codable {
+/// A protocol for the Activity type.
+public protocol ActivityProtocol: Enrichable {
     associatedtype ActorType = Enrichable
     associatedtype ObjectType = Enrichable
     associatedtype TargetType = Enrichable
@@ -38,6 +41,16 @@ public protocol ActivityProtocol: Codable {
     var latestReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]? { get set }
     /// Include reaction counts to activities.
     var reactionCounts: [ReactionKind: Int]? { get set }
+}
+
+// MARK: - Enrichable
+
+extension ActivityProtocol {
+    /// The activity is enrichable and here is a referenceId by default.
+    /// For example, in case when you need to make a repost activity where `object` would be the original activity.
+    public var referenceId: String {
+        return "SA:\(id)"
+    }
 }
 
 // MARK: - Own reactions
