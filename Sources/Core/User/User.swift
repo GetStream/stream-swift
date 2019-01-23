@@ -48,7 +48,7 @@ open class User: UserProtocol, Equatable {
         try container.encode(id, forKey: .id)
     }
     
-    open static func == (lhs: User, rhs: User) -> Bool {
-        return lhs.id == rhs.id
+    public static func ==(lhs: User, rhs: User) -> Bool {
+        return !lhs.id.isEmpty && lhs.id == rhs.id
     }
 }

@@ -25,6 +25,7 @@ public protocol ActivityProtocol: Enrichable {
     /// The verb of the activity.
     var verb: Verb { get }
     /// The object of the activity.
+    /// - Note: It shouldn't be empty.
     var object: ObjectType { get }
     /// The optional target of the activity.
     var target: TargetType? { get }

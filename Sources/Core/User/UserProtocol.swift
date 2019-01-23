@@ -82,7 +82,10 @@ public protocol UserProtocol: Enrichable {
     var followingCount: Int? { get }
 }
 
+// MARK: - Enrichable
+
 extension UserProtocol {
+    /// A referenceId for the enrichability.
     public var referenceId: String {
         return "SU:\(id)"
     }
