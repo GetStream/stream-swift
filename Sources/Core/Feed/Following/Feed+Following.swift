@@ -11,7 +11,8 @@ import Foundation
 // MARK: - Feed Following
 
 extension Feed {
-    /// Follows a target feed.
+    
+    /// Follow a target feed.
     ///
     /// - Parameters:
     ///     - target: the target feed this feed should follow, e.g. user:44.
@@ -29,6 +30,13 @@ extension Feed {
         }
     }
     
+    /// Unfollow a target feed.
+    ///
+    /// - Parameters:
+    ///     - target: the target feed, e.g. user:44.
+    ///     - keepHistory: when provided the activities from target feed will not be kept in the feed.
+    /// - Note: Unfollow target's activities are purged from the feed unless the `keepHistory` parameter is provided.
+    /// - Returns: an object to cancel the request.
     @discardableResult
     public func unfollow(fromTarget target: FeedId, keepHistory: Bool = false, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return client.request(endpoint: FeedEndpoint.unfollow(feedId,
