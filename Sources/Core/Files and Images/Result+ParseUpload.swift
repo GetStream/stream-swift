@@ -11,6 +11,7 @@ import Moya
 import Result
 
 public typealias UploadCompletion = (_ result: Result<URL, ClientError>) -> Void
+public typealias MultipleUploadCompletion = (_ result: Result<[URL], ClientError>) -> Void
 
 // MARK: - Result Upload Parsing
 

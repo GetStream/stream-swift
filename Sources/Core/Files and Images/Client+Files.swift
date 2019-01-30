@@ -8,6 +8,7 @@
 
 import Foundation
 import Result
+import Moya
 
 // MARK: - Client Files
 
@@ -23,6 +24,11 @@ extension Client {
     }
     
     @discardableResult
+    public func upload(files: [File], completion: @escaping MultipleUploadCompletion) -> Cancellable {
+        return upload(files: files, endpoint: { FilesEndpoint.uploadFile($0) }, completion: completion)
+    }
+    
+    @discardableResult
     public func delete(fileURL: URL, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.deleteFile(fileURL)) { [weak self] result in
             if let self = self {
@@ -35,7 +41,7 @@ extension Client {
 // MARK: - Client Images
 
 extension Client {
-
+    
     @discardableResult
     public func upload(image: File, completion: @escaping UploadCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.uploadImage(image)) { [weak self] result in
@@ -43,6 +49,11 @@ extension Client {
                 result.parseUpload(self.callbackQueue, completion)
             }
         }
+    }
+    
+    @discardableResult
+    public func upload(images: [File], completion: @escaping MultipleUploadCompletion) -> Cancellable {
+        return upload(files: images, endpoint: { FilesEndpoint.uploadImage($0) }, completion: completion)
     }
     
     @discardableResult
@@ -71,5 +82,50 @@ extension Client {
                 result.parseUpload(self.callbackQueue, completion)
             }
         }
+    }
+}
+
+// MARK: - Client Multiple Upload
+
+extension Client {
+    private func upload(files: [File],
+                        endpoint: @escaping (_ file: File) -> TargetType,
+                        completion: @escaping MultipleUploadCompletion) -> Cancellable {
+        guard files.count > 0 else {
+            return SimpleCancellable(isCancelled: true)
+        }
+        
+        let proxyCancellable = ProxyCancellable()
+        var urls: [URL] = []
+        
+        func request(fileIndex: Int) {
+            workingQueue.async { [weak self] in
+                if proxyCancellable.isCancelled {
+                    return
+                }
+                
+                guard fileIndex < files.count else {
+                    self?.callbackQueue.async { completion(.success(urls)) }
+                    return
+                }
+                
+                proxyCancellable.cancellable = self?.request(endpoint: endpoint(files[fileIndex])) { result in
+                    if let self = self {
+                        result.parseUpload(self.workingQueue) { result in
+                            if let url = try? result.get() {
+                                urls.append(url)
+                                request(fileIndex: fileIndex + 1)
+                            } else if let error = result.error {
+                                completion(.failure(error))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        request(fileIndex: 0)
+        
+        return proxyCancellable
     }
 }

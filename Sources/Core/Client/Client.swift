@@ -20,6 +20,7 @@ public final class Client {
     let appId: String
     let token: Token
     let callbackQueue: DispatchQueue
+    let workingQueue: DispatchQueue
     
     private let networkProvider: NetworkProvider
     
@@ -39,7 +40,7 @@ public final class Client {
                             appId: String,
                             token: Token,
                             baseURL: BaseURL = BaseURL(),
-                            callbackQueue: DispatchQueue = DispatchQueue.main,
+                            callbackQueue: DispatchQueue = .main,
                             logsEnabled: Bool = false) {
         var moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
         
@@ -50,14 +51,26 @@ public final class Client {
         let workingQueue = DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
         let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
         let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: workingQueue, plugins: moyaPlugins)
-        self.init(apiKey: apiKey, appId: appId, token: token, networkProvider: moyaProvider, callbackQueue: callbackQueue)
+        
+        self.init(apiKey: apiKey,
+                  appId: appId,
+                  token: token,
+                  networkProvider: moyaProvider,
+                  workingQueue: workingQueue,
+                  callbackQueue: callbackQueue)
     }
     
-    init(apiKey: String, appId: String, token: Token, networkProvider: NetworkProvider, callbackQueue: DispatchQueue) {
+    init(apiKey: String,
+         appId: String,
+         token: Token,
+         networkProvider: NetworkProvider,
+         workingQueue: DispatchQueue = .global(),
+         callbackQueue: DispatchQueue = .main) {
         self.apiKey = apiKey
         self.appId = appId
         self.token = token
         self.networkProvider = networkProvider
+        self.workingQueue = workingQueue
         self.callbackQueue = callbackQueue
         parseUserId()
     }

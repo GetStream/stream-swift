@@ -15,9 +15,25 @@ public typealias StatusCodeCompletion = (_ result: Result<Int, ClientError>) -> 
 public typealias Cancellable = Moya.Cancellable
 
 final class SimpleCancellable: Cancellable {
-    var isCancelled = false
+    var isCancelled: Bool
+    
+    init(isCancelled: Bool = false) {
+        self.isCancelled = isCancelled
+    }
     
     func cancel() {
         isCancelled = true
+    }
+}
+
+final class ProxyCancellable: Cancellable {
+    var cancellable: Cancellable?
+    
+    var isCancelled: Bool {
+        return cancellable?.isCancelled ?? false
+    }
+    
+    func cancel() {
+        cancellable?.cancel()
     }
 }

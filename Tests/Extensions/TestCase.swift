@@ -15,8 +15,7 @@ extension Client {
         let client = Client(apiKey: "apiKey",
                             appId: "appId",
                             token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZXJpYyJ9.20YPOjP1-HtwKH7SH3k5CgLLLrhLCLaKDnb8XuiU7oA",
-                            networkProvider: provider,
-                            callbackQueue: DispatchQueue.main)
+                            networkProvider: provider)
         return client
     }
 }
