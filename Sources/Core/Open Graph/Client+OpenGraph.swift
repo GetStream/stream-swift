@@ -24,7 +24,11 @@ extension Client {
         return request(endpoint: OpenGraphEndpoint.og(url)) { [weak self] result in
             result.parse(block: {
                 let response = try result.get()
-                let ogResponse = try JSONDecoder().decode(OGResponse.self, from: response.data)
+                var ogResponse = try JSONDecoder().decode(OGResponse.self, from: response.data)
+                
+                if ogResponse.url == nil {
+                    ogResponse.url = url
+                }
                 
                 if let self = self  {
                     self.callbackQueue.async { completion(.success(ogResponse)) }
@@ -56,7 +60,7 @@ public struct OGResponse: Codable {
     
     public private(set) var title: String?
     public private(set) var type: String?
-    public private(set) var url: URL?
+    public internal(set) var url: URL?
     public private(set) var site: String?
     public private(set) var siteName: String?
     public private(set) var description: String?
@@ -81,8 +85,8 @@ public struct OGImageResponse: Codable {
     public private(set) var image: String?
     public private(set) var url: URL?
     public private(set) var secureURL: String?
-    public private(set) var width: String?
-    public private(set) var height: String?
+    public private(set) var width: Int?
+    public private(set) var height: Int?
     public private(set) var type: String?
     public private(set) var alt: String?
 }
