@@ -65,6 +65,33 @@ public extension File {
         self.init(name: name, data: data)
         mimeType = Swime.mimeType(ext: "png")
     }
+    
+    /// A helper function to create `File`'s from images in working thread.
+    ///
+    /// - Parameters:
+    ///     - images: a list of `Image`'s.
+    ///     - process: a process block to create a `File` from a given `Image`. The block can return nil an image needs to skip.
+    ///     - completion: a completion block with a list of `File`'s (could be empty, if images didn't converted to `File`'s. ).
+    public static func files(from images: [Image],
+                             process: @escaping (_ index: Int, _ image: Image) -> File?,
+                             completion: @escaping (_ files: [File]) -> Void) {
+        guard images.count > 0 else {
+            completion([])
+            return
+        }
+        
+        DispatchQueue(label: "io.getstream.File").async {
+            var files: [File] = []
+            
+            images.enumerated().forEach { index, image in
+                if let file = process(index, image) {
+                    files.append(file)
+                }
+            }
+            
+            DispatchQueue.main.async { completion(files) }
+        }
+    }
 }
 
 // MARK: - File
