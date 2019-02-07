@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pagination Enumeration Reference</title>
+    <title>Reaction Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/Pagination" class="dashAnchor"></a>
-    <a title="Pagination Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Class/Reaction" class="dashAnchor"></a>
+    <a title="Reaction Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">GetStream Docs</a> (48% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">GetStream Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Pagination Enumeration Reference
+        Reaction Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -308,10 +308,10 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Pagination</h1>
+            <h1>Reaction</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Pagination</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a></span><span class="p">,</span> <span class="kt">Equatable</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">U</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span></code></pre>
 
                 </div>
               </div>
@@ -324,9 +324,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO12defaultLimitSivpZ"></a>
-                    <a name="//apple_ref/swift/Variable/defaultLimit" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO12defaultLimitSivpZ">defaultLimit</a>
+                    <a name="/s:9GetStream8ReactionC2idSSvp"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC2idSSvp">id</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -341,7 +341,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultLimit</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -351,9 +351,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO4noneyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/none" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO4noneyA2CmF">none</a>
+                    <a name="/s:9GetStream8ReactionC10activityIdSSvp"></a>
+                    <a name="//apple_ref/swift/Property/activityId" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC10activityIdSSvp">activityId</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -361,14 +361,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Default limit is 25. (Defined in <code>FeedPagination.defaultLimit</code>)</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="k">none</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">activityId</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -378,9 +378,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO5limityACSicACmF"></a>
-                    <a name="//apple_ref/swift/Element/limit(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO5limityACSicACmF">limit(_:)</a>
+                    <a name="/s:9GetStream8ReactionC4userq_vp"></a>
+                    <a name="//apple_ref/swift/Property/user" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC4userq_vp">user</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -388,14 +388,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The amount of activities requested from the APIs.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">limit</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">user</span><span class="p">:</span> <span class="kt">U</span></code></pre>
 
                         </div>
                       </div>
@@ -405,9 +405,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO6offsetyACSicACmF"></a>
-                    <a name="//apple_ref/swift/Element/offset(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO6offsetyACSicACmF">offset(_:)</a>
+                    <a name="/s:9GetStream8ReactionC4kindSSvp"></a>
+                    <a name="//apple_ref/swift/Property/kind" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC4kindSSvp">kind</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -415,19 +415,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The offset of requesting activities.</p>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    Using <code>lessThan</code> or <code>lessThanOrEqual</code> for pagination is preferable to using <code>offset</code>.
-
-</div>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">offset</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span></code></pre>
 
                         </div>
                       </div>
@@ -437,9 +432,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO11greaterThanyACSScACmF"></a>
-                    <a name="//apple_ref/swift/Element/greaterThan(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO11greaterThanyACSScACmF">greaterThan(_:)</a>
+                    <a name="/s:9GetStream8ReactionC7created10Foundation4DateVvp"></a>
+                    <a name="//apple_ref/swift/Property/created" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC7created10Foundation4DateVvp">created</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -447,14 +442,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Filter the feed on ids greater than the given value.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">greaterThan</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">created</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
 
                         </div>
                       </div>
@@ -464,9 +459,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO18greaterThanOrEqualyACSScACmF"></a>
-                    <a name="//apple_ref/swift/Element/greaterThanOrEqual(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO18greaterThanOrEqualyACSScACmF">greaterThanOrEqual(_:)</a>
+                    <a name="/s:9GetStream8ReactionC7updated10Foundation4DateVSgvp"></a>
+                    <a name="//apple_ref/swift/Property/updated" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC7updated10Foundation4DateVSgvp">updated</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -474,14 +469,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Filter the feed on ids greater than or equal to the given value.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">greaterThanOrEqual</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">updated</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -491,9 +486,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO8lessThanyACSScACmF"></a>
-                    <a name="//apple_ref/swift/Element/lessThan(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO8lessThanyACSScACmF">lessThan(_:)</a>
+                    <a name="/s:9GetStream8ReactionC4dataxvp"></a>
+                    <a name="//apple_ref/swift/Property/data" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC4dataxvp">data</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -501,14 +496,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Filter the feed on ids smaller than the given value.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">lessThan</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">T</span></code></pre>
 
                         </div>
                       </div>
@@ -518,9 +513,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO15lessThanOrEqualyACSScACmF"></a>
-                    <a name="//apple_ref/swift/Element/lessThanOrEqual(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO15lessThanOrEqualyACSScACmF">lessThanOrEqual(_:)</a>
+                    <a name="/s:9GetStream8ReactionC8parentIdSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/parentId" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC8parentIdSSSgvp">parentId</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -528,14 +523,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Filter the feed on ids smaller than or equal to the given value.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">lessThanOrEqual</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">parentId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -545,9 +540,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO3andyA2C_ACtcACmF"></a>
-                    <a name="//apple_ref/swift/Element/and(pagination:another:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO3andyA2C_ACtcACmF">and(pagination:another:)</a>
+                    <a name="/s:9GetStream8ReactionC14childrenCountsSDySSSiGvp"></a>
+                    <a name="//apple_ref/swift/Property/childrenCounts" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC14childrenCountsSDySSSiGvp">childrenCounts</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -555,23 +550,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Combine <code>Pagination</code>&lsquo;s with each other.</p>
-
-<p>It&rsquo;s easy to use with the <code>+</code> operator. Examples:</p>
-<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">pagination</span> <span class="o">=</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="o">.</span><span class="nf">greaterThan</span><span class="p">(</span><span class="s">"news123"</span><span class="p">)</span>
-<span class="n">pagination</span> <span class="o">+=</span> <span class="o">.</span><span class="nf">lessThan</span><span class="p">(</span><span class="s">"news987"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">pagination</span><span class="p">)</span>
-<span class="c1">// It will print:</span>
-<span class="c1">// and(pagination: .and(pagination: .limit(10), another: .greaterThan("news123")),</span>
-<span class="c1">//     another: .lessThan("news987"))</span>
-</code></pre>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">indirect</span> <span class="k">case</span> <span class="nf">and</span><span class="p">(</span><span class="nv">pagination</span><span class="p">:</span> <span class="kt">Pagination</span><span class="p">,</span> <span class="nv">another</span><span class="p">:</span> <span class="kt">Pagination</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">childrenCounts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span> <span class="p">:</span> <span class="kt">Int</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -604,23 +590,12 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Helper%20Operator"></a>
-                <a name="//apple_ref/swift/Section/Helper Operator" class="dashAnchor"></a>
-                <a href="#/Helper%20Operator">
-                  <h3 class="section-name">Helper Operator</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO1poiyA2C_ACtFZ"></a>
-                    <a name="//apple_ref/swift/Method/+(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO1poiyA2C_ACtFZ">+(_:_:)</a>
+                    <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -628,14 +603,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An operator for combining Pagination&rsquo;s.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">+</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Pagination</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Pagination</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Pagination</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -645,9 +619,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream10PaginationO2peoiyyACz_ACtFZ"></a>
-                    <a name="//apple_ref/swift/Method/+=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream10PaginationO2peoiyyACz_ACtFZ">+=(_:_:)</a>
+                    <a name="/s:9GetStream8ReactionC4data6typeOfqd__Sgqd__m_tSeRd__SERd__lF"></a>
+                    <a name="//apple_ref/swift/Method/data(typeOf:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC4data6typeOfqd__Sgqd__m_tSeRd__SERd__lF">data(typeOf:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -655,14 +629,125 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An operator for combining Pagination&rsquo;s.</p>
+                        <p>Decode an extra data with a specific type of <code><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    It useful when you need to get extra fields from the reaction,
+    but by default it was decoded as an <code><a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a></code>.
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">+=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Pagination</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Pagination</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n"><a href="../Classes/Reaction.html#/s:9GetStream8ReactionC4dataxvp">data</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></code> type of the specific reaction extra data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a specific extra data object.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream8ReactionC14latestChildren6kindOfSayACyAA05EmptyC9ExtraDataVAA4UserCGGSS_tF"></a>
+                    <a name="//apple_ref/swift/Method/latestChildren(kindOf:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC14latestChildren6kindOfSayACyAA05EmptyC9ExtraDataVAA4UserCGGSS_tF">latestChildren(kindOf:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">latestChildren</span><span class="p">(</span><span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream15DefaultReactiona">DefaultReaction</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream8ReactionC14latestChildren6kindOf013extraDataTypeG004userjG0SayACyqd__qd_0_GGSS_qd__mqd_0_mtSeRd__SERd__AA12UserProtocolRd_0_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/latestChildren(kindOf:extraDataTypeOf:userTypeOf:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC14latestChildren6kindOf013extraDataTypeG004userjG0SayACyqd__qd_0_GGSS_qd__mqd_0_mtSeRd__SERd__AA12UserProtocolRd_0_r0_lF">latestChildren(kindOf:extraDataTypeOf:userTypeOf:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">latestChildren</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span> <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
+                                                                          <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                                                          <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>

@@ -14,7 +14,7 @@
     <a title="Client Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GetStream Docs</a> (49% documented)</p>
+        <p><a href="../index.html">GetStream Docs</a> (48% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -65,6 +65,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/NotificationGroup.html">NotificationGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Reaction.html">Reaction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SubscribedChannel.html">SubscribedChannel</a>
@@ -122,6 +125,9 @@
                 <a href="../Extensions/JSONEncoder.html">JSONEncoder</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ReactionKind.html">ReactionKind</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
             </ul>
@@ -139,6 +145,9 @@
                 <a href="../Protocols/Enrichable.html">Enrichable</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/UserProtocol.html">UserProtocol</a>
               </li>
             </ul>
@@ -154,6 +163,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BaseURL/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/EnrichingActivityError.html">EnrichingActivityError</a>
@@ -192,12 +204,6 @@
                 <a href="../Structs/OGVideoResponse.html">OGVideoResponse</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Reaction.html">Reaction</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Structs.html#/s:9GetStream19ReactionNoExtraDataV">ReactionNoExtraData</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Structs/Reactions.html">Reactions</a>
               </li>
               <li class="nav-group-task">
@@ -227,6 +233,15 @@
                 <a href="../Typealiases.html#/s:9GetStream26CollectionObjectCompletiona">CollectionObjectCompletion</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream15DefaultReactiona">DefaultReaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream25DefaultReactionCompletiona">DefaultReactionCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream26DefaultReactionsCompletiona">DefaultReactionsCompletion</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a>
               </li>
               <li class="nav-group-task">
@@ -243,6 +258,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:9GetStream4JSONa">JSON</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream24MultipleUploadCompletiona">MultipleUploadCompletion</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:9GetStream12OGCompletiona">OGCompletion</a>
@@ -381,7 +399,7 @@
                         <span class="nv">appId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
                         <span class="nv">token</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream5Tokena">Token</a></span><span class="p">,</span>
                         <span class="nv">baseURL</span><span class="p">:</span> <span class="kt"><a href="../Structs/BaseURL.html">BaseURL</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/BaseURL.html">BaseURL</a></span><span class="p">(),</span>
-                        <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="p">,</span>
+                        <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
                         <span class="nv">logsEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
 
                         </div>
@@ -1573,6 +1591,34 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:9GetStream6ClientC6upload5files10completion4Moya11Cancellable_pSayAA4FileVG_y6ResultALOySay10Foundation3URLVGAA0C5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/upload(files:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC6upload5files10completion4Moya11Cancellable_pSayAA4FileVG_y6ResultALOySay10Foundation3URLVGAA0C5ErrorOGctF">upload(files:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">upload</span><span class="p">(</span><span class="nv">files</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/File.html">File</a></span><span class="p">],</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream24MultipleUploadCompletiona">MultipleUploadCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:9GetStream6ClientC6delete7fileURL10completion4Moya11Cancellable_p10Foundation0F0V_y6ResultALOySiAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/delete(fileURL:completion:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:9GetStream6ClientC6delete7fileURL10completion4Moya11Cancellable_p10Foundation0F0V_y6ResultALOySiAA0C5ErrorOGctF">delete(fileURL:completion:)</a>
@@ -1631,6 +1677,34 @@ You can think of it as a quick <q>patching operation</q>.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
 <span class="kd">public</span> <span class="kd">func</span> <span class="nf">upload</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt"><a href="../Structs/File.html">File</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream16UploadCompletiona">UploadCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream6ClientC6upload6images10completion4Moya11Cancellable_pSayAA4FileVG_y6ResultALOySay10Foundation3URLVGAA0C5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/upload(images:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC6upload6images10completion4Moya11Cancellable_pSayAA4FileVG_y6ResultALOySay10Foundation3URLVGAA0C5ErrorOGctF">upload(images:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">upload</span><span class="p">(</span><span class="nv">images</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/File.html">File</a></span><span class="p">],</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream24MultipleUploadCompletiona">MultipleUploadCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1765,9 +1839,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSSayAA0mI0VGy6ResultAPOyAA0H0VyAA0H11NoExtraDataVGAA0C5ErrorOGctF"></a>
+                    <a name="/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSSayAA0mI0VGy6ResultAPOyAA0H0CyAA05EmptyH9ExtraDataVAA4UserCGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/add(reactionTo:parentReactionId:kindOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSSayAA0mI0VGy6ResultAPOyAA0H0VyAA0H11NoExtraDataVGAA0C5ErrorOGctF">add(reactionTo:parentReactionId:kindOf:targetsFeedIds:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSSayAA0mI0VGy6ResultAPOyAA0H0CyAA05EmptyH9ExtraDataVAA4UserCGAA0C5ErrorOGctF">add(reactionTo:parentReactionId:kindOf:targetsFeedIds:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1787,7 +1861,7 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <span class="nv">parentReactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
                 <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
                 <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
-                <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:9GetStream19ReactionNoExtraDataV">ReactionNoExtraData</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+                <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25DefaultReactionCompletiona">DefaultReactionCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1868,9 +1942,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf9extraData14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSxSayAA0oI0VGy6ResultAQOyAA0H0VyxGAA0C5ErrorOGctSeRzSERzlF"></a>
-                    <a name="//apple_ref/swift/Method/add(reactionTo:parentReactionId:kindOf:extraData:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf9extraData14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSxSayAA0oI0VGy6ResultAQOyAA0H0VyxGAA0C5ErrorOGctSeRzSERzlF">add(reactionTo:parentReactionId:kindOf:extraData:targetsFeedIds:completion:)</a>
+                    <a name="/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf9extraData08userTypeK014targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSxq_mSayAA0qI0VGy6ResultAROyAA0H0Cyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/add(reactionTo:parentReactionId:kindOf:extraData:userTypeOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf9extraData08userTypeK014targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSxq_mSayAA0qI0VGy6ResultAROyAA0H0Cyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">add(reactionTo:parentReactionId:kindOf:extraData:userTypeOf:targetsFeedIds:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1886,12 +1960,13 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">reactionTo</span> <span class="nv">activityId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-                                              <span class="nv">parentReactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                              <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
-                                              <span class="nv">extraData</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span>
-                                              <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
-                                              <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span> <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">reactionTo</span> <span class="nv">activityId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                                               <span class="nv">parentReactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                                               <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
+                                                               <span class="nv">extraData</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span>
+                                                               <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                                               <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
+                                                               <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1950,6 +2025,18 @@ You can think of it as a quick <q>patching operation</q>.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>userTypeOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a specific <code><a href="../Classes/User.html">User</a></code> type of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>targetsFeedIds</em>
                                 </code>
                               </td>
@@ -1984,9 +2071,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf14targetsFeedIds10completion4Moya11Cancellable_pAA0H0VyxG_SSSayAA0L2IdVGy6ResultAQOyALyAA0H11NoExtraDataVGAA0C5ErrorOGctSeRzSERzlF"></a>
-                    <a name="//apple_ref/swift/Method/add(reactionToParentReaction:kindOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf14targetsFeedIds10completion4Moya11Cancellable_pAA0H0VyxG_SSSayAA0L2IdVGy6ResultAQOyALyAA0H11NoExtraDataVGAA0C5ErrorOGctSeRzSERzlF">add(reactionToParentReaction:kindOf:targetsFeedIds:completion:)</a>
+                    <a name="/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyxq_G_SSq_mSayAA0N2IdVGy6ResultAROyAMyAA05EmptyH9ExtraDataVq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/add(reactionToParentReaction:kindOf:userTypeOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyxq_G_SSq_mSayAA0N2IdVGy6ResultAROyAMyAA05EmptyH9ExtraDataVq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">add(reactionToParentReaction:kindOf:userTypeOf:targetsFeedIds:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2002,10 +2089,12 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">reactionToParentReaction</span> <span class="nv">parentReaction</span><span class="p">:</span> <span class="kt"><a href="../Structs/Reaction.html">Reaction</a></span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span>
-                                              <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
-                                              <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
-                                              <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:9GetStream19ReactionNoExtraDataV">ReactionNoExtraData</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">P</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span>
+                <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">reactionToParentReaction</span> <span class="nv">parentReaction</span><span class="p">:</span> <span class="kt"><a href="../Classes/Reaction.html">Reaction</a></span><span class="o">&lt;</span><span class="kt">P</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span>
+                                 <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
+                                 <span class="n">userTypeOf</span> <span class="nv">userType</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                 <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
+                                 <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a></span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2040,6 +2129,18 @@ You can think of it as a quick <q>patching operation</q>.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>userTypeOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a specific <code><a href="../Classes/User.html">User</a></code> type of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>targetsFeedIds</em>
                                 </code>
                               </td>
@@ -2074,9 +2175,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf9extraData14targetsFeedIds10completion4Moya11Cancellable_pAA0H0Vyq_G_SSxSayAA0N2IdVGy6ResultAROyAMyxGAA0C5ErrorOGctSeRzSERzSeR_SER_r0_lF"></a>
-                    <a name="//apple_ref/swift/Method/add(reactionToParentReaction:kindOf:extraData:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf9extraData14targetsFeedIds10completion4Moya11Cancellable_pAA0H0Vyq_G_SSxSayAA0N2IdVGy6ResultAROyAMyxGAA0C5ErrorOGctSeRzSERzSeR_SER_r0_lF">add(reactionToParentReaction:kindOf:extraData:targetsFeedIds:completion:)</a>
+                    <a name="/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf9extraData08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyq_q0_G_SSxq0_mSayAA0P2IdVGy6ResultASOyANyxq0_GAA0C5ErrorOGctSeRzSERzSeR_SER_AA12UserProtocolR0_r1_lF"></a>
+                    <a name="//apple_ref/swift/Method/add(reactionToParentReaction:kindOf:extraData:userTypeOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf9extraData08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyq_q0_G_SSxq0_mSayAA0P2IdVGy6ResultASOyANyxq0_GAA0C5ErrorOGctSeRzSERzSeR_SER_AA12UserProtocolR0_r1_lF">add(reactionToParentReaction:kindOf:extraData:userTypeOf:targetsFeedIds:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2092,12 +2193,14 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span> <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">reactionToParentReaction</span> <span class="nv">parentReaction</span><span class="p">:</span> <span class="kt"><a href="../Structs/Reaction.html">Reaction</a></span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span>
-                                                                            <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
-                                                                            <span class="nv">extraData</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span>
-                                                                            <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
-                                                                            <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span>
-    <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span>
+                <span class="kt">P</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span>
+                <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">reactionToParentReaction</span> <span class="nv">parentReaction</span><span class="p">:</span> <span class="kt"><a href="../Classes/Reaction.html">Reaction</a></span><span class="o">&lt;</span><span class="kt">P</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">,</span>
+                                 <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
+                                 <span class="nv">extraData</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span>
+                                 <span class="n">userTypeOf</span> <span class="nv">userType</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                 <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
+                                 <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2144,6 +2247,18 @@ You can think of it as a quick <q>patching operation</q>.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>userTypeOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a specific <code><a href="../Classes/User.html">User</a></code> type of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>targetsFeedIds</em>
                                 </code>
                               </td>
@@ -2178,9 +2293,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC3get10reactionId10completion4Moya11Cancellable_pSS_y6ResultAIOyAA8ReactionVyAA0K11NoExtraDataVGAA0C5ErrorOGctF"></a>
+                    <a name="/s:9GetStream6ClientC3get10reactionId10completion4Moya11Cancellable_pSS_y6ResultAIOyAA8ReactionCyAA05EmptyK9ExtraDataVAA4UserCGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/get(reactionId:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get10reactionId10completion4Moya11Cancellable_pSS_y6ResultAIOyAA8ReactionVyAA0K11NoExtraDataVGAA0C5ErrorOGctF">get(reactionId:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get10reactionId10completion4Moya11Cancellable_pSS_y6ResultAIOyAA8ReactionCyAA05EmptyK9ExtraDataVAA4UserCGAA0C5ErrorOGctF">get(reactionId:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2196,7 +2311,7 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:9GetStream19ReactionNoExtraDataV">ReactionNoExtraData</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25DefaultReactionCompletiona">DefaultReactionCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2241,9 +2356,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC3get10reactionId15extraDataTypeOf10completion4Moya11Cancellable_pSS_xmy6ResultAJOyAA8ReactionVyxGAA0C5ErrorOGctSeRzSERzlF"></a>
-                    <a name="//apple_ref/swift/Method/get(reactionId:extraDataTypeOf:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get10reactionId15extraDataTypeOf10completion4Moya11Cancellable_pSS_xmy6ResultAJOyAA8ReactionVyxGAA0C5ErrorOGctSeRzSERzlF">get(reactionId:extraDataTypeOf:completion:)</a>
+                    <a name="/s:9GetStream6ClientC3get10reactionId15extraDataTypeOf04useriJ010completion4Moya11Cancellable_pSS_xmq_my6ResultAKOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/get(reactionId:extraDataTypeOf:userTypeOf:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get10reactionId15extraDataTypeOf04useriJ010completion4Moya11Cancellable_pSS_xmq_my6ResultAKOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">get(reactionId:extraDataTypeOf:userTypeOf:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2259,9 +2374,10 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="k">get</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-                                              <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
-                                              <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="k">get</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span> <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                                               <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                                               <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                                               <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2296,6 +2412,18 @@ You can think of it as a quick <q>patching operation</q>.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>userTypeOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a specific <code><a href="../Classes/User.html">User</a></code> type of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>completion</em>
                                 </code>
                               </td>
@@ -2318,9 +2446,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC6update10reactionId9extraData14targetsFeedIds10completion4Moya11Cancellable_pSS_xSayAA0jF0VGy6ResultANOyAA8ReactionVyxGAA0C5ErrorOGctSeRzSERzlF"></a>
-                    <a name="//apple_ref/swift/Method/update(reactionId:extraData:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6update10reactionId9extraData14targetsFeedIds10completion4Moya11Cancellable_pSS_xSayAA0jF0VGy6ResultANOyAA8ReactionVyxGAA0C5ErrorOGctSeRzSERzlF">update(reactionId:extraData:targetsFeedIds:completion:)</a>
+                    <a name="/s:9GetStream6ClientC6update10reactionId9extraData10userTypeOf14targetsFeedIds10completion4Moya11Cancellable_pSS_xq_mSayAA0mF0VGy6ResultAOOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/update(reactionId:extraData:userTypeOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC6update10reactionId9extraData10userTypeOf14targetsFeedIds10completion4Moya11Cancellable_pSS_xq_mSayAA0mF0VGy6ResultAOOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">update(reactionId:extraData:userTypeOf:targetsFeedIds:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2336,10 +2464,12 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">update</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-                                                 <span class="nv">extraData</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span>
-                                                 <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
-                                                 <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">update</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span>
+                   <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                    <span class="nv">extraData</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span>
+                                    <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                    <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span> <span class="o">=</span> <span class="p">[],</span>
+                                    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2368,6 +2498,18 @@ You can think of it as a quick <q>patching operation</q>.</p>
                               <td>
                                 <div>
                                   <p>the updated extra data for the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userTypeOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a specific <code><a href="../Classes/User.html">User</a></code> type of the reaction.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2471,9 +2613,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC9reactions13forActivityId6kindOf10pagination04withF4Data10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOSby6ResultAOOyAA9ReactionsVyAA015ReactionNoExtraL0VGAA0C5ErrorOGctF"></a>
+                    <a name="/s:9GetStream6ClientC9reactions13forActivityId6kindOf10pagination04withF4Data10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOSby6ResultAOOyAA9ReactionsVyAA018EmptyReactionExtraL0VAA4UserCGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forActivityId:kindOf:pagination:withActivityData:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forActivityId6kindOf10pagination04withF4Data10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOSby6ResultAOOyAA9ReactionsVyAA015ReactionNoExtraL0VGAA0C5ErrorOGctF">reactions(forActivityId:kindOf:pagination:withActivityData:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forActivityId6kindOf10pagination04withF4Data10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOSby6ResultAOOyAA9ReactionsVyAA018EmptyReactionExtraL0VAA4UserCGAA0C5ErrorOGctF">reactions(forActivityId:kindOf:pagination:withActivityData:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2493,7 +2635,7 @@ You can think of it as a quick <q>patching operation</q>.</p>
                       <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
                       <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
                       <span class="nv">withActivityData</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-                      <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:9GetStream19ReactionNoExtraDataV">ReactionNoExtraData</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+                      <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream26DefaultReactionsCompletiona">DefaultReactionsCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2574,9 +2716,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC9reactions13forActivityId6kindOf013extraDataTypeI010pagination04withfK010completion4Moya11Cancellable_pSS_SSSgxmAA10PaginationOSby6ResultAPOyAA9ReactionsVyxGAA0C5ErrorOGctSeRzSERzlF"></a>
-                    <a name="//apple_ref/swift/Method/reactions(forActivityId:kindOf:extraDataTypeOf:pagination:withActivityData:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forActivityId6kindOf013extraDataTypeI010pagination04withfK010completion4Moya11Cancellable_pSS_SSSgxmAA10PaginationOSby6ResultAPOyAA9ReactionsVyxGAA0C5ErrorOGctSeRzSERzlF">reactions(forActivityId:kindOf:extraDataTypeOf:pagination:withActivityData:completion:)</a>
+                    <a name="/s:9GetStream6ClientC9reactions13forActivityId6kindOf013extraDataTypeI004userlI010pagination04withfK010completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOSby6ResultAQOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/reactions(forActivityId:kindOf:extraDataTypeOf:userTypeOf:pagination:withActivityData:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forActivityId6kindOf013extraDataTypeI004userlI010pagination04withfK010completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOSby6ResultAQOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">reactions(forActivityId:kindOf:extraDataTypeOf:userTypeOf:pagination:withActivityData:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2592,12 +2734,14 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">reactions</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">forActivityId</span> <span class="nv">activityId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-                                                    <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                                    <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
-                                                    <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
-                                                    <span class="nv">withActivityData</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-                                                    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">reactions</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span>
+                      <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">forActivityId</span> <span class="nv">activityId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                       <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                       <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                       <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                       <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
+                                       <span class="nv">withActivityData</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                                       <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2644,6 +2788,18 @@ You can think of it as a quick <q>patching operation</q>.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>userTypeOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a specific <code><a href="../Classes/User.html">User</a></code> type of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>pagination</em>
                                 </code>
                               </td>
@@ -2690,9 +2846,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC9reactions13forReactionId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOy6ResultANOyAA9ReactionsVyAA0F11NoExtraDataVGAA0C5ErrorOGctF"></a>
+                    <a name="/s:9GetStream6ClientC9reactions13forReactionId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOy6ResultANOyAA9ReactionsVyAA05EmptyF9ExtraDataVAA4UserCGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forReactionId:kindOf:pagination:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forReactionId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOy6ResultANOyAA9ReactionsVyAA0F11NoExtraDataVGAA0C5ErrorOGctF">reactions(forReactionId:kindOf:pagination:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forReactionId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOy6ResultANOyAA9ReactionsVyAA05EmptyF9ExtraDataVAA4UserCGAA0C5ErrorOGctF">reactions(forReactionId:kindOf:pagination:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2711,7 +2867,7 @@ You can think of it as a quick <q>patching operation</q>.</p>
 <span class="kd">public</span> <span class="kd">func</span> <span class="nf">reactions</span><span class="p">(</span><span class="n">forReactionId</span> <span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
                       <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
                       <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
-                      <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:9GetStream19ReactionNoExtraDataV">ReactionNoExtraData</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+                      <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream26DefaultReactionsCompletiona">DefaultReactionsCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2780,9 +2936,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC9reactions13forReactionId6kindOf013extraDataTypeI010pagination10completion4Moya11Cancellable_pSS_SSSgxmAA10PaginationOy6ResultAOOyAA9ReactionsVyxGAA0C5ErrorOGctSeRzSERzlF"></a>
-                    <a name="//apple_ref/swift/Method/reactions(forReactionId:kindOf:extraDataTypeOf:pagination:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forReactionId6kindOf013extraDataTypeI010pagination10completion4Moya11Cancellable_pSS_SSSgxmAA10PaginationOy6ResultAOOyAA9ReactionsVyxGAA0C5ErrorOGctSeRzSERzlF">reactions(forReactionId:kindOf:extraDataTypeOf:pagination:completion:)</a>
+                    <a name="/s:9GetStream6ClientC9reactions13forReactionId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOy6ResultAPOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/reactions(forReactionId:kindOf:extraDataTypeOf:userTypeOf:pagination:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forReactionId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOy6ResultAPOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">reactions(forReactionId:kindOf:extraDataTypeOf:userTypeOf:pagination:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2798,11 +2954,13 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">reactions</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">forReactionId</span> <span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-                                                    <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                                    <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
-                                                    <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
-                                                    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">reactions</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span>
+                      <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">forReactionId</span> <span class="nv">reactionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                       <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                       <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                       <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                       <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
+                                       <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2849,6 +3007,18 @@ You can think of it as a quick <q>patching operation</q>.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>userTypeOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a specific <code><a href="../Classes/User.html">User</a></code> type of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>pagination</em>
                                 </code>
                               </td>
@@ -2883,9 +3053,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC9reactions9forUserId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOy6ResultANOyAA9ReactionsVyAA19ReactionNoExtraDataVGAA0C5ErrorOGctF"></a>
+                    <a name="/s:9GetStream6ClientC9reactions9forUserId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOy6ResultANOyAA9ReactionsVyAA22EmptyReactionExtraDataVAA0F0CGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forUserId:kindOf:pagination:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions9forUserId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOy6ResultANOyAA9ReactionsVyAA19ReactionNoExtraDataVGAA0C5ErrorOGctF">reactions(forUserId:kindOf:pagination:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions9forUserId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOy6ResultANOyAA9ReactionsVyAA22EmptyReactionExtraDataVAA0F0CGAA0C5ErrorOGctF">reactions(forUserId:kindOf:pagination:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2904,7 +3074,7 @@ You can think of it as a quick <q>patching operation</q>.</p>
 <span class="kd">public</span> <span class="kd">func</span> <span class="nf">reactions</span><span class="p">(</span><span class="n">forUserId</span> <span class="nv">userId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
                       <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
                       <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
-                      <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs.html#/s:9GetStream19ReactionNoExtraDataV">ReactionNoExtraData</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+                      <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream26DefaultReactionsCompletiona">DefaultReactionsCompletion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -2973,9 +3143,9 @@ You can think of it as a quick <q>patching operation</q>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC9reactions9forUserId6kindOf013extraDataTypeI010pagination10completion4Moya11Cancellable_pSS_SSSgxmAA10PaginationOy6ResultAOOyAA9ReactionsVyxGAA0C5ErrorOGctSeRzSERzlF"></a>
-                    <a name="//apple_ref/swift/Method/reactions(forUserId:kindOf:extraDataTypeOf:pagination:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions9forUserId6kindOf013extraDataTypeI010pagination10completion4Moya11Cancellable_pSS_SSSgxmAA10PaginationOy6ResultAOOyAA9ReactionsVyxGAA0C5ErrorOGctSeRzSERzlF">reactions(forUserId:kindOf:extraDataTypeOf:pagination:completion:)</a>
+                    <a name="/s:9GetStream6ClientC9reactions9forUserId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOy6ResultAPOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA0F8ProtocolR_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/reactions(forUserId:kindOf:extraDataTypeOf:userTypeOf:pagination:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions9forUserId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOy6ResultAPOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA0F8ProtocolR_r0_lF">reactions(forUserId:kindOf:extraDataTypeOf:userTypeOf:pagination:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2991,11 +3161,13 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">reactions</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">forUserId</span> <span class="nv">userId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-                                                    <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                                                    <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
-                                                    <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
-                                                    <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">reactions</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span>
+                      <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">forUserId</span> <span class="nv">userId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                       <span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                       <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                       <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+                                       <span class="nv">pagination</span><span class="p">:</span> <span class="kt"><a href="../Enums/Pagination.html">Pagination</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
+                                       <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -3036,6 +3208,18 @@ You can think of it as a quick <q>patching operation</q>.</p>
                               <td>
                                 <div>
                                   <p>the <code><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></code> type of an extra data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userTypeOf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a specific <code><a href="../Classes/User.html">User</a></code> type of the reaction.</p>
                                 </div>
                               </td>
                             </tr>
@@ -3456,7 +3640,7 @@ You can think of it as a quick <q>patching operation</q>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-01-23)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
