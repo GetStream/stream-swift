@@ -11,7 +11,7 @@ import Foundation
 /// An User class with basic properties of `UserProtocol`.
 /// You can inherit this class with extra properties on your own User type.
 /// - Note: Please, check the `UserProtocol` documentation to implement your User subclass properly.
-open class User: UserProtocol, Equatable {
+open class User: UserProtocol {
     public enum UserCodingKeys: String, CodingKey {
         case id
         case created = "created_at"
@@ -47,8 +47,10 @@ open class User: UserProtocol, Equatable {
         var container = encoder.container(keyedBy: UserCodingKeys.self)
         try container.encode(id, forKey: .id)
     }
-    
+}
+
+extension User: Equatable {
     public static func ==(lhs: User, rhs: User) -> Bool {
-        return !lhs.id.isEmpty && lhs.id == rhs.id
+        return lhs === rhs || (!lhs.id.isEmpty && lhs.id == rhs.id)
     }
 }

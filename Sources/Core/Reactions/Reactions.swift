@@ -13,7 +13,7 @@ public enum ReactionsError: Error {
     case enrichingActivityError(_ error: EnrichingActivityError)
 }
 
-public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
+public struct Reactions<T: ReactionExtraDataProtocol, U: UserProtocol>: Decodable {
     private enum CodingKeys: String, CodingKey {
         case reactions = "results"
         case next
@@ -23,9 +23,9 @@ public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
         case activity
     }
     
-    public let reactions: [Reaction<T>]
+    public let reactions: [Reaction<T, U>]
     public private(set) var next: Pagination?
-    private var activityContainer: KeyedDecodingContainer<Reactions<T>.ActivityCodingKeys>?
+    private var activityContainer: KeyedDecodingContainer<Reactions<T, U>.ActivityCodingKeys>?
     
     public var activity: Activity? {
         return try? activity(typeOf: Activity.self)
@@ -33,7 +33,7 @@ public struct Reactions<T: ReactionExtraDataProtocol>: Decodable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        reactions = try container.decode([Reaction<T>].self, forKey: .reactions)
+        reactions = try container.decode([Reaction<T, U>].self, forKey: .reactions)
         next = try container.decodeIfPresent(Pagination.self, forKey: .next)
         
         if let next = next, case .none = next {

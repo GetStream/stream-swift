@@ -11,7 +11,7 @@ import Moya
 import Result
 @testable import GetStream
 
-typealias UserFoodActivity = EnrichedActivity<CustomUser, Food, String>
+typealias UserFoodActivity = EnrichedActivity<CustomUser, Food, String, DefaultReaction>
 
 final class FeedTests: TestCase {
     

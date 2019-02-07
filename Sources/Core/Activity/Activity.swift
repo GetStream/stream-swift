@@ -8,9 +8,12 @@
 
 import Foundation
 
-public typealias Activity = EnrichedActivity<String, String, String>
+public typealias Activity = EnrichedActivity<String, String, String, DefaultReaction>
 
-open class EnrichedActivity<ActorType: Enrichable, ObjectType: Enrichable, TargetType: Enrichable>: ActivityProtocol {
+open class EnrichedActivity<ActorType: Enrichable,
+                            ObjectType: Enrichable,
+                            TargetType: Enrichable,
+                            ReactionType: ReactionProtocol>: ActivityProtocol {
     /// - Note: These reserved words must not be used as field names:
     ///         activity_id, activity, analytics, extra_context, id, is_read, is_seen, origin, score, site_id, to
     enum CodingKeys: String, CodingKey {
@@ -45,9 +48,9 @@ open class EnrichedActivity<ActorType: Enrichable, ObjectType: Enrichable, Targe
     /// One way to think about it is as the CC functionality of email.
     public var feedIds: FeedIds?
     /// Include reactions added by current user to all activities.
-    public var ownReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]?
+    public var ownReactions: [ReactionKind: [ReactionType]]?
     /// Include recent reactions to activities.
-    public var latestReactions: [ReactionKind: [Reaction<ReactionNoExtraData>]]?
+    public var latestReactions: [ReactionKind: [ReactionType]]?
     /// Include reaction counts to activities.
     public var reactionCounts: [ReactionKind: Int]?
     
@@ -94,9 +97,12 @@ open class EnrichedActivity<ActorType: Enrichable, ObjectType: Enrichable, Targe
 
 extension EnrichedActivity: CustomStringConvertible {
     open var description: String {
-        return "\(type(of: self))<\(id.isEmpty ? "n/a" : id), \(foreignId ?? "n/a")> "
-            + "\(actor.referenceId) \(verb) \(object.referenceId) at \(time?.description ?? "<n/a>") "
-            + "feedIds: \(feedIds?.description ?? "[]")"
+        return "\(type(of: self))<id: \(id.isEmpty ? "n/a" : id), fid: \(foreignId ?? "n/a")>\n"
+            + "\(actor.referenceId) \(verb) \(object.referenceId) at \(time?.description ?? "<n/a>")\n"
+            + "feedIds: \(feedIds?.description ?? "[]")\n"
+            + "ownReactions: \(ownReactions ?? [:])\n"
+            + "latestReactions: \(latestReactions ?? [:])\n"
+            + "reactionCounts: \(reactionCounts ?? [:])\n"
     }
 }
 

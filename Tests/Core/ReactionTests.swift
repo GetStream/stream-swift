@@ -21,7 +21,7 @@ extension ReactionKind {
 class ReactionTests: TestCase {
     
     func testAdd() {
-        client.add(reactionTo: .test1, kindOf: .comment, extraData: Comment(text: "Hello!")) {
+        client.add(reactionTo: .test1, kindOf: .comment, extraData: Comment(text: "Hello!"), userTypeOf: User.self) {
             let commentReaction = try! $0.get()
             XCTAssertEqual(commentReaction.kind, .comment)
             XCTAssertEqual(commentReaction.data.text, "Hello!")
@@ -32,7 +32,7 @@ class ReactionTests: TestCase {
                 XCTAssertEqual(likeReaction.parentId, commentReaction.id)
             }
             
-            self.client.add(reactionToParentReaction: commentReaction, kindOf: .like) {
+            self.client.add(reactionToParentReaction: commentReaction, kindOf: .like, userTypeOf: User.self) {
                 let likeReaction = try! $0.get()
                 XCTAssertEqual(likeReaction.kind, .like)
                 XCTAssertEqual(likeReaction.parentId, commentReaction.id)
@@ -44,10 +44,10 @@ class ReactionTests: TestCase {
         client.get(reactionId: .test1) {
             let reaction = try! $0.get()
             XCTAssertEqual(reaction.kind, .like)
-            XCTAssertEqual(reaction.data, ReactionNoExtraData.shared)
+            XCTAssertEqual(reaction.data, EmptyReactionExtraData.shared)
         }
         
-        client.get(reactionId: .test2, extraDataTypeOf: Comment.self) {
+        client.get(reactionId: .test2, extraDataTypeOf: Comment.self, userTypeOf: User.self) {
             let reaction = try! $0.get()
             XCTAssertEqual(reaction.kind, .comment)
             XCTAssertEqual(reaction.data.text, "Hello!")
@@ -56,13 +56,13 @@ class ReactionTests: TestCase {
         client.get(reactionId: .test2) {
             let reaction = try! $0.get()
             XCTAssertEqual(reaction.kind, .comment)
-            XCTAssertEqual(reaction.data, ReactionNoExtraData.shared)
+            XCTAssertEqual(reaction.data, EmptyReactionExtraData.shared)
             XCTAssertEqual(reaction.data(typeOf: Comment.self)?.text, "Hello!")
         }
     }
     
     func testUpdate() {
-        client.update(reactionId: .test2, extraData: Comment(text: "Hi!")) {
+        client.update(reactionId: .test2, extraData: Comment(text: "Hi!"), userTypeOf: User.self) {
             let commentReaction = try! $0.get()
             XCTAssertEqual(commentReaction.kind, .comment)
             XCTAssertEqual(commentReaction.data.text, "Hi!")
@@ -71,7 +71,10 @@ class ReactionTests: TestCase {
             let lastLike = commentReaction.latestChildren(kindOf: .like).first!
             XCTAssertEqual(lastLike.kind, .like)
             
-            let lastComment = commentReaction.latestChildren(kindOf: .comment, extraDataTypeOf: Comment.self).first!
+            let lastComment = commentReaction.latestChildren(kindOf: .comment,
+                                                             extraDataTypeOf: Comment.self,
+                                                             userTypeOf: User.self).first!
+            
             XCTAssertEqual(lastComment.kind, .comment)
             XCTAssertEqual(lastComment.data.text, "Hey!")
         }
@@ -89,7 +92,7 @@ class ReactionTests: TestCase {
             XCTAssertEqual(reactions.reactions.count, 3)
         }
         
-        client.reactions(forUserId: "1", kindOf: .comment, extraDataTypeOf: Comment.self) {
+        client.reactions(forUserId: "1", kindOf: .comment, extraDataTypeOf: Comment.self, userTypeOf: User.self) {
             let reactions = try! $0.get()
             XCTAssertEqual(reactions.reactions.count, 2)
             XCTAssertEqual(reactions.reactions[0].data.text, "Hey!")
