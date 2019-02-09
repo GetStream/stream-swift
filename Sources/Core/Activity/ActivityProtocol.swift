@@ -66,8 +66,8 @@ extension ActivityProtocol where ReactionType: ReactionProtocol {
         var ownReactions = self.ownReactions ?? [:]
         var latestReactions = self.latestReactions ?? [:]
         var reactionCounts = self.reactionCounts ?? [:]
-        ownReactions[reaction.kind, default: []].append(reaction)
-        latestReactions[reaction.kind, default: []].append(reaction)
+        ownReactions[reaction.kind, default: []].insert(reaction, at: 0)
+        latestReactions[reaction.kind, default: []].insert(reaction, at: 0)
         reactionCounts[reaction.kind, default: 0] += 1
         self.ownReactions = ownReactions
         self.latestReactions = latestReactions
