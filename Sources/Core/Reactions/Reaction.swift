@@ -27,13 +27,10 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
         case kind
         case created = "created_at"
         case updated = "updated_at"
+        case data
         case parentId = "parent"
         case latestChildren = "latest_children"
         case childrenCounts = "children_counts"
-    }
-    
-    private enum DataCodingKeys: String, CodingKey {
-        case data
     }
     
     private struct ChildrenCodingKeys: CodingKey {
@@ -62,9 +59,8 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
     public let updated: Date?
     public let data: T
     public var parentId: String?
+    public let latestChildren: [ReactionKind: [Reaction<T, U>]]
     public let childrenCounts: [ReactionKind: Int]
-    private var latestChildrenContainer: KeyedDecodingContainer<Reaction<T, U>.ChildrenCodingKeys>?
-    private var dataContainer: KeyedDecodingContainer<Reaction<T, U>.DataCodingKeys>?
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -74,55 +70,13 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
         kind = try container.decode(String.self, forKey: .kind)
         created = try container.decode(Date.self, forKey: .created)
         updated = try container.decode(Date.self, forKey: .updated)
-        childrenCounts = try container.decode([ReactionKind: Int].self, forKey: .childrenCounts)
+        data = try container.decode(T.self, forKey: .data)
         parentId = try container.decodeIfPresent(String.self, forKey: .parentId)
-        
-        if !childrenCounts.isEmpty {
-            latestChildrenContainer = try? container.nestedContainer(keyedBy: ChildrenCodingKeys.self, forKey: .latestChildren)
-        }
-        
-        let dataContainer = try decoder.container(keyedBy: DataCodingKeys.self)
-        data = try dataContainer.decode(T.self, forKey: .data)
-        
-        if T.self is EmptyReactionExtraData.Type {
-            self.dataContainer = dataContainer
-        }
+        latestChildren = try container.decode([ReactionKind: [Reaction<T, U>]].self, forKey: .latestChildren)
+        childrenCounts = try container.decode([ReactionKind: Int].self, forKey: .childrenCounts)
     }
     
     public func encode(to encoder: Encoder) throws {}
-    
-    /// Decode an extra data with a specific type of `ReactionExtraDataProtocol`.
-    ///
-    /// - Note: It useful when you need to get extra fields from the reaction,
-    ///         but by default it was decoded as an `EmptyReactionExtraData`.
-    /// - Parameter type: the `ReactionExtraDataProtocol` type of the specific reaction extra data.
-    /// - Returns: a specific extra data object.
-    public func data<T: ReactionExtraDataProtocol>(typeOf: T.Type) -> T? {
-        if data is T {
-            return data as? T
-        }
-        
-        if let dataContainer = dataContainer, let data = try? dataContainer.decode(T.self, forKey: .data) {
-            return data
-        }
-        
-        return nil
-    }
-    
-    public func latestChildren(kindOf kind: ReactionKind) -> [DefaultReaction] {
-        return latestChildren(kindOf: kind, extraDataTypeOf: EmptyReactionExtraData.self, userTypeOf: User.self)
-    }
-    
-    public func latestChildren<T: ReactionExtraDataProtocol, U: UserProtocol>(kindOf kind: ReactionKind,
-                                                                              extraDataTypeOf: T.Type,
-                                                                              userTypeOf: U.Type) -> [Reaction<T, U>] {
-        if let container = latestChildrenContainer,
-            let latestChildren = try? container.decode([Reaction<T, U>].self, forKey: .init(kind: kind)) {
-            return latestChildren
-        }
-        
-        return []
-    }
     
     public static func == (lhs: Reaction<T, U>, rhs: Reaction<T, U>) -> Bool {
         return !lhs.id.isEmpty && lhs.id == rhs.id

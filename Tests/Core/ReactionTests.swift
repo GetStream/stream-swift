@@ -18,6 +18,28 @@ extension ReactionKind {
     static let comment = "comment"
 }
 
+enum ReactionExtraData: ReactionExtraDataProtocol {
+    case empty
+    case comment(_ text: String)
+    
+    func encode(to encoder: Encoder) throws {
+        switch self {
+        case .empty:
+            try EmptyReactionExtraData.shared.encode(to: encoder)
+        case .comment(let comment):
+            try Comment(text: comment).encode(to: encoder)
+        }
+    }
+    
+    init(from decoder: Decoder) throws {
+        if let comment = try? Comment(from: decoder) {
+            self = .comment(comment.text)
+        } else {
+            self = .empty
+        }
+    }
+}
+
 class ReactionTests: TestCase {
     
     func testAdd() {
@@ -57,26 +79,30 @@ class ReactionTests: TestCase {
             let reaction = try! $0.get()
             XCTAssertEqual(reaction.kind, .comment)
             XCTAssertEqual(reaction.data, EmptyReactionExtraData.shared)
-            XCTAssertEqual(reaction.data(typeOf: Comment.self)?.text, "Hello!")
         }
     }
     
     func testUpdate() {
-        client.update(reactionId: .test2, extraData: Comment(text: "Hi!"), userTypeOf: User.self) {
-            let commentReaction = try! $0.get()
-            XCTAssertEqual(commentReaction.kind, .comment)
-            XCTAssertEqual(commentReaction.data.text, "Hi!")
-            XCTAssertEqual(commentReaction.data(typeOf: Comment.self)?.text, "Hi!")
+        client.update(reactionId: .test2, extraData: ReactionExtraData.comment("Hi!"), userTypeOf: User.self) {
+            let reaction = try! $0.get()
+            XCTAssertEqual(reaction.kind, .comment)
             
-            let lastLike = commentReaction.latestChildren(kindOf: .like).first!
-            XCTAssertEqual(lastLike.kind, .like)
             
-            let lastComment = commentReaction.latestChildren(kindOf: .comment,
-                                                             extraDataTypeOf: Comment.self,
-                                                             userTypeOf: User.self).first!
+            if case .comment(let text) = reaction.data {
+                XCTAssertEqual(text, "Hi!")
+            }
             
-            XCTAssertEqual(lastComment.kind, .comment)
-            XCTAssertEqual(lastComment.data.text, "Hey!")
+            if let lastLike = reaction.latestChildren[.like]?.first {
+                XCTAssertEqual(lastLike.kind, .like)
+            }
+            
+            if let lastComment = reaction.latestChildren[.comment]?.first {
+                XCTAssertEqual(lastComment.kind, .comment)
+                
+                if case .comment(let text) = lastComment.data {
+                    XCTAssertEqual(text, "Hey!")
+                }
+            }
         }
     }
     
@@ -92,11 +118,17 @@ class ReactionTests: TestCase {
             XCTAssertEqual(reactions.reactions.count, 3)
         }
         
-        client.reactions(forUserId: "1", kindOf: .comment, extraDataTypeOf: Comment.self, userTypeOf: User.self) {
+        client.reactions(forUserId: "1", kindOf: .comment, extraDataTypeOf: ReactionExtraData.self, userTypeOf: User.self) {
             let reactions = try! $0.get()
             XCTAssertEqual(reactions.reactions.count, 2)
-            XCTAssertEqual(reactions.reactions[0].data.text, "Hey!")
-            XCTAssertEqual(reactions.reactions[1].data.text, "Hi!")
+            
+            if case .comment(let text) = reactions.reactions[0].data {
+                XCTAssertEqual(text, "Hey!")
+            }
+            
+            if case .comment(let text) = reactions.reactions[1].data {
+                XCTAssertEqual(text, "Hi!")
+            }
         }
         
         client.reactions(forReactionId: "50539e71-d6bf-422d-ad21-c8717df0c325") {
@@ -107,7 +139,7 @@ class ReactionTests: TestCase {
         client.reactions(forActivityId: "ce918867-0520-11e9-a11e-0a286b200b2e", withActivityData: true) {
             let reactions = try! $0.get()
             XCTAssertEqual(reactions.reactions.count, 3)
-            XCTAssertNotNil(reactions.activity)
+            XCTAssertNotNil(try? reactions.activity(typeOf: Activity.self))
         }
     }
 }

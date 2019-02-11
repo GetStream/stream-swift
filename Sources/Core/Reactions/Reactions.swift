@@ -27,10 +27,6 @@ public struct Reactions<T: ReactionExtraDataProtocol, U: UserProtocol>: Decodabl
     public private(set) var next: Pagination?
     private var activityContainer: KeyedDecodingContainer<Reactions<T, U>.ActivityCodingKeys>?
     
-    public var activity: Activity? {
-        return try? activity(typeOf: Activity.self)
-    }
-    
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         reactions = try container.decode([Reaction<T, U>].self, forKey: .reactions)
@@ -44,6 +40,9 @@ public struct Reactions<T: ReactionExtraDataProtocol, U: UserProtocol>: Decodabl
     }
     
     /// Get an activity for reactions that was requested by `activityId` and the `withActivityData` property.
+    ///
+    /// - Parameter type: the type of `ActivityProtocol` of reactions.
+    /// - Returns: the activity of reactions.
     public func activity<A: ActivityProtocol>(typeOf type: A.Type) throws -> A {
         guard let activityContainer = activityContainer else {
             throw ReactionsError.reactionsHaveNoActivity
