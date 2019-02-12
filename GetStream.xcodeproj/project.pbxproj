@@ -10,6 +10,7 @@
 		52D6D9871BEFF229002C0205 /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* GetStream.framework */; };
 		8A0116A92212D54200503A07 /* ReactionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0116A82212D54200503A07 /* ReactionKind.swift */; };
 		8A0116AB2212D65500503A07 /* ReactionExtraDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0116AA2212D65500503A07 /* ReactionExtraDataProtocol.swift */; };
+		8A0116AD22131F3300503A07 /* Reactionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0116AC22131F3300503A07 /* Reactionable.swift */; };
 		8A0935AA21AC012900C64488 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A0935C321AC030400C64488 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0935C221AC030400C64488 /* Client.swift */; };
 		8A0935CB21AC05AD00C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -118,6 +119,7 @@
 		52D6D9861BEFF229002C0205 /* GetStream-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GetStream-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0116A82212D54200503A07 /* ReactionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionKind.swift; sourceTree = "<group>"; };
 		8A0116AA2212D65500503A07 /* ReactionExtraDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionExtraDataProtocol.swift; sourceTree = "<group>"; };
+		8A0116AC22131F3300503A07 /* Reactionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reactionable.swift; sourceTree = "<group>"; };
 		8A0935A121AC012900C64488 /* Faye.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Faye.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0935A921AC012900C64488 /* FayeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FayeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0935C221AC030400C64488 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				8A2856EF21C15AF70091A977 /* Reaction.swift */,
 				8A411C2921C3D38E001BE61F /* Reactions.swift */,
 				8A0116A82212D54200503A07 /* ReactionKind.swift */,
+				8A0116AC22131F3300503A07 /* Reactionable.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				8A0116A92212D54200503A07 /* ReactionKind.swift in Sources */,
 				8A0AD19B21CBCBF800A3167D /* Result+ParseGroup.swift in Sources */,
 				8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */,
+				8A0116AD22131F3300503A07 /* Reactionable.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,
 				8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,
 				8A6284012199AEE20002913D /* BaseURL.swift in Sources */,

@@ -50,13 +50,13 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
     public let updated: Date?
     public let data: T
     /// Id of the parent reaction. Empty unless the reaction is a child reaction.
-    public var parentId: String?
+    public let parentId: String?
     /// User own children reactions, grouped by reaction type.
-    public let ownChildren: [ReactionKind: [Reaction<T, U>]]?
+    public var ownChildren: [ReactionKind: [Reaction<T, U>]]?
     /// Children reactions, grouped by reaction type.
-    public let latestChildren: [ReactionKind: [Reaction<T, U>]]
+    public var latestChildren: [ReactionKind: [Reaction<T, U>]]
     /// Child reaction count, grouped by reaction kind
-    public let childrenCounts: [ReactionKind: Int]
+    public var childrenCounts: [ReactionKind: Int]
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -68,7 +68,7 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
         updated = try container.decode(Date.self, forKey: .updated)
         data = try container.decode(T.self, forKey: .data)
         parentId = try container.decodeIfPresent(String.self, forKey: .parentId)
-        ownChildren = try container.decodeIfPresent([ReactionKind: [Reaction<T, U>]].self, forKey: .ownChildren)
+        //ownChildren = try container.decodeIfPresent([ReactionKind: [Reaction<T, U>]].self, forKey: .ownChildren)
         latestChildren = try container.decode([ReactionKind: [Reaction<T, U>]].self, forKey: .latestChildren)
         childrenCounts = try container.decode([ReactionKind: Int].self, forKey: .childrenCounts)
     }
