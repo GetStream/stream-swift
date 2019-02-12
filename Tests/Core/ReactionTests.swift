@@ -9,37 +9,6 @@
 import XCTest
 @testable import GetStream
 
-fileprivate struct Comment: ReactionExtraDataProtocol {
-    let text: String
-}
-
-extension ReactionKind {
-    static let like = "like"
-    static let comment = "comment"
-}
-
-enum ReactionExtraData: ReactionExtraDataProtocol {
-    case empty
-    case comment(_ text: String)
-    
-    func encode(to encoder: Encoder) throws {
-        switch self {
-        case .empty:
-            try EmptyReactionExtraData.shared.encode(to: encoder)
-        case .comment(let comment):
-            try Comment(text: comment).encode(to: encoder)
-        }
-    }
-    
-    init(from decoder: Decoder) throws {
-        if let comment = try? Comment(from: decoder) {
-            self = .comment(comment.text)
-        } else {
-            self = .empty
-        }
-    }
-}
-
 class ReactionTests: TestCase {
     
     func testAdd() {

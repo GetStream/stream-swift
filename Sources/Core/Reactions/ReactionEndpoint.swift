@@ -78,6 +78,8 @@ extension ReactionEndpoint: StreamTargetType {
                 parameters["with_activity_data"] = withActivityData
             }
             
+            parameters["withOwnChildren"] = 1
+            
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }

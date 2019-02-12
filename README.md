@@ -403,21 +403,16 @@ subscription = nil
 client.add(reactionTo: activityId, kindOf: "like") { result in /* ... */ }
 
 // adds a comment reaction to the activity with id activityId
-client.add(reactionTo: activityId, kindOf: "comment", extraData: Comment(text: "awesome post!")) { result in /* ... */ }
+client.add(reactionTo: activityId, kindOf: "comment", extraData: Comment(text: "awesome post!"), userTypeOf: User.self) { result in /* ... */ }
 ```
 
 Here's a complete example:
 ```swift
-// we recommend to add reaction kinds to the extention of the `ReactionKind` to avoid typos
-extension ReactionKind {
-    static let like = "like"
-    static let comment = "comment"
-}
-
 // first let's read current user's timeline feed and pick one activity
 client.flatFeed(feedSlug: "timeline", userId: "mike").get { result in
     if let response = try? result.get(), let activity = response.results.first, let activityId = activity.id {
         // then let's add a like reaction to that activity
+        // note: `.like` is a shared extension for `ReactionKind` equal to "like".
         client.add(reactionTo: activityId, kindOf: .like) { result in
             print(result) // will print a reaction object in the result.
         }
@@ -431,6 +426,7 @@ client.flatFeed(feedSlug: "timeline", userId: "mike").get { result in
 client.add(reactionTo: activityId, 
            kindOf: "comment", 
            extraData: Comment(text: "awesome post!"),
+           userTypeOf: User.self,
            targetsFeedIds: [FeedId(feedSlug: "notification", userId: "thierry")]) { result in /* ... */ }
 ```
 
@@ -469,7 +465,7 @@ client.add(reactionToParentReaction: commentReaction, kindOf: "like") { result i
 
 ### Updating Reactions
 ```swift
-client.update(reactionId: reactionId, extraData: Comment(text: "love it!")) { result in /* ... */ }
+client.update(reactionId: reactionId, extraData: Comment(text: "love it!"), userTypeOf: User.self) { result in /* ... */ }
 ```
 
 ### Removing Reactions

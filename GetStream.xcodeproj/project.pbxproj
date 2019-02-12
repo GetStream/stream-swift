@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		52D6D9871BEFF229002C0205 /* GetStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* GetStream.framework */; };
+		8A0116A92212D54200503A07 /* ReactionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0116A82212D54200503A07 /* ReactionKind.swift */; };
+		8A0116AB2212D65500503A07 /* ReactionExtraDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0116AA2212D65500503A07 /* ReactionExtraDataProtocol.swift */; };
 		8A0935AA21AC012900C64488 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A0935C321AC030400C64488 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0935C221AC030400C64488 /* Client.swift */; };
 		8A0935CB21AC05AD00C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -114,6 +116,8 @@
 /* Begin PBXFileReference section */
 		52D6D97C1BEFF229002C0205 /* GetStream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GetStream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* GetStream-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GetStream-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A0116A82212D54200503A07 /* ReactionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionKind.swift; sourceTree = "<group>"; };
+		8A0116AA2212D65500503A07 /* ReactionExtraDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionExtraDataProtocol.swift; sourceTree = "<group>"; };
 		8A0935A121AC012900C64488 /* Faye.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Faye.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0935A921AC012900C64488 /* FayeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FayeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0935C221AC030400C64488 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -348,8 +352,10 @@
 				8A2856E521C00E970091A977 /* Client+Reaction.swift */,
 				8AF44DC621C28D3A00A3A7B4 /* Result+ParseReaction.swift */,
 				8A2856E921C0185C0091A977 /* ReactionEndpoint.swift */,
+				8A0116AA2212D65500503A07 /* ReactionExtraDataProtocol.swift */,
 				8A2856EF21C15AF70091A977 /* Reaction.swift */,
 				8A411C2921C3D38E001BE61F /* Reactions.swift */,
+				8A0116A82212D54200503A07 /* ReactionKind.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -808,6 +814,7 @@
 				8AF44DD121C29ADB00A3A7B4 /* Result+ParseUpload.swift in Sources */,
 				8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */,
 				8AF44DCB21C294F500A3A7B4 /* Result+ParseResponse.swift in Sources */,
+				8A0116AB2212D65500503A07 /* ReactionExtraDataProtocol.swift in Sources */,
 				8A0AD19721CBBE9400A3167D /* Group.swift in Sources */,
 				8A4B11F121DE368700D19ADB /* Token.swift in Sources */,
 				8A0AD1A421CBEA6000A3167D /* Enrichable.swift in Sources */,
@@ -839,6 +846,7 @@
 				8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */,
 				8A411C2F21C4048A001BE61F /* UserEndpoint.swift in Sources */,
 				8A6283F12199AEE20002913D /* GetStream.swift in Sources */,
+				8A0116A92212D54200503A07 /* ReactionKind.swift in Sources */,
 				8A0AD19B21CBCBF800A3167D /* Result+ParseGroup.swift in Sources */,
 				8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,
