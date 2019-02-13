@@ -110,13 +110,13 @@ extension Reaction {
     ///
     /// - Parameter reaction: a new user own reaction.
     public func addUserOwnChild(_ reaction: Reaction<T, U>) {
-        var ownChildren = self.userOwnChildren ?? [:]
+        var userOwnChildren = self.userOwnChildren ?? [:]
         var latestChildren = self.latestChildren
         var childrenCounts = self.childrenCounts
-        ownChildren[reaction.kind, default: []].insert(reaction, at: 0)
+        userOwnChildren[reaction.kind, default: []].insert(reaction, at: 0)
         latestChildren[reaction.kind, default: []].insert(reaction, at: 0)
         childrenCounts[reaction.kind, default: 0] += 1
-        self.userOwnChildren = ownChildren
+        self.userOwnChildren = userOwnChildren
         self.latestChildren = latestChildren
         self.childrenCounts = childrenCounts
     }
@@ -125,13 +125,13 @@ extension Reaction {
     ///
     /// - Parameter reaction: an existing user own reaction.
     public func removeUserOwnChild(_ reaction: Reaction<T, U>) {
-        var ownChildren = self.userOwnChildren ?? [:]
+        var userOwnChildren = self.userOwnChildren ?? [:]
         var latestChildren = self.latestChildren
         var childrenCounts = self.childrenCounts
         
-        if let firstIndex = ownChildren[reaction.kind]?.firstIndex(of: reaction) {
-            ownChildren[reaction.kind, default: []].remove(at: firstIndex)
-            self.userOwnChildren = ownChildren
+        if let firstIndex = userOwnChildren[reaction.kind]?.firstIndex(of: reaction) {
+            userOwnChildren[reaction.kind, default: []].remove(at: firstIndex)
+            self.userOwnChildren = userOwnChildren
             
             if let firstIndex = latestChildren[reaction.kind]?.firstIndex(of: reaction) {
                 latestChildren[reaction.kind, default: []].remove(at: firstIndex)
