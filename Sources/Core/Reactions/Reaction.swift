@@ -68,7 +68,7 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
         updated = try container.decode(Date.self, forKey: .updated)
         data = try container.decode(T.self, forKey: .data)
         parentId = try container.decodeIfPresent(String.self, forKey: .parentId)
-        //ownChildren = try container.decodeIfPresent([ReactionKind: [Reaction<T, U>]].self, forKey: .ownChildren)
+        ownChildren = try container.decodeIfPresent([ReactionKind: [Reaction<T, U>]].self, forKey: .ownChildren)
         latestChildren = try container.decode([ReactionKind: [Reaction<T, U>]].self, forKey: .latestChildren)
         childrenCounts = try container.decode([ReactionKind: Int].self, forKey: .childrenCounts)
     }
@@ -99,5 +99,49 @@ extension Reaction {
     /// - Returns: the user child reaction.
     public func userOwnChildReaction(_ reactionKind: ReactionKind) -> Reaction<T, U>? {
         return ownChildren?[reactionKind]?.first
+    }
+}
+
+// MARK: - Child reactions
+
+extension Reaction {
+    
+    /// Update the reaction with a new user own child reaction.
+    ///
+    /// - Parameter reaction: a new user own reaction.
+    public func addOwnChild(_ reaction: Reaction<T, U>) {
+        var ownChildren = self.ownChildren ?? [:]
+        var latestChildren = self.latestChildren
+        var childrenCounts = self.childrenCounts
+        ownChildren[reaction.kind, default: []].insert(reaction, at: 0)
+        latestChildren[reaction.kind, default: []].insert(reaction, at: 0)
+        childrenCounts[reaction.kind, default: 0] += 1
+        self.ownChildren = ownChildren
+        self.latestChildren = latestChildren
+        self.childrenCounts = childrenCounts
+    }
+    
+    /// Delete an existing user own child reaction for the reaction.
+    ///
+    /// - Parameter reaction: an existing user own reaction.
+    public func removeOwnChild(_ reaction: Reaction<T, U>) {
+        var ownChildren = self.ownChildren ?? [:]
+        var latestChildren = self.latestChildren
+        var childrenCounts = self.childrenCounts
+        
+        if let firstIndex = ownChildren[reaction.kind]?.firstIndex(of: reaction) {
+            ownChildren[reaction.kind, default: []].remove(at: firstIndex)
+            self.ownChildren = ownChildren
+            
+            if let firstIndex = latestChildren[reaction.kind]?.firstIndex(of: reaction) {
+                latestChildren[reaction.kind, default: []].remove(at: firstIndex)
+                self.latestChildren = latestChildren
+            }
+            
+            if let count = childrenCounts[reaction.kind], count > 0 {
+                childrenCounts[reaction.kind, default: 0] = count - 1
+                self.childrenCounts = childrenCounts
+            }
+        }
     }
 }

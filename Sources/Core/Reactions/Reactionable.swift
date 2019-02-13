@@ -21,9 +21,9 @@ public protocol Reactionable {
 
 extension Reactionable where ReactionType: ReactionProtocol {
     
-    /// Update the activity with a new own reaction.
+    /// Update the activity with a new user own reaction.
     ///
-    /// - Parameter reaction: a new own reaction.
+    /// - Parameter reaction: a new user own reaction.
     public mutating func addOwnReaction(_ reaction: ReactionType) {
         var ownReactions = self.ownReactions ?? [:]
         var latestReactions = self.latestReactions ?? [:]
@@ -36,10 +36,10 @@ extension Reactionable where ReactionType: ReactionProtocol {
         self.reactionCounts = reactionCounts
     }
     
-    /// Delete an existing own reaction for the activity.
+    /// Remove an existing own reaction for the activity.
     ///
-    /// - Parameter reaction: an existing own reaction.
-    public mutating func deleteOwnReaction(_ reaction: ReactionType) {
+    /// - Parameter reaction: an existing user own reaction.
+    public mutating func removeOwnReaction(_ reaction: ReactionType) {
         var ownReactions = self.ownReactions ?? [:]
         var latestReactions = self.latestReactions ?? [:]
         var reactionCounts = self.reactionCounts ?? [:]
