@@ -25,7 +25,7 @@ open class EnrichedActivity<ActorType: Enrichable,
         case foreignId = "foreign_id"
         case time
         case feedIds = "to"
-        case ownReactions = "own_reactions"
+        case userOwnReactions = "own_reactions"
         case latestReactions = "latest_reactions"
         case reactionCounts = "reaction_counts"
     }
@@ -48,7 +48,7 @@ open class EnrichedActivity<ActorType: Enrichable,
     /// One way to think about it is as the CC functionality of email.
     public var feedIds: FeedIds?
     /// Include reactions added by current user to all activities.
-    public var ownReactions: [ReactionKind: [ReactionType]]?
+    public var userOwnReactions: [ReactionKind: [ReactionType]]?
     /// Include recent reactions to activities.
     public var latestReactions: [ReactionKind: [ReactionType]]?
     /// Include reaction counts to activities.
@@ -100,7 +100,7 @@ extension EnrichedActivity: CustomStringConvertible {
         return "\(type(of: self))<id: \(id.isEmpty ? "n/a" : id), fid: \(foreignId ?? "n/a")>\n"
             + "\(actor.referenceId) \(verb) \(object.referenceId) at \(time?.description ?? "<n/a>")\n"
             + "feedIds: \(feedIds?.description ?? "[]")\n"
-            + "ownReactions: \(ownReactions ?? [:])\n"
+            + "ownReactions: \(userOwnReactions ?? [:])\n"
             + "latestReactions: \(latestReactions ?? [:])\n"
             + "reactionCounts: \(reactionCounts ?? [:])\n"
     }

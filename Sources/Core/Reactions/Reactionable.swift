@@ -12,7 +12,7 @@ public protocol Reactionable {
     associatedtype ReactionType = ReactionProtocol
     
     /// Include reactions added by current user to all activities.
-    var ownReactions: [ReactionKind: [ReactionType]]? { get set }
+    var userOwnReactions: [ReactionKind: [ReactionType]]? { get set }
     /// Include recent reactions to activities.
     var latestReactions: [ReactionKind: [ReactionType]]? { get set }
     /// Include reaction counts to activities.
@@ -24,14 +24,14 @@ extension Reactionable where ReactionType: ReactionProtocol {
     /// Update the activity with a new user own reaction.
     ///
     /// - Parameter reaction: a new user own reaction.
-    public mutating func addOwnReaction(_ reaction: ReactionType) {
-        var ownReactions = self.ownReactions ?? [:]
+    public mutating func addUserOwnReaction(_ reaction: ReactionType) {
+        var userOwnReactions = self.userOwnReactions ?? [:]
         var latestReactions = self.latestReactions ?? [:]
         var reactionCounts = self.reactionCounts ?? [:]
-        ownReactions[reaction.kind, default: []].insert(reaction, at: 0)
+        userOwnReactions[reaction.kind, default: []].insert(reaction, at: 0)
         latestReactions[reaction.kind, default: []].insert(reaction, at: 0)
         reactionCounts[reaction.kind, default: 0] += 1
-        self.ownReactions = ownReactions
+        self.userOwnReactions = userOwnReactions
         self.latestReactions = latestReactions
         self.reactionCounts = reactionCounts
     }
@@ -39,14 +39,14 @@ extension Reactionable where ReactionType: ReactionProtocol {
     /// Remove an existing own reaction for the activity.
     ///
     /// - Parameter reaction: an existing user own reaction.
-    public mutating func removeOwnReaction(_ reaction: ReactionType) {
-        var ownReactions = self.ownReactions ?? [:]
+    public mutating func removeUserOwnReaction(_ reaction: ReactionType) {
+        var userOwnReactions = self.userOwnReactions ?? [:]
         var latestReactions = self.latestReactions ?? [:]
         var reactionCounts = self.reactionCounts ?? [:]
         
-        if let firstIndex = ownReactions[reaction.kind]?.firstIndex(where: { $0.id == reaction.id }) {
-            ownReactions[reaction.kind, default: []].remove(at: firstIndex)
-            self.ownReactions = ownReactions
+        if let firstIndex = userOwnReactions[reaction.kind]?.firstIndex(where: { $0.id == reaction.id }) {
+            userOwnReactions[reaction.kind, default: []].remove(at: firstIndex)
+            self.userOwnReactions = userOwnReactions
             
             if let firstIndex = latestReactions[reaction.kind]?.firstIndex(where: { $0.id == reaction.id }) {
                 latestReactions[reaction.kind, default: []].remove(at: firstIndex)
