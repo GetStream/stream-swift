@@ -14,7 +14,7 @@
     <a title="Reaction Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GetStream Docs</a> (48% documented)</p>
+        <p><a href="../index.html">GetStream Docs</a> (52% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -99,6 +99,9 @@
                 <a href="../Enums/Pagination.html">Pagination</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/ReactionExtraData.html">ReactionExtraData</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ReactionsError.html">ReactionsError</a>
               </li>
               <li class="nav-group-task">
@@ -148,6 +151,9 @@
                 <a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/Reactionable.html">Reactionable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/UserProtocol.html">UserProtocol</a>
               </li>
             </ul>
@@ -163,6 +169,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BaseURL/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:9GetStream7CommentV">Comment</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
@@ -334,7 +343,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Reaction id.</p>
 
                       </div>
                       <div class="declaration">
@@ -361,7 +370,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Activity id for the reaction.</p>
 
                       </div>
                       <div class="declaration">
@@ -388,7 +397,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>User of the reaction.</p>
 
                       </div>
                       <div class="declaration">
@@ -415,7 +424,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Type of reaction.</p>
 
                       </div>
                       <div class="declaration">
@@ -442,7 +451,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>When the reaction was created.</p>
 
                       </div>
                       <div class="declaration">
@@ -469,7 +478,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>When the reaction was last updated.</p>
 
                       </div>
                       <div class="declaration">
@@ -523,14 +532,68 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Id of the parent reaction. Empty unless the reaction is a child reaction.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">parentId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">parentId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream8ReactionC15userOwnChildrenSDySSSayACyxq_GGGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/userOwnChildren" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC15userOwnChildrenSDySSSayACyxq_GGGSgvp">userOwnChildren</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User own children reactions, grouped by reaction type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">userOwnChildren</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span> <span class="p">:</span> <span class="p">[</span><span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">]]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream8ReactionC14latestChildrenSDySSSayACyxq_GGGvp"></a>
+                    <a name="//apple_ref/swift/Property/latestChildren" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC14latestChildrenSDySSSayACyxq_GGGvp">latestChildren</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Children reactions, grouped by reaction type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">latestChildren</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span> <span class="p">:</span> <span class="p">[</span><span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">]]</span></code></pre>
 
                         </div>
                       </div>
@@ -550,14 +613,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Child reaction count, grouped by reaction kind</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">childrenCounts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span> <span class="p">:</span> <span class="kt">Int</span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">childrenCounts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span> <span class="p">:</span> <span class="kt">Int</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -593,9 +656,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
+                    <a name="/s:9GetStream8ReactionC6encode2toys7Encoder_p_tKF"></a>
                     <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:)</a>
+                    <a class="token" href="#/s:9GetStream8ReactionC6encode2toys7Encoder_p_tKF">encode(to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -603,7 +666,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Skip encoding.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -619,121 +683,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream8ReactionC4data6typeOfqd__Sgqd__m_tSeRd__SERd__lF"></a>
-                    <a name="//apple_ref/swift/Method/data(typeOf:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream8ReactionC4data6typeOfqd__Sgqd__m_tSeRd__SERd__lF">data(typeOf:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Decode an extra data with a specific type of <code><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></code>.</p>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    It useful when you need to get extra fields from the reaction,
-    but by default it was decoded as an <code><a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a></code>.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n"><a href="../Classes/Reaction.html#/s:9GetStream8ReactionC4dataxvp">data</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>type</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the <code><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></code> type of the specific reaction extra data.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>a specific extra data object.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream8ReactionC14latestChildren6kindOfSayACyAA05EmptyC9ExtraDataVAA4UserCGGSS_tF"></a>
-                    <a name="//apple_ref/swift/Method/latestChildren(kindOf:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream8ReactionC14latestChildren6kindOfSayACyAA05EmptyC9ExtraDataVAA4UserCGGSS_tF">latestChildren(kindOf:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">latestChildren</span><span class="p">(</span><span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream15DefaultReactiona">DefaultReaction</a></span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream8ReactionC14latestChildren6kindOf013extraDataTypeG004userjG0SayACyqd__qd_0_GGSS_qd__mqd_0_mtSeRd__SERd__AA12UserProtocolRd_0_r0_lF"></a>
-                    <a name="//apple_ref/swift/Method/latestChildren(kindOf:extraDataTypeOf:userTypeOf:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream8ReactionC14latestChildren6kindOf013extraDataTypeG004userjG0SayACyqd__qd_0_GGSS_qd__mqd_0_mtSeRd__SERd__AA12UserProtocolRd_0_r0_lF">latestChildren(kindOf:extraDataTypeOf:userTypeOf:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">latestChildren</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span> <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">kindOf</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">,</span>
-                                                                          <span class="nv">extraDataTypeOf</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
-                                                                          <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">U</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="/s:9GetStream8ReactionC2eeoiySbACyxq_G_AEtFZ"></a>
                     <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    <a class="token" href="#/s:9GetStream8ReactionC2eeoiySbACyxq_G_AEtFZ">==(_:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -741,7 +693,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Equatable.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -756,10 +709,224 @@
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/User%20own%20reaction%20of%20the%20reaction"></a>
+                <a name="//apple_ref/swift/Section/User own reaction of the reaction" class="dashAnchor"></a>
+                <a href="#/User%20own%20reaction%20of%20the%20reaction">
+                  <h3 class="section-name">User own reaction of the reaction</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream8ReactionC015hasUserOwnChildC0ySbSSF"></a>
+                    <a name="//apple_ref/swift/Method/hasUserOwnChildReaction(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC015hasUserOwnChildC0ySbSSF">hasUserOwnChildReaction(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check the user reactions for the reaction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hasUserOwnChildReaction</span><span class="p">(</span><span class="n">_</span> <span class="nv">reactionKind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reactionKind</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a kind of the child reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if exists the child reaction of the user.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream8ReactionC012userOwnChildC0yACyxq_GSgSSF"></a>
+                    <a name="//apple_ref/swift/Method/userOwnChildReaction(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC012userOwnChildC0yACyxq_GSgSSF">userOwnChildReaction(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Try to get the first user child reaction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">userOwnChildReaction</span><span class="p">(</span><span class="n">_</span> <span class="nv">reactionKind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reactionKind</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a kind of the child reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the user child reaction.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Child%20reactions"></a>
+                <a name="//apple_ref/swift/Section/Child reactions" class="dashAnchor"></a>
+                <a href="#/Child%20reactions">
+                  <h3 class="section-name">Child reactions</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream8ReactionC15addUserOwnChildyyACyxq_GF"></a>
+                    <a name="//apple_ref/swift/Method/addUserOwnChild(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC15addUserOwnChildyyACyxq_GF">addUserOwnChild(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update the reaction with a new user own child reaction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addUserOwnChild</span><span class="p">(</span><span class="n">_</span> <span class="nv">reaction</span><span class="p">:</span> <span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reaction</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a new user own reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream8ReactionC18removeUserOwnChildyyACyxq_GF"></a>
+                    <a name="//apple_ref/swift/Method/removeUserOwnChild(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream8ReactionC18removeUserOwnChildyyACyxq_GF">removeUserOwnChild(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delete an existing user own child reaction for the reaction.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeUserOwnChild</span><span class="p">(</span><span class="n">_</span> <span class="nv">reaction</span><span class="p">:</span> <span class="kt">Reaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reaction</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an existing user own reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-07)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

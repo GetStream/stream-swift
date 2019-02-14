@@ -13,7 +13,7 @@
     <a title="GetStream  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">GetStream Docs</a> (48% documented)</p>
+        <p><a href="index.html">GetStream Docs</a> (52% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -98,6 +98,9 @@
                 <a href="Enums/Pagination.html">Pagination</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/ReactionExtraData.html">ReactionExtraData</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/ReactionsError.html">ReactionsError</a>
               </li>
               <li class="nav-group-task">
@@ -147,6 +150,9 @@
                 <a href="Protocols/ReactionProtocol.html">ReactionProtocol</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/Reactionable.html">Reactionable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/UserProtocol.html">UserProtocol</a>
               </li>
             </ul>
@@ -162,6 +168,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Structs/BaseURL/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs.html#/s:9GetStream7CommentV">Comment</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
@@ -656,20 +665,15 @@ final class PopularityActivity: Activity {
 <span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"like"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
 
 <span class="c1">// adds a comment reaction to the activity with id activityId</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"comment"</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="kt">Comment</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"awesome post!"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"comment"</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="kt">Comment</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"awesome post!"</span><span class="p">),</span> <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">User</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
 </code></pre>
 
 <p>Here&rsquo;s a complete example:</p>
-<pre class="highlight swift"><code><span class="c1">// we recommend to add reaction kinds to the extention of the `ReactionKind` to avoid typos</span>
-<span class="kd">extension</span> <span class="kt">ReactionKind</span> <span class="p">{</span>
-    <span class="kd">static</span> <span class="k">let</span> <span class="nv">like</span> <span class="o">=</span> <span class="s">"like"</span>
-    <span class="kd">static</span> <span class="k">let</span> <span class="nv">comment</span> <span class="o">=</span> <span class="s">"comment"</span>
-<span class="p">}</span>
-
-<span class="c1">// first let's read current user's timeline feed and pick one activity</span>
+<pre class="highlight swift"><code><span class="c1">// first let's read current user's timeline feed and pick one activity</span>
 <span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"mike"</span><span class="p">)</span><span class="o">.</span><span class="k">get</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">response</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">(),</span> <span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="k">let</span> <span class="nv">activityId</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">id</span> <span class="p">{</span>
         <span class="c1">// then let's add a like reaction to that activity</span>
+        <span class="c1">// note: `.like` is a shared extension for `ReactionKind` equal to "like".</span>
         <span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="o">.</span><span class="n">like</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1">// will print a reaction object in the result.</span>
         <span class="p">}</span>
@@ -681,6 +685,7 @@ final class PopularityActivity: Activity {
 <span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> 
            <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"comment"</span><span class="p">,</span> 
            <span class="nv">extraData</span><span class="p">:</span> <span class="kt">Comment</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"awesome post!"</span><span class="p">),</span>
+           <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">User</span><span class="o">.</span><span class="k">self</span><span class="p">,</span>
            <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="p">[</span><span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"notification"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"thierry"</span><span class="p">)])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
 </code></pre>
 <h3 id='read-feeds-with-reactions' class='heading'>Read feeds with reactions</h3>
@@ -711,7 +716,7 @@ final class PopularityActivity: Activity {
 <span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionToParentReaction</span><span class="p">:</span> <span class="n">commentReaction</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"like"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
 </code></pre>
 <h3 id='updating-reactions' class='heading'>Updating Reactions</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="n">reactionId</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="kt">Comment</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"love it!"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="n">reactionId</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="kt">Comment</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"love it!"</span><span class="p">),</span> <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">User</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
 </code></pre>
 <h3 id='removing-reactions' class='heading'>Removing Reactions</h3>
 <pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="n">reactionId</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
@@ -905,7 +910,7 @@ final class Food: CollectionObject {
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-07)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

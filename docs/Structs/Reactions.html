@@ -14,7 +14,7 @@
     <a title="Reactions Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GetStream Docs</a> (48% documented)</p>
+        <p><a href="../index.html">GetStream Docs</a> (52% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -99,6 +99,9 @@
                 <a href="../Enums/Pagination.html">Pagination</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/ReactionExtraData.html">ReactionExtraData</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ReactionsError.html">ReactionsError</a>
               </li>
               <li class="nav-group-task">
@@ -148,6 +151,9 @@
                 <a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/Reactionable.html">Reactionable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/UserProtocol.html">UserProtocol</a>
               </li>
             </ul>
@@ -163,6 +169,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BaseURL/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:9GetStream7CommentV">Comment</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
@@ -378,33 +387,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream9ReactionsV8activityAA16EnrichedActivityCyS3SAA8ReactionCyAA05EmptyG9ExtraDataVAA4UserCGGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/activity" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream9ReactionsV8activityAA16EnrichedActivityCyS3SAA8ReactionCyAA05EmptyG9ExtraDataVAA4UserCGGSgvp">activity</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">activity</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream8Activitya">Activity</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:Se4fromxs7Decoder_p_tKcfc"></a>
                     <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:Se4fromxs7Decoder_p_tKcfc">init(from:)</a>
@@ -448,9 +430,32 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n"><a href="../Structs/Reactions.html#/s:9GetStream9ReactionsV8activityAA16EnrichedActivityCyS3SAA8ReactionCyAA05EmptyG9ExtraDataVAA4UserCGGSgvp">activity</a></span><span class="o">&lt;</span><span class="kt">A</span><span class="o">&gt;</span><span class="p">(</span><span class="n">typeOf</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">A</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">A</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">activity</span><span class="o">&lt;</span><span class="kt">A</span><span class="o">&gt;</span><span class="p">(</span><span class="n">typeOf</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">A</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">A</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the type of <code><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></code> of reactions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the activity of reactions.</p>
                       </div>
                     </section>
                   </div>
@@ -460,7 +465,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-07)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

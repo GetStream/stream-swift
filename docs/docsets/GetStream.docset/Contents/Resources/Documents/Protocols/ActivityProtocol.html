@@ -14,7 +14,7 @@
     <a title="ActivityProtocol Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GetStream Docs</a> (48% documented)</p>
+        <p><a href="../index.html">GetStream Docs</a> (52% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -99,6 +99,9 @@
                 <a href="../Enums/Pagination.html">Pagination</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/ReactionExtraData.html">ReactionExtraData</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/ReactionsError.html">ReactionsError</a>
               </li>
               <li class="nav-group-task">
@@ -148,6 +151,9 @@
                 <a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/Reactionable.html">Reactionable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/UserProtocol.html">UserProtocol</a>
               </li>
             </ul>
@@ -163,6 +169,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/BaseURL/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:9GetStream7CommentV">Comment</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
@@ -311,7 +320,7 @@
             <h1>ActivityProtocol</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActivityProtocol</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Enrichable.html">Enrichable</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActivityProtocol</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Enrichable.html">Enrichable</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Reactionable.html">Reactionable</a></span></code></pre>
 
                 </div>
               </div>
@@ -396,33 +405,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">TargetType</span> <span class="o">=</span> <span class="kt"><a href="../Protocols/Enrichable.html">Enrichable</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream16ActivityProtocolP12ReactionTypeQa"></a>
-                    <a name="//apple_ref/swift/Alias/ReactionType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16ActivityProtocolP12ReactionTypeQa">ReactionType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">ReactionType</span> <span class="o">=</span> <span class="kt"><a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a></span></code></pre>
 
                         </div>
                       </div>
@@ -651,87 +633,6 @@ One way to think about it is as the CC functionality of email.</p>
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream16ActivityProtocolP12ownReactionsSDySSSay12ReactionTypeQzGGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/ownReactions" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16ActivityProtocolP12ownReactionsSDySSSay12ReactionTypeQzGGSgvp">ownReactions</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Include reactions added by current user to all activities.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">ownReactions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span> <span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/ActivityProtocol.html#/s:9GetStream16ActivityProtocolP12ReactionTypeQa">ReactionType</a></span><span class="p">]]?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream16ActivityProtocolP15latestReactionsSDySSSay12ReactionTypeQzGGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/latestReactions" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16ActivityProtocolP15latestReactionsSDySSSay12ReactionTypeQzGGSgvp">latestReactions</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Include recent reactions to activities.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">latestReactions</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span> <span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/ActivityProtocol.html#/s:9GetStream16ActivityProtocolP12ReactionTypeQa">ReactionType</a></span><span class="p">]]?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream16ActivityProtocolP14reactionCountsSDySSSiGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/reactionCounts" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16ActivityProtocolP14reactionCountsSDySSSiGSgvp">reactionCounts</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Include reaction counts to activities.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">reactionCounts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span> <span class="p">:</span> <span class="kt">Int</span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -776,119 +677,10 @@ For example, in case when you need to make a repost activity where <code><a href
                 </li>
               </ul>
             </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Own%20reactions"></a>
-                <a name="//apple_ref/swift/Section/Own reactions" class="dashAnchor"></a>
-                <a href="#/Own%20reactions">
-                  <h3 class="section-name">Own reactions</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream16ActivityProtocolPA2A08ReactionD00E4TypeRpzrlE06addOwnE0yyAFF"></a>
-                    <a name="//apple_ref/swift/Method/addOwnReaction(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16ActivityProtocolPA2A08ReactionD00E4TypeRpzrlE06addOwnE0yyAFF">addOwnReaction(_:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Update the activity with a new own reaction.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">addOwnReaction</span><span class="p">(</span><span class="n">_</span> <span class="nv">reaction</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html#/s:9GetStream16ActivityProtocolP12ReactionTypeQa">ReactionType</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>reaction</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>a new own reaction.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream16ActivityProtocolPA2A08ReactionD00E4TypeRpzrlE09deleteOwnE0yyAFF"></a>
-                    <a name="//apple_ref/swift/Method/deleteOwnReaction(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16ActivityProtocolPA2A08ReactionD00E4TypeRpzrlE09deleteOwnE0yyAFF">deleteOwnReaction(_:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Delete an existing own reaction for the activity.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">deleteOwnReaction</span><span class="p">(</span><span class="n">_</span> <span class="nv">reaction</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html#/s:9GetStream16ActivityProtocolP12ReactionTypeQa">ReactionType</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>reaction</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>an existing own reaction.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-07)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
