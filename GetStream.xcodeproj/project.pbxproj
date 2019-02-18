@@ -72,6 +72,8 @@
 		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
 		8AAD3E7321E8C4C500FDB25D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAD3E7221E8C4C500FDB25D /* Response.swift */; };
 		8AAD3E7521E8EB3B00FDB25D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAD3E7421E8EB3B00FDB25D /* File.swift */; };
+		8AAEE3F2221ABB0800327FCB /* Feed+Faye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAEE3F1221ABB0800327FCB /* Feed+Faye.swift */; };
+		8AAEE3F4221ABBE600327FCB /* SubscriptionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAEE3F3221ABBE600327FCB /* SubscriptionResponse.swift */; };
 		8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207921BAB8D10033EE8F /* Client+Files.swift */; };
 		8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */; };
 		8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207D21BE5D680033EE8F /* ImageProcess.swift */; };
@@ -188,6 +190,8 @@
 		8AA6BEB8219D711F005B9C98 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		8AAD3E7221E8C4C500FDB25D /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		8AAD3E7421E8EB3B00FDB25D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		8AAEE3F1221ABB0800327FCB /* Feed+Faye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+Faye.swift"; sourceTree = "<group>"; };
+		8AAEE3F3221ABBE600327FCB /* SubscriptionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionResponse.swift; sourceTree = "<group>"; };
 		8ABC207921BAB8D10033EE8F /* Client+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Files.swift"; sourceTree = "<group>"; };
 		8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesEndpoint.swift; sourceTree = "<group>"; };
 		8ABC207D21BE5D680033EE8F /* ImageProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcess.swift; sourceTree = "<group>"; };
@@ -542,6 +546,8 @@
 			isa = PBXGroup;
 			children = (
 				8AE491A121B13FDA008F9036 /* Client+Faye.swift */,
+				8AAEE3F1221ABB0800327FCB /* Feed+Faye.swift */,
+				8AAEE3F3221ABBE600327FCB /* SubscriptionResponse.swift */,
 			);
 			path = Faye;
 			sourceTree = "<group>";
@@ -805,6 +811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0AD19421CBB2B100A3167D /* AggregatedFeed.swift in Sources */,
+				8AAEE3F4221ABBE600327FCB /* SubscriptionResponse.swift in Sources */,
 				8A0AD18621C906D600A3167D /* Client+Collection.swift in Sources */,
 				8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */,
 				8AF44DC721C28D3A00A3A7B4 /* Result+ParseReaction.swift in Sources */,
@@ -855,6 +862,7 @@
 				8A0116AD22131F3300503A07 /* Reactionable.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,
 				8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */,
+				8AAEE3F2221ABB0800327FCB /* Feed+Faye.swift in Sources */,
 				8A6284012199AEE20002913D /* BaseURL.swift in Sources */,
 				8AF44DCD21C2994700A3A7B4 /* Result+ParseFeed.swift in Sources */,
 				8A2856E821C016BB0091A977 /* Pagination.swift in Sources */,
