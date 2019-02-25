@@ -13,17 +13,21 @@ public typealias JSON = [String: Any]
 public typealias ClientWriteDataCompletion = () -> Void
 
 public final class Client {
+    private static let maxAttemptsToReconnect = 5
+    
     private let webSocket: WebSocket
     private var weakChannels = [WeakChannel]()
-    public private(set) var isConnected: Bool = false
+    private var attemptsToReconnect: Int = 0
+    private var clientId: String?
+    private var advice: Advice?
     
-    private var clientId: String? {
-        didSet {
-            isConnected = clientId != nil
-        }
+    private lazy var handshakeTimer = RepeatingTimer(timeInterval: .seconds(30), queue: webSocket.callbackQueue) { [weak self] in
+        try? self?.webSocketWrite(.handshake)
     }
     
-    private var advice: Advice?
+    public var isConnected: Bool {
+        return clientId != nil && webSocket.isConnected
+    }
     
     /// Create a Faye client with a given `URL`.
     ///
@@ -70,7 +74,7 @@ extension Client {
     }
     
     public func disconnect() {
-        print("🕸", #function)
+        print("🕸", Date(), #function)
         webSocket.disconnect()
         clientId = nil
         advice = nil
@@ -114,23 +118,33 @@ extension Client: WebSocketDelegate {
     public func websocketDidConnect(socket: WebSocketClient) {
         do {
             try webSocketWrite(.handshake)
+            attemptsToReconnect = 0
+            handshakeTimer.resume()
         } catch {
-            print("🕸", #function, error)
+            print("🕸", Date(), #function, error)
             applyAdvice()
         }
     }
     
     public func websocketDidDisconnect(socket: WebSocketClient, error: Swift.Error?) {
-        print("🕸", #function)
+        print("🕸", Date(), #function)
+        handshakeTimer.suspend()
+        clientId = nil
         
         if let error = error {
-            print("🕸❌", #function, error)
-            applyAdvice()
+            print("🕸❌", Date(), error)
         }
+        
+        applyAdvice()
     }
     
     private func retryReconnect(after timeInterval: DispatchTimeInterval = .seconds(2)) {
-        print("🕸 trying to reconnect...", #function)
+        guard attemptsToReconnect < Client.maxAttemptsToReconnect else {
+            attemptsToReconnect = 0
+            return
+        }
+        
+        print("🕸", Date(), #function)
         webSocket.callbackQueue.asyncAfter(deadline: .now() + timeInterval) { [weak self] in self?.connect() }
     }
 }
@@ -152,7 +166,7 @@ extension Client {
         let message = Message(bayeuxChannel, channel, clientId: self.clientId)
         let data = try JSONEncoder().encode([message])
         webSocket.write(data: data, completion: completion)
-        print("🕸 ---> ", message.channel, message.clientId ?? "", message.ext ?? [:])
+        print("🕸 --->", Date(), message.channel, message.clientId ?? "", message.ext ?? [:])
     }
 }
 
@@ -161,11 +175,11 @@ extension Client {
 extension Client {
     public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         guard let data = text.data(using: .utf8) else {
-            print("🕸❌", #function, "Bad data encoding")
+            print("🕸❌", Date(), #function, "Bad data encoding")
             return
         }
         
-        print("🕸 <---", text)
+        print("🕸 <---", Date(), text)
         websocketDidReceiveData(socket: socket, data: data)
     }
     
@@ -188,7 +202,7 @@ extension Client {
                 }
             }
         } catch {
-            print("🕸❌", #function, error)
+            print("🕸❌", Date(), #function, error)
         }
     }
     
@@ -205,7 +219,7 @@ extension Client {
     }
     
     private func dispatchData(with message: Message, in jsonData: Data) {
-        print("🕸 <---", message.channel)
+        print("🕸 <---", Date(), message.channel)
         
         weakChannels.forEach { weakChannel in
             if let channel = weakChannel.channel, channel.name.match(with: message.channel) {
@@ -215,12 +229,22 @@ extension Client {
     }
     
     private func dispatchHandshake(with message: Message) {
+        let subscribeToChannels = clientId == nil
         clientId = message.clientId
         advice = message.advice
         
-        weakChannels.forEach {
-            if let channel = $0.channel {
-                try? subscribe(to: channel)
+        guard subscribeToChannels else {
+            return
+        }
+        
+        for weakChannel in weakChannels {
+            if let channel = weakChannel.channel {
+                do {
+                    try subscribe(to: channel)
+                } catch {
+                    print("🕸❌ subscribe to channel", Date(), #function, channel, error)
+                    break
+                }
             }
         }
     }
@@ -230,7 +254,7 @@ extension Client {
 
 extension Client: WebSocketPongDelegate {
     public func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
-        print("🕸 <--- pong", data ?? Data())
+        print("🕸 <--- pong", Date(), data ?? Data())
     }
 }
 
@@ -245,7 +269,7 @@ extension Client {
             return
         }
         
-        print("🕸 <-->", #function, advice)
+        print("🕸 <-->", Date(), #function, advice)
         
         switch advice.reconnect {
         case .none:
