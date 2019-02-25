@@ -25,6 +25,7 @@ open class EnrichedActivity<ActorType: Enrichable,
         case foreignId = "foreign_id"
         case time
         case feedIds = "to"
+        case feedGroupId = "group"
         case userOwnReactions = "own_reactions"
         case latestReactions = "latest_reactions"
         case reactionCounts = "reaction_counts"
@@ -47,6 +48,8 @@ open class EnrichedActivity<ActorType: Enrichable,
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
     public var feedIds: FeedIds?
+    /// An aggregated or notification feed group id.
+    public var feedGroupId: String?
     /// Include reactions added by current user to all activities.
     public var userOwnReactions: [ReactionKind: [ReactionType]]?
     /// Include recent reactions to activities.
