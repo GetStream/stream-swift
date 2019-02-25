@@ -109,6 +109,30 @@ public struct OGVideoResponse: Codable {
     public private(set) var height: StringOrInt?
     public private(set) var type: String?
     public private(set) var alt: String?
+    
+    public var size: CGSize {
+        guard let widthEnum = width, let heightEnum = height else {
+            return .zero
+        }
+        
+        var widthInt: Int = 0
+        var heightInt: Int = 0
+        
+        switch widthEnum {
+        case .string(let widthValue):
+            if case .string(let heightValue) = heightEnum {
+                widthInt = Int(widthValue) ?? 0
+                heightInt = Int(heightValue) ?? 0
+            }
+        case .int(let widthValue):
+            if case .int(let heightValue) = heightEnum {
+                widthInt = widthValue
+                heightInt = heightValue
+            }
+        }
+        
+        return CGSize(width: CGFloat(widthInt), height: CGFloat(heightInt))
+    }
 }
 
 public struct OGAudioResponse: Codable {
@@ -139,5 +163,14 @@ public enum StringOrInt: Codable {
         }
     }
     
-    public func encode(to encoder: Encoder) throws {}
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        
+        switch self {
+        case .string(let value):
+            try container.encode(value)
+        case .int(let value):
+            try container.encode(value)
+        }
+    }
 }
