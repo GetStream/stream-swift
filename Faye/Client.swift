@@ -24,7 +24,7 @@ public final class Client {
     private var advice: Advice?
     
     private lazy var handshakeTimer = RepeatingTimer(timeInterval: .seconds(30), queue: webSocket.callbackQueue) { [weak self] in
-        try? self?.webSocketWrite(.handshake)
+        self?.ping()
     }
     
     public var isConnected: Bool {
@@ -231,13 +231,8 @@ extension Client {
     }
     
     private func dispatchHandshake(with message: Message) {
-        let subscribeToChannels = clientId == nil
         clientId = message.clientId
         advice = message.advice
-        
-        guard subscribeToChannels else {
-            return
-        }
         
         for weakChannel in weakChannels {
             if let channel = weakChannel.channel {
@@ -255,8 +250,13 @@ extension Client {
 // MARK: - Ping/Pong
 
 extension Client: WebSocketPongDelegate {
+    public func ping() {
+        log("🏓 --->")
+        webSocket.write(ping: Data())
+    }
+    
     public func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
-        log("<--- pong", data ?? Data())
+        log("<--- 🏓", data)
     }
 }
 

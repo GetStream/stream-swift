@@ -105,8 +105,8 @@ public struct OGVideoResponse: Codable {
     public private(set) var image: String?
     public private(set) var url: URL?
     public private(set) var secureURL: String?
-    public private(set) var width: String?
-    public private(set) var height: String?
+    public private(set) var width: StringOrInt?
+    public private(set) var height: StringOrInt?
     public private(set) var type: String?
     public private(set) var alt: String?
 }
@@ -123,4 +123,21 @@ public struct OGAudioResponse: Codable {
     public private(set) var url: URL?
     public private(set) var secureURL: String?
     public private(set) var type: String?
+}
+
+public enum StringOrInt: Codable {
+    case string(_ value: String)
+    case int(_ value: Int)
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        
+        if let value = try? container.decode(Int.self) {
+            self = .int(value)
+        } else {
+            self = try .string(container.decode(String.self))
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {}
 }
