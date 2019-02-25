@@ -13,6 +13,8 @@ public typealias JSON = [String: Any]
 public typealias ClientWriteDataCompletion = () -> Void
 
 public final class Client {
+    public static var logsEnabled = false
+    
     private static let maxAttemptsToReconnect = 5
     
     private let webSocket: WebSocket
@@ -74,7 +76,7 @@ extension Client {
     }
     
     public func disconnect() {
-        print("🕸", Date(), #function)
+        log()
         webSocket.disconnect()
         clientId = nil
         advice = nil
@@ -121,18 +123,18 @@ extension Client: WebSocketDelegate {
             attemptsToReconnect = 0
             handshakeTimer.resume()
         } catch {
-            print("🕸", Date(), #function, error)
+            log("❌", error)
             applyAdvice()
         }
     }
     
     public func websocketDidDisconnect(socket: WebSocketClient, error: Swift.Error?) {
-        print("🕸", Date(), #function)
+        log()
         handshakeTimer.suspend()
         clientId = nil
         
         if let error = error {
-            print("🕸❌", Date(), error)
+            log("❌", error)
         }
         
         applyAdvice()
@@ -144,7 +146,7 @@ extension Client: WebSocketDelegate {
             return
         }
         
-        print("🕸", Date(), #function)
+        log()
         webSocket.callbackQueue.asyncAfter(deadline: .now() + timeInterval) { [weak self] in self?.connect() }
     }
 }
@@ -166,7 +168,7 @@ extension Client {
         let message = Message(bayeuxChannel, channel, clientId: self.clientId)
         let data = try JSONEncoder().encode([message])
         webSocket.write(data: data, completion: completion)
-        print("🕸 --->", Date(), message.channel, message.clientId ?? "", message.ext ?? [:])
+        log("--->", message.channel, message.clientId ?? "", message.ext ?? [:])
     }
 }
 
@@ -175,11 +177,11 @@ extension Client {
 extension Client {
     public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         guard let data = text.data(using: .utf8) else {
-            print("🕸❌", Date(), #function, "Bad data encoding")
+            log("❌", "Bad data encoding")
             return
         }
         
-        print("🕸 <---", Date(), text)
+        log("<---", text)
         websocketDidReceiveData(socket: socket, data: data)
     }
     
@@ -202,7 +204,7 @@ extension Client {
                 }
             }
         } catch {
-            print("🕸❌", Date(), #function, error)
+            log("❌", error)
         }
     }
     
@@ -219,7 +221,7 @@ extension Client {
     }
     
     private func dispatchData(with message: Message, in jsonData: Data) {
-        print("🕸 <---", Date(), message.channel)
+        log("<---", message.channel)
         
         weakChannels.forEach { weakChannel in
             if let channel = weakChannel.channel, channel.name.match(with: message.channel) {
@@ -242,7 +244,7 @@ extension Client {
                 do {
                     try subscribe(to: channel)
                 } catch {
-                    print("🕸❌ subscribe to channel", Date(), #function, channel, error)
+                    log("❌ subscribe to channel", channel, error)
                     break
                 }
             }
@@ -254,7 +256,7 @@ extension Client {
 
 extension Client: WebSocketPongDelegate {
     public func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
-        print("🕸 <--- pong", Date(), data ?? Data())
+        log("<--- pong", data ?? Data())
     }
 }
 
@@ -269,7 +271,7 @@ extension Client {
             return
         }
         
-        print("🕸 <-->", Date(), #function, advice)
+        log("<-->", advice)
         
         switch advice.reconnect {
         case .none:
@@ -300,5 +302,15 @@ private final class WeakChannel {
     
     init(_ channel: Channel) {
         self.channel = channel
+    }
+}
+
+fileprivate func log(_ title: String = "",
+                     _ item1: Any? = nil,
+                     _ item2: Any? = nil,
+                     _ item3: Any? = nil,
+                     function: String = #function) {
+    if Client.logsEnabled {
+        print("🕸", title, Date(), function, item1 ?? "", item2 ?? "", item3 ?? "")
     }
 }
