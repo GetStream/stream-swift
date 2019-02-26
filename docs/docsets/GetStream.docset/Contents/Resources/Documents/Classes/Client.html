@@ -37,6 +37,9 @@
                 <a href="../Classes/Client.html">Client</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Client/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Client/RateLimit.html">– RateLimit</a>
               </li>
               <li class="nav-group-task">
@@ -103,6 +106,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ReactionsError.html">ReactionsError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StringOrInt.html">StringOrInt</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/SubscriptionError.html">SubscriptionError</a>
@@ -378,6 +384,99 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">currentUser</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream6ClientC6configAC6ConfigVvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/config" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC6configAC6ConfigVvpZ">config</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A configuration to initialize the shared Client.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">config</span><span class="p">:</span> <span class="kt">Client</span><span class="o">.</span><span class="kt"><a href="../Classes/Client/Config.html">Config</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream6ClientC6sharedACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/shared" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC6sharedACvpZ">shared</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A shared client.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Setup <code><a href="../Classes/Client.html#/s:9GetStream6ClientC6configAC6ConfigVvpZ">Client.config</a></code> before using a shared client.
+&ldquo;`
+// Setup a shared client.
+Client.config = .init(apiKey: <q>API_KEY</q>, appId: <q>APP_ID</q>, token: <q>TOKEN</q>)
+
+</div>
+
+<p>// Create Chris&rsquo;s user feed.
+let chrisFeed = Client.shared.flatFeed(feedSlug: <q>user</q>, userId: <q>chris</q>)</p>
+<pre class="highlight swift"><code></code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">shared</span><span class="p">:</span> <span class="kt">Client</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream6ClientC7isValidSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isValid" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC7isValidSbvp">isValid</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isValid</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -795,6 +894,45 @@ You can think of it as a quick <q>patching operation</q>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Config"></a>
+                <a name="//apple_ref/swift/Section/Config" class="dashAnchor"></a>
+                <a href="#/Config">
+                  <h3 class="section-name">Config</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream6ClientC6ConfigV"></a>
+                    <a name="//apple_ref/swift/Struct/Config" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream6ClientC6ConfigV">Config</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/Client/Config.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Config</span></code></pre>
 
                         </div>
                       </div>
@@ -3649,7 +3787,7 @@ You can think of it as a quick <q>patching operation</q>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-14)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-26)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

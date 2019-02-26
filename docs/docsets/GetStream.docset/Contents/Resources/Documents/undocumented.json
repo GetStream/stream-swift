@@ -78,13 +78,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/ActivityProtocol.swift",
-      "line": 20,
-      "symbol": "ActivityProtocol.ReactionType",
-      "symbol_kind": "source.lang.swift.decl.associatedtype",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Client+Activity.swift",
       "line": 12,
       "symbol": "ActivityCompletion",
@@ -1179,27 +1172,20 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
       "line": null,
-      "symbol": "ReactionKind",
+      "symbol": "Reaction",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
+      "line": null,
+      "symbol": "Reaction",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
       "line": 11,
-      "symbol": "ReactionKind",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 12,
-      "symbol": "ReactionExtraDataProtocol",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 13,
       "symbol": "DefaultReaction",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
@@ -1213,128 +1199,72 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 16,
-      "symbol": "ReactionProtocol.id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 17,
-      "symbol": "ReactionProtocol.kind",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 22,
+      "line": 24,
       "symbol": "Reaction",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 57,
-      "symbol": "Reaction.id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 58,
-      "symbol": "Reaction.activityId",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 59,
-      "symbol": "Reaction.user",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 60,
-      "symbol": "Reaction.kind",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 61,
-      "symbol": "Reaction.created",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 62,
-      "symbol": "Reaction.updated",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 63,
+      "line": 51,
       "symbol": "Reaction.data",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 64,
-      "symbol": "Reaction.parentId",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
+      "line": 11,
+      "symbol": "ReactionExtraDataProtocol",
+      "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 65,
-      "symbol": "Reaction.childrenCounts",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
+      "line": 32,
+      "symbol": "ReactionExtraData.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 112,
-      "symbol": "Reaction.latestChildren(kindOf:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
+      "line": 33,
+      "symbol": "ReactionExtraData.comment(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 116,
-      "symbol": "Reaction.latestChildren(kindOf:extraDataTypeOf:userTypeOf:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
+      "line": null,
+      "symbol": "ReactionKind",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 134,
-      "symbol": "EmptyReactionExtraData",
-      "symbol_kind": "source.lang.swift.decl.struct",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
+      "line": 11,
+      "symbol": "ReactionKind",
+      "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 135,
-      "symbol": "EmptyReactionExtraData.shared",
-      "symbol_kind": "source.lang.swift.decl.var.static",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
+      "line": null,
+      "symbol": "Reactionable",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 141,
-      "symbol": "ReactionKind.like",
-      "symbol_kind": "source.lang.swift.decl.var.static",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
+      "line": 11,
+      "symbol": "Reactionable",
+      "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 142,
-      "symbol": "ReactionKind.comment",
-      "symbol_kind": "source.lang.swift.decl.var.static",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
+      "line": 12,
+      "symbol": "Reactionable.ReactionType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
@@ -1376,13 +1306,6 @@
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
       "line": 27,
       "symbol": "Reactions.next",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
-      "line": 30,
-      "symbol": "Reactions.activity",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
