@@ -31,6 +31,13 @@ public final class Client {
         return clientId != nil && webSocket.isConnected
     }
     
+    /// A configuration to initialize the shared Client.
+    public static var config = Config(url: URL(fileURLWithPath: "/"))
+    
+    /// A shared client.
+    /// - Note: Setup `Client.config` before using a shared client.
+    public static let shared = Client(url: Client.config.url, headers: Client.config.headers)
+    
     /// Create a Faye client with a given `URL`.
     ///
     /// - Parameters:
@@ -61,6 +68,20 @@ public final class Client {
     
     deinit {
         disconnect()
+    }
+}
+
+// MARK: - Config
+
+extension Client {
+    public struct Config {
+        let url: URL
+        let headers: [String: String]?
+        
+        public init(url: URL, headers: [String: String]? = nil) {
+            self.url = url
+            self.headers = headers
+        }
     }
 }
 

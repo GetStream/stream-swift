@@ -33,7 +33,7 @@ extension Feed {
     public func subscribe<T: ActivityProtocol>(typeOf type: T.Type,
                                                decoder: JSONDecoder = JSONDecoder.stream,
                                                subscription: @escaping Subscription<T>) -> SubscribedChannel {
-        let channel = Channel(notificationChannelName, client: client.fayeClient) { [weak self] data  in
+        let channel = Channel(notificationChannelName, client: Client.fayeClient) { [weak self] data  in
             guard let self = self else {
                 return
             }
@@ -56,11 +56,11 @@ extension Feed {
         channel.ext = ["api_key": client.apiKey, "signature": client.token, "user_id": notificationChannelName]
         
         do {
-            try client.fayeClient.subscribe(to: channel)
+            try Client.fayeClient.subscribe(to: channel)
             
         } catch let error as Faye.Client.Error {
             if case .notConnected = error {
-                client.fayeClient.connect()
+                Client.fayeClient.connect()
             } else {
                 print("❌", #function, error)
                 callbackQueue.async { subscription(.failure(.fayeClient(error))) }

@@ -11,20 +11,9 @@ import Faye
 import Result
 
 extension Client {
-    private struct FayeAssociatedKeys {
-        static var clientKey: UInt8 = 0
-    }
-    
     /// Setup a Faye client.
-    var fayeClient: Faye.Client {
-        if let fayeClient = objc_getAssociatedObject(self, &FayeAssociatedKeys.clientKey) as? Faye.Client {
-            return fayeClient
-        }
-        
-        let url = URL(string: "wss://faye.getstream.io/faye")!
-        let fayeClient = Faye.Client(url: url)
-        objc_setAssociatedObject(self, &FayeAssociatedKeys.clientKey, fayeClient, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        
-        return fayeClient
-    }
+    static var fayeClient: Faye.Client = {
+        Faye.Client.config = .init(url: URL(string: "wss://faye.getstream.io/faye")!)
+        return .shared
+    }()
 }
