@@ -32,7 +32,7 @@ public class Feed: CustomStringConvertible {
     ///     - feedId: a `FeedId`
     ///     - client: a Stream client.
     ///     - callbackQueue: a callback queue for completion requests. If nil, then `client.callbackQueue` would be used.
-    public init(_ feedId: FeedId, client: Client, callbackQueue: DispatchQueue? = nil) {
+    public init(_ feedId: FeedId, client: Client = .shared, callbackQueue: DispatchQueue? = nil) {
         self.feedId = feedId
         self.client = client
         self.callbackQueue = callbackQueue ?? client.callbackQueue

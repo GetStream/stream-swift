@@ -87,6 +87,15 @@ chrisFeed.remove(foreignId: "picture:10") { result in
 }
 ```
 
+A common case to use a shared `Client`. 
+```swift
+// Setup a shared Stream client before using it.
+Client.config = .init(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#>")
+
+// Create Chris's user feed.
+let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
+```
+
 ## Activities
 
 ### Adding Activities

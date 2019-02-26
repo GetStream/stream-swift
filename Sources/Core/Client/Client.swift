@@ -27,6 +27,29 @@ public final class Client {
     public private(set) var currentUserId: String?
     public var currentUser: UserProtocol?
     
+    /// A configuration to initialize the shared Client.
+    public static var config = Config(apiKey: "", appId: "", token: "")
+    
+    /// A shared client.
+    /// - Note: Setup `Client.config` before using a shared client.
+    /// ```
+    /// // Setup a shared client.
+    /// Client.config = .init(apiKey: "API_KEY", appId: "APP_ID", token: "TOKEN")
+    ///
+    /// // Create Chris's user feed.
+    /// let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
+    /// ```
+    public static let shared = Client(apiKey: Client.config.apiKey,
+                                      appId: Client.config.appId,
+                                      token: Client.config.token,
+                                      baseURL: Client.config.baseURL,
+                                      callbackQueue: Client.config.callbackQueue,
+                                      logsEnabled: Client.config.logsEnabled)
+    
+    public var isValid: Bool {
+        return !apiKey.isEmpty && !appId.isEmpty && token.isValid
+    }
+    
     /// Create a GetStream client for making network requests.
     ///
     /// - Parameters:
@@ -204,6 +227,33 @@ extension Client {
             } catch {
                 completion(.failure(.unknownError(error.localizedDescription, error)))
             }
+        }
+    }
+}
+
+// MARK: - Config
+
+extension Client {
+    public struct Config {
+        let apiKey: String
+        let appId: String
+        let token: Token
+        let baseURL: BaseURL
+        let callbackQueue: DispatchQueue
+        let logsEnabled: Bool
+        
+        public init(apiKey: String,
+                    appId: String,
+                    token: Token,
+                    baseURL: BaseURL = BaseURL(),
+                    callbackQueue: DispatchQueue = .main,
+                    logsEnabled: Bool = false) {
+            self.apiKey = apiKey
+            self.appId = appId
+            self.token = token
+            self.baseURL = baseURL
+            self.callbackQueue = callbackQueue
+            self.logsEnabled = logsEnabled
         }
     }
 }

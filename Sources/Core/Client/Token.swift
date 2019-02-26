@@ -11,6 +11,11 @@ import Foundation
 public typealias Token = String
 
 extension Token {
+    
+    var isValid: Bool {
+        return split(separator: ".").count == 3
+    }
+    
     var payload: JSON? {
         let parts = split(separator: ".")
         
