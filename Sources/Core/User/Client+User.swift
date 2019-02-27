@@ -47,7 +47,7 @@ extension Client {
     /// Get an user with a given `userId`.
     ///
     /// - Parameters:
-    ///     - typeOf: a type of an user type that conformed to `UserProtocol`.
+    ///     - typeOf: a type of a custom user type that conformed to `UserProtocol`.
     ///     - userId: an user id string.
     ///     - withFollowCounts: if true, the followingCount and followersCount will be included in the response. Default: false.
     ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
@@ -60,6 +60,50 @@ extension Client {
         return request(endpoint: UserEndpoint.get(userId, withFollowCounts)) { [weak self] result in
             if let self = self {
                 result.parse(self.callbackQueue, completion)
+            }
+        }
+    }
+
+    /// Get the current user with a default `User` type.
+    /// If request was sucessful the user would be assigned to the `client.currentUser` property.
+    ///
+    /// - Parameters:
+    ///     - withFollowCounts: if true, the followingCount and followersCount will be included in the response. Default: false.
+    ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
+    /// - Returns: an object to cancel the request.
+    @discardableResult
+    public func getCurrentUser(withFollowCounts: Bool = false, completion: @escaping UserCompletion<User>) -> Cancellable {
+        return getCurrentUser(typeOf: User.self, withFollowCounts: withFollowCounts, completion: completion)
+    }
+    
+    /// Get the current user.
+    /// If request was sucessful the user would be assigned to the `client.currentUser` property.
+    ///
+    /// - Parameters:
+    ///     - typeOf: a type of a custom user type that conformed to `UserProtocol`.
+    ///     - withFollowCounts: if true, the followingCount and followersCount will be included in the response. Default: false.
+    ///     - completion: a completion block with an user object of the `UserProtocol` in the `Result`.
+    /// - Returns: an object to cancel the request.
+    @discardableResult
+    public func getCurrentUser<T: UserProtocol>(typeOf: T.Type,
+                                                withFollowCounts: Bool = false,
+                                                completion: @escaping UserCompletion<T>) -> Cancellable {
+        guard let userId = currentUserId else {
+            completion(.failure(.parameterInvalid(\Client.currentUserId)))
+            return SimpleCancellable()
+        }
+        
+        let extraCompletion: UserCompletion<T> = { [weak self] in
+            if let user = try? $0.get() {
+                self?.currentUser = user
+            }
+            
+            completion($0)
+        }
+        
+        return request(endpoint: UserEndpoint.get(userId, withFollowCounts)) { [weak self] result in
+            if let self = self {
+                result.parse(self.callbackQueue, extraCompletion)
             }
         }
     }

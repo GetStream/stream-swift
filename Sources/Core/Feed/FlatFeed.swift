@@ -39,7 +39,7 @@ public final class FlatFeed: Feed {
     /// Receive a feed activities with a custom activity type.
     ///
     /// - Parameters:
-    ///     - typeOf: a type of activities that conformed to `ActivityProtocol`.
+    ///     - typeOf: a type of custom activities that conformed to `ActivityProtocol`.
     ///     - enrich: when using collections, you can request to enrich activities to include them.
     ///     - pagination: a pagination options.
     ///     - ranking: the custom ranking formula used to sort the feed, must be defined in the dashboard.

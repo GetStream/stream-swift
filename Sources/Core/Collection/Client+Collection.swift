@@ -34,7 +34,7 @@ extension Client {
     /// Retreive a collection object from the collection by the collection object id.
     ///
     /// - Parameters:
-    ///     - typeOf: a type of a collection object type that conformed to `CollectionObjectProtocol`.
+    ///     - typeOf: a type of a custom collection object type that conformed to `CollectionObjectProtocol`.
     ///     - collectionName: a collection name.
     ///     - collectionObjectId: a collection object id.
     ///     - completion: a completion block with a requested collection object.

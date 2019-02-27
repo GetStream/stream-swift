@@ -40,7 +40,7 @@ public final class NotificationFeed: Feed {
     /// Receive a notification feed activities with a custom activity type.
     ///
     /// - Parameters:
-    ///     - typeOf: a type of activities that conformed to `ActivityProtocol`.
+    ///     - typeOf: a type of custom activities that conformed to `ActivityProtocol`.
     ///     - enrich: when using collections, you can request to enrich activities to include them.
     ///     - pagination: a pagination options.
     ///     - markOption: mark options to update feed notifications as read/seen.

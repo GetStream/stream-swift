@@ -44,7 +44,7 @@ extension Client {
     ///     - parentReactionId: the id of the parent reaction. If provided, it must be the id of a reaction that has no parents.
     ///     - kind: the type of the reaction. Must not be empty or longer than 255 characters.
     ///     - extraData: an extra data for the reaction. Should be an object type of `ReactionExtraDataProtocol`.
-    ///     - userTypeOf: a specific `User` type of the reaction.
+    ///     - userTypeOf: a custom user type of the reaction.
     ///     - targetsFeedIds: target feeds for the reaction.
     ///     - completion: a completion block with an added reaction.
     /// - Returns: an object to cancel the request.
@@ -70,7 +70,7 @@ extension Client {
     /// - Parameters:
     ///     - parentReaction: the parent reaction. It must be a reaction that has no parents.
     ///     - kind: the type of the reaction. Must not be empty or longer than 255 characters.
-    ///     - userTypeOf: a specific `User` type of the reaction.
+    ///     - userTypeOf: a custom user type of the reaction.
     ///     - targetsFeedIds: target feeds for the reaction.
     ///     - completion: a completion block with an added reaction.
     /// - Returns: an object to cancel the request.
@@ -95,7 +95,7 @@ extension Client {
     ///     - parentReaction: the parent reaction. It must be a reaction that has no parents.
     ///     - kind: the type of the reaction. Must not be empty or longer than 255 characters.
     ///     - extraData: an extra data for the reaction. Should be an object type of `ReactionExtraDataProtocol`.
-    ///     - userTypeOf: a specific `User` type of the reaction.
+    ///     - userTypeOf: a custom user type of the reaction.
     ///     - targetsFeedIds: target feeds for the reaction.
     ///     - completion: a completion block with an added reaction.
     /// - Returns: an object to cancel the request.
@@ -132,8 +132,8 @@ extension Client {
     ///
     /// - Parameters:
     ///     - reactionId: the reaction id.
-    ///     - extraDataTypeOf: the `ReactionExtraDataProtocol` type of an extra data.
-    ///     - userTypeOf: a specific `User` type of the reaction.
+    ///     - extraDataTypeOf: a custom reaction extra data type `ReactionExtraDataProtocol` of an extra data.
+    ///     - userTypeOf: a custom user type of the reaction.
     ///     - completion: a completion block with a reaction.
     /// - Returns: an object to cancel the request.
     @discardableResult
@@ -153,7 +153,7 @@ extension Client {
     /// - Parameters:
     ///     - reactionId: the reaction id.
     ///     - extraData: the updated extra data for the reaction.
-    ///     - userTypeOf: a specific `User` type of the reaction.
+    ///     - userTypeOf: a custom user type of the reaction.
     ///     - targetsFeedIds: target feeds for the reaction.
     ///     - completion: a completion block with an updated reaction.
     /// - Returns: an object to cancel the request.
@@ -215,8 +215,8 @@ extension Client {
     /// - Parameters:
     ///     - activityId: the activity id.
     ///     - kind: the type of reactions.
-    ///     - extraDataTypeOf: the `ReactionExtraDataProtocol` type of an extra data.
-    ///     - userTypeOf: a specific `User` type of the reaction.
+    ///     - extraDataTypeOf: a custom reaction extra data type `ReactionExtraDataProtocol` of an extra data.
+    ///     - userTypeOf: a custom user type of the reaction.
     ///     - pagination: a pagination options.
     ///     - withActivityData: returns the activity data in the result for the given activity id.
     ///     - completion: a completion block with reactions and activity (optional).
@@ -264,8 +264,8 @@ extension Client {
     /// - Parameters:
     ///     - reactionId: the reaction id.
     ///     - kind: the type of reactions.
-    ///     - extraDataTypeOf: the `ReactionExtraDataProtocol` type of an extra data.
-    ///     - userTypeOf: a specific `User` type of the reaction.
+    ///     - extraDataTypeOf: a custom reaction extra data type `ReactionExtraDataProtocol` of an extra data.
+    ///     - userTypeOf: a custom user type of the reaction.
     ///     - pagination: a pagination options.
     ///     - completion: a completion block with reactions.
     /// - Returns: an object to cancel the request.
@@ -310,8 +310,8 @@ extension Client {
     /// - Parameters:
     ///     - userId: the user id.
     ///     - kind: the type of reactions.
-    ///     - extraDataTypeOf: the `ReactionExtraDataProtocol` type of an extra data.
-    ///     - userTypeOf: a specific `User` type of the reaction.
+    ///     - extraDataTypeOf: a custom reaction extra data type `ReactionExtraDataProtocol` of an extra data.
+    ///     - userTypeOf: a custom user type of the reaction.
     ///     - pagination: a pagination options.
     ///     - completion: a completion block with reactions.
     /// - Returns: an object to cancel the request.
