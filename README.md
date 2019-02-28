@@ -12,6 +12,8 @@ You can sign up for a Stream account at https://getstream.io/get_started.
 
 [API Docs](https://getstream.github.io/stream-swift/)
 
+[API Examples](https://github.com/GetStream/stream-swift/wiki/Examples)</b>
+
 ## Installation
 
 ### CocoaPods
