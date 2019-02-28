@@ -9,9 +9,12 @@
 import Foundation
 
 extension Bundle {
-    public static let streamAPIKey = "Stream API Key"
-    public static let streamAppId = "Stream App Id"
-    public static let streamToken = "Stream Token"
+    public enum StreamKey: String {
+        case streamAPIKey = "Stream API Key"
+        case streamAppId = "Stream App Id"
+        case streamToken = "Stream Token"
+    }
+    
     public typealias StreamClientSetup = (_ apiKey: String, _ appId: String, _ token: Token) -> Void
     
     /// Setup the Client with keys from the bundle.
@@ -23,11 +26,14 @@ extension Bundle {
     /// }
     /// ```
     ///
-    /// - Parameter setup: a block with Stream keys to setup the Client with custom parameters.
-    public func setupStreamClient(_ setup: StreamClientSetup? = nil) {
-        guard let apiKey = streamValue(for: Bundle.streamAPIKey),
-            let appId = streamValue(for: Bundle.streamAppId),
-            let token: Token = streamValue(for: Bundle.streamToken),
+    /// - Parameters:
+    ///     - token: a token to use instead of a value from the Bundle.
+    ///              It's useful, when your app is getting Token from your backend.
+    ///     - setup: a block with Stream keys to setup the Client with custom parameters.
+    public func setupStreamClient(_ token: Token? = nil, _ setup: StreamClientSetup? = nil) {
+        guard let apiKey = streamValue(for: .streamAPIKey),
+            let appId = streamValue(for: .streamAppId),
+            let token: Token = token ?? streamValue(for: .streamToken),
             token.isValid else {
                 print("⚠️ Stream bundle keys not found")
                 return
@@ -40,8 +46,8 @@ extension Bundle {
         }
     }
     
-    private func streamValue(for key: String) -> String? {
-        if let value = infoDictionary?[key] as? String, !value.isEmpty {
+    private func streamValue(for key: StreamKey) -> String? {
+        if let value = infoDictionary?[key.rawValue] as? String, !value.isEmpty {
             return value
         }
         
