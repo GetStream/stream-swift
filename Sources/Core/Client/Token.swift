@@ -13,7 +13,7 @@ public typealias Token = String
 extension Token {
     
     var isValid: Bool {
-        return split(separator: ".").count == 3
+        return payload != nil
     }
     
     var payload: JSON? {
