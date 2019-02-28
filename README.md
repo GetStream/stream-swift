@@ -12,7 +12,7 @@ You can sign up for a Stream account at https://getstream.io/get_started.
 
 [API Docs](https://getstream.github.io/stream-swift/)
 
-[API Examples](https://github.com/GetStream/stream-swift/wiki/Examples)</b>
+[API Examples](https://github.com/GetStream/stream-swift/wiki)</b>
 
 ## Installation
 
@@ -86,7 +86,7 @@ Client.config = .init(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#
 let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
 ```
 
-<b>More API examples [here](https://github.com/GetStream/stream-swift/wiki/Examples)</b>
+<b>More API examples [here](https://github.com/GetStream/stream-swift/wiki)</b>
 
 ## Credits & Contributors
 
