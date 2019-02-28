@@ -39,18 +39,6 @@ github "GetStream/stream-swift"
 ```
 Then run `carthage update`.
 
-## Credits & Contributors
-
-Project is maintained by [Alexey Bukhtin](https://github.com/buh).
-
-We continue to welcome pull requests from community members.
-
-## Copyright and License Information
-
-Copyright (c) 2016-2018 Stream.io Inc, and individual contributors. All rights reserved.
-
-See the file "[LICENSE](https://github.com/GetStream/stream-swift/blob/master/LICENSE)" for information on the history of this software, terms & conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.
-
 ## Quick start
 
 ```swift
@@ -96,4 +84,16 @@ Client.config = .init(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#
 let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
 ```
 
-More examples [here](https://github.com/GetStream/stream-swift/wiki/Examples)
+<b>More API examples [here](https://github.com/GetStream/stream-swift/wiki/Examples)</b>
+
+## Credits & Contributors
+
+Project is maintained by [Alexey Bukhtin](https://github.com/buh).
+
+We continue to welcome pull requests from community members.
+
+## Copyright and License Information
+
+Copyright (c) 2016-2018 Stream.io Inc, and individual contributors. All rights reserved.
+
+See the file "[LICENSE](https://github.com/GetStream/stream-swift/blob/master/LICENSE)" for information on the history of this software, terms & conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.
