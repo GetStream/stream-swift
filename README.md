@@ -44,11 +44,11 @@ Then run `carthage update`.
 ## Quick start
 
 ```swift
-// Setup Stream client.
-let client = Client(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#>")
+// Setup a shared Stream client.
+Client.config = .init(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#>")
 
 // Create Chris's user feed.
-let chrisFeed = client.flatFeed(feedSlug: "user", userId: "chris")
+let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
 
 // Create an Activity. You can make own Activity class or struct with custom properties.
 let activity = Activity(actor: "chris", verb: "add", object: "picture:10", foreignId: "picture:10")
@@ -59,7 +59,7 @@ chrisFeed.add(activity) { result in
 }
 
 // Create a following relationship between Jack's "timeline" feed and Chris' "user" feed:
-let jackFeed = client.flatFeed(feedSlug: "timeline", userId: "jack")
+let jackFeed = Client.shared.flatFeed(feedSlug: "timeline", userId: "jack")
 
 jackFeed.follow(toTarget: chrisFeed.feedId, activityCopyLimit: 1) { result in
     print(result)
@@ -75,15 +75,6 @@ jackFeed.get(typeOf: Activity.self, pagination: .limit(10)) { result in
 chrisFeed.remove(foreignId: "picture:10") { result in
     print(result)
 }
-```
-
-A common case to use a shared `Client`. 
-```swift
-// Setup a shared Stream client before using it.
-Client.config = .init(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#>")
-
-// Create Chris's user feed.
-let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
 ```
 
 <b>More API examples [here](https://github.com/GetStream/stream-swift/wiki)</b>
