@@ -10,18 +10,7 @@ import Foundation
 
 public typealias DefaultReaction = Reaction<EmptyReactionExtraData, User>
 
-// MARK: - Reaction Protocol
-
-public protocol ReactionProtocol: Codable {
-    /// Reaction id.
-    var id: String { get }
-    /// Type of reaction.
-    var kind: ReactionKind { get }
-}
-
-// MARK: - Reaction
-
-public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: ReactionProtocol, Equatable {
+public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: ReactionProtocol {
     private enum CodingKeys: String, CodingKey {
         case id
         case activityId = "activity_id"
@@ -79,69 +68,5 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
     /// Equatable.
     public static func == (lhs: Reaction<T, U>, rhs: Reaction<T, U>) -> Bool {
         return lhs === rhs || (!lhs.id.isEmpty && lhs.id == rhs.id)
-    }
-}
-
-// MARK: - User own reaction of the reaction
-
-extension Reaction {
-    /// Check the user reactions for the reaction.
-    ///
-    /// - Parameter reactionKind: a kind of the child reaction.
-    /// - Returns: true if exists the child reaction of the user.
-    public func hasUserOwnChildReaction(_ reactionKind: ReactionKind) -> Bool {
-        return (userOwnChildren?[reactionKind]?.count ?? 0) > 0
-    }
-    
-    /// Try to get the first user child reaction.
-    ///
-    /// - Parameter reactionKind: a kind of the child reaction.
-    /// - Returns: the user child reaction.
-    public func userOwnChildReaction(_ reactionKind: ReactionKind) -> Reaction<T, U>? {
-        return userOwnChildren?[reactionKind]?.first
-    }
-}
-
-// MARK: - Child reactions
-
-extension Reaction {
-    
-    /// Update the reaction with a new user own child reaction.
-    ///
-    /// - Parameter reaction: a new user own reaction.
-    public func addUserOwnChild(_ reaction: Reaction<T, U>) {
-        var userOwnChildren = self.userOwnChildren ?? [:]
-        var latestChildren = self.latestChildren
-        var childrenCounts = self.childrenCounts
-        userOwnChildren[reaction.kind, default: []].insert(reaction, at: 0)
-        latestChildren[reaction.kind, default: []].insert(reaction, at: 0)
-        childrenCounts[reaction.kind, default: 0] += 1
-        self.userOwnChildren = userOwnChildren
-        self.latestChildren = latestChildren
-        self.childrenCounts = childrenCounts
-    }
-    
-    /// Delete an existing user own child reaction for the reaction.
-    ///
-    /// - Parameter reaction: an existing user own reaction.
-    public func removeUserOwnChild(_ reaction: Reaction<T, U>) {
-        var userOwnChildren = self.userOwnChildren ?? [:]
-        var latestChildren = self.latestChildren
-        var childrenCounts = self.childrenCounts
-        
-        if let firstIndex = userOwnChildren[reaction.kind]?.firstIndex(of: reaction) {
-            userOwnChildren[reaction.kind, default: []].remove(at: firstIndex)
-            self.userOwnChildren = userOwnChildren
-            
-            if let firstIndex = latestChildren[reaction.kind]?.firstIndex(of: reaction) {
-                latestChildren[reaction.kind, default: []].remove(at: firstIndex)
-                self.latestChildren = latestChildren
-            }
-            
-            if let count = childrenCounts[reaction.kind], count > 0 {
-                childrenCounts[reaction.kind, default: 0] = count - 1
-                self.childrenCounts = childrenCounts
-            }
-        }
     }
 }

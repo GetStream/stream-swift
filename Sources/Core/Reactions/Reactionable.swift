@@ -19,6 +19,60 @@ public protocol Reactionable {
     var reactionCounts: [ReactionKind: Int]? { get set }
 }
 
+extension Reactionable {
+    /// The original reactionable object.
+    ///
+    /// In case if the reactionable object has a referance to the original reactionable object, then it should be redefined here.
+    ///
+    /// For example: Reposted activity should have a reference to the original activity
+    /// and all reactions of a reposted activity should referenced to the original activity reactions.
+    /// Usually the original activity should be stored in the activity object property as an enum
+    /// and in this case the origin property could be redefined in this way:
+    /// ```
+    /// public var original: Activity {
+    ///     if case .repost(let original) = object {
+    ///         return original
+    ///     }
+    ///
+    ///     return self
+    /// }
+    /// ```
+    public var original: Self {
+        return self
+    }
+}
+
+// MARK: - Access
+
+extension Reactionable where ReactionType: ReactionProtocol {
+    
+    /// Check user reactions with a given reaction kind.
+    ///
+    /// - Parameter reactionKind: a kind of the reaction.
+    /// - Returns: true if exists the reaction of the user.
+    public func hasUserOwnReaction(_ reactionKind: ReactionKind) -> Bool {
+        return original.userOwnReactionsCount(reactionKind) > 0
+    }
+    
+    /// The number of user reactions with a given reaction kind.
+    ///
+    /// - Parameter reactionKind: a kind of the reaction.
+    /// - Returns: the number of user reactions.
+    public func userOwnReactionsCount(_ reactionKind: ReactionKind) -> Int {
+        return original.userOwnReactions?[reactionKind]?.count ?? 0
+    }
+    
+    /// Try to get the first user reaction with a given reaction kind.
+    ///
+    /// - Parameter reactionKind: a kind of the reaction.
+    /// - Returns: the user reaction.
+    public func userOwnReaction(_ reactionKind: ReactionKind) -> ReactionType? {
+        return original.userOwnReactions?[reactionKind]?.first
+    }
+}
+
+// MARK: - Managing
+
 extension Reactionable where ReactionType: ReactionProtocol {
     
     /// Update the activity with a new user own reaction.
