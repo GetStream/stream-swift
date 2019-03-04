@@ -48,6 +48,15 @@ public struct FeedId: CustomStringConvertible, Codable {
         self.userId = userId
     }
     
+    public init?(feedSlug: String) {
+        if let userId = Client.shared.currentUserId {
+            self.feedSlug = feedSlug
+            self.userId = userId
+        } else {
+            return nil
+        }
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let id = try container.decode(String.self)
