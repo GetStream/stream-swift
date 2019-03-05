@@ -24,6 +24,7 @@ open class EnrichedActivity<ActorType: Enrichable,
         case target
         case foreignId = "foreign_id"
         case time
+        case originFeedId = "origin"
         case feedIds = "to"
         case feedGroupId = "group"
         case userOwnReactions = "own_reactions"
@@ -45,6 +46,8 @@ open class EnrichedActivity<ActorType: Enrichable,
     public var foreignId: String?
     /// The optional time of the activity, isoformat. Default is the current time.
     public var time: Date?
+    /// The feed id where the activity was posted.
+    public let originFeedId: FeedId?
     /// An array allows you to specify a list of feeds to which the activity should be copied.
     /// One way to think about it is as the CC functionality of email.
     public var feedIds: FeedIds?
@@ -81,6 +84,7 @@ open class EnrichedActivity<ActorType: Enrichable,
         self.foreignId = foreignId
         self.time = time
         self.feedIds = feedIds
+        originFeedId = nil
     }
     
     open func encode(to encoder: Encoder) throws {
