@@ -37,6 +37,7 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
     public let created: Date
     /// When the reaction was last updated.
     public let updated: Date?
+    /// An extra data for the reaction.
     public let data: T
     /// Id of the parent reaction. Empty unless the reaction is a child reaction.
     public let parentId: String?

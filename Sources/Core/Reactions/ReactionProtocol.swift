@@ -9,10 +9,17 @@
 import Foundation
 
 public protocol ReactionProtocol: Codable, Equatable {
+    associatedtype ExtraDataType = ReactionExtraDataProtocol
+    associatedtype UserType = UserProtocol
+    
     /// Reaction id.
     var id: String { get }
+    /// A User of the reaction.
+    var user: UserType { get }
     /// Type of reaction.
     var kind: ReactionKind { get }
+    /// An extra data for the reaction.
+    var data: ExtraDataType { get }
     /// User own children reactions, grouped by reaction type.
     var userOwnChildren: [ReactionKind: [Self]]? { get set }
     /// Children reactions, grouped by reaction type.
