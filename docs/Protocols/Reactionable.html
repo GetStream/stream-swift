@@ -119,6 +119,12 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/Bundle.html">Bundle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Bundle/StreamKey.html">– StreamKey</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Date.html">Date</a>
               </li>
               <li class="nav-group-task">
@@ -451,6 +457,232 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:9GetStream12ReactionablePAAE8originalxvp"></a>
+                    <a name="//apple_ref/swift/Property/original" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ReactionablePAAE8originalxvp">original</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The original reactionable object.</p>
+
+<p>In case if the reactionable object has a referance to the original reactionable object, then it should be redefined here.</p>
+
+<p>For example: Reposted activity should have a reference to the original activity
+and all reactions of a reposted activity should referenced to the original activity reactions.
+Usually the original activity should be stored in the activity object property as an enum
+and in this case the origin property could be redefined in this way:</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">original</span><span class="p">:</span> <span class="kt">Activity</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">case</span> <span class="o">.</span><span class="nf">repost</span><span class="p">(</span><span class="k">let</span> <span class="nv">original</span><span class="p">)</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">original</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">self</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">original</span><span class="p">:</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Access"></a>
+                <a name="//apple_ref/swift/Section/Access" class="dashAnchor"></a>
+                <a href="#/Access">
+                  <h3 class="section-name">Access</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream12ReactionablePA2A16ReactionProtocol0D4TypeRpzrlE010hasUserOwnD0ySbSSF"></a>
+                    <a name="//apple_ref/swift/Method/hasUserOwnReaction(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ReactionablePA2A16ReactionProtocol0D4TypeRpzrlE010hasUserOwnD0ySbSSF">hasUserOwnReaction(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check user reactions with a given reaction kind.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hasUserOwnReaction</span><span class="p">(</span><span class="n">_</span> <span class="nv">reactionKind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reactionKind</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a kind of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if exists the reaction of the user.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream12ReactionablePA2A16ReactionProtocol0D4TypeRpzrlE21userOwnReactionsCountySiSSF"></a>
+                    <a name="//apple_ref/swift/Method/userOwnReactionsCount(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ReactionablePA2A16ReactionProtocol0D4TypeRpzrlE21userOwnReactionsCountySiSSF">userOwnReactionsCount(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of user reactions with a given reaction kind.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">userOwnReactionsCount</span><span class="p">(</span><span class="n">_</span> <span class="nv">reactionKind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reactionKind</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a kind of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the number of user reactions.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream12ReactionablePA2A16ReactionProtocol0D4TypeRpzrlE07userOwnD0yAFSgSSF"></a>
+                    <a name="//apple_ref/swift/Method/userOwnReaction(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ReactionablePA2A16ReactionProtocol0D4TypeRpzrlE07userOwnD0yAFSgSSF">userOwnReaction(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Try to get the first user reaction with a given reaction kind.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">userOwnReaction</span><span class="p">(</span><span class="n">_</span> <span class="nv">reactionKind</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/Reactionable.html#/s:9GetStream12ReactionableP12ReactionTypeQa">ReactionType</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reactionKind</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a kind of the reaction.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the user reaction.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Managing"></a>
+                <a name="//apple_ref/swift/Section/Managing" class="dashAnchor"></a>
+                <a href="#/Managing">
+                  <h3 class="section-name">Managing</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:9GetStream12ReactionablePA2A16ReactionProtocol0D4TypeRpzrlE010addUserOwnD0yyAFF"></a>
                     <a name="//apple_ref/swift/Method/addUserOwnReaction(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:9GetStream12ReactionablePA2A16ReactionProtocol0D4TypeRpzrlE010addUserOwnD0yyAFF">addUserOwnReaction(_:)</a>
@@ -551,7 +783,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-27)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-03-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -118,6 +118,12 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Extensions/Bundle.html">Bundle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Bundle/StreamKey.html">– StreamKey</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/Date.html">Date</a>
               </li>
               <li class="nav-group-task">
@@ -336,6 +342,8 @@
 <p>You can sign up for a Stream account at <a href="https://getstream.io/get_started">https://getstream.io/get_started</a>.</p>
 
 <p><a href="https://getstream.github.io/stream-swift/">API Docs</a></p>
+
+<p><a href="https://github.com/GetStream/stream-swift/wiki">API Examples</a></b></p>
 <h2 id='installation' class='heading'>Installation</h2>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
@@ -358,22 +366,12 @@
 </code></pre>
 
 <p>Then run <code>carthage update</code>.</p>
-<h2 id='credits-amp-contributors' class='heading'>Credits &amp; Contributors</h2>
-
-<p>Project is maintained by <a href="https://github.com/buh">Alexey Bukhtin</a>.</p>
-
-<p>We continue to welcome pull requests from community members.</p>
-<h2 id='copyright-and-license-information' class='heading'>Copyright and License Information</h2>
-
-<p>Copyright &copy; 2016-2018 Stream.io Inc, and individual contributors. All rights reserved.</p>
-
-<p>See the file <q>[LICENSE](https://github.com/GetStream/stream-swift/blob/master/LICENSE)</q> for information on the history of this software, terms &amp; conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.</p>
 <h2 id='quick-start' class='heading'>Quick start</h2>
-<pre class="highlight swift"><code><span class="c1">// Setup Stream client.</span>
-<span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"&lt;#ApiKey#&gt;"</span><span class="p">,</span> <span class="nv">appId</span><span class="p">:</span> <span class="s">"&lt;#AppId#&gt;"</span><span class="p">,</span> <span class="nv">token</span><span class="p">:</span> <span class="s">"&lt;#Token#&gt;"</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="c1">// Setup a shared Stream client.</span>
+<span class="kt">Client</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"&lt;#ApiKey#&gt;"</span><span class="p">,</span> <span class="nv">appId</span><span class="p">:</span> <span class="s">"&lt;#AppId#&gt;"</span><span class="p">,</span> <span class="nv">token</span><span class="p">:</span> <span class="s">"&lt;#Token#&gt;"</span><span class="p">)</span>
 
 <span class="c1">// Create Chris's user feed.</span>
-<span class="k">let</span> <span class="nv">chrisFeed</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"chris"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">chrisFeed</span> <span class="o">=</span> <span class="kt">Client</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"chris"</span><span class="p">)</span>
 
 <span class="c1">// Create an Activity. You can make own Activity class or struct with custom properties.</span>
 <span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">Activity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"chris"</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"add"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"picture:10"</span><span class="p">,</span> <span class="nv">foreignId</span><span class="p">:</span> <span class="s">"picture:10"</span><span class="p">)</span>
@@ -384,7 +382,7 @@
 <span class="p">}</span>
 
 <span class="c1">// Create a following relationship between Jack's "timeline" feed and Chris' "user" feed:</span>
-<span class="k">let</span> <span class="nv">jackFeed</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"jack"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">jackFeed</span> <span class="o">=</span> <span class="kt">Client</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"jack"</span><span class="p">)</span>
 
 <span class="n">jackFeed</span><span class="o">.</span><span class="nf">follow</span><span class="p">(</span><span class="nv">toTarget</span><span class="p">:</span> <span class="n">chrisFeed</span><span class="o">.</span><span class="n">feedId</span><span class="p">,</span> <span class="nv">activityCopyLimit</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
@@ -402,535 +400,22 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>A common case to use a shared <code><a href="Classes/Client.html">Client</a></code>. </p>
-<pre class="highlight swift"><code><span class="c1">// Setup a shared Stream client before using it.</span>
-<span class="kt">Client</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"&lt;#ApiKey#&gt;"</span><span class="p">,</span> <span class="nv">appId</span><span class="p">:</span> <span class="s">"&lt;#AppId#&gt;"</span><span class="p">,</span> <span class="nv">token</span><span class="p">:</span> <span class="s">"&lt;#Token#&gt;"</span><span class="p">)</span>
+<p><b>More API examples <a href="https://github.com/GetStream/stream-swift/wiki">here</a></b></p>
+<h2 id='credits-amp-contributors' class='heading'>Credits &amp; Contributors</h2>
 
-<span class="c1">// Create Chris's user feed.</span>
-<span class="k">let</span> <span class="nv">chrisFeed</span> <span class="o">=</span> <span class="kt">Client</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"chris"</span><span class="p">)</span>
-</code></pre>
-<h2 id='activities' class='heading'>Activities</h2>
-<h3 id='adding-activities' class='heading'>Adding Activities</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">user1</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"1"</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">Activity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"User:1"</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"pin"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"Place:42"</span><span class="p">)</span>
+<p>Project is maintained by <a href="https://github.com/buh">Alexey Bukhtin</a>.</p>
 
-<span class="n">user1</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="k">if</span> <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">activity</span><span class="p">)</span> <span class="o">=</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="c1">// Added activity</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">activity</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='custom-fields' class='heading'>Custom fields</h3>
-<pre class="highlight swift"><code><span class="c1">// Create a custom Activity class.</span>
-<span class="kd">final</span> <span class="kd">class</span> <span class="kt">ExerciseActivity</span><span class="p">:</span> <span class="kt">Activity</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="kd">enum</span> <span class="kt">CodingKeys</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">CodingKey</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="n">course</span>
-        <span class="k">case</span> <span class="n">participants</span>
-        <span class="k">case</span> <span class="n">startDate</span> <span class="o">=</span> <span class="s">"started_at"</span>
-    <span class="p">}</span>
+<p>We continue to welcome pull requests from community members.</p>
+<h2 id='copyright-and-license-information' class='heading'>Copyright and License Information</h2>
 
-    <span class="k">var</span> <span class="nv">course</span><span class="p">:</span> <span class="kt">Course</span>
-    <span class="k">var</span> <span class="nv">participants</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">var</span> <span class="nv">startDate</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">()</span>
+<p>Copyright &copy; 2016-2018 Stream.io Inc, and individual contributors. All rights reserved.</p>
 
-    <span class="nf">init</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> 
-         <span class="nv">verb</span><span class="p">:</span> <span class="kt">Verb</span><span class="p">,</span> 
-         <span class="nv">object</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> 
-         <span class="nv">course</span><span class="p">:</span> <span class="kt">Course</span><span class="p">,</span>
-         <span class="nv">participants</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">],</span>
-         <span class="nv">startDate</span><span class="p">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="n">actor</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="n">verb</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="n">object</span><span class="p">)</span>
-        <span class="k">self</span><span class="o">.</span><span class="n">course</span> <span class="o">=</span> <span class="n">course</span>
-        <span class="k">self</span><span class="o">.</span><span class="n">participants</span> <span class="o">=</span> <span class="n">participants</span>
-        <span class="k">self</span><span class="o">.</span><span class="n">startDate</span> <span class="o">=</span> <span class="n">startDate</span>
-    <span class="p">}</span>
-
-    <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
-        <span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
-        <span class="n">course</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Course</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">course</span><span class="p">)</span>
-        <span class="n">participants</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">([</span><span class="kt">String</span><span class="p">]</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">participants</span><span class="p">)</span>
-        <span class="n">startDate</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Date</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">startDate</span><span class="p">)</span>
-        <span class="k">try</span> <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">decoder</span><span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
-        <span class="k">var</span> <span class="nv">container</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
-        <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">course</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">course</span><span class="p">)</span>
-        <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">participants</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">participants</span><span class="p">)</span>
-        <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">startDate</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">startDate</span><span class="p">)</span>
-        <span class="k">try</span> <span class="k">super</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="n">encoder</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">struct</span> <span class="kt">Course</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
-    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
-    <span class="k">let</span> <span class="nv">distance</span><span class="p">:</span> <span class="kt">Float</span>
-<span class="p">}</span>
-
-<span class="k">let</span> <span class="nv">exerciseActivity</span> <span class="o">=</span> <span class="kt">ExerciseActivity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"User:1"</span><span class="p">,</span>
-                                        <span class="nv">verb</span><span class="p">:</span> <span class="s">"run"</span><span class="p">,</span> 
-                                        <span class="nv">object</span><span class="p">:</span> <span class="s">"Exercise:42"</span><span class="p">,</span> 
-                                        <span class="nv">course</span><span class="p">:</span> <span class="kt">Course</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Golden Gate Park"</span><span class="p">,</span> <span class="nv">distance</span><span class="p">:</span> <span class="mi">10</span><span class="p">),</span> 
-                                        <span class="nv">participants</span><span class="p">:</span> <span class="p">[</span><span class="s">"Thierry"</span><span class="p">,</span> <span class="s">"Tommaso"</span><span class="p">])</span>
-
-<span class="c1">// Add the exercise activity to the  `user1` feed. </span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">exerciseActivity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// Get a list of exercise activities.</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">ExerciseActivity</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='retrieving-activities' class='heading'>Retrieving Activities</h3>
-<pre class="highlight swift"><code><span class="c1">// Get activities from 5 to 10.</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="o">.</span><span class="nf">offset</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Get the 5 activities added after lastActivity.</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="o">.</span><span class="nf">lessThan</span><span class="p">(</span><span class="n">lastActivity</span><span class="o">.</span><span class="n">id</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Get the 5 activities added before lastActivity.</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="o">.</span><span class="nf">greaterThan</span><span class="p">(</span><span class="n">lastActivity</span><span class="o">.</span><span class="n">id</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Get activities sorted by rank (Ranked Feeds Enabled).</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="nv">ranking</span><span class="p">:</span> <span class="s">"popularity"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Get the 5 activities and enrich them with reactions and collections.</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">enrich</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="nv">includeReactions</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">own</span><span class="p">,</span> <span class="o">.</span><span class="n">latest</span><span class="p">,</span> <span class="o">.</span><span class="n">counts</span><span class="p">])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='removing-activities' class='heading'>Removing Activities</h3>
-<pre class="highlight swift"><code><span class="c1">// Remove an activity by its id.</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">activityId</span><span class="p">:</span> <span class="s">"50539e71-d6bf-422d-ad21-c8717df0c325"</span><span class="p">)</span>
-
-<span class="c1">// Remove activities foreign_id "run:1".</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">foreignId</span><span class="p">:</span> <span class="s">"run:1"</span><span class="p">)</span>
-</code></pre>
-<h3 id='updating-activities' class='heading'>Updating Activities</h3>
-<pre class="highlight swift"><code><span class="c1">// Create a custom activity with a `popularity` property.</span>
-<span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">Activity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"like"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"3"</span><span class="p">,</span> <span class="nv">popularity</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
-
-<span class="n">user1</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-    <span class="n">activity</span><span class="o">.</span><span class="n">popularity</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">client</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">activities</span><span class="p">:</span> <span class="p">[</span><span class="n">activity</span><span class="p">])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='activity-partial-update' class='heading'>Activity partial update</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">updateActivity</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">ProductActivity</span><span class="o">.</span><span class="k">self</span><span class="p">,</span>
-                      <span class="nv">setProperties</span><span class="p">:</span> <span class="p">[</span><span class="s">"product.price"</span><span class="p">:</span> <span class="mf">19.99</span><span class="p">,</span> 
-                                      <span class="s">"shares"</span><span class="p">:</span> <span class="p">[</span><span class="s">"facebook"</span><span class="p">:</span> <span class="s">"..."</span><span class="p">,</span> <span class="s">"twitter"</span><span class="p">:</span> <span class="s">"..."</span><span class="p">]],</span>
-                      <span class="nv">unsetProperties</span><span class="p">:</span> <span class="p">[</span><span class="s">"daily_likes"</span><span class="p">,</span> <span class="s">"popularity"</span><span class="p">],</span>
-                      <span class="nv">activityId</span><span class="p">:</span> <span class="s">"54a60c1e-4ee3-494b-a1e3-50c06acb5ed4"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="n">client</span><span class="o">.</span><span class="nf">updateActivity</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">ProductActivity</span><span class="o">.</span><span class="k">self</span><span class="p">,</span>
-                      <span class="nv">setProperties</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
-                      <span class="nv">unsetProperties</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
-                      <span class="nv">foreignId</span><span class="p">:</span> <span class="s">"product:123"</span><span class="p">,</span>
-                      <span class="nv">time</span><span class="p">:</span> <span class="s">"2016-11-10T13:20:00.000000"</span><span class="o">.</span><span class="n">streamDate</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='uniqueness-amp-foreign-id' class='heading'>Uniqueness &amp; Foreign ID</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">firstActivity</span> <span class="o">=</span> <span class="kt">Activity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"add"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span> <span class="nv">foreignId</span><span class="p">:</span> <span class="s">"activity_1"</span><span class="p">,</span> <span class="nv">time</span><span class="p">:</span> <span class="kt">Date</span><span class="p">())</span>
-
-<span class="c1">// Add activity to activity feed:</span>
-<span class="k">var</span> <span class="nv">firstActivityId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">firstActivity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="k">let</span> <span class="nv">addedActivity</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span>
-    <span class="n">firstActivityId</span> <span class="o">=</span> <span class="n">addedActivity</span><span class="o">.</span><span class="n">id</span> 
-<span class="p">}</span>
-
-<span class="k">let</span> <span class="nv">secondActivity</span> <span class="o">=</span> <span class="kt">Activity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"add"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span> <span class="nv">foreignId</span><span class="p">:</span> <span class="s">"activity_2"</span><span class="p">,</span> <span class="nv">time</span><span class="p">:</span> <span class="kt">Date</span><span class="p">())</span>
-
-<span class="k">var</span> <span class="nv">secondActivityId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">secondActivity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="k">let</span> <span class="nv">addedActivity</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span>
-    <span class="n">secondActivityId</span> <span class="o">=</span> <span class="n">addedActivity</span><span class="o">.</span><span class="n">id</span> 
-<span class="p">}</span>
-
-<span class="c1">/// The unique combination of `foreignId` and `time` ensure that both</span>
-<span class="c1">/// activities are unique and therefore the `firstActivityId != secondActivityId`</span>
-</code></pre>
-<h2 id='follows' class='heading'>Follows</h2>
-<h3 id='following-feeds' class='heading'>Following Feeds</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">timelineFeed1</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"timeline_feed_1"</span><span class="p">))</span>
-
-<span class="c1">// `timeline:timeline_feed_1` follows `user:user_42`:</span>
-<span class="n">timelineFeed1</span><span class="o">.</span><span class="nf">follow</span><span class="p">(</span><span class="nv">toTarget</span><span class="p">:</span> <span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"user_42"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Follow feed without copying the activities:</span>
-<span class="n">timelineFeed1</span><span class="o">.</span><span class="nf">follow</span><span class="p">(</span><span class="nv">toTarget</span><span class="p">:</span> <span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"user_42"</span><span class="p">),</span> <span class="nv">activityCopyLimit</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='unfollowing-feeds' class='heading'>Unfollowing Feeds</h3>
-<pre class="highlight swift"><code><span class="c1">// Stop following feed user_42 - purging history:</span>
-<span class="n">timelineFeed1</span><span class="o">.</span><span class="nf">unfollow</span><span class="p">(</span><span class="nv">fromTarget</span><span class="p">:</span> <span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"user_42"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Stop following feed user_42 but keep history of activities:</span>
-<span class="n">timelineFeed1</span><span class="o">.</span><span class="nf">unfollow</span><span class="p">(</span><span class="nv">fromTarget</span><span class="p">:</span> <span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"user_42"</span><span class="p">),</span> <span class="nv">keepHistory</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='reading-feed-followers' class='heading'>Reading Feed Followers</h3>
-<pre class="highlight swift"><code><span class="c1">// List followers</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">followers</span><span class="p">(</span><span class="nv">offset</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">limit</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='reading-followed-feeds' class='heading'>Reading Followed Feeds</h3>
-<pre class="highlight swift"><code><span class="c1">// Retrieve last 10 feeds followed by user_feed_1</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">following</span><span class="p">(</span><span class="nv">limit</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Retrieve 10 feeds followed by user_feed_1 starting from the 11th</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">following</span><span class="p">(</span><span class="nv">offset</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">limit</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Check if user1 follows specific feeds</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">following</span><span class="p">(</span><span class="nv">filter</span><span class="p">:</span> <span class="p">[</span><span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"42"</span><span class="p">),</span>
-                         <span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"43"</span><span class="p">)],</span> <span class="nv">limit</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h2 id='feed-groups' class='heading'>Feed Groups</h2>
-<h3 id='notification-feeds' class='heading'>Notification Feeds</h3>
-<pre class="highlight swift"><code><span class="c1">// Mark all activities in the feed as seen:</span>
-<span class="n">notificationFeed</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">markOption</span><span class="p">:</span> <span class="o">.</span><span class="n">seenAll</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Mark some activities as read via specific Activity Group Ids:</span>
-<span class="n">notificationFeed</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">markOption</span><span class="p">:</span> <span class="o">.</span><span class="nf">read</span><span class="p">([</span><span class="s">"activityGroupIdOne"</span><span class="p">,</span> <span class="s">"activityGroupIdTwo"</span><span class="p">])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h2 id='ranking' class='heading'>Ranking</h2>
-<h3 id='custom-ranking' class='heading'>Custom Ranking</h3>
-
-<details><summary>Setup a class <code>PopularityActivity</code></summary>
-
-&ldquo;`swift
-final class PopularityActivity: Activity {
-    private enum CodingKeys: String, CodingKey {
-        case popularity
-    }
-
-    var popularity: Int
-
-    init(actor: String, verb: Verb, object: String, popularity: Int) {
-        super.init(actor: actor, verb: verb, object: object)
-        self.popularity = popularity
-    }
-
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        popularity = try container.decode(Int.self, forKey: .popularity)
-        try super.init(from: decoder)
-    }
-
-    override public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(popularity, forKey: .popularity)
-        try super.encode(to: encoder)
-    }
-}
-&rdquo;`
-
-</details>
-<pre class="highlight swift"><code><span class="c1">// Add Activity.</span>
-<span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">PopularityActivity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"User:2"</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"pin"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"Place:42"</span><span class="p">,</span> <span class="nv">popularity</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='retrieving-activities' class='heading'>Retrieving Activities</h3>
-<pre class="highlight swift"><code><span class="c1">// Get activities sorted by the ranking method labelled "activity_popularity" (Ranked Feeds Enabled):</span>
-<span class="n">user1</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">ranking</span><span class="p">:</span> <span class="s">"activity_popularity"</span><span class="p">)</span>
-</code></pre>
-<h2 id='concepts' class='heading'>Concepts</h2>
-<h3 id='targeting-using-the-q-to-q-field' class='heading'>Targeting Using the <q>TO</q> Field</h3>
-<h4 id='use-case-mentions' class='heading'>Use Case: Mentions</h4>
-<pre class="highlight swift"><code><span class="c1">// Add the activity to Eric's feed and to Jessica's notification feed:</span>
-<span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">TweetActivity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"user:Eric"</span><span class="p">,</span> 
-                             <span class="nv">verb</span><span class="p">:</span> <span class="s">"tweet"</span><span class="p">,</span> 
-                             <span class="nv">object</span><span class="p">:</span> <span class="s">"tweet:id"</span><span class="p">,</span>
-                             <span class="nv">feedIds</span><span class="p">:</span> <span class="p">[</span><span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"notification"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"Jessica"</span><span class="p">)],</span>
-                             <span class="nv">message</span><span class="p">:</span> <span class="s">"@Jessica check out getstream.io it's awesome!"</span><span class="p">)</span>
-
-<span class="n">userFeed1</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-<span class="c1">// In production use user ids, not their usernames.</span>
-</code></pre>
-<h4 id='use-case-organizations-amp-topics' class='heading'>Use Case: Organizations &amp; Topics</h4>
-<pre class="highlight swift"><code><span class="c1">// The TO field ensures the activity is send to the player, match and team feed</span>
-<span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">MatchActivity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"Player:Suarez"</span><span class="p">,</span>
-                             <span class="nv">verb</span><span class="p">:</span> <span class="s">"foul"</span><span class="p">,</span>
-                             <span class="nv">object</span><span class="p">:</span> <span class="s">"Player:Ramos"</span><span class="p">,</span>
-                             <span class="nv">match</span><span class="p">:</span> <span class="kt">Match</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"El Clasico"</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="mi">10</span><span class="p">),</span>
-                             <span class="nv">feedIds</span><span class="p">:</span> <span class="p">[</span><span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"team"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"barcelona"</span><span class="p">),</span>
-                                       <span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"match"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"1"</span><span class="p">)])</span> 
-
-<span class="n">playerFeed1</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h2 id='advanced' class='heading'>Advanced</h2>
-<h3 id='retrieving-activities-by-id' class='heading'>Retrieving activities by ID</h3>
-<pre class="highlight swift"><code><span class="c1">// retrieve two activities by ID:</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">Activity</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">activityIds</span><span class="p">:</span> <span class="p">[</span><span class="s">"01b3c1dd-e7ab-4649-b5b3-b4371d8f7045"</span><span class="p">,</span>
-                                                <span class="s">"ed2837a6-0a3b-4679-adc1-778a1704852d"</span><span class="p">])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="cm">/* ... */</span> 
-<span class="p">}</span>
-
-<span class="c1">// retrieve an activity by foreign ID and time</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">Activity</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> 
-           <span class="nv">foreignIds</span><span class="p">:</span> <span class="p">[</span><span class="s">"like:1"</span><span class="p">,</span> <span class="s">"post:2"</span><span class="p">],</span>
-           <span class="nv">times</span><span class="p">:</span> <span class="p">[</span><span class="s">"2018-07-08T14:09:36.000000"</span><span class="o">.</span><span class="n">streamDate</span><span class="o">!</span><span class="p">,</span> <span class="s">"2018-07-09T20:30:40.000000"</span><span class="o">.</span><span class="n">streamDate</span><span class="o">!</span><span class="p">])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="cm">/* ... */</span> 
-<span class="p">}</span>
-</code></pre>
-<h2 id='web-amp-mobile' class='heading'>Web&amp;Mobile</h2>
-<h3 id='realtime-updates' class='heading'>Realtime updates</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">notificationFeed</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"notification"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"1"</span><span class="p">)</span>
-
-<span class="k">var</span> <span class="nv">subscription</span><span class="p">:</span> <span class="kt">Subscription</span><span class="p">?</span> <span class="o">=</span> <span class="n">notificationFeed</span><span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">Activity</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// Keep `subscription` object until you need realtime updates and then to unsubscribe set it to nil:</span>
-<span class="n">subscription</span> <span class="o">=</span> <span class="kc">nil</span>
-</code></pre>
-<h2 id='reactions' class='heading'>Reactions</h2>
-<h3 id='add-reactions' class='heading'>Add reactions</h3>
-<pre class="highlight swift"><code><span class="c1">// add a like reaction to the activity with id activityId</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"like"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// adds a comment reaction to the activity with id activityId</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"comment"</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="kt">Comment</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"awesome post!"</span><span class="p">),</span> <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">User</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-
-<p>Here&rsquo;s a complete example:</p>
-<pre class="highlight swift"><code><span class="c1">// first let's read current user's timeline feed and pick one activity</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"mike"</span><span class="p">)</span><span class="o">.</span><span class="k">get</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">response</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">(),</span> <span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="k">let</span> <span class="nv">activityId</span> <span class="o">=</span> <span class="n">activity</span><span class="o">.</span><span class="n">id</span> <span class="p">{</span>
-        <span class="c1">// then let's add a like reaction to that activity</span>
-        <span class="c1">// note: `.like` is a shared extension for `ReactionKind` equal to "like".</span>
-        <span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="o">.</span><span class="n">like</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="c1">// will print a reaction object in the result.</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='notify-other-feeds' class='heading'>Notify other feeds</h3>
-<pre class="highlight swift"><code><span class="c1">// adds a comment reaction to the activity and notifies Thierry's notification feed</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionTo</span><span class="p">:</span> <span class="n">activityId</span><span class="p">,</span> 
-           <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"comment"</span><span class="p">,</span> 
-           <span class="nv">extraData</span><span class="p">:</span> <span class="kt">Comment</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"awesome post!"</span><span class="p">),</span>
-           <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">User</span><span class="o">.</span><span class="k">self</span><span class="p">,</span>
-           <span class="nv">targetsFeedIds</span><span class="p">:</span> <span class="p">[</span><span class="kt">FeedId</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"notification"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"thierry"</span><span class="p">)])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='read-feeds-with-reactions' class='heading'>Read feeds with reactions</h3>
-<pre class="highlight swift"><code><span class="c1">// read bob's timeline and include most recent reactions to all activities and their total count</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"bob"</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">includeReactions</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">latest</span><span class="p">,</span> <span class="o">.</span><span class="n">counts</span><span class="p">])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// read bob's timeline and include most recent reactions to all activities and her own reactions</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"bob"</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">includeReactions</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">own</span><span class="p">,</span> <span class="o">.</span><span class="n">latest</span><span class="p">,</span> <span class="o">.</span><span class="n">counts</span><span class="p">])</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='retrieving-reactions' class='heading'>Retrieving reactions</h3>
-<pre class="highlight swift"><code><span class="c1">// retrieve all kind of reactions for an activity</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">reactions</span><span class="p">(</span><span class="nv">forActivityId</span><span class="p">:</span> <span class="s">"ed2837a6-0a3b-4679-adc1-778a1704852d"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// retrieve first 10 likes for an activity</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">reactions</span><span class="p">(</span><span class="nv">forActivityId</span><span class="p">:</span> <span class="s">"ed2837a6-0a3b-4679-adc1-778a1704852d"</span><span class="p">,</span>
-                 <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"like"</span><span class="p">,</span>
-                 <span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// retrieve the next 10 likes using the id_lt param</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">reactions</span><span class="p">(</span><span class="nv">forActivityId</span><span class="p">:</span> <span class="s">"ed2837a6-0a3b-4679-adc1-778a1704852d"</span><span class="p">,</span>
-                 <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"like"</span><span class="p">,</span>
-                 <span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">lessThan</span><span class="p">(</span><span class="s">"e561de8f-00f1-11e4-b400-0cc47a024be0"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='child-reactions' class='heading'>Child reactions</h3>
-<pre class="highlight swift"><code><span class="c1">// add a like reaction to the previously created comment</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">reactionToParentReaction</span><span class="p">:</span> <span class="n">commentReaction</span><span class="p">,</span> <span class="nv">kindOf</span><span class="p">:</span> <span class="s">"like"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='updating-reactions' class='heading'>Updating Reactions</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="n">reactionId</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="kt">Comment</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"love it!"</span><span class="p">),</span> <span class="nv">userTypeOf</span><span class="p">:</span> <span class="kt">User</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='removing-reactions' class='heading'>Removing Reactions</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="nv">reactionId</span><span class="p">:</span> <span class="n">reactionId</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h2 id='collections' class='heading'>Collections</h2>
-<h3 id='adding-collection-entries' class='heading'>Adding collection entries</h3>
-
-<details><summary>Setup a class <code>Food</code> of <code><a href="Classes/CollectionObject.html">CollectionObject</a></code></summary>
-
-&ldquo;`swift
-final class Food: CollectionObject {
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case rating
-    }
-    
-    var name: String
-    var rating: Float
-    
-    init(name: String, rating: Float, id: String? = nil) {
-        self.name = name
-        self.rating = rating
-        // For example, set the collection name here for all instances of Food.
-        super.init(collectionName: &quot;food&rdquo;, id: id)
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let dataContainer = try decoder.container(keyedBy: DataCodingKeys.self)
-        let container = try dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        name = try container.decode(String.self, forKey: .name)
-        rating = try container.decode(Float.self, forKey: .rating)
-        try super.init(from: decoder)
-    }
-    
-    override func encode(to encoder: Encoder) throws {
-        var dataContainer = encoder.container(keyedBy: DataCodingKeys.self)
-        var container = dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        try container.encode(name, forKey: .name)
-        try container.encode(rating, forKey: .rating)
-        try super.encode(to: encoder)
-    }
-}
-&ldquo;`
-
-</details>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">collectionObject</span><span class="p">:</span> <span class="kt">Food</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Cheese Burger"</span><span class="p">,</span> <span class="nv">rating</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="s">"cheese-burger"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// if you don't have an id on your side, just use nil as the ID and Stream will generate a unique ID</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">collectionObject</span><span class="p">:</span> <span class="kt">Food</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Cheese Burger"</span><span class="p">,</span> <span class="nv">rating</span><span class="p">:</span> <span class="mi">4</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='retrieving-collection-entries' class='heading'>Retrieving collection entries</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">Food</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">collectionName</span><span class="p">:</span> <span class="s">"food"</span><span class="p">,</span> <span class="nv">collectionObjectId</span><span class="p">:</span> <span class="s">"cheese-burger"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='deleting-collection-entries' class='heading'>Deleting collection entries</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="nv">collectionName</span><span class="p">:</span> <span class="s">"food"</span><span class="p">,</span> <span class="nv">collectionObjectId</span><span class="p">:</span> <span class="s">"cheese-burger"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='updating-collection-entries' class='heading'>Updating collection entries</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">collectionObject</span><span class="p">:</span> <span class="kt">Food</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Cheese Burger"</span><span class="p">,</span> <span class="nv">rating</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="s">"cheese-burger"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='enrichment-of-collection-entries' class='heading'>Enrichment of collection entries</h3>
-<pre class="highlight swift"><code><span class="c1">// first we add our object to the food collection</span>
-<span class="k">let</span> <span class="nv">cheeseBurger</span> <span class="o">=</span> <span class="kt">Food</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Cheese Burger"</span><span class="p">,</span> <span class="nv">rating</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="s">"cheese-burger"</span><span class="p">)</span>
-
-<span class="c1">// setup an enriched activity type</span>
-<span class="kd">typealias</span> <span class="kt">UserFoodActivity</span> <span class="o">=</span> <span class="kt">EnrichedActivity</span><span class="o">&lt;</span><span class="kt">User</span><span class="p">,</span> <span class="kt">Food</span><span class="p">,</span> <span class="kt">String</span><span class="o">&gt;</span>
-
-<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">collectionObject</span><span class="p">:</span> <span class="n">cheeseBurger</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-    <span class="c1">// the object returned by .add can be embedded directly inside of an activity</span>
-    <span class="n">userFeed</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="kt">UserFoodActivity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">currentUser</span><span class="o">!</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"grill"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="n">cheeseBurger</span><span class="p">))</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-        <span class="c1">// if we now read the feed, the activity we just added will include the entire full object</span>
-        <span class="n">userFeed</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">UserFoodActivity</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-            <span class="k">let</span> <span class="nv">activities</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span><span class="o">.</span><span class="n">results</span>
-
-            <span class="c1">// we can then update the object and Stream will propagate the change to all activities</span>
-            <span class="n">cheeseBurger</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Amazing Cheese Burger"</span>
-            <span class="n">client</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">collectionObject</span><span class="p">:</span> <span class="n">cheeseBurger</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='references' class='heading'>References</h3>
-<pre class="highlight swift"><code><span class="c1">// First create a collection entry with upsert api</span>
-<span class="k">let</span> <span class="nv">cheeseBurger</span> <span class="o">=</span> <span class="kt">Food</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Cheese Burger"</span><span class="p">,</span> <span class="nv">rating</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="s">"cheese-burger"</span><span class="p">)</span>
-
-<span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">collectionObject</span><span class="p">:</span> <span class="n">cheeseBurger</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-    <span class="c1">// Then create a user</span>
-    <span class="k">let</span> <span class="nv">user</span> <span class="o">=</span> <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"john-doe"</span><span class="p">)</span>
-    <span class="n">client</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="n">user</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-        <span class="c1">// Since we know their IDs we can create references to both without reading from APIs</span>
-        <span class="c1">// The `CollectionObjectProtocol` and `UserProtocol` conformed to the `Enrichable` protocol.</span>
-        <span class="k">let</span> <span class="nv">cheeseBurgerRef</span> <span class="o">=</span> <span class="n">cheeseBurger</span><span class="o">.</span><span class="n">referenceId</span>
-        <span class="k">let</span> <span class="nv">johnDoeRef</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">referenceId</span>
-
-        <span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"john"</span><span class="p">)</span>
-              <span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="kt">Activity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="n">johnDoeRef</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"eat"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="n">cheeseBurgerRef</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h2 id='users' class='heading'>Users</h2>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Client</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"&lt;#ApiKey#&gt;"</span><span class="p">,</span> <span class="nv">appId</span><span class="p">:</span> <span class="s">"&lt;#AppId#&gt;"</span><span class="p">,</span> <span class="nv">token</span><span class="p">:</span> <span class="s">"&lt;#Token#&gt;"</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">user</span> <span class="o">=</span> <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"john-doe"</span><span class="p">)</span>
-
-<span class="n">client</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="n">user</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">createdUser</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">currentUser</span> <span class="o">=</span> <span class="n">createdUser</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h3 id='adding-users' class='heading'>Adding users</h3>
-<pre class="highlight swift"><code><span class="c1">// create a new user, if the user already exist an error is returned</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"john-doe"</span><span class="p">),</span> <span class="nv">getOrCreate</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// get or create a new user, if the user already exist the user is returned</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"john-doe"</span><span class="p">),</span> <span class="nv">getOrCreate</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='retrieving-users' class='heading'>Retrieving users</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">userId</span><span class="p">:</span> <span class="s">"123"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='removing-users' class='heading'>Removing users</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="nv">userId</span><span class="p">:</span> <span class="s">"123"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='updating-users' class='heading'>Updating users</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"john-doe"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h2 id='enrichment' class='heading'>Enrichment</h2>
-<h3 id='collections-and-users' class='heading'>Collections and Users</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">userFeed</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"jack"</span><span class="p">)</span>
-
-<span class="c1">// setup an enriched activity type with the `Post` as the subclass of `CollectionObject`</span>
-<span class="kd">typealias</span> <span class="kt">UserPostActivity</span> <span class="o">=</span> <span class="kt">EnrichedActivity</span><span class="o">&lt;</span><span class="kt">User</span><span class="p">,</span> <span class="kt">Post</span><span class="p">,</span> <span class="kt">String</span><span class="o">&gt;</span>
-
-<span class="n">client</span><span class="o">.</span><span class="nf">create</span><span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"jack"</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">currentUser</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span>
-
-    <span class="n">client</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">collectionObject</span><span class="p">:</span> <span class="kt">Post</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"..."</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="s">"42-ways-to-improve-your-feed"</span><span class="p">))</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-        <span class="k">let</span> <span class="nv">post</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span>
-        <span class="n">userFeed</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="kt">UserPostActivity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">currentUser</span><span class="o">!</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"post"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="n">post</span><span class="p">))</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-            <span class="c1">// if we now read Jack's feed we will get automatically the enriched data</span>
-            <span class="n">userFeed</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">UserPostActivity</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> 
-                <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-                <span class="c1">// we can also update Jack's post and get the new version </span>
-                <span class="c1">// automatically propagated to his feed and its followers</span>
-                <span class="n">post</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"new version of the post"</span>
-                <span class="n">client</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="nv">collectionObject</span><span class="p">:</span> <span class="n">post</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-                    <span class="n">userFeed</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">UserPostActivity</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> 
-                        <span class="c1">// jack's feed now has the new version of the data</span>
-                        <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h2 id='files-and-images' class='heading'>Files and Images</h2>
-<h3 id='upload' class='heading'>Upload</h3>
-<pre class="highlight swift"><code><span class="c1">// uploading an `UIImage` as PNG data</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">File</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"image.png"</span><span class="p">,</span> <span class="nv">pngImage</span><span class="p">:</span> <span class="n">image</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// uploading an `UIImage` as JPEG data</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">File</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"image.jpg"</span><span class="p">,</span> <span class="nv">jpegImage</span><span class="p">:</span> <span class="n">image</span><span class="p">,</span> <span class="nv">compressionQuality</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// uploading a file</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">upload</span><span class="p">(</span><span class="nv">file</span><span class="p">:</span> <span class="kt">File</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"file"</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="n">fileData</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='delete' class='heading'>Delete</h3>
-<pre class="highlight swift"><code><span class="c1">// deleting an image using the url returned by the APIs</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="nv">imageURL</span><span class="p">:</span> <span class="n">imageURL</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// deleting a file using the url returned by the APIs</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="nv">fileURL</span><span class="p">:</span> <span class="n">fileURL</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h3 id='process-images' class='heading'>Process images</h3>
-<pre class="highlight swift"><code><span class="c1">// create a 50x50 thumbnail and crop from center.</span>
-<span class="c1">// `ImageProcess` has the `crop` parameter as `.center` by default.</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">resizeImage</span><span class="p">(</span><span class="nv">imageProcess</span><span class="p">:</span> <span class="kt">ImageProcess</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">resize</span><span class="p">:</span> <span class="o">.</span><span class="n">crop</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-
-<span class="c1">// create a 50x50 thumbnail using clipping (keeps aspect ratio).</span>
-<span class="c1">// `ImageProcess` has the `resize` parameter as `.clip` by default.</span>
-<span class="n">client</span><span class="o">.</span><span class="nf">resizeImage</span><span class="p">(</span><span class="nv">imageProcess</span><span class="p">:</span> <span class="kt">ImageProcess</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-</code></pre>
-<h2 id='open-graph' class='heading'>Open Graph</h2>
-<h3 id='scrape-open-graph-metadata-from-urls' class='heading'>Scrape Open Graph Metadata from URLs</h3>
-<pre class="highlight swift"><code><span class="n">client</span><span class="o">.</span><span class="nf">og</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://www.imdb.com/title/tt0117500/"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="c1">// An `OGResponse` object would be in the result.</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  
-<span class="p">}</span>
-</code></pre>
+<p>See the file <q>[LICENSE](https://github.com/GetStream/stream-swift/blob/master/LICENSE)</q> for information on the history of this software, terms &amp; conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-02-27)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-03-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
