@@ -27,35 +27,35 @@ extension ActivityProtocol where ReactionType: ReactionProtocol {
     
     // MARK: - Likes
     
-    public var isLiked: Bool {
+    public var isUserLiked: Bool {
         return hasUserOwnReaction(.like)
     }
     
     public var likesCount: Int {
-        return userOwnReactionsCount(.like)
+        return reactionCounts?[.like] ?? 0
     }
     
-    public var likedReaction: ReactionType? {
+    public var userLikedReaction: ReactionType? {
         return userOwnReaction(.like)
     }
     
     // MARK: - Reposts
     
-    public var isReposted: Bool {
+    public var isUserReposted: Bool {
         return hasUserOwnReaction(.repost)
     }
     
     public var repostsCount: Int {
-        return userOwnReactionsCount(.repost)
+        return reactionCounts?[.repost] ?? 0
     }
     
-    public var repostReaction: ReactionType? {
+    public var userRepostReaction: ReactionType? {
         return userOwnReaction(.repost)
     }
     
     // MARK: - Comments
     
     public var commentsCount: Int {
-        return userOwnReactionsCount(.comment)
+        return reactionCounts?[.comment] ?? 0
     }
 }

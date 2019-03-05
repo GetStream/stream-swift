@@ -51,7 +51,7 @@ extension Reactionable where ReactionType: ReactionProtocol {
     /// - Parameter reactionKind: a kind of the reaction.
     /// - Returns: true if exists the reaction of the user.
     public func hasUserOwnReaction(_ reactionKind: ReactionKind) -> Bool {
-        return original.userOwnReactionsCount(reactionKind) > 0
+        return userOwnReactionsCount(reactionKind) > 0
     }
     
     /// The number of user reactions with a given reaction kind.
@@ -59,7 +59,7 @@ extension Reactionable where ReactionType: ReactionProtocol {
     /// - Parameter reactionKind: a kind of the reaction.
     /// - Returns: the number of user reactions.
     public func userOwnReactionsCount(_ reactionKind: ReactionKind) -> Int {
-        return original.userOwnReactions?[reactionKind]?.count ?? 0
+        return userOwnReactions?[reactionKind]?.count ?? 0
     }
     
     /// Try to get the first user reaction with a given reaction kind.
@@ -67,7 +67,7 @@ extension Reactionable where ReactionType: ReactionProtocol {
     /// - Parameter reactionKind: a kind of the reaction.
     /// - Returns: the user reaction.
     public func userOwnReaction(_ reactionKind: ReactionKind) -> ReactionType? {
-        return original.userOwnReactions?[reactionKind]?.first
+        return userOwnReactions?[reactionKind]?.first
     }
 }
 
