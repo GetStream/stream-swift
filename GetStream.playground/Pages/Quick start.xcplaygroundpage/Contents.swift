@@ -8,10 +8,10 @@ startSync()
 
 // This token should be received from your server.
 // Setup Stream client.
-let client = Client(apiKey: "<#API_KEY#>", appId: "<#APP_ID#>", token: "<#TOKEN#>")
+Client.config = .init(apiKey: "<#API_KEY#>", appId: "<#APP_ID#>", token: "<#TOKEN#>")
 
 // Create Chris's user feed.
-let chrisFeed = client.flatFeed(feedSlug: "user", userId: "chris")
+let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
 
 // Create an Activity. You can make own Activity class or stryct with custom properties.
 let activity = Activity(actor: "chris", verb: "add", object: "picture:10", foreignId: "picture:10")
@@ -25,7 +25,7 @@ chrisFeed.add(activity) { result in
 waitSync() // playground: wait the end of the prev async code
 
 // Create a following relationship between Jack's "timeline" feed and Chris' "user" feed:
-let jackFeed = client.flatFeed(feedSlug: "timeline", userId: "jack")
+let jackFeed = Client.shared.flatFeed(feedSlug: "timeline", userId: "jack")
 jackFeed.follow(toTarget: chrisFeed.feedId, activityCopyLimit: 1) { result in
     print(result)
     endSync()

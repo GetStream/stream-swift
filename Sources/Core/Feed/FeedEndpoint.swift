@@ -51,7 +51,7 @@ extension FeedActivityEndpoint: StreamTargetType {
             "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
             "object":"\((activity.object as! Enrichable).referenceId)",
             "origin":null,
-            "target":"\((activity.target as? Enrichable)?.referenceId ?? "")",
+            "target":"",
             "time":"2018-11-14T15:54:45.268000",
             "to":["timeline:jessica"],
             "verb":"\(activity.verb)"}

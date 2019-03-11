@@ -59,10 +59,6 @@ public struct Reactions<T: ReactionExtraDataProtocol, U: UserProtocol>: Decodabl
                 if let object = try? container.decode(EnrichingActivityError.self, forKey: .object) {
                     throw ReactionsError.enrichingActivityError(object)
                 }
-                
-                if let target = try? container.decode(EnrichingActivityError.self, forKey: .target) {
-                    throw ReactionsError.enrichingActivityError(target)
-                }
             }
             
             throw error

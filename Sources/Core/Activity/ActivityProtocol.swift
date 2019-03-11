@@ -16,7 +16,6 @@ public typealias Verb = String
 public protocol ActivityProtocol: Enrichable, Reactionable {
     associatedtype ActorType = Enrichable
     associatedtype ObjectType = Enrichable
-    associatedtype TargetType = Enrichable
     
     /// The Stream id of the activity.
     var id: String { get set }
@@ -27,8 +26,6 @@ public protocol ActivityProtocol: Enrichable, Reactionable {
     /// The object of the activity.
     /// - Note: It shouldn't be empty.
     var object: ObjectType { get }
-    /// The optional target of the activity.
-    var target: TargetType? { get }
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
     var foreignId: String? { get set }
     /// The optional time of the activity, isoformat. Default is the current time.

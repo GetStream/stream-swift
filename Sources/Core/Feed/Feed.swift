@@ -62,7 +62,7 @@ extension Feed {
             
             /// The response is always for a not enriched activity.
             /// Check if the given activity is not enriched.
-            if T.ActorType.self == String.self, T.ObjectType.self == String.self, T.TargetType.self == String.self {
+            if T.ActorType.self == String.self, T.ObjectType.self == String.self {
                 result.parse(self.callbackQueue, completion)
                 return
             }

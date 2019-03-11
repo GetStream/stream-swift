@@ -14,6 +14,7 @@
 		8A0935AA21AC012900C64488 /* Faye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935A121AC012900C64488 /* Faye.framework */; };
 		8A0935C321AC030400C64488 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0935C221AC030400C64488 /* Client.swift */; };
 		8A0935CB21AC05AD00C64488 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0935CA21AC05AD00C64488 /* Starscream.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		8A0940B822369F7900FF407D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0940B722369F7900FF407D /* Activity.swift */; };
 		8A0AD18321C8F72800A3167D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18221C8F72800A3167D /* User.swift */; };
 		8A0AD18621C906D600A3167D /* Client+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18521C906D600A3167D /* Client+Collection.swift */; };
 		8A0AD18821C906F100A3167D /* CollectionEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0AD18721C906F100A3167D /* CollectionEndpoint.swift */; };
@@ -61,7 +62,7 @@
 		8A6283ED2199AEE20002913D /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */; };
 		8A6283F12199AEE20002913D /* GetStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283D82199AEE20002913D /* GetStream.swift */; };
 		8A6283F52199AEE20002913D /* FeedEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DA2199AEE20002913D /* FeedEndpoint.swift */; };
-		8A6283F92199AEE20002913D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DB2199AEE20002913D /* Activity.swift */; };
+		8A6283F92199AEE20002913D /* EnrichedActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DB2199AEE20002913D /* EnrichedActivity.swift */; };
 		8A6283FD2199AEE20002913D /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DC2199AEE20002913D /* Feed.swift */; };
 		8A6284012199AEE20002913D /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DE2199AEE20002913D /* BaseURL.swift */; };
 		8A6284052199AEE20002913D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6283DF2199AEE20002913D /* Client.swift */; };
@@ -131,6 +132,7 @@
 		8A0935C421AC038000C64488 /* Faye.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Faye.plist; sourceTree = "<group>"; };
 		8A0935C621AC038700C64488 /* FayeTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FayeTests.plist; sourceTree = "<group>"; };
 		8A0935CA21AC05AD00C64488 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		8A0940B722369F7900FF407D /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8A0AD18221C8F72800A3167D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8A0AD18521C906D600A3167D /* Client+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Collection.swift"; sourceTree = "<group>"; };
 		8A0AD18721C906F100A3167D /* CollectionEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEndpoint.swift; sourceTree = "<group>"; };
@@ -175,7 +177,7 @@
 		8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		8A6283D82199AEE20002913D /* GetStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStream.swift; sourceTree = "<group>"; };
 		8A6283DA2199AEE20002913D /* FeedEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedEndpoint.swift; sourceTree = "<group>"; };
-		8A6283DB2199AEE20002913D /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		8A6283DB2199AEE20002913D /* EnrichedActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrichedActivity.swift; sourceTree = "<group>"; };
 		8A6283DC2199AEE20002913D /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		8A6283DE2199AEE20002913D /* BaseURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		8A6283DF2199AEE20002913D /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -546,7 +548,8 @@
 				8ADCEE87219ECF78001598C1 /* Client+Activity.swift */,
 				8ADCEE8C219ECFD1001598C1 /* ActivityEndpoint.swift */,
 				8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */,
-				8A6283DB2199AEE20002913D /* Activity.swift */,
+				8A0940B722369F7900FF407D /* Activity.swift */,
+				8A6283DB2199AEE20002913D /* EnrichedActivity.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -845,7 +848,7 @@
 				8A0AD19921CBC9BD00A3167D /* FlatFeed.swift in Sources */,
 				8A0AD18C21C908BB00A3167D /* CollectionObjectProtocol.swift in Sources */,
 				8A6283E92199AEE20002913D /* Codable+Extensions.swift in Sources */,
-				8A6283F92199AEE20002913D /* Activity.swift in Sources */,
+				8A6283F92199AEE20002913D /* EnrichedActivity.swift in Sources */,
 				8A6283E52199AEE20002913D /* MoyaError+ClientError.swift in Sources */,
 				8A0AD18321C8F72800A3167D /* User.swift in Sources */,
 				8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */,
@@ -869,6 +872,7 @@
 				8A0116A92212D54200503A07 /* ReactionKind.swift in Sources */,
 				8A0AD19B21CBCBF800A3167D /* Result+ParseGroup.swift in Sources */,
 				8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */,
+				8A0940B822369F7900FF407D /* Activity.swift in Sources */,
 				8A0116AD22131F3300503A07 /* Reactionable.swift in Sources */,
 				8A2D84002227E29700795FAE /* Bundle+Extensions.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,
