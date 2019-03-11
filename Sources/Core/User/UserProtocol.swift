@@ -90,3 +90,11 @@ extension UserProtocol {
         return "SU:\(id)"
     }
 }
+
+// MARK: - Shared User
+
+extension UserProtocol {
+    public static var current: Self? {
+        return Client.shared.currentUser as? Self
+    }
+}
