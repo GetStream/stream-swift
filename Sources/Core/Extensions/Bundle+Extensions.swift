@@ -35,7 +35,11 @@ extension Bundle {
             let appId = streamValue(for: .streamAppId),
             let token: Token = token ?? streamValue(for: .streamToken),
             token.isValid else {
-                print("⚠️ Stream bundle keys not found")
+                print("⚠️ Stream bundle keys not found. Check values:\n",
+                      StreamKey.streamAPIKey.rawValue, "-", streamValue(for: .streamAPIKey) ?? "🔴 <NotFound>", "\n",
+                      StreamKey.streamAppId.rawValue, "-", streamValue(for: .streamAppId) ?? "🔴 <NotFound>", "\n",
+                      StreamKey.streamToken.rawValue, "-", streamValue(for: .streamToken) ?? "🔴 <NotFound>", "\n",
+                      "Does Token valid?", (streamValue(for: .streamToken)?.isValid ?? "🔴 false"))
                 return
         }
         
