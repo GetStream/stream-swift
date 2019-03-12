@@ -13,7 +13,7 @@ import Foundation
 public typealias Verb = String
 
 /// A protocol for the Activity type.
-public protocol ActivityProtocol: Enrichable, Reactionable {
+public protocol ActivityProtocol: Enrichable, Reactionable, OriginalRepresentable {
     associatedtype ActorType = Enrichable
     associatedtype ObjectType = Enrichable
     
