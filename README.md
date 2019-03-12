@@ -42,6 +42,16 @@ github "GetStream/stream-swift"
 ```
 Then run `carthage update`.
 
+Then copy the GetStream framwork and its dependencies into your project.
+```
+GetStream.framework
+Faye.framework
+Moya.framework or RxMoya.framework or ReactiveMoya.framework
+Starscream.framework
+Swime.framework
+Result.framework
+```
+
 ## Quick start
 
 ```swift
