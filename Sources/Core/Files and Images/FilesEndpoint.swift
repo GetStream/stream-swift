@@ -96,31 +96,11 @@ extension FilesEndpoint {
         
         switch self {
         case .uploadFile(let file), .uploadImage(let file):
-            mimeType = file.mimeType ?? Swime.mimeType(data: file.data) ?? Swime.mimeType(fileName: file.name)
+            mimeType = file.mimeType ?? Swime.mimeType(data: file.data) ?? Swime.mimeType(byFileName: file.name)
         default:
             break
         }
         
         return mimeType?.mime ?? "application/octet-stream"
-    }
-}
-
-extension Swime {
-    static func mimeType(fileName: String) -> MimeType? {
-        guard let dotIndex = fileName.lastIndex(of: "."),
-            (dotIndex.encodedOffset + 1) < fileName.count else {
-            return nil
-        }
-        
-        let extIndex = fileName.index(dotIndex, offsetBy: 1)
-        let ext = fileName.suffix(from: extIndex).lowercased()
-        
-        for mime in MimeType.all {
-            if mime.ext == ext {
-                return mime
-            }
-        }
-        
-        return nil
     }
 }

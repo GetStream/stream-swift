@@ -49,7 +49,7 @@ public extension File {
         }
         
         self.init(name: name, data: data)
-        mimeType = Swime.mimeType(ext: "jpg")
+        mimeType = Swime.mimeType(byFileExtension: "jpg")
     }
     
     /// Create a File from a given image.
@@ -63,7 +63,7 @@ public extension File {
         }
         
         self.init(name: name, data: data)
-        mimeType = Swime.mimeType(ext: "png")
+        mimeType = Swime.mimeType(byFileExtension: "png")
     }
     
     /// A helper function to create `File`'s from images in working thread.
@@ -91,24 +91,6 @@ public extension File {
             
             DispatchQueue.main.async { completion(files) }
         }
-    }
-}
-
-// MARK: - File
-
-extension Swime {
-    static func mimeType(ext: String) -> MimeType? {
-        if ext.isEmpty {
-            return nil
-        }
-        
-        for mime in MimeType.all {
-            if mime.ext == ext {
-                return mime
-            }
-        }
-        
-        return nil
     }
 }
 

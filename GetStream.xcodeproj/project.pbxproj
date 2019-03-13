@@ -70,6 +70,7 @@
 		8A6284142199CF9C0002913D /* FeedId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6284132199CF9C0002913D /* FeedId.swift */; };
 		8A64566A21A306AB00E890F4 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566921A306AB00E890F4 /* Follower.swift */; };
 		8A64566F21A45E2700E890F4 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */; };
+		8A73F3212239067C00FB4F25 /* Swime+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A73F3202239067C00FB4F25 /* Swime+Extensions.swift */; };
 		8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */; };
 		8A8AFEFE21AC07B800A1D512 /* FayeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */; };
 		8A8AFEFF21AC07C700A1D512 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
@@ -188,6 +189,7 @@
 		8A64566921A306AB00E890F4 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		8A64566E21A45E2700E890F4 /* ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
 		8A6DE4D9219C5CB8001DF2A8 /* GetStream.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetStream.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8A73F3202239067C00FB4F25 /* Swime+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swime+Extensions.swift"; sourceTree = "<group>"; };
 		8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTargetType.swift; sourceTree = "<group>"; };
 		8A79F98421D67FD500C58F40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		8A7B688921A6B90F00062FBD /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				8AF44DD021C29ADB00A3A7B4 /* Result+ParseUpload.swift */,
 				8AAD3E7421E8EB3B00FDB25D /* File.swift */,
 				8ABC207D21BE5D680033EE8F /* ImageProcess.swift */,
+				8A73F3202239067C00FB4F25 /* Swime+Extensions.swift */,
 			);
 			path = "Files and Images";
 			sourceTree = "<group>";
@@ -875,6 +878,7 @@
 				8A6283F12199AEE20002913D /* GetStream.swift in Sources */,
 				8A0116A92212D54200503A07 /* ReactionKind.swift in Sources */,
 				8A0AD19B21CBCBF800A3167D /* Result+ParseGroup.swift in Sources */,
+				8A73F3212239067C00FB4F25 /* Swime+Extensions.swift in Sources */,
 				8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */,
 				8A0940B822369F7900FF407D /* Activity.swift in Sources */,
 				8A0116AD22131F3300503A07 /* Reactionable.swift in Sources */,
