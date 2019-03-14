@@ -12,9 +12,9 @@ import Foundation
 public struct FeedId: CustomStringConvertible, Codable {
     
     /// The name of the feed group, for instance user, trending, flat, timeline etc. For example: flat, timeline.
-    let feedSlug: String
+    public let feedSlug: String
     /// The owner of the given feed.
-    let userId: String
+    public let userId: String
     
     /// The feed group id, e.g. `timeline123`
     public var together: String {
@@ -90,6 +90,14 @@ extension FeedId: Equatable {
 
 extension FeedId {
     public static let any = FeedId(feedSlug: "*", userId: "")
+    public static let user = FeedId(feedSlug: "user")
+    public static let timeline = FeedId(feedSlug: "timeline")
+    public static let notification = FeedId(feedSlug: "notification")
+    
+    /// A user feed id with the given userId.
+    public static func user(with userId: String) -> FeedId {
+        return FeedId(feedSlug: "user", userId: userId)
+    }
 }
 
 // MARK: - FeedIds
