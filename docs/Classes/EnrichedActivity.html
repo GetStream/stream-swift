@@ -145,6 +145,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Swime.html">Swime</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -158,6 +161,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Enrichable.html">Enrichable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/OriginalRepresentable.html">OriginalRepresentable</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a>
@@ -334,7 +340,6 @@
                 <div class="language">
                   <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">EnrichedActivity</span><span class="o">&lt;</span><span class="kt">ActorType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Enrichable.html">Enrichable</a></span><span class="p">,</span>
                             <span class="kt">ObjectType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Enrichable.html">Enrichable</a></span><span class="p">,</span>
-                            <span class="kt">TargetType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Enrichable.html">Enrichable</a></span><span class="p">,</span>
                             <span class="kt">ReactionType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></span></code></pre>
 
                 </div>
@@ -447,33 +452,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">object</span><span class="p">:</span> <span class="kt">ObjectType</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream16EnrichedActivityC6targetq0_Sgvp"></a>
-                    <a name="//apple_ref/swift/Property/target" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16EnrichedActivityC6targetq0_Sgvp">target</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The optional target of the activity.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">TargetType</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -619,9 +597,9 @@ One way to think about it is as the CC functionality of email.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream16EnrichedActivityC16userOwnReactionsSDySSSayq1_GGSgvp"></a>
+                    <a name="/s:9GetStream16EnrichedActivityC16userOwnReactionsSDySSSayq0_GGSgvp"></a>
                     <a name="//apple_ref/swift/Property/userOwnReactions" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16EnrichedActivityC16userOwnReactionsSDySSSayq1_GGSgvp">userOwnReactions</a>
+                    <a class="token" href="#/s:9GetStream16EnrichedActivityC16userOwnReactionsSDySSSayq0_GGSgvp">userOwnReactions</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -646,9 +624,9 @@ One way to think about it is as the CC functionality of email.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream16EnrichedActivityC15latestReactionsSDySSSayq1_GGSgvp"></a>
+                    <a name="/s:9GetStream16EnrichedActivityC15latestReactionsSDySSSayq0_GGSgvp"></a>
                     <a name="//apple_ref/swift/Property/latestReactions" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16EnrichedActivityC15latestReactionsSDySSSayq1_GGSgvp">latestReactions</a>
+                    <a class="token" href="#/s:9GetStream16EnrichedActivityC15latestReactionsSDySSSayq0_GGSgvp">latestReactions</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -700,9 +678,9 @@ One way to think about it is as the CC functionality of email.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream16EnrichedActivityC5actor4verb6object6target9foreignId4time7feedIdsACyxq_q0_q1_Gx_SSq_q0_SgSSSg10Foundation4DateVSgSayAA04FeedJ0VGSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(actor:verb:object:target:foreignId:time:feedIds:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream16EnrichedActivityC5actor4verb6object6target9foreignId4time7feedIdsACyxq_q0_q1_Gx_SSq_q0_SgSSSg10Foundation4DateVSgSayAA04FeedJ0VGSgtcfc">init(actor:verb:object:target:foreignId:time:feedIds:)</a>
+                    <a name="/s:9GetStream16EnrichedActivityC5actor4verb6object9foreignId4time7feedIdsACyxq_q0_Gx_SSq_SSSg10Foundation4DateVSgSayAA04FeedI0VGSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(actor:verb:object:foreignId:time:feedIds:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream16EnrichedActivityC5actor4verb6object9foreignId4time7feedIdsACyxq_q0_Gx_SSq_SSSg10Foundation4DateVSgSayAA04FeedI0VGSgtcfc">init(actor:verb:object:foreignId:time:feedIds:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -720,7 +698,6 @@ One way to think about it is as the CC functionality of email.</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="kt">ActorType</span><span class="p">,</span>
             <span class="nv">verb</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream4Verba">Verb</a></span><span class="p">,</span>
             <span class="nv">object</span><span class="p">:</span> <span class="kt">ObjectType</span><span class="p">,</span>
-            <span class="nv">target</span><span class="p">:</span> <span class="kt">TargetType</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
             <span class="nv">foreignId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
             <span class="nv">time</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
             <span class="nv">feedIds</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
@@ -764,18 +741,6 @@ One way to think about it is as the CC functionality of email.</p>
                               <td>
                                 <div>
                                   <p>the object of the activity.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>target</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the optional target of the activity.</p>
                                 </div>
                               </td>
                             </tr>
@@ -889,7 +854,7 @@ One way to think about it is as the CC functionality of email.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-03-05)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/GetStream/stream-swift" target="_blank" rel="external">Alexey Bukhtin</a>. All rights reserved. (Last updated: 2019-03-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

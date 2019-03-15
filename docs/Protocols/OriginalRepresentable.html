@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>NotificationGroup Class Reference</title>
+    <title>OriginalRepresentable Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/NotificationGroup" class="dashAnchor"></a>
-    <a title="NotificationGroup Class Reference"></a>
+    <a name="//apple_ref/swift/Protocol/OriginalRepresentable" class="dashAnchor"></a>
+    <a title="OriginalRepresentable Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">GetStream Docs</a> (52% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">GetStream Reference</a>
         <img id="carat" src="../img/carat.png" />
-        NotificationGroup Class Reference
+        OriginalRepresentable Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -335,14 +335,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>NotificationGroup</h1>
+            <h1>OriginalRepresentable</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">NotificationGroup</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Group.html">Group</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">OriginalRepresentable</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>A protocol with a reference to the original object of itself.</p>
 
           </section>
           <section class="section task-group-section">
@@ -351,78 +351,42 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream17NotificationGroupC6isSeenSbvp"></a>
-                    <a name="//apple_ref/swift/Property/isSeen" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream17NotificationGroupC6isSeenSbvp">isSeen</a>
+                    <a name="/s:9GetStream21OriginalRepresentablePAAE8originalxvp"></a>
+                    <a name="//apple_ref/swift/Property/original" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream21OriginalRepresentablePAAE8originalxvp">original</a>
                     </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The original object.</p>
+
+<p>In case if the reactionable object has a referance to the original reactionable object, then it should be redefined here.</p>
+
+<p>For example: Reposted activity should have a reference to the original activity
+and all reactions of a reposted activity should referenced to the original activity reactions.
+Usually the original activity should be stored in the activity object property as an enum
+and in this case the origin property could be redefined in this way:</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">original</span><span class="p">:</span> <span class="kt">Activity</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">case</span> <span class="o">.</span><span class="nf">repost</span><span class="p">(</span><span class="k">let</span> <span class="nv">original</span><span class="p">)</span> <span class="o">=</span> <span class="n">object</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">original</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">self</span>
+<span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">isSeen</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream17NotificationGroupC6isReadSbvp"></a>
-                    <a name="//apple_ref/swift/Property/isRead" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream17NotificationGroupC6isReadSbvp">isRead</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">isRead</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream17NotificationGroupC4fromACyxGs7Decoder_p_tKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream17NotificationGroupC4fromACyxGs7Decoder_p_tKcfc">init(from:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">original</span><span class="p">:</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
