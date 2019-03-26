@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "Faye"
-  s.version = "1.1.3"
+  s.version = "1.1.4"
   s.summary = "Faye Swift Client for GetStream"
   s.homepage = "https://github.com/GetStream/stream-swift"
   s.license = { :type => "BSD-3", :file => "LICENSE" }
@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.source = { :git => "https://github.com/GetStream/stream-swift.git", :tag => s.version.to_s }
   s.source_files = "Faye/*"
   s.framework = "Foundation"
-  s.dependency "Starscream", "~> 3.0"
+  s.dependency "Starscream", "~> 3.0.0"
 end
