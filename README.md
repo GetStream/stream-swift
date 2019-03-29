@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/GetStream/stream-swift.svg?branch=master)](https://travis-ci.com/GetStream/stream-swift)
 [![Language: Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)](https://swift.org)
+[![Documentation](https://github.com/GetStream/stream-swift/blob/master/docs/badge.svg)](https://getstream.github.io/stream-swift/)
 [![CocoaPods compatible](https://img.shields.io/cocoapods/v/GetStream.svg)](https://cocoapods.org/pods/GetStream)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
