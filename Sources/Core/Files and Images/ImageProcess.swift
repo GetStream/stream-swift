@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// An image process option type.
 public struct ImageProcess: Codable {
     private enum CodingKeys: String, CodingKey {
         case url

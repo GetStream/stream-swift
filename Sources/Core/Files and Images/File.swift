@@ -17,6 +17,7 @@ import Swime
     public typealias Image = NSImage
 #endif
 
+/// A file type.
 public struct File {
     let name: String
     let data: Data
@@ -43,7 +44,7 @@ public extension File {
     ///     - compressionQuality: The quality of the resulting JPEG image, expressed as a value from 0.0 to 1.0.
     ///                           The value 0.0 represents the maximum compression (or lowest quality)
     ///                           while the value 1.0 represents the least compression (or best quality). Default: 0.9.
-    public init?(name: String, jpegImage: Image, compressionQuality: CGFloat = 0.9) {
+    init?(name: String, jpegImage: Image, compressionQuality: CGFloat = 0.9) {
         guard let data = jpegImage.jpegData(compressionQuality: compressionQuality) else {
             return nil
         }
@@ -57,7 +58,7 @@ public extension File {
     /// - Parameters:
     ///     - name: the name of the image.
     ///     - pngImage: the image, that would be converted to a PNG data.
-    public init?(name: String, pngImage: Image) {
+    init?(name: String, pngImage: Image) {
         guard let data = pngImage.pngData() else {
             return nil
         }
@@ -72,7 +73,7 @@ public extension File {
     ///     - images: a list of `Image`'s.
     ///     - process: a process block to create a `File` from a given `Image`. The block can return nil an image needs to skip.
     ///     - completion: a completion block with a list of `File`'s (could be empty, if images didn't converted to `File`'s. ).
-    public static func files(from images: [Image],
+    static func files(from images: [Image],
                              process: @escaping (_ index: Int, _ image: Image) -> File?,
                              completion: @escaping (_ files: [File]) -> Void) {
         guard images.count > 0 else {

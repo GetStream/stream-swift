@@ -9,6 +9,7 @@
 import Foundation
 import Result
 
+/// Auser completion block.
 public typealias UserCompletion<T: UserProtocol> = (_ result: Result<T, ClientError>) -> Void
 
 // MARK: - Client User

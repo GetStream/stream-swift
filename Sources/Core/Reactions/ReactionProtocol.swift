@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A reaction protocol.
 public protocol ReactionProtocol: Codable, Equatable {
     associatedtype ExtraDataType = ReactionExtraDataProtocol
     associatedtype UserType = UserProtocol

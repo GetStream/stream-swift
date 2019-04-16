@@ -8,13 +8,16 @@
 
 import Foundation
 
+/// A notification group.
 public final class NotificationGroup<T: ActivityProtocol>: Group<T> {
     private enum CodingKeys: String, CodingKey {
         case isSeen = "is_seen"
         case isRead = "is_read"
     }
     
+    /// True if the notification group is seen.
     public let isSeen: Bool
+    /// True if the notification group is read.
     public let isRead: Bool
     
     public required init(from decoder: Decoder) throws {

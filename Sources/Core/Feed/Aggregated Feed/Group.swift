@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// An aggregated group type.
 public class Group<T: ActivityProtocol>: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id
@@ -20,12 +21,20 @@ public class Group<T: ActivityProtocol>: Decodable {
         case activities
     }
     
+    /// A group id.
     public let id: String
+    /// A group name.
     public let group: String
+    /// A verb.
     public let verb: Verb
+    /// A number of activities in the group.
     public let activitiesCount: Int
+    /// A number of actors in the group.
     public let actorsCount: Int
+    /// A created date.
     public let created: Date
+    /// An updated date.
     public let updated: Date
+    /// A list of activities.
     public let activities: [T]
 }

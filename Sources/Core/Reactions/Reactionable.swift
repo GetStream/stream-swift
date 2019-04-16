@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A reactionable protocol.
 public protocol Reactionable {
     associatedtype ReactionType = ReactionProtocol
     

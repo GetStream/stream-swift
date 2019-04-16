@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// An enriched activity type with actor, object and reaction customizable types.
 open class EnrichedActivity<ActorType: Enrichable,
                             ObjectType: Enrichable,
                             ReactionType: ReactionProtocol>: ActivityProtocol {
@@ -105,6 +106,7 @@ extension EnrichedActivity: CustomStringConvertible {
 
 // MARK: - Error Activity
 
+/// An error type of enriching activity properties.
 public struct EnrichingActivityError: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
@@ -113,8 +115,12 @@ public struct EnrichingActivityError: Decodable {
         case referenceType = "reference_type"
     }
     
+    /// An object id.
     public let id: String
+    /// An error message.
     public let error: String
+    /// A reference id of the object.
     public let referenceId: String
+    /// A reference type of the object.
     public let referenceType: String
 }

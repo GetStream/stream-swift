@@ -10,6 +10,7 @@ import Foundation
 import Moya
 import Result
 
+/// A followers completion block.
 public typealias FollowersCompletion = (_ result: Result<Response<Follower>, ClientError>) -> Void
 
 /// A superclass for feeds: `FlatFeed`, `AggregatedFeed` and `NotificationFeed`.

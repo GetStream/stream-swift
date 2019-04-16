@@ -8,8 +8,10 @@
 
 import Foundation
 
+/// A default reaction type with `EmptyReactionExtraData` and `User` types.
 public typealias DefaultReaction = Reaction<EmptyReactionExtraData, User>
 
+/// A reaction type.
 public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: ReactionProtocol {
     private enum CodingKeys: String, CodingKey {
         case id

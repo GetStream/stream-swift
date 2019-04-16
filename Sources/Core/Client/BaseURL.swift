@@ -8,15 +8,23 @@
 
 import Foundation
 
+/// A base URL for the `Client`.
 public struct BaseURL {
     static let placeholderURL = URL(string: "https://getstream.io")!
     
     let url: URL
     
+    /// Create a base URL.
+    ///
+    /// - Parameters:
+    ///     - location: a location of the server for the `Client`.
+    ///     - service: a service type.
+    ///     - version: a version of API.
     public init(location: Location = .default, service: Service = .api, version: String = "1.0") {
         url = URL(string: "https://\(location.rawValue)\(service.rawValue).stream-io-api.com/\(service.rawValue)/v\(version)/")!
     }
     
+    /// Create a base URL with a custom URL.
     public init(customURL: URL) {
         url = customURL
     }
@@ -27,12 +35,14 @@ public struct BaseURL {
 }
 
 extension BaseURL {
+    /// A service type.
     public enum Service: String {
         case api
         case personalization
         case analytics
     }
     
+    /// A location type.
     public enum Location: String {
         case `default` = ""
         case usEast = "us-east-"

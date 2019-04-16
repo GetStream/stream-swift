@@ -19,6 +19,7 @@ public enum ClientError: Error {
     case network(_ description: String, _ error: Error?)
     case server(_ info: Info)
     
+    /// A description of the error.
     public var localizedDescription: String {
         switch self {
         case .unexpectedError(let error):
@@ -50,6 +51,7 @@ public enum ClientError: Error {
 // MARK: - Client Error Info
 
 extension ClientError {
+    /// A client error details.
     public struct Info: CustomStringConvertible {
         let info: String
         let code: Int

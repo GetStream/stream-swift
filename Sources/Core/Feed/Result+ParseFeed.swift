@@ -10,6 +10,7 @@ import Foundation
 import Moya
 import Result
 
+/// An activity removed completion block.
 public typealias RemovedCompletion = (_ result: Result<String, ClientError>) -> Void
 
 // MARK: - Result Removed Parsing

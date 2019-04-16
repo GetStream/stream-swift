@@ -12,7 +12,7 @@ import Foundation
 /// You can inherit this class with extra properties on your own User type.
 /// - Note: Please, check the `UserProtocol` documentation to implement your User subclass properly.
 open class User: UserProtocol {
-    public enum UserCodingKeys: String, CodingKey {
+    private enum UserCodingKeys: String, CodingKey {
         case id
         case created = "created_at"
         case updated = "updated_at"
@@ -20,16 +20,25 @@ open class User: UserProtocol {
         case followingCount = "following_count"
     }
     
+    /// Coding keys for extra user properties.
     public enum DataCodingKeys: String, CodingKey {
         case data
     }
     
+    /// A user id.
     public let id: String
+    /// An user created date.
     public var created: Date = Date()
+    /// An user updated date.
     public var updated: Date = Date()
+    /// A number of followers.
     public var followersCount: Int?
+    /// A number of followings.
     public var followingCount: Int?
     
+    /// Create a user with a given id.
+    ///
+    /// - Parameter id: a user id.
     public init(id: String) {
         self.id = id
     }

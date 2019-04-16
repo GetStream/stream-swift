@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// A JWT token including a signature generated with the HS256 algorithm.
+/// You can find more information on JWT at https://jwt.io/introduction
 public typealias Token = String
 
 extension Token {

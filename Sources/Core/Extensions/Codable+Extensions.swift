@@ -11,6 +11,7 @@ import Foundation
 // MARK: - JSONDecoder Stream
 
 extension JSONDecoder {
+    /// A Stream decoder.
     public static let stream: JSONDecoder = {
         let decoder = JSONDecoder()
         
@@ -37,6 +38,7 @@ extension JSONDecoder {
 // MARK: - JSONEncoder Stream
 
 extension JSONEncoder {
+    /// A Stream encoder.
     public static let stream: JSONEncoder = {
         let encoder = JSONEncoder()
         
@@ -67,6 +69,7 @@ struct AnyEncodable: Encodable {
 // MARK: - Date Formatter Helper
 
 extension DateFormatter {
+    /// A Stream Client date formatter.
     public struct Stream {
         public static let `default`: DateFormatter = {
             let formatter = DateFormatter()
@@ -99,6 +102,7 @@ extension DateFormatter {
 // MARK: - Date Stream
 
 extension Date {
+    /// Convert a date to the Stream Client date string.
     public var stream: String {
         return DateFormatter.Stream.default.string(from: self)
     }
@@ -107,6 +111,7 @@ extension Date {
 // MARK: - String Date Stream
 
 extension String {
+    /// Convert a string to the Stream Client date.
     public var streamDate: Date? {
         return DateFormatter.Stream.default.date(from: self)
     }

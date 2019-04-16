@@ -10,13 +10,17 @@ import Foundation
 import Moya
 import Result
 
+/// A reaction completion block.
 public typealias ReactionCompletion<T: ReactionExtraDataProtocol,
                                     U: UserProtocol> = (_ result: Result<Reaction<T, U>, ClientError>) -> Void
 
+/// A reactions completion block.
 public typealias ReactionsCompletion<T: ReactionExtraDataProtocol,
                                      U: UserProtocol> = (_ result: Result<Reactions<T, U>, ClientError>) -> Void
 
+/// A default reaction completion block.
 public typealias DefaultReactionCompletion = ReactionCompletion<EmptyReactionExtraData, User>
+/// A default reactions completion block.
 public typealias DefaultReactionsCompletion = ReactionsCompletion<EmptyReactionExtraData, User>
 
 // MARK: - Result Reactions Parsing

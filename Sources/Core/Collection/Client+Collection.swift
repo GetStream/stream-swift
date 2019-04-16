@@ -9,6 +9,7 @@
 import Foundation
 import Result
 
+/// A collection object completion block.
 public typealias CollectionObjectCompletion<T: CollectionObjectProtocol> = (_ result: Result<T, ClientError>) -> Void
 
 // MARK: - Client Collections

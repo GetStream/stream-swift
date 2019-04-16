@@ -14,6 +14,7 @@ import Moya
 
 extension Client {
     
+    /// Upload a `File`.
     @discardableResult
     public func upload(file: File, completion: @escaping UploadCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.uploadFile(file)) { [weak self] result in
@@ -23,11 +24,13 @@ extension Client {
         }
     }
     
+    /// Upload a list of `File`.
     @discardableResult
     public func upload(files: [File], completion: @escaping MultipleUploadCompletion) -> Cancellable {
         return upload(files: files, endpoint: { FilesEndpoint.uploadFile($0) }, completion: completion)
     }
     
+    /// Delete a file with a given file URL.
     @discardableResult
     public func delete(fileURL: URL, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.deleteFile(fileURL)) { [weak self] result in
@@ -42,6 +45,7 @@ extension Client {
 
 extension Client {
     
+    /// Upload an image file.
     @discardableResult
     public func upload(image: File, completion: @escaping UploadCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.uploadImage(image)) { [weak self] result in
@@ -51,11 +55,13 @@ extension Client {
         }
     }
     
+    /// Upload a list of image files.
     @discardableResult
     public func upload(images: [File], completion: @escaping MultipleUploadCompletion) -> Cancellable {
         return upload(files: images, endpoint: { FilesEndpoint.uploadImage($0) }, completion: completion)
     }
     
+    /// Delete an image file with a given image URL.
     @discardableResult
     public func delete(imageURL: URL, completion: @escaping StatusCodeCompletion) -> Cancellable {
         return request(endpoint: FilesEndpoint.deleteImage(imageURL)) { [weak self] result in
@@ -65,6 +71,7 @@ extension Client {
         }
     }
     
+    /// Upload and resize an image with a given image process options.
     @discardableResult
     public func resizeImage(imageProcess: ImageProcess, completion: @escaping UploadCompletion) -> Cancellable {
         if imageProcess.height <= 0 {

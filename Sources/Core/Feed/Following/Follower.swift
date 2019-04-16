@@ -17,8 +17,12 @@ public struct Follower: Decodable {
         case updated = "updated_at"
     }
     
+    /// A feed id.
     public let feedId: FeedId
+    /// A target feed id.
     public let targetFeedId: FeedId
+    /// A created date.
     public let created: Date
+    /// An updated date.
     public let updated: Date?
 }

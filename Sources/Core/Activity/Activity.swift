@@ -6,4 +6,5 @@
 //  Copyright © 2019 Stream.io Inc. All rights reserved.
 //
 
+/// A default activity type.
 public typealias Activity = EnrichedActivity<User, String, DefaultReaction>

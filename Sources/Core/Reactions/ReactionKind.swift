@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A reaction kind type.
 public typealias ReactionKind = String
 
 // MARK: - Common Reaction Kinds
@@ -27,34 +28,41 @@ extension ActivityProtocol where ReactionType: ReactionProtocol {
     
     // MARK: - Likes
     
+    /// True if the current user like the activity. See `ReactionKind.like`.
     public var isUserLiked: Bool {
         return hasUserOwnReaction(.like)
     }
     
+    /// A number of likes. See `ReactionKind.like`.
     public var likesCount: Int {
         return reactionCounts?[.like] ?? 0
     }
     
+    /// A like reaction of the current user. See `ReactionKind.like`.
     public var userLikedReaction: ReactionType? {
         return userOwnReaction(.like)
     }
     
     // MARK: - Reposts
     
+    /// True if the current user repost the activity. See `ReactionKind.repost`.
     public var isUserReposted: Bool {
         return hasUserOwnReaction(.repost)
     }
     
+    /// A number of reposts. See `ReactionKind.repost`.
     public var repostsCount: Int {
         return reactionCounts?[.repost] ?? 0
     }
     
+    /// A repost reaction of the current user. See `ReactionKind.repost`.
     public var userRepostReaction: ReactionType? {
         return userOwnReaction(.repost)
     }
     
     // MARK: - Comments
     
+    /// A number of comments. See `ReactionKind.comment`.
     public var commentsCount: Int {
         return reactionCounts?[.comment] ?? 0
     }

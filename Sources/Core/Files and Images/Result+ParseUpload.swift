@@ -10,7 +10,9 @@ import Foundation
 import Moya
 import Result
 
+/// An upload file completion block.
 public typealias UploadCompletion = (_ result: Result<URL, ClientError>) -> Void
+/// An upload multiple files completion block.
 public typealias MultipleUploadCompletion = (_ result: Result<[URL], ClientError>) -> Void
 
 // MARK: - Result Upload Parsing

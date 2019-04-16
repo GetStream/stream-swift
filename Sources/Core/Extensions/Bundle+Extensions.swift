@@ -15,6 +15,7 @@ extension Bundle {
         case streamToken = "Stream Token"
     }
     
+    /// A Stream Client setup block.
     public typealias StreamClientSetup = (_ apiKey: String, _ appId: String, _ token: Token) -> Void
     
     /// Setup the Client with keys from the bundle.

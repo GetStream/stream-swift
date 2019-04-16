@@ -238,28 +238,7 @@ final class ClientTests: TestCase {
             XCTAssertEqual(parameters["id_lt"] as! String, someId2)
         }
     }
-    
-    func testRateLimit() {
-        let response = Response(statusCode: 200, data: Data())
-        XCTAssertNil(Client.RateLimit(response: response))
         
-        let timestamp = Int(Date().timeIntervalSince1970)
-        let httpResponse = HTTPURLResponse(url: BaseURL.placeholderURL,
-                                           statusCode: 200,
-                                           httpVersion: nil,
-                                           headerFields: ["x-ratelimit-limit": "20",
-                                                          "x-ratelimit-remaining": "10",
-                                                          "x-ratelimit-reset": String(timestamp)])
-        let rateLimit = Client.RateLimit(response: Response(statusCode: 200, data: Data(), response: httpResponse))
-        XCTAssertNotNil(rateLimit)
-        
-        if let rateLimit = rateLimit {
-            XCTAssertEqual(rateLimit.limit, 20)
-            XCTAssertEqual(rateLimit.remaining, 10)
-            XCTAssertEqual(rateLimit.resetDate, Date(timeIntervalSince1970: TimeInterval(timestamp)))
-        }
-    }
-    
     func testClientError() {
         let info = ClientError.Info(json: ["detail": "DETAIL", "code": 1, "status_code": 2, "exception": "EXCEPTION"])
         XCTAssertEqual(info.description, "EXCEPTION[1] Status Code: 2, DETAIL")

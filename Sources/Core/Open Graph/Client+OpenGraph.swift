@@ -10,6 +10,7 @@ import Foundation
 import CoreGraphics.CGBase
 import Result
 
+/// An Open Graph completion block.
 public typealias OGCompletion = (_ result: Result<OGResponse, ClientError>) -> Void
 
 // MARK: - Client Open Graph
@@ -44,6 +45,7 @@ extension Client {
     }
 }
 
+/// An Open Graph response.
 public struct OGResponse: Codable {
     private enum CodingKeys: String, CodingKey {
         case title
@@ -59,19 +61,31 @@ public struct OGResponse: Codable {
         case audios
     }
     
+    /// A title.
     public private(set) var title: String?
+    /// A type.
     public private(set) var type: String?
+    /// An URL.
     public internal(set) var url: URL?
+    /// A site base URL.
     public private(set) var site: String?
+    /// A site name.
     public private(set) var siteName: String?
+    /// A description.
     public private(set) var description: String?
+    /// A determiner.
     public private(set) var determiner: String?
+    /// A locale.
     public private(set) var locale: String?
+    /// An images.
     public private(set) var images: [OGImageResponse]?
+    /// A videos.
     public private(set) var videos: [OGVideoResponse]?
+    /// An audios.
     public private(set) var audios: [OGAudioResponse]?
 }
 
+/// An Open Graph image response.
 public struct OGImageResponse: Codable {
     private enum CodingKeys: String, CodingKey {
         case image
@@ -92,6 +106,7 @@ public struct OGImageResponse: Codable {
     public private(set) var alt: String?
 }
 
+/// An Open Graph video response.
 public struct OGVideoResponse: Codable {
     private enum CodingKeys: String, CodingKey {
         case image
@@ -136,6 +151,7 @@ public struct OGVideoResponse: Codable {
     }
 }
 
+/// An Open Graph audio response.
 public struct OGAudioResponse: Codable {
     private enum CodingKeys: String, CodingKey {
         case audio
@@ -150,6 +166,7 @@ public struct OGAudioResponse: Codable {
     public private(set) var type: String?
 }
 
+/// An enum of string or int types.
 public enum StringOrInt: Codable {
     case string(_ value: String)
     case int(_ value: Int)

@@ -10,6 +10,7 @@ import Foundation
 import Moya
 import Result
 
+/// An aggregated group completion block.
 public typealias GroupCompletion<T: ActivityProtocol, G: Group<T>> = (_ result: Result<Response<G>, ClientError>) -> Void
 
 // MARK: - Result Group Parsing

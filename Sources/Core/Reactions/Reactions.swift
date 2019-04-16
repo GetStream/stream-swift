@@ -8,11 +8,13 @@
 
 import Foundation
 
+/// A reactions error.
 public enum ReactionsError: Error {
     case reactionsHaveNoActivity
     case enrichingActivityError(_ error: EnrichingActivityError)
 }
 
+/// A reactions type.
 public struct Reactions<T: ReactionExtraDataProtocol, U: UserProtocol>: Decodable {
     private enum CodingKeys: String, CodingKey {
         case reactions = "results"
@@ -23,7 +25,9 @@ public struct Reactions<T: ReactionExtraDataProtocol, U: UserProtocol>: Decodabl
         case activity
     }
     
+    /// A list of reactions.
     public let reactions: [Reaction<T, U>]
+    /// A pagination option for the next page.
     public private(set) var next: Pagination?
     private var activityContainer: KeyedDecodingContainer<Reactions<T, U>.ActivityCodingKeys>?
     

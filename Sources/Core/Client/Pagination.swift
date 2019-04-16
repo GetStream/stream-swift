@@ -8,7 +8,9 @@
 
 import Foundation
 
+/// Pagination options.
 public enum Pagination: Decodable {
+    /// The default value for the pagination limit is 25.
     public static let defaultLimit = 25
     
     /// Default limit is 25. (Defined in `FeedPagination.defaultLimit`)

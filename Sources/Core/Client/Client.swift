@@ -24,7 +24,9 @@ public final class Client {
     
     private let networkProvider: NetworkProvider
     
+    /// The current user id from the Token.
     public private(set) var currentUserId: String?
+    /// The current user.
     public var currentUser: UserProtocol?
     
     /// A configuration to initialize the shared Client.
@@ -46,6 +48,7 @@ public final class Client {
                                       callbackQueue: Client.config.callbackQueue,
                                       logsEnabled: Client.config.logsEnabled)
     
+    /// Checks if Stream keys are valid.
     public var isValid: Bool {
         return !apiKey.isEmpty && !appId.isEmpty && token.isValid
     }
@@ -234,6 +237,7 @@ extension Client {
 // MARK: - Config
 
 extension Client {
+    /// A configuration for the shared Stream `Client`.
     public struct Config {
         let apiKey: String
         let appId: String
@@ -242,6 +246,15 @@ extension Client {
         let callbackQueue: DispatchQueue
         let logsEnabled: Bool
         
+        /// Setup a configuration for the shared Stream `Client`.
+        ///
+        /// - Parameters:
+        ///     - apiKey: the Stream API key
+        ///     - appId: the Stream APP id
+        ///     - token: the client token
+        ///     - baseURL: the client URL
+        ///     - callbackQueue: a callback queue for completion requests.
+        ///     - logsEnabled: if enabled the client will show logs for requests.
         public init(apiKey: String,
                     appId: String,
                     token: Token,
@@ -255,37 +268,5 @@ extension Client {
             self.callbackQueue = callbackQueue
             self.logsEnabled = logsEnabled
         }
-    }
-}
-
-// MARK: - Rate Limit
-
-extension Client {
-    public struct RateLimit {
-        public let limit: Int
-        public let remaining: Int
-        public let resetDate: Date
-        
-        init?(response: Moya.Response) {
-            guard let headers = response.response?.allHeaderFields as? [String : Any],
-                let limitString = headers["x-ratelimit-limit"] as? String,
-                let limit = Int(limitString),
-                let remainingString = headers["x-ratelimit-remaining"] as? String,
-                let remaining = Int(remainingString),
-                let resetString = headers["x-ratelimit-reset"] as? String,
-                let resetTimeInterval = TimeInterval(resetString) else {
-                    return nil
-            }
-            
-            self.limit = limit
-            self.remaining = remaining
-            resetDate = Date(timeIntervalSince1970: resetTimeInterval)
-        }
-    }
-}
-
-extension Client.RateLimit: CustomStringConvertible {
-    public var description: String {
-        return "Limit rate: \(remaining)/\(limit). Reset at \(resetDate)"
     }
 }

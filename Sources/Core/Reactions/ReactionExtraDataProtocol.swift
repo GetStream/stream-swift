@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A reaction extra data protocol.
 public typealias ReactionExtraDataProtocol = Codable
 
 // MARK: - Empty reaction extra data
