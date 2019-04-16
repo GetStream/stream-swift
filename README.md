@@ -48,32 +48,37 @@ Then run `carthage update`.
 // Setup a shared Stream client.
 Client.config = .init(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#>")
 
-// Create Chris's user feed.
-let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
+// Setup a Stream current user with the userId from the Token.
+Client.shared.createCurrentUser() { _ in 
+    // Do all your requests from here. Reload feeds and etc.
+}
+
+// Create a user feed.
+let userFeed = Client.shared.flatFeed(feedSlug: "user")
 
 // Create an Activity. You can make own Activity class or struct with custom properties.
-let activity = Activity(actor: "chris", verb: "add", object: "picture:10", foreignId: "picture:10")
+let activity = Activity(actor: User.current!, verb: "add", object: "picture:10", foreignId: "picture:10")
 
-chrisFeed.add(activity) { result in
+userFeed?.add(activity) { result in
     // A result of the adding of the activity.
     print(result)
 }
 
-// Create a following relationship between Jack's "timeline" feed and Chris' "user" feed:
-let jackFeed = Client.shared.flatFeed(feedSlug: "timeline", userId: "jack")
+// Create a following relationship between "timeline" feed and "user" feed:
+let timelineFeed = Client.shared.flatFeed(feedSlug: "timeline")
 
-jackFeed.follow(toTarget: chrisFeed.feedId, activityCopyLimit: 1) { result in
+timelineFeed?.follow(toTarget: userFeed!.feedId, activityCopyLimit: 1) { result in
     print(result)
 }
 
-// Read Jack's timeline and Chris' post appears in the feed:
-jackFeed.get(typeOf: Activity.self, pagination: .limit(10)) { result in
+// Read timeline and user's post appears in the feed:
+timelineFeed?.get(pagination: .limit(10)) { result in
     let response = try! result.get()
     print(response.results)
 }
 
 // Remove an activity by referencing it's foreignId
-chrisFeed.remove(foreignId: "picture:10") { result in
+userFeed?.remove(foreignId: "picture:10") { result in
     print(result)
 }
 ```
