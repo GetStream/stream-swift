@@ -2,58 +2,9 @@
   "warnings": [
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": null,
-      "symbol": "EnrichedActivity",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": 11,
+      "line": 9,
       "symbol": "Activity",
       "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": 13,
-      "symbol": "EnrichedActivity",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": 118,
-      "symbol": "EnrichingActivityError",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": 126,
-      "symbol": "EnrichingActivityError.id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": 127,
-      "symbol": "EnrichingActivityError.error",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": 128,
-      "symbol": "EnrichingActivityError.referenceId",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": 129,
-      "symbol": "EnrichingActivityError.referenceType",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -71,13 +22,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/ActivityProtocol.swift",
-      "line": 19,
-      "symbol": "ActivityProtocol.TargetType",
-      "symbol_kind": "source.lang.swift.decl.associatedtype",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Client+Activity.swift",
       "line": 12,
       "symbol": "ActivityCompletion",
@@ -89,6 +33,55 @@
       "line": 13,
       "symbol": "ActivitiesCompletion",
       "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
+      "line": null,
+      "symbol": "EnrichedActivity",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
+      "line": 11,
+      "symbol": "EnrichedActivity",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
+      "line": 108,
+      "symbol": "EnrichingActivityError",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
+      "line": 116,
+      "symbol": "EnrichingActivityError.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
+      "line": 117,
+      "symbol": "EnrichingActivityError.error",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
+      "line": 118,
+      "symbol": "EnrichingActivityError.referenceId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
+      "line": 119,
+      "symbol": "EnrichingActivityError.referenceType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -723,7 +716,28 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
-      "line": 97,
+      "line": 93,
+      "symbol": "FeedId.user",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 94,
+      "symbol": "FeedId.timeline",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 95,
+      "symbol": "FeedId.notification",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 105,
       "symbol": "FeedIds",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
@@ -1423,13 +1437,6 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
-      "line": null,
-      "symbol": "Reactionable",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
       "line": 11,
       "symbol": "Reactionable",
       "symbol_kind": "source.lang.swift.decl.protocol",
@@ -1580,6 +1587,13 @@
       "line": 33,
       "symbol": "User.init(id:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/UserProtocol.swift",
+      "line": 97,
+      "symbol": "UserProtocol.current",
+      "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
