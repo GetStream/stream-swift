@@ -108,7 +108,7 @@ class ReactionTests: TestCase {
         client.reactions(forActivityId: "ce918867-0520-11e9-a11e-0a286b200b2e", withActivityData: true) {
             let reactions = try! $0.get()
             XCTAssertEqual(reactions.reactions.count, 3)
-            XCTAssertNotNil(try? reactions.activity(typeOf: Activity.self))
+            XCTAssertNotNil(try? reactions.activity(typeOf: SimpleActivity.self))
         }
     }
 }

@@ -14,7 +14,7 @@ class NotificationFeedTests: TestCase {
 
     func testNotioficationsFeed() {
         expect("get notifications") { test in
-            notificationsFeed?.get(completion: { result in
+            notificationsFeed?.get(typeOf: SimpleActivity.self) { result in
                 let notifications = try! result.get()
                 
                 XCTAssertEqual(notifications.results.count, 1)
@@ -27,7 +27,7 @@ class NotificationFeedTests: TestCase {
                 XCTAssertEqual(notifications.results.first!.activities.first!.verb, "test")
                 
                 test.fulfill()
-            })
+            }
         }
     }
 }

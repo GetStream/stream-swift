@@ -45,11 +45,25 @@ extension FeedActivityEndpoint: StreamTargetType {
                 return "{\"exception\": 0}"
             }
             
+            if activity.actor is String, activity.object is String {
+                return """
+                {"actor":"\((activity.actor as! Enrichable).referenceId)",
+                "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
+                "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
+                "object":"\((activity.object as! Enrichable).referenceId)",
+                "origin":null,
+                "target":"",
+                "time":"2018-11-14T15:54:45.268000",
+                "to":["timeline:jessica"],
+                "verb":"\(activity.verb)"}
+                """
+            }
+            
             return """
-            {"actor":"\((activity.actor as! Enrichable).referenceId)",
+            {"actor":{"id":"eric","data":{"name":"Eric"},"updated_at":"2019-04-15T17:55:53.425","created_at":"2019-04-15T17:55:53.425"},
             "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
             "id":"9b5b3540-e825-11e8-8080-800016ff21e4",
-            "object":"\((activity.object as! Enrichable).referenceId)",
+            "object":{"id":"burger","collection":"food","foreign_id":"food:burger", "data":{"name":"Burger"},"updated_at":"2019-04-15T17:55:53.425","created_at":"2019-04-15T17:55:53.425"},
             "origin":null,
             "target":"",
             "time":"2018-11-14T15:54:45.268000",

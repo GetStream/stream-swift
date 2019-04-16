@@ -68,9 +68,9 @@ extension Feed {
             }
             
             /// Parse the response with the default `Activity` and populate the given activity with `id` and `time` properties.
-            let activityCompletion: ActivityCompletion<Activity> = {
+            let activityCompletion: ActivityCompletion<T> = { (result: Result<T, ClientError>) in
                 do {
-                    let addedActivity = try $0.get()
+                    let addedActivity = try result.get()
                     var activity = activity
                     activity.id = addedActivity.id
                     
@@ -80,7 +80,7 @@ extension Feed {
                     
                     self.callbackQueue.async { completion(.success(activity)) }
                 } catch {
-                    self.callbackQueue.async { completion(.failure(.unexpectedError)) }
+                    self.callbackQueue.async { completion(.failure(.unexpectedError(error))) }
                 }
             }
             

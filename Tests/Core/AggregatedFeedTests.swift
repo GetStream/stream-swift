@@ -17,7 +17,7 @@ class AggregatedFeedTests: TestCase {
         XCTAssertEqual(aggregated!.feedId, client.aggregatedFeed(feedSlug: "aggregated", userId: "eric").feedId)
         
         expect("get aggregated") { test in
-            aggregated!.get { result in
+            aggregated!.get(typeOf: SimpleActivity.self) { result in
                 let groups = try! result.get()
                 XCTAssertEqual(groups.results.count, 2)
                 XCTAssertEqual(groups.results.first!.verb, "verb")

@@ -6,4 +6,4 @@
 //  Copyright © 2019 Stream.io Inc. All rights reserved.
 //
 
-public typealias Activity = EnrichedActivity<String, String, DefaultReaction>
+public typealias Activity = EnrichedActivity<User, String, DefaultReaction>

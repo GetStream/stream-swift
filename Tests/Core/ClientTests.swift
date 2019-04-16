@@ -10,6 +10,8 @@ import XCTest
 import Moya
 @testable import GetStream
 
+typealias SimpleActivity = EnrichedActivity<String, String, DefaultReaction>
+
 final class ClientTests: TestCase {
     
     let feedId = FeedId(feedSlug: "test", userId: "123")
@@ -52,7 +54,7 @@ final class ClientTests: TestCase {
     
     func testFeedEndpointAddActivity() {
         expect("add activity to the feed") { test in
-            let activity = Activity(actor: "tester", verb: "test", object: "add activity")
+            let activity = SimpleActivity(actor: "tester", verb: "test", object: "add activity")
             
             client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
                 if case .success(let response) = result,
@@ -67,13 +69,13 @@ final class ClientTests: TestCase {
     }
     
     func testActivityBaseURL() {
-        let endpoint = ActivityEndpoint<Activity>.getByIds([.test1])
+        let endpoint = ActivityEndpoint<SimpleActivity>.getByIds([.test1])
         XCTAssertEqual(endpoint.baseURL, BaseURL.placeholderURL)
     }
     
     func testClientActivityGetByIds() {
         expect("get an activity by id") { test in
-            client.get(typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
+            client.get(typeOf: SimpleActivity.self, activityIds: [.test1, .test2]) { result in
                 if case .success(let response) = result {
                     XCTAssertEqual(response.results.count, 2)
                     XCTAssertEqual(response.results[0].id, .test1)
@@ -89,7 +91,7 @@ final class ClientTests: TestCase {
             let foreignIds = ["f1", "f2"]
             let times = [Date(timeIntervalSinceNow: -10), Date(timeIntervalSinceNow: -20)]
             
-            client.get(typeOf: Activity.self, foreignIds: foreignIds, times: times) { result in
+            client.get(typeOf: SimpleActivity.self, foreignIds: foreignIds, times: times) { result in
                 if case .success(let response) = result {
                     XCTAssertEqual(response.results.count, 2)
                     XCTAssertEqual(response.results[0].foreignId!, foreignIds[0])
@@ -104,7 +106,7 @@ final class ClientTests: TestCase {
     
     func testClientActivitiesUpdate() {
         expect("activities updated") { test in
-            let activity = Activity(actor: "tester", verb: "update", object: "activities")
+            let activity = SimpleActivity(actor: "tester", verb: "update", object: "activities")
             
             client.update(activities: [activity]) { result in
                 if case .success(let statusCode) = result {
@@ -117,7 +119,7 @@ final class ClientTests: TestCase {
     
     func testClientActivityUpdateById() {
         expect("an activity updated by id") { test in
-            client.updateActivity(typeOf: Activity.self,
+            client.updateActivity(typeOf: SimpleActivity.self,
                                   setProperties: ["object": "updated"],
                                   unsetPropertiesNames: ["image"],
                                   activityId: .test1) { result in
@@ -133,7 +135,7 @@ final class ClientTests: TestCase {
     func testClientActivityUpdateByForeignId() {
         expect("an activity updated by foreignId") { test in
             let time = Date()
-            client.updateActivity(typeOf: Activity.self,
+            client.updateActivity(typeOf: SimpleActivity.self,
                                   setProperties: ["object": "updated"],
                                   unsetPropertiesNames: ["image"],
                                   foreignId: "f1",
@@ -162,7 +164,7 @@ final class ClientTests: TestCase {
     
     func failRequests(clientError: ClientError) {
         expect(clientError.localizedDescription) { test in
-            let activity = Activity(actor: clientError.localizedDescription, verb: "", object: "")
+            let activity = SimpleActivity(actor: clientError.localizedDescription, verb: "", object: "")
             
             client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
                 if case .failure(let error) = result {
@@ -267,11 +269,11 @@ final class ClientTests: TestCase {
         
         ClientError.warning(for: [], missedParameter: "test")
         
-        let unknownError = ClientError.unexpectedError
-        XCTAssertEqual(unknownError.localizedDescription, "Unexpected behaviour")
+        let unknownError = ClientError.unexpectedError(nil)
+        XCTAssertEqual(unknownError.localizedDescription, "Unexpected behaviour: <NoError>")
         
         XCTAssertEqual(ClientError.unknownError(unknownError.localizedDescription, unknownError).localizedDescription,
-                       "Unexpected behaviour with error: Unexpected behaviour")
+                       "Unexpected behaviour with error: Unexpected behaviour: <NoError>")
         
         XCTAssertEqual(ClientError.jsonEncode("test", nil).localizedDescription, "JSON encoding error: test")
         

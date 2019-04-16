@@ -59,7 +59,7 @@ final class ExtensionsTests: XCTestCase {
     // MARK: - Codable
     
     func testCodable() throws {
-        let activity = try decoder.decode(Activity.self, from: defaultData)
+        let activity = try decoder.decode(SimpleActivity.self, from: defaultData)
         XCTAssertEqual(activity.actor, "eric")
         XCTAssertEqual(activity.time!, "2018-11-14T15:54:45.268000".streamDate!)
         let encodedData = try encoder.encode(activity)
@@ -68,7 +68,7 @@ final class ExtensionsTests: XCTestCase {
     
     func testCodableInvalidData() {
         do {
-            _ = try decoder.decode(Activity.self, from: badDefaultData)
+            _ = try decoder.decode(SimpleActivity.self, from: badDefaultData)
             XCTFail("❌ Empty json data check")
             
         } catch let error as DecodingError {
@@ -95,7 +95,7 @@ final class ExtensionsTests: XCTestCase {
     // MARK: - Test Date Formatter
     
     func testISO8601Codable() throws {
-        let activity = try decoder.decode(Activity.self, from: iso8601Data)
+        let activity = try decoder.decode(SimpleActivity.self, from: iso8601Data)
         XCTAssertEqual(activity.actor, "eric")
         XCTAssertEqual(activity.time!, "2018-11-14T15:54:45.268000".streamDate!)
     }

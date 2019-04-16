@@ -9,7 +9,7 @@
 import Foundation
 
 public enum ClientError: Error {
-    case unexpectedError
+    case unexpectedError(_ error: Error?)
     case unexpectedResponse(_ description: String)
     case unknownError(_ localizedDescription: String, _ error: Error?)
     case parameterInvalid(_ name: AnyKeyPath)
@@ -21,8 +21,8 @@ public enum ClientError: Error {
     
     public var localizedDescription: String {
         switch self {
-        case .unexpectedError:
-            return "Unexpected behaviour"
+        case .unexpectedError(let error):
+            return "Unexpected behaviour: \(error?.localizedDescription ?? "<NoError>")"
         case .unexpectedResponse:
             return "Unexpected response"
         case .unknownError(let localizedDescription, _):

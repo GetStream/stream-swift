@@ -34,7 +34,7 @@ final class FeedTests: TestCase {
     func testFeedAdd() {
         expect("an activity") { test in
             let feed = client.flatFeed(feedSlug: "s", userId: "u")
-            let activity = Activity(actor: "tester", verb: "add", object: "activity")
+            let activity = SimpleActivity(actor: "tester", verb: "add", object: "activity")
             
             feed.add(activity) { result in
                 if case .success(let resultActivity) = result {
@@ -78,7 +78,7 @@ final class FeedTests: TestCase {
         expect("activities") { test in
             let feed = client.flatFeed(feedSlug: "s", userId: "u")
             
-            feed.get(pagination: .limit(1), ranking: "popularity") { result in
+            feed.get(typeOf: SimpleActivity.self, pagination: .limit(1), ranking: "popularity") { result in
                 if case .success(let response) = result, response.results.count == 1 {
                     test.fulfill()
                 }
