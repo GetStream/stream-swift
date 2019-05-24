@@ -13,7 +13,7 @@ let package = Package(
         .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "12.0.0")),
         .package(url: "https://github.com/antitypical/Result.git", .upToNextMajor(from: "4.1.0")),
         .package(url: "https://github.com/daltoniam/Starscream.git", .upToNextMajor(from: "3.0.0")),
-        .package(url: "https://github.com/sendyhalim/Swime", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/sendyhalim/Swime", .upToNextMajor(from: "3.0.6")),
     ],
     targets: [
     .target(name: "GetStream", dependencies: ["Moya", "Faye", "Swime", "Result"], path: "Sources", exclude: ["Token"]),

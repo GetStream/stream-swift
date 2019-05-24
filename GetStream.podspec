@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
     ss.dependency "Moya", "12.0.1"
     ss.dependency "Alamofire", "4.8.1"
     ss.dependency "Result", "4.1"
-    ss.dependency "Swime", "3.0.1"
+    ss.dependency "Swime", "3.0.6"
   end
   
   s.subspec "Faye" do |ss|
