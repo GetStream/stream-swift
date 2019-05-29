@@ -42,16 +42,14 @@ github "GetStream/stream-swift"
 ```
 Then run `carthage update`.
 
-Then drag the built `.framework` binaries from `Carthage/Build/<platform>` into your application’s Xcode project.
-```
-GetStream.framework
-Faye.framework
-Alamofire.framework
-Moya.framework or RxMoya.framework or ReactiveMoya.framework
-Starscream.framework
-Swime.framework
-Result.framework
-```
+Then drag the built `.framework` binaries from `Carthage/Build/<platform>` into your application’s Xcode project:
+- GetStream.framework
+- Faye.framework
+- Alamofire.framework
+- Moya.framework
+- Starscream.framework
+- Swime.framework
+- Result.framework
 
 ## Quick start
 
