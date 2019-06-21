@@ -69,15 +69,30 @@ final class ClientTests: TestCase {
     }
     
     func testActivityBaseURL() {
-        let endpoint = ActivityEndpoint<SimpleActivity>.getByIds([.test1])
+        let endpoint = ActivityEndpoint<SimpleActivity>.getByIds(true, [.test1])
         XCTAssertEqual(endpoint.baseURL, BaseURL.placeholderURL)
     }
     
     func testClientActivityGetByIds() {
-        expect("get an activity by id") { test in
-            client.get(typeOf: SimpleActivity.self, activityIds: [.test1, .test2]) { result in
+        expect("get an enriched activity by id") { test in
+            client.get(enrich: true, typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
                 if case .success(let response) = result {
                     XCTAssertEqual(response.results.count, 2)
+                    XCTAssertEqual(response.results[0].actor.id, "eric")
+                    XCTAssertEqual(response.results[0].id, .test1)
+                    XCTAssertEqual(response.results[1].id, .test2)
+                    test.fulfill()
+                }
+            }
+        }
+    }
+    
+    func testClientSimpleActivityGetByIds() {
+        expect("get an activity by id") { test in
+            client.get(enrich: false, typeOf: SimpleActivity.self, activityIds: [.test1, .test2]) { result in
+                if case .success(let response) = result {
+                    XCTAssertEqual(response.results.count, 2)
+                    XCTAssertEqual(response.results[0].actor, "eric")
                     XCTAssertEqual(response.results[0].id, .test1)
                     XCTAssertEqual(response.results[1].id, .test2)
                     test.fulfill()

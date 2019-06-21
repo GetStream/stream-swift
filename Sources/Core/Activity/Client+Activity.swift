@@ -22,10 +22,11 @@ extension Client {
     ///
     /// - Note: A maximum length of list of activityIds is 100.
     @discardableResult
-    public func get<T: ActivityProtocol>(typeOf type: T.Type,
+    public func get<T: ActivityProtocol>(enrich: Bool = true,
+                                         typeOf type: T.Type,
                                          activityIds: [String],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return request(endpoint: ActivityEndpoint<T>.getByIds(activityIds)) { [weak self] result in
+        return request(endpoint: ActivityEndpoint<T>.getByIds(enrich, activityIds)) { [weak self] result in
             if let self = self {
                 result.parse(self.callbackQueue, completion)
             }
@@ -36,11 +37,12 @@ extension Client {
     ///
     /// - Note: A maximum length of list of foreignIds and times is 100.
     @discardableResult
-    public func get<T: ActivityProtocol>(typeOf type: T.Type,
+    public func get<T: ActivityProtocol>(enrich: Bool = true,
+                                         typeOf type: T.Type,
                                          foreignIds: [String],
                                          times: [Date],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return request(endpoint: ActivityEndpoint<T>.get(foreignIds: foreignIds, times: times)) { [weak self] result in
+        return request(endpoint: ActivityEndpoint<T>.get(enrich, foreignIds: foreignIds, times: times)) { [weak self] result in
             if let self = self {
                 result.parse(self.callbackQueue, completion)
             }

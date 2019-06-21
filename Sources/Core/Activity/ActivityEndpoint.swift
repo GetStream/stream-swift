@@ -16,8 +16,8 @@ import Moya
 public typealias Properties = [String: Encodable]
 
 enum ActivityEndpoint<T: ActivityProtocol> {
-    case getByIds(_ activitiesIds: [String])
-    case get(foreignIds: [String], times: [Date])
+    case getByIds(_ enrich: Bool, _ activitiesIds: [String])
+    case get(_ enrich: Bool, foreignIds: [String], times: [Date])
     case update(_ activities: [T])
     case updateActivityById(setProperties: Properties?, unsetPropertiesNames: [String]?, activityId: String)
     case updateActivity(setProperties: Properties?, unsetPropertiesNames: [String]?, foreignId: String, time: Date)
@@ -27,9 +27,10 @@ extension ActivityEndpoint: StreamTargetType {
     
     var path: String {
         switch self {
-        case .getByIds, .get, .update:
+        case .getByIds(let enrich, _), .get(let enrich, _, _):
+            return "\(enrich ? "enrich/" : "")activities/"
+        case .update:
             return "activities/"
-            
         case .updateActivityById, .updateActivity:
             return "activity/"
         }
@@ -47,11 +48,11 @@ extension ActivityEndpoint: StreamTargetType {
     
     var task: Task {
         switch self {
-        case .getByIds(let ids):
+        case .getByIds(_, let ids):
             let ids = ids.map { $0 }.joined(separator: ",")
             return .requestParameters(parameters: ["ids" : ids], encoding: URLEncoding.default)
             
-        case let .get(foreignIds: foreignIds, times: times):
+        case let .get(_, foreignIds: foreignIds, times: times):
             return .requestParameters(parameters: idParameters(with: foreignIds, times: times), encoding: URLEncoding.default)
             
         case .update(let activities):
@@ -71,11 +72,15 @@ extension ActivityEndpoint: StreamTargetType {
     
     var sampleJSON: String {
         switch self {
-        case .getByIds(let activitiesIds):
+        case let .getByIds(enrich, activitiesIds):
+            let actorJSON = enrich
+                ? "{\"id\":\"eric\",\"data\":{\"name\":\"Eric\"},\"updated_at\":\"2019-04-15T17:55:53.425\",\"created_at\":\"2019-04-15T17:55:53.425\"}"
+                : "\"eric\""
+            
             if activitiesIds.count == 2 {
                 return """
                 {"results":[
-                {"actor":"eric",
+                {"actor":\(actorJSON),
                 "foreign_id":"1E42DEB6-7C2F-4DA9-B6E6-0C6E5CC9815D",
                 "id":"\(activitiesIds[0])",
                 "object":"Hello world 3",
@@ -84,7 +89,7 @@ extension ActivityEndpoint: StreamTargetType {
                 "time":"2018-11-14T15:54:45.268000",
                 "to":["timeline:jessica"],
                 "verb":"tweet"},
-                {"actor":"eric",
+                {"actor":\(actorJSON),
                 "foreign_id":"1C2C6DAD-5FBD-4DA6-BD37-BDB67E2CD1D6",
                 "id":"\(activitiesIds[1])",
                 "object":"Hello world 2",
@@ -96,7 +101,7 @@ extension ActivityEndpoint: StreamTargetType {
                 "duration":"15.73ms"}
                 """
             }
-        case let .get(foreignIds, times):
+        case let .get(_, foreignIds, times):
             if foreignIds.count == 2 {
                 return """
                 {"results":[
