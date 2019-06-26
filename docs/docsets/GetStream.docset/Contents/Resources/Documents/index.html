@@ -372,32 +372,37 @@
 <pre class="highlight swift"><code><span class="c1">// Setup a shared Stream client.</span>
 <span class="kt">Client</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">apiKey</span><span class="p">:</span> <span class="s">"&lt;#ApiKey#&gt;"</span><span class="p">,</span> <span class="nv">appId</span><span class="p">:</span> <span class="s">"&lt;#AppId#&gt;"</span><span class="p">,</span> <span class="nv">token</span><span class="p">:</span> <span class="s">"&lt;#Token#&gt;"</span><span class="p">)</span>
 
-<span class="c1">// Create Chris's user feed.</span>
-<span class="k">let</span> <span class="nv">chrisFeed</span> <span class="o">=</span> <span class="kt">Client</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"chris"</span><span class="p">)</span>
+<span class="c1">// Setup a Stream current user with the userId from the Token.</span>
+<span class="kt">Client</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">createCurrentUser</span><span class="p">()</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> 
+    <span class="c1">// Do all your requests from here. Reload feeds and etc.</span>
+<span class="p">}</span>
+
+<span class="c1">// Create a user feed.</span>
+<span class="k">let</span> <span class="nv">userFeed</span> <span class="o">=</span> <span class="kt">Client</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"user"</span><span class="p">)</span>
 
 <span class="c1">// Create an Activity. You can make own Activity class or struct with custom properties.</span>
-<span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">Activity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="s">"chris"</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"add"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"picture:10"</span><span class="p">,</span> <span class="nv">foreignId</span><span class="p">:</span> <span class="s">"picture:10"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">activity</span> <span class="o">=</span> <span class="kt">Activity</span><span class="p">(</span><span class="nv">actor</span><span class="p">:</span> <span class="kt">User</span><span class="o">.</span><span class="n">current</span><span class="o">!</span><span class="p">,</span> <span class="nv">verb</span><span class="p">:</span> <span class="s">"add"</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="s">"picture:10"</span><span class="p">,</span> <span class="nv">foreignId</span><span class="p">:</span> <span class="s">"picture:10"</span><span class="p">)</span>
 
-<span class="n">chrisFeed</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="n">userFeed</span><span class="p">?</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="c1">// A result of the adding of the activity.</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="c1">// Create a following relationship between Jack's "timeline" feed and Chris' "user" feed:</span>
-<span class="k">let</span> <span class="nv">jackFeed</span> <span class="o">=</span> <span class="kt">Client</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">,</span> <span class="nv">userId</span><span class="p">:</span> <span class="s">"jack"</span><span class="p">)</span>
+<span class="c1">// Create a following relationship between "timeline" feed and "user" feed:</span>
+<span class="k">let</span> <span class="nv">timelineFeed</span> <span class="o">=</span> <span class="kt">Client</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">flatFeed</span><span class="p">(</span><span class="nv">feedSlug</span><span class="p">:</span> <span class="s">"timeline"</span><span class="p">)</span>
 
-<span class="n">jackFeed</span><span class="o">.</span><span class="nf">follow</span><span class="p">(</span><span class="nv">toTarget</span><span class="p">:</span> <span class="n">chrisFeed</span><span class="o">.</span><span class="n">feedId</span><span class="p">,</span> <span class="nv">activityCopyLimit</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="n">timelineFeed</span><span class="p">?</span><span class="o">.</span><span class="nf">follow</span><span class="p">(</span><span class="nv">toTarget</span><span class="p">:</span> <span class="n">userFeed</span><span class="o">!.</span><span class="n">feedId</span><span class="p">,</span> <span class="nv">activityCopyLimit</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="c1">// Read Jack's timeline and Chris' post appears in the feed:</span>
-<span class="n">jackFeed</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">typeOf</span><span class="p">:</span> <span class="kt">Activity</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="c1">// Read timeline and user's post appears in the feed:</span>
+<span class="n">timelineFeed</span><span class="p">?</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="nv">pagination</span><span class="p">:</span> <span class="o">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">let</span> <span class="nv">response</span> <span class="o">=</span> <span class="k">try!</span> <span class="n">result</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1">// Remove an activity by referencing it's foreignId</span>
-<span class="n">chrisFeed</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">foreignId</span><span class="p">:</span> <span class="s">"picture:10"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="n">userFeed</span><span class="p">?</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">foreignId</span><span class="p">:</span> <span class="s">"picture:10"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
@@ -417,7 +422,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2019-04-16)</p>
+          <p>&copy; 2019 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2019-06-26)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

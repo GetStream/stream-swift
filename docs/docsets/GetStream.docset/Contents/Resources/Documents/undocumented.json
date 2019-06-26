@@ -1,10 +1,17 @@
 {
   "warnings": [
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Activity.swift",
-      "line": 9,
-      "symbol": "Activity",
-      "symbol_kind": "source.lang.swift.decl.typealias",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/ActivityProtocol.swift",
+      "line": 17,
+      "symbol": "ActivityProtocol.ActorType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/ActivityProtocol.swift",
+      "line": 17,
+      "symbol": "ActivityProtocol.ActorType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
@@ -22,234 +29,178 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Client+Activity.swift",
-      "line": 12,
-      "symbol": "ActivityCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/ActivityProtocol.swift",
+      "line": 18,
+      "symbol": "ActivityProtocol.ObjectType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/Client+Activity.swift",
-      "line": 13,
-      "symbol": "ActivitiesCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
-      "line": null,
-      "symbol": "EnrichedActivity",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
-      "line": 11,
-      "symbol": "EnrichedActivity",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
-      "line": 108,
-      "symbol": "EnrichingActivityError",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
-      "line": 116,
-      "symbol": "EnrichingActivityError.id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
-      "line": 117,
-      "symbol": "EnrichingActivityError.error",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
-      "line": 118,
-      "symbol": "EnrichingActivityError.referenceId",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/EnrichedActivity.swift",
-      "line": 119,
-      "symbol": "EnrichingActivityError.referenceType",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Activity/ActivityProtocol.swift",
+      "line": 18,
+      "symbol": "ActivityProtocol.ObjectType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": null,
-      "symbol": "BaseURL",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": null,
-      "symbol": "BaseURL",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 11,
-      "symbol": "BaseURL",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 16,
-      "symbol": "BaseURL.init(location:service:version:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 20,
-      "symbol": "BaseURL.init(customURL:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 30,
-      "symbol": "BaseURL.Service",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 31,
+      "line": 40,
       "symbol": "BaseURL.Service.api",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 32,
-      "symbol": "BaseURL.Service.personalization",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 33,
-      "symbol": "BaseURL.Service.analytics",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 36,
-      "symbol": "BaseURL.Location",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 37,
-      "symbol": "BaseURL.Location.default",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 38,
-      "symbol": "BaseURL.Location.usEast",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
-      "line": 39,
-      "symbol": "BaseURL.Location.europeWest",
+      "line": 40,
+      "symbol": "BaseURL.Service.api",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
       "line": 40,
+      "symbol": "BaseURL.Service.api",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 41,
+      "symbol": "BaseURL.Service.personalization",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 41,
+      "symbol": "BaseURL.Service.personalization",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 41,
+      "symbol": "BaseURL.Service.personalization",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 42,
+      "symbol": "BaseURL.Service.analytics",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 42,
+      "symbol": "BaseURL.Service.analytics",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 42,
+      "symbol": "BaseURL.Service.analytics",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 47,
+      "symbol": "BaseURL.Location.default",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 47,
+      "symbol": "BaseURL.Location.default",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 47,
+      "symbol": "BaseURL.Location.default",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 48,
+      "symbol": "BaseURL.Location.usEast",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 48,
+      "symbol": "BaseURL.Location.usEast",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 48,
+      "symbol": "BaseURL.Location.usEast",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 49,
+      "symbol": "BaseURL.Location.europeWest",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 49,
+      "symbol": "BaseURL.Location.europeWest",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 49,
+      "symbol": "BaseURL.Location.europeWest",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 50,
       "symbol": "BaseURL.Location.singapore",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 50,
+      "symbol": "BaseURL.Location.singapore",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/BaseURL.swift",
+      "line": 50,
+      "symbol": "BaseURL.Location.singapore",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
       "line": null,
-      "symbol": "Client.RateLimit",
+      "symbol": "ClientError",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 27,
-      "symbol": "Client.currentUserId",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 28,
-      "symbol": "Client.currentUser",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 49,
-      "symbol": "Client.isValid",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 237,
-      "symbol": "Client.Config",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 245,
-      "symbol": "Client.Config.init(apiKey:appId:token:baseURL:callbackQueue:logsEnabled:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 264,
-      "symbol": "Client.RateLimit",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 265,
-      "symbol": "Client.RateLimit.limit",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 266,
-      "symbol": "Client.RateLimit.remaining",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 267,
-      "symbol": "Client.RateLimit.resetDate",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": null,
+      "symbol": "ClientError",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
@@ -268,8 +219,50 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 11,
+      "symbol": "ClientError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 11,
+      "symbol": "ClientError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
       "line": 12,
-      "symbol": "ClientError.unexpectedError",
+      "symbol": "ClientError.unexpectedError(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 12,
+      "symbol": "ClientError.unexpectedError(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 12,
+      "symbol": "ClientError.unexpectedError(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 13,
+      "symbol": "ClientError.unexpectedResponse(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 13,
+      "symbol": "ClientError.unexpectedResponse(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
@@ -289,8 +282,50 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 14,
+      "symbol": "ClientError.unknownError(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 14,
+      "symbol": "ClientError.unknownError(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
       "line": 15,
       "symbol": "ClientError.parameterInvalid(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 15,
+      "symbol": "ClientError.parameterInvalid(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 15,
+      "symbol": "ClientError.parameterInvalid(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 16,
+      "symbol": "ClientError.jsonInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 16,
+      "symbol": "ClientError.jsonInvalid",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
@@ -310,8 +345,50 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 17,
+      "symbol": "ClientError.jsonDecode(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 17,
+      "symbol": "ClientError.jsonDecode(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
       "line": 18,
       "symbol": "ClientError.jsonEncode(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 18,
+      "symbol": "ClientError.jsonEncode(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 18,
+      "symbol": "ClientError.jsonEncode(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 19,
+      "symbol": "ClientError.network(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
+      "line": 19,
+      "symbol": "ClientError.network(_:_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
@@ -331,100 +408,30 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
-      "line": 22,
-      "symbol": "ClientError.localizedDescription",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "line": 20,
+      "symbol": "ClientError.server(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/ClientError.swift",
-      "line": 53,
-      "symbol": "ClientError.Info",
-      "symbol_kind": "source.lang.swift.decl.struct",
+      "line": 20,
+      "symbol": "ClientError.server(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Pagination.swift",
-      "line": null,
-      "symbol": "Pagination",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Pagination.swift",
-      "line": 11,
-      "symbol": "Pagination",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 15,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Pagination.swift",
-      "line": 12,
-      "symbol": "Pagination.defaultLimit",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Response.swift",
-      "line": 11,
-      "symbol": "Response",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Response.swift",
-      "line": 20,
-      "symbol": "Response.results",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Response.swift",
-      "line": 21,
-      "symbol": "Response.next",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Response.swift",
-      "line": 22,
-      "symbol": "Response.duration",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Response.swift",
-      "line": 23,
-      "symbol": "Response.unseenCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Response.swift",
-      "line": 24,
-      "symbol": "Response.unreadCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Token.swift",
-      "line": null,
-      "symbol": "Token",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Client/Token.swift",
-      "line": 11,
-      "symbol": "Token",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/Client+Collection.swift",
-      "line": 12,
-      "symbol": "CollectionObjectCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 15,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys",
+      "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
@@ -438,6 +445,34 @@
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
       "line": 16,
       "symbol": "CollectionObject.CollectionObjectCodingKeys.collectionName",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 16,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.collectionName",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 16,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.collectionName",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 17,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.id",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 17,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.id",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
@@ -457,8 +492,50 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 18,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.created",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 18,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.created",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
       "line": 19,
       "symbol": "CollectionObject.CollectionObjectCodingKeys.updated",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 19,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.updated",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 19,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.updated",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 20,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.foreignId",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 20,
+      "symbol": "CollectionObject.CollectionObjectCodingKeys.foreignId",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
@@ -478,9 +555,51 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 23,
+      "symbol": "CollectionObject.DataCodingKeys",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 23,
+      "symbol": "CollectionObject.DataCodingKeys",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
       "line": 24,
       "symbol": "CollectionObject.DataCodingKeys.data",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 24,
+      "symbol": "CollectionObject.DataCodingKeys.data",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 24,
+      "symbol": "CollectionObject.DataCodingKeys.data",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 33,
+      "symbol": "CollectionObject.init(collectionName:id:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Collection/CollectionObject.swift",
+      "line": 33,
+      "symbol": "CollectionObject.init(collectionName:id:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -499,8 +618,50 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
+      "line": 12,
+      "symbol": "Bundle.StreamKey",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
+      "line": 12,
+      "symbol": "Bundle.StreamKey",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
       "line": 13,
       "symbol": "Bundle.StreamKey.streamAPIKey",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
+      "line": 13,
+      "symbol": "Bundle.StreamKey.streamAPIKey",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
+      "line": 13,
+      "symbol": "Bundle.StreamKey.streamAPIKey",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
+      "line": 14,
+      "symbol": "Bundle.StreamKey.streamAppId",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
+      "line": 14,
+      "symbol": "Bundle.StreamKey.streamAppId",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
@@ -520,175 +681,182 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 18,
-      "symbol": "Bundle.StreamClientSetup",
-      "symbol_kind": "source.lang.swift.decl.typealias",
+      "line": 15,
+      "symbol": "Bundle.StreamKey.streamToken",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
+      "line": 15,
+      "symbol": "Bundle.StreamKey.streamToken",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
-      "line": 14,
-      "symbol": "JSONDecoder.stream",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
-      "line": 40,
-      "symbol": "JSONEncoder.stream",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
-      "line": 70,
-      "symbol": "DateFormatter.Stream",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
-      "line": 71,
+      "line": 74,
       "symbol": "DateFormatter.Stream.default",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
-      "line": 81,
+      "line": 74,
+      "symbol": "DateFormatter.Stream.default",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
+      "line": 74,
+      "symbol": "DateFormatter.Stream.default",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
+      "line": 84,
       "symbol": "DateFormatter.Stream.iso8601Date(from:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
-      "line": 102,
-      "symbol": "Date.stream",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "line": 84,
+      "symbol": "DateFormatter.Stream.iso8601Date(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
-      "line": 110,
-      "symbol": "String.streamDate",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 11,
-      "symbol": "Group",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 23,
-      "symbol": "Group.id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 24,
-      "symbol": "Group.group",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 25,
-      "symbol": "Group.verb",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 26,
-      "symbol": "Group.activitiesCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 27,
-      "symbol": "Group.actorsCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 28,
-      "symbol": "Group.created",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 29,
-      "symbol": "Group.updated",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Group.swift",
-      "line": 30,
-      "symbol": "Group.activities",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Aggregated Feed/Result+ParseGroup.swift",
-      "line": 13,
-      "symbol": "GroupCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Feed.swift",
-      "line": 13,
-      "symbol": "FollowersCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
+      "line": 84,
+      "symbol": "DateFormatter.Stream.iso8601Date(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 249,
+      "line": 263,
       "symbol": "FeedMarkOption",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 250,
+      "line": 263,
+      "symbol": "FeedMarkOption",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 263,
+      "symbol": "FeedMarkOption",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 264,
       "symbol": "FeedMarkOption.none",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 251,
+      "line": 264,
+      "symbol": "FeedMarkOption.none",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 264,
+      "symbol": "FeedMarkOption.none",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 265,
       "symbol": "FeedMarkOption.seenAll",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 252,
+      "line": 265,
+      "symbol": "FeedMarkOption.seenAll",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 265,
+      "symbol": "FeedMarkOption.seenAll",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 266,
       "symbol": "FeedMarkOption.seen(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 253,
+      "line": 266,
+      "symbol": "FeedMarkOption.seen(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 266,
+      "symbol": "FeedMarkOption.seen(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 267,
       "symbol": "FeedMarkOption.readAll",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 254,
+      "line": 267,
+      "symbol": "FeedMarkOption.readAll",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 267,
+      "symbol": "FeedMarkOption.readAll",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 268,
+      "symbol": "FeedMarkOption.read(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 268,
+      "symbol": "FeedMarkOption.read(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
+      "line": 268,
       "symbol": "FeedMarkOption.read(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
@@ -697,6 +865,34 @@
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
       "line": 46,
       "symbol": "FeedId.init(feedSlug:userId:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 46,
+      "symbol": "FeedId.init(feedSlug:userId:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 46,
+      "symbol": "FeedId.init(feedSlug:userId:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 51,
+      "symbol": "FeedId.init(feedSlug:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 51,
+      "symbol": "FeedId.init(feedSlug:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -716,8 +912,50 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 92,
+      "symbol": "FeedId.any",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 92,
+      "symbol": "FeedId.any",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
       "line": 93,
       "symbol": "FeedId.user",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 93,
+      "symbol": "FeedId.user",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 93,
+      "symbol": "FeedId.user",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 94,
+      "symbol": "FeedId.timeline",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 94,
+      "symbol": "FeedId.timeline",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
@@ -737,128 +975,58 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 95,
+      "symbol": "FeedId.notification",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 95,
+      "symbol": "FeedId.notification",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
       "line": 105,
       "symbol": "FeedIds",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Following/Follower.swift",
-      "line": 20,
-      "symbol": "Follower.feedId",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 105,
+      "symbol": "FeedIds",
+      "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Following/Follower.swift",
-      "line": 21,
-      "symbol": "Follower.targetFeedId",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/FeedId.swift",
+      "line": 105,
+      "symbol": "FeedIds",
+      "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Following/Follower.swift",
-      "line": 22,
-      "symbol": "Follower.created",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Following/Follower.swift",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
       "line": 23,
-      "symbol": "Follower.updated",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
-      "line": 11,
-      "symbol": "NotificationGroup",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
-      "line": 17,
-      "symbol": "NotificationGroup.isSeen",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
-      "line": 18,
-      "symbol": "NotificationGroup.isRead",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
-      "line": 20,
       "symbol": "NotificationGroup.init(from:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Result+ParseFeed.swift",
-      "line": 13,
-      "symbol": "RemovedCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Client+Files.swift",
-      "line": 18,
-      "symbol": "Client.upload(file:completion:)",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
+      "line": 23,
+      "symbol": "NotificationGroup.init(from:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Client+Files.swift",
-      "line": 27,
-      "symbol": "Client.upload(files:completion:)",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
+      "line": 23,
+      "symbol": "NotificationGroup.init(from:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Client+Files.swift",
-      "line": 32,
-      "symbol": "Client.delete(fileURL:completion:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Client+Files.swift",
-      "line": 46,
-      "symbol": "Client.upload(image:completion:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Client+Files.swift",
-      "line": 55,
-      "symbol": "Client.upload(images:completion:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Client+Files.swift",
-      "line": 60,
-      "symbol": "Client.delete(imageURL:completion:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Client+Files.swift",
-      "line": 69,
-      "symbol": "Client.resizeImage(imageProcess:completion:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/File.swift",
-      "line": null,
-      "symbol": "File",
-      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
@@ -870,9 +1038,30 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/File.swift",
-      "line": 20,
-      "symbol": "File",
-      "symbol_kind": "source.lang.swift.decl.struct",
+      "line": 14,
+      "symbol": "Image",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/File.swift",
+      "line": 14,
+      "symbol": "Image",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/FilesEndpoint.swift",
+      "line": null,
+      "symbol": "FilesEndpoint",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/FilesEndpoint.swift",
+      "line": null,
+      "symbol": "FilesEndpoint",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
@@ -884,35 +1073,28 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
-      "line": null,
-      "symbol": "ImageProcess",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
-      "line": null,
-      "symbol": "ImageProcess",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
-      "line": 11,
-      "symbol": "ImageProcess",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
-      "line": 31,
+      "line": 32,
       "symbol": "ImageProcess.init(url:resize:crop:width:height:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
-      "line": 41,
+      "line": 32,
+      "symbol": "ImageProcess.init(url:resize:crop:width:height:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 32,
+      "symbol": "ImageProcess.init(url:resize:crop:width:height:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 42,
       "symbol": "ImageProcess.ResizeStrategy",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
@@ -920,6 +1102,20 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
       "line": 42,
+      "symbol": "ImageProcess.ResizeStrategy",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 42,
+      "symbol": "ImageProcess.ResizeStrategy",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 43,
       "symbol": "ImageProcess.ResizeStrategy.clip",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
@@ -927,6 +1123,20 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
       "line": 43,
+      "symbol": "ImageProcess.ResizeStrategy.clip",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 43,
+      "symbol": "ImageProcess.ResizeStrategy.clip",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 44,
       "symbol": "ImageProcess.ResizeStrategy.crop",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
@@ -934,6 +1144,20 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
       "line": 44,
+      "symbol": "ImageProcess.ResizeStrategy.crop",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 44,
+      "symbol": "ImageProcess.ResizeStrategy.crop",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 45,
       "symbol": "ImageProcess.ResizeStrategy.scale",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
@@ -941,20 +1165,62 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
       "line": 45,
+      "symbol": "ImageProcess.ResizeStrategy.scale",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 45,
+      "symbol": "ImageProcess.ResizeStrategy.scale",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 46,
       "symbol": "ImageProcess.ResizeStrategy.fill",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
-      "line": 50,
+      "line": 46,
+      "symbol": "ImageProcess.ResizeStrategy.fill",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 46,
+      "symbol": "ImageProcess.ResizeStrategy.fill",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 51,
       "symbol": "ImageProcess.CropMode",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
-      "line": 57,
+      "line": 51,
+      "symbol": "ImageProcess.CropMode",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 51,
+      "symbol": "ImageProcess.CropMode",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 58,
       "symbol": "ImageProcess.CropMode.top",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
@@ -962,6 +1228,20 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
       "line": 58,
+      "symbol": "ImageProcess.CropMode.top",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 58,
+      "symbol": "ImageProcess.CropMode.top",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 59,
       "symbol": "ImageProcess.CropMode.bottom",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
@@ -969,6 +1249,20 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
       "line": 59,
+      "symbol": "ImageProcess.CropMode.bottom",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 59,
+      "symbol": "ImageProcess.CropMode.bottom",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 60,
       "symbol": "ImageProcess.CropMode.left",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
@@ -976,6 +1270,20 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
       "line": 60,
+      "symbol": "ImageProcess.CropMode.left",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 60,
+      "symbol": "ImageProcess.CropMode.left",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 61,
       "symbol": "ImageProcess.CropMode.right",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
@@ -983,21 +1291,49 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
       "line": 61,
+      "symbol": "ImageProcess.CropMode.right",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 61,
+      "symbol": "ImageProcess.CropMode.right",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 62,
       "symbol": "ImageProcess.CropMode.center",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Result+ParseUpload.swift",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 62,
+      "symbol": "ImageProcess.CropMode.center",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/ImageProcess.swift",
+      "line": 62,
+      "symbol": "ImageProcess.CropMode.center",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/GetStream.swift",
       "line": 13,
-      "symbol": "UploadCompletion",
+      "symbol": "JSON",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Files and Images/Result+ParseUpload.swift",
-      "line": 14,
-      "symbol": "MultipleUploadCompletion",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/GetStream.swift",
+      "line": 13,
+      "symbol": "JSON",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
@@ -1017,6 +1353,34 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/GetStream.swift",
+      "line": 14,
+      "symbol": "StatusCodeCompletion",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/GetStream.swift",
+      "line": 14,
+      "symbol": "StatusCodeCompletion",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/GetStream.swift",
+      "line": 15,
+      "symbol": "Cancellable",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/GetStream.swift",
+      "line": 15,
+      "symbol": "Cancellable",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/GetStream.swift",
       "line": 15,
       "symbol": "Cancellable",
       "symbol_kind": "source.lang.swift.decl.typealias",
@@ -1024,294 +1388,448 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 13,
-      "symbol": "OGCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 47,
-      "symbol": "OGResponse",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 62,
-      "symbol": "OGResponse.title",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 63,
-      "symbol": "OGResponse.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 64,
-      "symbol": "OGResponse.url",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 65,
-      "symbol": "OGResponse.site",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 66,
-      "symbol": "OGResponse.siteName",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 67,
-      "symbol": "OGResponse.description",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 68,
-      "symbol": "OGResponse.determiner",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 69,
-      "symbol": "OGResponse.locale",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 70,
-      "symbol": "OGResponse.images",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 71,
-      "symbol": "OGResponse.videos",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 72,
-      "symbol": "OGResponse.audios",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 75,
-      "symbol": "OGImageResponse",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 86,
+      "line": 100,
       "symbol": "OGImageResponse.image",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 87,
+      "line": 100,
+      "symbol": "OGImageResponse.image",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 100,
+      "symbol": "OGImageResponse.image",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 101,
       "symbol": "OGImageResponse.url",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 88,
+      "line": 101,
+      "symbol": "OGImageResponse.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 101,
+      "symbol": "OGImageResponse.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 102,
       "symbol": "OGImageResponse.secureURL",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 89,
+      "line": 102,
+      "symbol": "OGImageResponse.secureURL",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 102,
+      "symbol": "OGImageResponse.secureURL",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 103,
       "symbol": "OGImageResponse.width",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 90,
+      "line": 103,
+      "symbol": "OGImageResponse.width",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 103,
+      "symbol": "OGImageResponse.width",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 104,
       "symbol": "OGImageResponse.height",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 91,
+      "line": 104,
+      "symbol": "OGImageResponse.height",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 104,
+      "symbol": "OGImageResponse.height",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 105,
       "symbol": "OGImageResponse.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 92,
+      "line": 105,
+      "symbol": "OGImageResponse.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 105,
+      "symbol": "OGImageResponse.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 106,
       "symbol": "OGImageResponse.alt",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 95,
-      "symbol": "OGVideoResponse",
-      "symbol_kind": "source.lang.swift.decl.struct",
+      "line": 106,
+      "symbol": "OGImageResponse.alt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
       "line": 106,
+      "symbol": "OGImageResponse.alt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 121,
       "symbol": "OGVideoResponse.image",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 107,
+      "line": 121,
+      "symbol": "OGVideoResponse.image",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 121,
+      "symbol": "OGVideoResponse.image",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 122,
       "symbol": "OGVideoResponse.url",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 108,
+      "line": 122,
+      "symbol": "OGVideoResponse.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 122,
+      "symbol": "OGVideoResponse.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 123,
       "symbol": "OGVideoResponse.secureURL",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 109,
+      "line": 123,
+      "symbol": "OGVideoResponse.secureURL",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 123,
+      "symbol": "OGVideoResponse.secureURL",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 124,
       "symbol": "OGVideoResponse.width",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 110,
+      "line": 124,
+      "symbol": "OGVideoResponse.width",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 124,
+      "symbol": "OGVideoResponse.width",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 125,
       "symbol": "OGVideoResponse.height",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 111,
+      "line": 125,
+      "symbol": "OGVideoResponse.height",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 125,
+      "symbol": "OGVideoResponse.height",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 126,
       "symbol": "OGVideoResponse.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 112,
+      "line": 126,
+      "symbol": "OGVideoResponse.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 126,
+      "symbol": "OGVideoResponse.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 127,
       "symbol": "OGVideoResponse.alt",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 114,
+      "line": 127,
+      "symbol": "OGVideoResponse.alt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 127,
+      "symbol": "OGVideoResponse.alt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 129,
       "symbol": "OGVideoResponse.size",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 139,
-      "symbol": "OGAudioResponse",
-      "symbol_kind": "source.lang.swift.decl.struct",
+      "line": 129,
+      "symbol": "OGVideoResponse.size",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 147,
+      "line": 129,
+      "symbol": "OGVideoResponse.size",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 163,
       "symbol": "OGAudioResponse.audio",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 148,
+      "line": 163,
+      "symbol": "OGAudioResponse.audio",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 163,
+      "symbol": "OGAudioResponse.audio",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 164,
       "symbol": "OGAudioResponse.url",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 149,
+      "line": 164,
+      "symbol": "OGAudioResponse.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 164,
+      "symbol": "OGAudioResponse.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 165,
       "symbol": "OGAudioResponse.secureURL",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 150,
+      "line": 165,
+      "symbol": "OGAudioResponse.secureURL",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 165,
+      "symbol": "OGAudioResponse.secureURL",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 166,
       "symbol": "OGAudioResponse.type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 153,
-      "symbol": "StringOrInt",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "line": 166,
+      "symbol": "OGAudioResponse.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 154,
+      "line": 166,
+      "symbol": "OGAudioResponse.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 171,
       "symbol": "StringOrInt.string(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
-      "line": 155,
+      "line": 171,
+      "symbol": "StringOrInt.string(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 171,
+      "symbol": "StringOrInt.string(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 172,
       "symbol": "StringOrInt.int(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 11,
-      "symbol": "DefaultReaction",
-      "symbol_kind": "source.lang.swift.decl.typealias",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 172,
+      "symbol": "StringOrInt.int(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reaction.swift",
-      "line": 13,
-      "symbol": "Reaction",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
-      "line": 11,
-      "symbol": "ReactionExtraDataProtocol",
-      "symbol_kind": "source.lang.swift.decl.typealias",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Open Graph/Client+OpenGraph.swift",
+      "line": 172,
+      "symbol": "StringOrInt.int(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
-      "line": 32,
+      "line": 33,
       "symbol": "ReactionExtraData.empty",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
@@ -1319,97 +1837,41 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
       "line": 33,
+      "symbol": "ReactionExtraData.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
+      "line": 33,
+      "symbol": "ReactionExtraData.empty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
+      "line": 34,
       "symbol": "ReactionExtraData.comment(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
-      "line": null,
-      "symbol": "ReactionKind",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
-      "line": 11,
-      "symbol": "ReactionKind",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
-      "line": 30,
-      "symbol": "ActivityProtocol.isUserLiked",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
       "line": 34,
-      "symbol": "ActivityProtocol.likesCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "symbol": "ReactionExtraData.comment(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
-      "line": 38,
-      "symbol": "ActivityProtocol.userLikedReaction",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
-      "line": 44,
-      "symbol": "ActivityProtocol.isUserReposted",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
-      "line": 48,
-      "symbol": "ActivityProtocol.repostsCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
-      "line": 52,
-      "symbol": "ActivityProtocol.userRepostReaction",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionKind.swift",
-      "line": 58,
-      "symbol": "ActivityProtocol.commentsCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
+      "line": 34,
+      "symbol": "ReactionExtraData.comment(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
-      "line": null,
-      "symbol": "ReactionProtocol",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
-      "line": null,
-      "symbol": "ReactionProtocol",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
-      "line": 11,
-      "symbol": "ReactionProtocol",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
-      "line": 12,
+      "line": 13,
       "symbol": "ReactionProtocol.ExtraDataType",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
@@ -1417,48 +1879,62 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
       "line": 13,
+      "symbol": "ReactionProtocol.ExtraDataType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
+      "line": 13,
+      "symbol": "ReactionProtocol.ExtraDataType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
+      "line": 14,
+      "symbol": "ReactionProtocol.UserType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
+      "line": 14,
+      "symbol": "ReactionProtocol.UserType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/ReactionProtocol.swift",
+      "line": 14,
       "symbol": "ReactionProtocol.UserType",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
-      "line": null,
-      "symbol": "Reactionable",
-      "symbol_kind": "source.lang.swift.decl.extension",
+      "line": 13,
+      "symbol": "Reactionable.ReactionType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
-      "line": null,
-      "symbol": "Reactionable",
-      "symbol_kind": "source.lang.swift.decl.extension",
+      "line": 13,
+      "symbol": "Reactionable.ReactionType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
-      "line": 11,
-      "symbol": "Reactionable",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactionable.swift",
-      "line": 12,
+      "line": 13,
       "symbol": "Reactionable.ReactionType",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
-      "line": 11,
-      "symbol": "ReactionsError",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
-      "line": 12,
+      "line": 13,
       "symbol": "ReactionsError.reactionsHaveNoActivity",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
@@ -1466,127 +1942,71 @@
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
       "line": 13,
+      "symbol": "ReactionsError.reactionsHaveNoActivity",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
+      "line": 13,
+      "symbol": "ReactionsError.reactionsHaveNoActivity",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
+      "line": 14,
       "symbol": "ReactionsError.enrichingActivityError(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
-      "line": 16,
-      "symbol": "Reactions",
-      "symbol_kind": "source.lang.swift.decl.struct",
+      "line": 14,
+      "symbol": "ReactionsError.enrichingActivityError(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
-      "line": 26,
-      "symbol": "Reactions.reactions",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Reactions.swift",
-      "line": 27,
-      "symbol": "Reactions.next",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Result+ParseReaction.swift",
-      "line": 13,
-      "symbol": "ReactionCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Result+ParseReaction.swift",
-      "line": 16,
-      "symbol": "ReactionsCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Result+ParseReaction.swift",
-      "line": 19,
-      "symbol": "DefaultReactionCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/Reactions/Result+ParseReaction.swift",
-      "line": 20,
-      "symbol": "DefaultReactionsCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/Client+User.swift",
-      "line": 12,
-      "symbol": "UserCompletion",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 15,
-      "symbol": "User.UserCodingKeys",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 16,
-      "symbol": "User.UserCodingKeys.id",
+      "line": 14,
+      "symbol": "ReactionsError.enrichingActivityError(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 17,
-      "symbol": "User.UserCodingKeys.created",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 18,
-      "symbol": "User.UserCodingKeys.updated",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 19,
-      "symbol": "User.UserCodingKeys.followersCount",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 20,
-      "symbol": "User.UserCodingKeys.followingCount",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 23,
-      "symbol": "User.DataCodingKeys",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 24,
+      "line": 25,
       "symbol": "User.DataCodingKeys.data",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
-      "line": 33,
-      "symbol": "User.init(id:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "line": 25,
+      "symbol": "User.DataCodingKeys.data",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/User.swift",
+      "line": 25,
+      "symbol": "User.DataCodingKeys.data",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/UserProtocol.swift",
+      "line": 97,
+      "symbol": "UserProtocol.current",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Core/User/UserProtocol.swift",
+      "line": 97,
+      "symbol": "UserProtocol.current",
+      "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
@@ -1605,6 +2025,20 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
+      "line": 13,
+      "symbol": "Subscription",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
+      "line": 15,
+      "symbol": "SubscriptionError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
       "line": 15,
       "symbol": "SubscriptionError",
       "symbol_kind": "source.lang.swift.decl.enum",
@@ -1614,6 +2048,20 @@
       "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
       "line": 16,
       "symbol": "SubscriptionError.fayeClient(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
+      "line": 16,
+      "symbol": "SubscriptionError.fayeClient(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
+      "line": 17,
+      "symbol": "SubscriptionError.decoding(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
@@ -1633,8 +2081,36 @@
     },
     {
       "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
+      "line": 18,
+      "symbol": "SubscriptionError.unexpected(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
       "line": 89,
       "symbol": "SubscribedChannel.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
+      "line": 89,
+      "symbol": "SubscribedChannel.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
+      "line": 93,
+      "symbol": "SubscribedChannel.deinit",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/alexey/Developer/stream-swift/Sources/Faye/Feed+Faye.swift",
+      "line": 93,
+      "symbol": "SubscribedChannel.deinit",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
