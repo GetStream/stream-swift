@@ -31,7 +31,7 @@ extension Bundle {
     ///     - token: a token to use instead of a value from the Bundle.
     ///              It's useful, when your app is getting Token from your backend.
     ///     - setup: a block with Stream keys to setup the Client with custom parameters.
-    public func setupStreamClient(_ token: Token? = nil, _ setup: StreamClientSetup? = nil) {
+    public func setupStreamClient(_ token: Token? = nil, logsEnabled: Bool = false, _ setup: StreamClientSetup? = nil) {
         guard let apiKey = streamValue(for: .streamAPIKey),
             let appId = streamValue(for: .streamAppId),
             let token: Token = token ?? streamValue(for: .streamToken),
@@ -47,7 +47,7 @@ extension Bundle {
         if let setup = setup {
             setup(apiKey, appId, token)
         } else {
-            Client.config = .init(apiKey: apiKey, appId: appId, token: token)
+            Client.config = .init(apiKey: apiKey, appId: appId, token: token, logsEnabled: logsEnabled)
         }
     }
     
