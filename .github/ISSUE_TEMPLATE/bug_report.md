@@ -7,17 +7,14 @@ assignees: buh
 
 ---
 
-Please wrap code blocks in backticks, like so:
-
-```swift
-*your code goes here*
-```
-
 ## What did you do?
+
 
 ## What did you expect to happen?
 
+
 ## What happened instead?
+
 
 ## GetStream Environment
 **GetStream version:**
@@ -27,4 +24,3 @@ Please wrap code blocks in backticks, like so:
 **macOS version running Xcode:**
 
 ## Additional context
-Add any other context about the problem here.
