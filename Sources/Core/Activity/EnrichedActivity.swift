@@ -69,14 +69,15 @@ open class EnrichedActivity<ActorType: Enrichable,
                 object: ObjectType,
                 foreignId: String? = nil,
                 time: Date? = nil,
-                feedIds: FeedIds? = nil) {
+                feedIds: FeedIds? = nil,
+                originFeedId: FeedId? = nil) {
         self.actor = actor
         self.verb = verb
         self.object = object
         self.foreignId = foreignId
         self.time = time
         self.feedIds = feedIds
-        originFeedId = nil
+        self.originFeedId = originFeedId
     }
     
     open func encode(to encoder: Encoder) throws {
