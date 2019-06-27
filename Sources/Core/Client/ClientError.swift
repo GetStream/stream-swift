@@ -53,11 +53,11 @@ public enum ClientError: Error {
 extension ClientError {
     /// A client error details.
     public struct Info: CustomStringConvertible {
-        let info: String
-        let code: Int
-        let statusCode: Int
-        let exception: String
-        let json: JSON
+        public let info: String
+        public let code: Int
+        public let statusCode: Int
+        public let exception: String
+        public let json: JSON
         
         init(json: JSON) {
             guard let detail = json["detail"] as? String,
