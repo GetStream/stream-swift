@@ -10,6 +10,8 @@ import Foundation
 import Moya
 import Result
 
+typealias ActivityResponse = EnrichedActivity<String, String, DefaultReaction>
+
 /// A followers completion block.
 public typealias FollowersCompletion = (_ result: Result<Response<Follower>, ClientError>) -> Void
 
@@ -69,7 +71,7 @@ extension Feed {
             }
             
             /// Parse the response with the default `Activity` and populate the given activity with `id` and `time` properties.
-            let activityCompletion: ActivityCompletion<T> = { (result: Result<T, ClientError>) in
+            let activityCompletion: ActivityCompletion<ActivityResponse> = { (result: Result<ActivityResponse, ClientError>) in
                 do {
                     let addedActivity = try result.get()
                     var activity = activity
