@@ -108,7 +108,7 @@ extension EnrichedActivity: CustomStringConvertible {
 // MARK: - Error Activity
 
 /// An error type of enriching activity properties.
-public struct EnrichingActivityError: Decodable {
+public struct EnrichingActivityError: LocalizedError, Decodable, CustomStringConvertible {
     enum CodingKeys: String, CodingKey {
         case id
         case error
@@ -124,4 +124,16 @@ public struct EnrichingActivityError: Decodable {
     public let referenceId: String
     /// A reference type of the object.
     public let referenceType: String
+    
+    public var description: String {
+        return "Enriching Activity Error \(id): \(error). Reference id: \(referenceId) type: \(referenceType)."
+    }
+    
+    public var localizedDescription: String {
+        return description
+    }
+    
+    public var errorDescription: String? {
+        return description
+    }
 }

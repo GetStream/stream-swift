@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum ClientError: Error {
+public enum ClientError: LocalizedError, CustomStringConvertible {
     case unexpectedError(_ error: Error?)
     case unexpectedResponse(_ description: String)
     case unknownError(_ localizedDescription: String, _ error: Error?)
@@ -19,8 +19,7 @@ public enum ClientError: Error {
     case network(_ description: String, _ error: Error?)
     case server(_ info: Info)
     
-    /// A description of the error.
-    public var localizedDescription: String {
+    public var description: String {
         switch self {
         case .unexpectedError(let error):
             return "Unexpected behaviour: \(error?.localizedDescription ?? "<NoError>")"
@@ -41,6 +40,14 @@ public enum ClientError: Error {
         case .server(let info):
             return info.description
         }
+    }
+    
+    public var localizedDescription: String {
+        return description
+    }
+    
+    public var errorDescription: String? {
+        return description
     }
     
     static func warning(for json: Any, missedParameter parameter: String, from: String = #function) {

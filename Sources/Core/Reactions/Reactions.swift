@@ -9,9 +9,26 @@
 import Foundation
 
 /// A reactions error.
-public enum ReactionsError: Error {
+public enum ReactionsError: LocalizedError, CustomStringConvertible {
     case reactionsHaveNoActivity
     case enrichingActivityError(_ error: EnrichingActivityError)
+    
+    public var description: String {
+        switch self {
+        case .reactionsHaveNoActivity:
+            return "Reactions have not an activity"
+        case .enrichingActivityError(let error):
+            return "Enriching activity error: \(error.localizedDescription)"
+        }
+    }
+    
+    public var localizedDescription: String {
+        return description
+    }
+    
+    public var errorDescription: String? {
+        return description
+    }
 }
 
 /// A reactions type.
