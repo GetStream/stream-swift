@@ -37,7 +37,7 @@ extension FeedActivityEndpoint: StreamTargetType {
     var sampleJSON: String {
         switch self {
         case .add(let activity, feedId: _):
-            if (activity.actor as? String) == ClientError.jsonInvalid.localizedDescription {
+            if (activity.actor as? String) == ClientError.jsonInvalid("[]").localizedDescription {
                 return "[]"
             } else if (activity.actor as? String) == ClientError.network("Failed to map data to JSON.", nil).localizedDescription {
                 return "{"

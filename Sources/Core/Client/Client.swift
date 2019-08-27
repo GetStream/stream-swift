@@ -214,7 +214,7 @@ extension Client {
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
         return networkProvider.request(MultiTarget(endpoint)) { result in
             do {
-                let response = try result.get()
+                let response: Moya.Response = try result.get()
                 
                 if let json = try response.mapJSON() as? JSON {
                     if json["exception"] != nil {
@@ -223,7 +223,7 @@ extension Client {
                         completion(.success(response))
                     }
                 } else {
-                    completion(.failure(.jsonInvalid))
+                    completion(.failure(.jsonInvalid(String(data: response.data, encoding: .utf8))))
                 }
             } catch let moyaError as MoyaError {
                 completion(.failure(moyaError.clientError))

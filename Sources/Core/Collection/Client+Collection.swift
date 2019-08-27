@@ -78,7 +78,7 @@ extension Client {
     public func delete<T: CollectionObjectProtocol>(collectionObject: T,
                                                     completion: @escaping StatusCodeCompletion) -> Cancellable {
         guard let objectId = collectionObject.id else {
-            callbackQueue.async { completion(.failure(.jsonInvalid)) }
+            callbackQueue.async { completion(.failure(.jsonInvalid("Collection Object id is empty"))) }
             return SimpleCancellable()
         }
         

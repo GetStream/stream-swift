@@ -13,7 +13,7 @@ public enum ClientError: LocalizedError, CustomStringConvertible {
     case unexpectedResponse(_ description: String)
     case unknownError(_ localizedDescription: String, _ error: Error?)
     case parameterInvalid(_ name: AnyKeyPath)
-    case jsonInvalid
+    case jsonInvalid(_ description: String?)
     case jsonDecode(_ localizedDescription: String, _ error: Error?, _ data: Data)
     case jsonEncode(_ localizedDescription: String, _ error: Error?)
     case network(_ description: String, _ error: Error?)
@@ -29,8 +29,8 @@ public enum ClientError: LocalizedError, CustomStringConvertible {
             return "Unexpected behaviour with error: \(localizedDescription)"
         case .parameterInvalid(let name):
             return "Parameter is not valid: \(name)"
-        case .jsonInvalid:
-            return "A server response is not a JSON"
+        case .jsonInvalid(let description):
+            return "A server response is not a JSON: \(description ?? "<no data>")"
         case let .jsonDecode(localizedDescription, _, data):
             return "JSON decoding error: \(localizedDescription). Data: \(data.count) bytes"
         case .jsonEncode(let localizedDescription, _):

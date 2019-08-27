@@ -166,7 +166,7 @@ final class ClientTests: TestCase {
     }
     
     func testJSONInvalid() {
-        failRequests(clientError: .jsonInvalid)
+        failRequests(clientError: .jsonInvalid("[]"))
     }
     
     func testFailedMapDataToJSON() {
