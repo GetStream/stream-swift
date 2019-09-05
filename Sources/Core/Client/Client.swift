@@ -23,6 +23,7 @@ public final class Client {
     let workingQueue: DispatchQueue
     
     private let networkProvider: NetworkProvider
+    private var consecutiveFailures = 0
     
     /// The current user id from the Token.
     public private(set) var currentUserId: String?
@@ -198,10 +199,9 @@ extension Task {
                                      urlParameters: JSON) -> Task {
         if let encoder = encoder, let data = try? encoder.encode(AnyEncodable(encodable)) {
             return .requestCompositeData(bodyData: data, urlParameters: urlParameters)
-        } else {
-            print("⚠️", #function, "Can't encode object \(encodable)")
         }
         
+        print("⚠️", #function, "Can't encode object \(encodable)")
         return .requestPlain
     }
 }
@@ -212,9 +212,15 @@ extension Client {
     /// Make a request with a given endpoint.
     @discardableResult
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
-        return networkProvider.request(MultiTarget(endpoint)) { result in
+        return networkProvider.request(MultiTarget(endpoint)) { [weak self] result in
+            guard let self = self else {
+                completion(.failure(.unexpectedError(nil)))
+                return
+            }
+            
             do {
                 let response: Moya.Response = try result.get()
+                self.consecutiveFailures = 0
                 
                 if let json = try response.mapJSON() as? JSON {
                     if json["exception"] != nil {
@@ -226,11 +232,43 @@ extension Client {
                     completion(.failure(.jsonInvalid(String(data: response.data, encoding: .utf8))))
                 }
             } catch let moyaError as MoyaError {
+                if case .statusCode(let moyaErrorResponse) = moyaError,
+                    moyaErrorResponse.statusCode >= 429,
+                    moyaErrorResponse.statusCode <= 500,
+                    self.retry(endpoint: endpoint, completion: completion) {
+                    return
+                }
+                
+                if case .underlying(let error, _) = moyaError,
+                    let urlError = error as? URLError,
+                    urlError.errorCode == URLError.timedOut.rawValue,
+                    self.retry(endpoint: endpoint, completion: completion) {
+                    return
+                }
+                
                 completion(.failure(moyaError.clientError))
+                
             } catch {
                 completion(.failure(.unknownError(error.localizedDescription, error)))
             }
         }
+    }
+    
+    private func retry(endpoint: TargetType, completion: @escaping ClientCompletion) -> Bool {
+        guard consecutiveFailures < 5 else {
+            consecutiveFailures = 0
+            return false
+        }
+        
+        print("⚠️ Retry request: ", endpoint)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval.random(in: 0.1...1)) {
+            self.request(endpoint: endpoint, completion: completion)
+        }
+        
+        consecutiveFailures += 1
+        
+        return true
     }
 }
 
