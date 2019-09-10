@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Result
 import Moya
 
 // MARK: - Client Files
@@ -119,11 +118,14 @@ extension Client {
                 proxyCancellable.cancellable = self?.request(endpoint: endpoint(files[fileIndex])) { result in
                     if let self = self {
                         result.parseUpload(self.workingQueue) { result in
-                            if let url = try? result.get() {
+                            do {
+                                let url = try result.get()
                                 urls.append(url)
                                 request(fileIndex: fileIndex + 1)
-                            } else if let error = result.error {
-                                completion(.failure(error))
+                            } catch let clientError as ClientError {
+                                completion(.failure(clientError))
+                            } catch {
+                                completion(.failure(.unexpectedError(error)))
                             }
                         }
                     }

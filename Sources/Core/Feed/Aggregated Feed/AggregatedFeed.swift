@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Result
 
 /// `AggregatedFeed` are good for consuming activities in an "aggregated"-like manner. You cannot follow an aggregated feed,
 /// but you may on occasion want to add activities to one.

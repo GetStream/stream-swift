@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 typealias ClientCompletionResult = Result<Moya.Response, ClientError>
 typealias ClientCompletion = (_ result: ClientCompletionResult) -> Void

@@ -8,7 +8,6 @@
 
 import XCTest
 import Moya
-import Result
 @testable import GetStream
 
 typealias UserFoodActivity = EnrichedActivity<CustomUser, Food, DefaultReaction>

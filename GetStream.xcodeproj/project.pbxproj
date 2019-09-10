@@ -42,7 +42,6 @@
 		8A38A63D21AE929400976D54 /* ChannelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A38A63C21AE929400976D54 /* ChannelName.swift */; };
 		8A391C5921AC0AF700F645CC /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB5219D711E005B9C98 /* Moya.framework */; };
 		8A391C5D21AC0AFE00F645CC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB6219D711E005B9C98 /* Alamofire.framework */; };
-		8A391C6121AC0B0700F645CC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA6BEB8219D711F005B9C98 /* Result.framework */; };
 		8A391C6621AC143500F645CC /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A391C6521AC143500F645CC /* Channel.swift */; };
 		8A3A4906219C68810010D831 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A4905219C68810010D831 /* ClientTests.swift */; };
 		8A411C2A21C3D38E001BE61F /* Reactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411C2921C3D38E001BE61F /* Reactions.swift */; };
@@ -235,7 +234,6 @@
 				8A391C5921AC0AF700F645CC /* Moya.framework in Frameworks */,
 				8A391C5D21AC0AFE00F645CC /* Alamofire.framework in Frameworks */,
 				8ACD0E8321BFEC9100B7CC4E /* Swime.framework in Frameworks */,
-				8A391C6121AC0B0700F645CC /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +725,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -785,7 +784,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Swime.framework",
 			);
 			name = Carthage;
@@ -794,7 +792,6 @@
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Moya.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Result.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Swime.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1008,7 +1005,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1064,7 +1061,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;

@@ -8,7 +8,6 @@
 
 import Foundation
 import Faye
-import Result
 
 public typealias Subscription<T: ActivityProtocol> = (_ result: Result<SubscriptionResponse<T>, SubscriptionError>) -> Void
 

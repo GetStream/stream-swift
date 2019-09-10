@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 /// An upload file completion block.
 public typealias UploadCompletion = (_ result: Result<URL, ClientError>) -> Void
@@ -17,7 +16,7 @@ public typealias MultipleUploadCompletion = (_ result: Result<[URL], ClientError
 
 // MARK: - Result Upload Parsing
 
-extension Result where Value == Moya.Response, Error == ClientError {
+extension Result where Success == Moya.Response, Failure == ClientError {
     func parseUpload(_ callbackQueue: DispatchQueue, _ completion: @escaping UploadCompletion) {
         if case .success(let response) = self {
             do {

@@ -8,14 +8,13 @@
 
 import Foundation
 import Moya
-import Result
 
 /// An aggregated group completion block.
 public typealias GroupCompletion<T: ActivityProtocol, G: Group<T>> = (_ result: Result<Response<G>, ClientError>) -> Void
 
 // MARK: - Result Group Parsing
 
-extension Result where Value == Moya.Response, Error == ClientError {
+extension Result where Success == Moya.Response, Failure == ClientError {
     func parseGroup<T: ActivityProtocol, G: Group<T>>(_ callbackQueue: DispatchQueue,
                                                       _ completion: @escaping GroupCompletion<T, G>) {
         parse(block: {

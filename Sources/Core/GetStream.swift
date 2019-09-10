@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 public typealias JSON = [String: Any]
 public typealias StatusCodeCompletion = (_ result: Result<Int, ClientError>) -> Void

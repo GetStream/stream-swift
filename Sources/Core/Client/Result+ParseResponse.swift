@@ -8,19 +8,18 @@
 
 import Foundation
 import Moya
-import Result
 
 typealias CompletionObject<T: Decodable> = (_ result: Result<T, ClientError>) -> Void
 typealias CompletionObjects<T: Decodable> = (_ result: Result<Response<T>, ClientError>) -> Void
 
 // MARK: - Result Parsing
 
-extension Result where Value == Moya.Response, Error == ClientError {
+extension Result where Success == Moya.Response, Failure == ClientError {
     
     /// Parse a response and return the status code.
     func parseStatusCode(_ callbackQueue: DispatchQueue, _ completion: @escaping StatusCodeCompletion) {
         do {
-            let response = try result.get()
+            let response = try get()
             callbackQueue.async { completion(.success(response.statusCode)) }
         } catch {
             if let clientError = error as? ClientError {

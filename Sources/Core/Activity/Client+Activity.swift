@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Result
 
 /// An activity completion block.
 public typealias ActivityCompletion<T: Decodable> = (_ result: Result<T, ClientError>) -> Void

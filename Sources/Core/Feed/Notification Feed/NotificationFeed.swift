@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Result
 
 /// The `NotificationFeed` type makes it easy to add notifications to your app. Notifications cannot be followed by other feeds,
 /// but you can write directly to a Notification feed.

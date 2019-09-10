@@ -8,14 +8,13 @@
 
 import Foundation
 import Moya
-import Result
 
 /// An activity removed completion block.
 public typealias RemovedCompletion = (_ result: Result<String, ClientError>) -> Void
 
 // MARK: - Result Removed Parsing
 
-extension Result where Value == Moya.Response, Error == ClientError {
+extension Result where Success == Moya.Response, Failure == ClientError {
     func parseRemoved(_ callbackQueue: DispatchQueue, _ completion: @escaping RemovedCompletion) {
         if case .success(let response) = self {
             do {

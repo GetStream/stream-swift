@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreGraphics.CGBase
-import Result
 
 /// An Open Graph completion block.
 public typealias OGCompletion = (_ result: Result<OGResponse, ClientError>) -> Void

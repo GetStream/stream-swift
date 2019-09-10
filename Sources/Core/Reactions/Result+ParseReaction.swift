@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 /// A reaction completion block.
 public typealias ReactionCompletion<T: ReactionExtraDataProtocol,
@@ -25,7 +24,7 @@ public typealias DefaultReactionsCompletion = ReactionsCompletion<EmptyReactionE
 
 // MARK: - Result Reactions Parsing
 
-extension Result where Value == Moya.Response, Error == ClientError {
+extension Result where Success == Moya.Response, Failure == ClientError {
     
     /// Parse the result with a given reaction completion block.
     func parseReaction<T: ReactionExtraDataProtocol, U: UserProtocol>(_ callbackQueue: DispatchQueue,

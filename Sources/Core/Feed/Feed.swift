@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import Result
 
 typealias ActivityResponse = EnrichedActivity<String, String, DefaultReaction>
 

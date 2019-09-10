@@ -8,7 +8,6 @@
 
 import Foundation
 import Faye
-import Result
 
 extension Client {
     /// Setup a Faye client.
