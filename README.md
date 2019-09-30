@@ -21,6 +21,12 @@ You can sign up for a Stream account at https://getstream.io/get_started.
 ### CocoaPods
 
 For Stream, use the following entry in your `Podfile`:
+
+for Swift 5:
+```
+pod 'GetStream', '~> 2.0'
+```
+for Swift 4.2:
 ```
 pod 'GetStream', '~> 1.0'
 ```
