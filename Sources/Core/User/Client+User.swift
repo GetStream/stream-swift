@@ -70,13 +70,13 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func createCurrentUser(completion: UserCompletion<User>? = nil) -> Cancellable {
-        guard let currentUserId = Client.shared.currentUserId else {
+        guard let currentUserId = currentUserId else {
             completion?(.failure(.parameterInvalid(\Client.currentUserId)))
             return SimpleCancellable()
         }
         
-        return create(user: User(id: currentUserId)) { result in
-            Client.shared.currentUser = try? result.get()
+        return create(user: User(id: currentUserId)) { [weak self] result in
+            self?.currentUser = try? result.get()
             
             if let completion = completion {
                 completion(result)
