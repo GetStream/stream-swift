@@ -23,7 +23,7 @@ public struct EmptyReactionExtraData: ReactionExtraDataProtocol, Equatable {
 
 /// Comment reaction extra data.
 public struct Comment: ReactionExtraDataProtocol {
-    let text: String
+    public let text: String
 }
 
 // MARK: - Like/Repost/Comment
