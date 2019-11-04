@@ -224,16 +224,15 @@ extension Client {
             do {
                 let response: Moya.Response = try result.get()
                 self.consecutiveFailures = 0
+                self.logger?.log(response.response, data: response.data)
                 
                 if let json = try response.mapJSON() as? JSON {
                     if json["exception"] != nil {
-                        self.logger?.log(response.response, data: response.data)
                         completion(.failure(.server(.init(json: json))))
                     } else {
-                        completion(.success(self.removeMissingReference(json, response)))
+                        completion(.success(response))
                     }
                 } else {
-                    self.logger?.log(response.response, data: response.data)
                     completion(.failure(.jsonInvalid(String(data: response.data, encoding: .utf8))))
                 }
             } catch let moyaError as MoyaError {
@@ -274,31 +273,6 @@ extension Client {
         consecutiveFailures += 1
         
         return true
-    }
-    
-    private func removeMissingReference(_ json: JSON, _ response: Moya.Response) -> Moya.Response {
-        guard response.statusCode < 300 else {
-            return response
-        }
-        
-        var json = json
-        
-        if findAndRemoveMissingReference(in: &json, level: 0),
-            let data = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
-            logger?.log(response.response, data: data)
-            
-            return Moya.Response(statusCode: response.statusCode,
-                                 data: data,
-                                 request: response.request,
-                                 response: response.response)
-        }
-        
-        logger?.log(response.response, data: response.data)
-        return response
-    }
-    
-    private func findAndRemoveMissingReference(in json: inout JSON, level: Int) -> Bool {
-        return false
     }
 }
 
