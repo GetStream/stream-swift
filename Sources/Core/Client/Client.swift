@@ -23,6 +23,7 @@ public final class Client {
     
     private let networkProvider: NetworkProvider
     private var consecutiveFailures = 0
+    let logger: ClientLogger?
     
     /// The current user id from the Token.
     public private(set) var currentUserId: String?
@@ -69,11 +70,6 @@ public final class Client {
                             callbackQueue: DispatchQueue = .main,
                             logsEnabled: Bool = false) {
         var moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
-        
-        if logsEnabled {
-            moyaPlugins.append(NetworkLoggerPlugin(verbose: true))
-        }
-        
         let workingQueue = DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
         let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
         let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: workingQueue, plugins: moyaPlugins)
@@ -83,7 +79,8 @@ public final class Client {
                   token: token,
                   networkProvider: moyaProvider,
                   workingQueue: workingQueue,
-                  callbackQueue: callbackQueue)
+                  callbackQueue: callbackQueue,
+                  logsEnabled: logsEnabled)
     }
     
     init(apiKey: String,
@@ -91,13 +88,15 @@ public final class Client {
          token: Token,
          networkProvider: NetworkProvider,
          workingQueue: DispatchQueue = .global(),
-         callbackQueue: DispatchQueue = .main) {
+         callbackQueue: DispatchQueue = .main,
+         logsEnabled: Bool = false) {
         self.apiKey = apiKey
         self.appId = appId
         self.token = token
         self.networkProvider = networkProvider
         self.workingQueue = workingQueue
         self.callbackQueue = callbackQueue
+        logger = logsEnabled ? ClientLogger(icon: "🐴") : nil
         parseUserId()
     }
     
@@ -113,7 +112,10 @@ extension Client {
     public static let version: String = Bundle(for: Client.self).infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
     
     /// Default headers.
-    static let headers: [String : String] = ["X-Stream-Client": "stream-swift-client-\(Client.version)"]
+    static let headers: [String : String] = [
+        "X-Stream-Client": "stream-swift-client-\(Client.version)",
+        "X-Stream-Device": UIDevice.current.name,
+        "X-Stream-OS": "\(UIDevice.current.systemName)\(UIDevice.current.systemVersion)"]
 }
 
 extension Client: CustomStringConvertible {
@@ -211,6 +213,8 @@ extension Client {
     /// Make a request with a given endpoint.
     @discardableResult
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
+        logger?.log("\(endpoint)")
+        
         return networkProvider.request(MultiTarget(endpoint)) { [weak self] result in
             guard let self = self else {
                 completion(.failure(.unexpectedError(nil)))
@@ -223,11 +227,13 @@ extension Client {
                 
                 if let json = try response.mapJSON() as? JSON {
                     if json["exception"] != nil {
+                        self.logger?.log(response.response, data: response.data)
                         completion(.failure(.server(.init(json: json))))
                     } else {
-                        completion(.success(response))
+                        completion(.success(self.removeMissingReference(json, response)))
                     }
                 } else {
+                    self.logger?.log(response.response, data: response.data)
                     completion(.failure(.jsonInvalid(String(data: response.data, encoding: .utf8))))
                 }
             } catch let moyaError as MoyaError {
@@ -268,6 +274,31 @@ extension Client {
         consecutiveFailures += 1
         
         return true
+    }
+    
+    private func removeMissingReference(_ json: JSON, _ response: Moya.Response) -> Moya.Response {
+        guard response.statusCode < 300 else {
+            return response
+        }
+        
+        var json = json
+        
+        if findAndRemoveMissingReference(in: &json, level: 0),
+            let data = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+            logger?.log(response.response, data: data)
+            
+            return Moya.Response(statusCode: response.statusCode,
+                                 data: data,
+                                 request: response.request,
+                                 response: response.response)
+        }
+        
+        logger?.log(response.response, data: response.data)
+        return response
+    }
+    
+    private func findAndRemoveMissingReference(in json: inout JSON, level: Int) -> Bool {
+        return false
     }
 }
 
