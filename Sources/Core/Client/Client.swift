@@ -6,7 +6,7 @@
 //  Copyright © 2018 Stream.io Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Moya
 
 typealias ClientCompletionResult = Result<Moya.Response, ClientError>
@@ -69,7 +69,7 @@ public final class Client {
                             baseURL: BaseURL = BaseURL(),
                             callbackQueue: DispatchQueue = .main,
                             logsEnabled: Bool = false) {
-        var moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
+        let moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
         let workingQueue = DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
         let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
         let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: workingQueue, plugins: moyaPlugins)
