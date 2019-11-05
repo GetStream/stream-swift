@@ -62,6 +62,12 @@ extension Result where Success == Moya.Response, Failure == ClientError {
         } catch let error as ClientError {
             errorBlock(error)
         } catch let error as DecodingError {
+            if error.errorDescription == "Expected to decode Dictionary<String, Any> but found a string/data instead." {
+                print("⚠️ Probably you are trying to get activities with enrichment. Usually, the actor field has wrong value.\n"
+                    + "☝️ The enrichments is enabled by default in requests. Try to switch it off with the parameter: `enrich: false`."
+                    + "ℹ️ Learn more about it here: https://getstream.io/docs/#enrichment_introduction")
+            }
+            
             if case .success(let response) = self {
                 errorBlock(ClientError.jsonDecode(error.localizedDescription, error, response.data))
             } else {

@@ -122,7 +122,7 @@ final class ExtensionsTests: XCTestCase {
         let test = Test()
         
         XCTAssertEqual(test.baseURL, URL(string: "https://getstream.io")!)
-        XCTAssertEqual(test.headers, ["X-Stream-Client": "stream-swift-client-\(Client.version)"])
+        XCTAssertEqual(test.headers?["X-Stream-Client"]!, "stream-swift-client-\(Client.version)")
         XCTAssertEqual(test.sampleData, Data())
     }
     
