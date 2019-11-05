@@ -213,7 +213,7 @@ extension Client {
     /// Make a request with a given endpoint.
     @discardableResult
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
-        logger?.log("\(endpoint)")
+        logger?.log(endpoint)
         
         return networkProvider.request(MultiTarget(endpoint)) { [weak self] result in
             guard let self = self else {

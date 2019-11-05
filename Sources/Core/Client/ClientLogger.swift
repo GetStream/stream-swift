@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Moya
 
 /// A Client logger.
 public final class ClientLogger {
@@ -32,6 +33,48 @@ public final class ClientLogger {
         self.icon = icon
     }
     
+    public func log(_ endpoint: TargetType) {
+        log("➡️ \(endpoint)")
+        
+        switch endpoint.task {
+        case .requestPlain,
+             .uploadMultipart:
+            return
+        case .requestData(let data):
+            if let jsonString = try? data.prettyPrintedJSONString() {
+                log("🧾 Request Data:\n\(jsonString)")
+            }
+        case .requestJSONEncodable(let object),
+             .requestCustomJSONEncodable(let object, encoder: _):
+            log("🧾 Request JSON:\n\(object)")
+        case .requestParameters(parameters: let parameters, encoding: _):
+            log("🧾 Parameters: \(parameters)")
+        case .requestCompositeData(bodyData: let data, urlParameters: let parameters):
+            do {
+                let jsonString = try data.prettyPrintedJSONString()
+                log("🧾 Request Data:\n\(jsonString)")
+            } catch {
+                log("🧾 Request Data error decoding: \(error.localizedDescription)")
+            }
+            
+            log("🧾 URL parameters: \(parameters)")
+        case .requestCompositeParameters(bodyParameters: let bodyParameters,
+                                         bodyEncoding: _,
+                                         urlParameters: let urlParameters):
+            log("🧾 Body parameters: \(bodyParameters)")
+            log("🧾 URL parameters: \(urlParameters)")
+        case .uploadFile(let url):
+            log("🧾 Upload URL: \(url)")
+        case .uploadCompositeMultipart(_, urlParameters: let urlParameters):
+            log("🧾 URL parameters: \(urlParameters)")
+        case .downloadDestination(let destination):
+            log("🧾 Destination parameter: \(destination)")
+        case .downloadParameters(parameters: let parameters, encoding: _, destination: let destination):
+            log("🧾 Parameters: \(parameters)")
+            log("🧾 Destination: \(destination)")
+        }
+    }
+    
     /// Log URL response.
     ///
     /// - Parameters:
@@ -40,14 +83,14 @@ public final class ClientLogger {
     ///   - forceToShowData: force to always log a data.
     public func log(_ response: URLResponse?, data: Data?) {
         if let response = response as? HTTPURLResponse, let url = response.url {
-            log("Response \(response.statusCode): \(url)")
+            log("⬅️ Response \(response.statusCode): \(url)")
         }
         
         guard let data = data else {
             return
         }
         
-        let tag = "ⒿⓈⓄⓃ \(data.description)"
+        let tag = "ⒿⓈⓄⓃ \(data.description)\n"
         
         if let jsonString = try? data.prettyPrintedJSONString() {
             log(tag, jsonString)
