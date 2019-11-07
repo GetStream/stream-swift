@@ -55,7 +55,11 @@ public struct MissingReference<T: Missable>: Codable {
             
             // Show the decoding error that wasn't related to the missing reference.
             if Client.keepBadDecodedObjectsAsMissed {
-                print("⚠️ Decoding was failed for type: \(T.self)", self.enrichingActivityError, error)
+                print("⚠️ Decoding was failed for type: \(T.self)", error)
+                
+                if let enrichingActivityError = self.enrichingActivityError {
+                    print("⚠️", enrichingActivityError)
+                }
             } else {
                 throw error
             }

@@ -68,10 +68,10 @@ public final class ClientLogger {
         case .uploadCompositeMultipart(_, urlParameters: let urlParameters):
             log("🧾 URL parameters: \(urlParameters)")
         case .downloadDestination(let destination):
-            log("🧾 Destination parameter: \(destination)")
+            log("🧾 Destination parameter: \(String(describing: destination))")
         case .downloadParameters(parameters: let parameters, encoding: _, destination: let destination):
             log("🧾 Parameters: \(parameters)")
-            log("🧾 Destination: \(destination)")
+            log("🧾 Destination: \(String(describing: destination))")
         }
     }
     
