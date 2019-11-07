@@ -39,7 +39,7 @@ open class User: UserProtocol {
     /// Create a user with a given id.
     ///
     /// - Parameter id: a user id.
-    public init(id: String) {
+    required public init(id: String) {
         self.id = id
     }
     
@@ -55,6 +55,14 @@ open class User: UserProtocol {
     open func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: UserCodingKeys.self)
         try container.encode(id, forKey: .id)
+    }
+    
+    public static func missed() -> Self {
+        return .init(id: "!missed_reference")
+    }
+    
+    public var isMissedReference: Bool {
+        return id == "!missed_reference"
     }
 }
 

@@ -9,16 +9,14 @@
 import Foundation
 
 /// An enriched activity type with actor, object and reaction customizable types.
-open class EnrichedActivity<ActorType: Enrichable,
-                            ObjectType: Enrichable,
-                            ReactionType: ReactionProtocol>: ActivityProtocol {
+open class EnrichedActivity<ActorType: Enrichable, ObjectType: Enrichable, ReactionType: ReactionProtocol>: ActivityProtocol {
     /// - Note: These reserved words must not be used as field names:
     ///         activity_id, activity, analytics, extra_context, id, is_read, is_seen, origin, score, site_id, to
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
-        case actor
+        case safeActor = "actor"
         case verb
-        case object
+        case safeObject = "object"
         case foreignId = "foreign_id"
         case time
         case originFeedId = "origin"
@@ -31,12 +29,26 @@ open class EnrichedActivity<ActorType: Enrichable,
     
     /// The Stream id of the activity.
     public var id: String = ""
+    
+    /// A wrapper for the actor performing the activity.
+    public let safeActor: MissingReference<ActorType>
+    
     /// The actor performing the activity.
-    public let actor: ActorType
+    public var actor: ActorType {
+        return safeActor.value
+    }
+    
     /// The verb of the activity.
     public let verb: Verb
+    
+    /// A wrapper for the object of the activity.
+    public let safeObject: MissingReference<ObjectType>
+    
     /// The object of the activity.
-    public let object: ObjectType
+    public var object: ObjectType {
+        return safeObject.value
+    }
+    
     /// A unique ID from your application for this activity. IE: pin:1 or like:300.
     public var foreignId: String?
     /// The optional time of the activity, isoformat. Default is the current time.
@@ -56,7 +68,6 @@ open class EnrichedActivity<ActorType: Enrichable,
     public var reactionCounts: [ReactionKind: Int]?
     
     /// Create an activity.
-    ///
     /// - Parameters:
     ///     - actor: the actor performing the activity.
     ///     - verb: the verb of the activity.
@@ -64,16 +75,16 @@ open class EnrichedActivity<ActorType: Enrichable,
     ///     - foreignId: a unique ID from your application for this activity.
     ///     - time: a time of the activity, isoformat. Default is the current time.
     ///     - feedIds: an array allows you to specify a list of feeds to which the activity should be copied.
-    public init(actor: ActorType,
-                verb: Verb,
-                object: ObjectType,
-                foreignId: String? = nil,
-                time: Date? = nil,
-                feedIds: FeedIds? = nil,
-                originFeedId: FeedId? = nil) {
-        self.actor = actor
+    required public init(actor: ActorType,
+                         verb: Verb,
+                         object: ObjectType,
+                         foreignId: String? = nil,
+                         time: Date? = nil,
+                         feedIds: FeedIds? = nil,
+                         originFeedId: FeedId? = nil) {
+        safeActor = MissingReference(actor)
         self.verb = verb
-        self.object = object
+        safeObject = MissingReference(object)
         self.foreignId = foreignId
         self.time = time
         self.feedIds = feedIds
@@ -83,12 +94,20 @@ open class EnrichedActivity<ActorType: Enrichable,
     open func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(actor.referenceId, forKey: .actor)
+        try container.encode(actor.referenceId, forKey: .safeActor)
         try container.encode(verb, forKey: .verb)
-        try container.encode(object.referenceId, forKey: .object)
+        try container.encode(object.referenceId, forKey: .safeObject)
         try container.encodeIfPresent(foreignId, forKey: .foreignId)
         try container.encodeIfPresent(time, forKey: .time)
         try container.encodeIfPresent(feedIds, forKey: .feedIds)
+    }
+    
+    public static func missed() -> Self {
+        return .init(actor: ActorType.missed(), verb: "", object: ObjectType.missed())
+    }
+    
+    public var isMissedReference: Bool {
+        return actor.isMissedReference || object.isMissedReference
     }
 }
 

@@ -33,6 +33,10 @@ public final class Client {
     /// A configuration to initialize the shared Client.
     public static var config = Config(apiKey: "", appId: "", token: "")
     
+    /// Enable this if you want to wrap any `Missable` bad decoded objects as missed.
+    /// - Note: If it's enabled the parser will return a response with missed objects and print errors in logs.
+    public static var keepBadDecodedObjectsAsMissed = false
+    
     /// A shared client.
     /// - Note: Setup `Client.config` before using a shared client.
     /// ```

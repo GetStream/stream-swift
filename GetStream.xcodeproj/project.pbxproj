@@ -72,6 +72,7 @@
 		8A73F3212239067C00FB4F25 /* Swime+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A73F3202239067C00FB4F25 /* Swime+Extensions.swift */; };
 		8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */; };
 		8A7BCE0523702901000A30DE /* ClientLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7BCE0423702901000A30DE /* ClientLogger.swift */; };
+		8A7BCE0A237334F3000A30DE /* MissingReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7BCE09237334F3000A30DE /* MissingReference.swift */; };
 		8A8AFEFE21AC07B800A1D512 /* FayeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */; };
 		8A8AFEFF21AC07C700A1D512 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE7F99C21A59C8B0074DA21 /* TestCase.swift */; };
 		8A92B1E0219ACDEB0043B8DC /* ActivityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */; };
@@ -195,6 +196,7 @@
 		8A7B688921A6B90F00062FBD /* TokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTests.swift; sourceTree = "<group>"; };
 		8A7B688F21A6F5AB00062FBD /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		8A7BCE0423702901000A30DE /* ClientLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientLogger.swift; sourceTree = "<group>"; };
+		8A7BCE09237334F3000A30DE /* MissingReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingReference.swift; sourceTree = "<group>"; };
 		8A8AFEFD21AC07B800A1D512 /* FayeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeTests.swift; sourceTree = "<group>"; };
 		8A92B1DF219ACDEB0043B8DC /* ActivityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityProtocol.swift; sourceTree = "<group>"; };
 		8A9A71552237D1FF004E6607 /* OriginalRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalRepresentable.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				8A79C80B21C7A07F00970C0C /* StreamTargetType.swift */,
 				8A0AD1A321CBEA6000A3167D /* Enrichable.swift */,
 				8AAD3E7221E8C4C500FDB25D /* Response.swift */,
+				8A7BCE09237334F3000A30DE /* MissingReference.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				8A73F3212239067C00FB4F25 /* Swime+Extensions.swift in Sources */,
 				8A79C80C21C7A07F00970C0C /* StreamTargetType.swift in Sources */,
 				8A0940B822369F7900FF407D /* Activity.swift in Sources */,
+				8A7BCE0A237334F3000A30DE /* MissingReference.swift in Sources */,
 				8A0116AD22131F3300503A07 /* Reactionable.swift in Sources */,
 				8A2D84002227E29700795FAE /* Bundle+Extensions.swift in Sources */,
 				8A6284052199AEE20002913D /* Client.swift in Sources */,

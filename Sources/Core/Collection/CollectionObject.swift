@@ -30,7 +30,7 @@ open class CollectionObject: CollectionObjectProtocol {
     public var created: Date = Date()
     public var updated: Date = Date()
     
-    public init(collectionName: String, id: String? = nil) {
+    required public init(collectionName: String, id: String? = nil) {
         self.collectionName = collectionName
         self.id = id
     }
@@ -47,5 +47,13 @@ open class CollectionObject: CollectionObjectProtocol {
     open func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CollectionObjectCodingKeys.self)
         try container.encodeIfPresent(id, forKey: .id)
+    }
+    
+    public static func missed() -> Self {
+        return .init(collectionName: "!missed_reference", id: "!missed_reference")
+    }
+    
+    public var isMissedReference: Bool {
+        return collectionName == "!missed_reference" && id == "!missed_reference"
     }
 }

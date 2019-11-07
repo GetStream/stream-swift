@@ -69,20 +69,6 @@ public struct Reactions<T: ReactionExtraDataProtocol, U: UserProtocol>: Decodabl
             throw ReactionsError.reactionsHaveNoActivity
         }
         
-        do {
-            return try activityContainer.decode(type, forKey: .activity)
-        } catch {
-            if let container = try? activityContainer.nestedContainer(keyedBy: Activity.CodingKeys.self, forKey: .activity) {
-                if let actor = try? container.decode(EnrichingActivityError.self, forKey: .actor) {
-                    throw ReactionsError.enrichingActivityError(actor)
-                }
-                
-                if let object = try? container.decode(EnrichingActivityError.self, forKey: .object) {
-                    throw ReactionsError.enrichingActivityError(object)
-                }
-            }
-            
-            throw error
-        }
+        return try activityContainer.decode(type, forKey: .activity)
     }
 }

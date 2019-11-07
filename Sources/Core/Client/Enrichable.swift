@@ -9,7 +9,7 @@
 import Foundation
 
 /// A protocol for enrichable objects.
-public protocol Enrichable: Codable {
+public protocol Enrichable: Missable {
     /// A referenceId for an enrichable object.
     var referenceId: String { get }
 }
@@ -17,7 +17,17 @@ public protocol Enrichable: Codable {
 // MARK: - String Enrichable
 
 extension String: Enrichable {
+    
+    /// A reference id, e.g. for User: "SU:42"
     public var referenceId: String {
         return self
+    }
+    
+    public static func missed() -> Self {
+        return "!missed_reference"
+    }
+    
+    public var isMissedReference: Bool {
+        return self == String.missed()
     }
 }
