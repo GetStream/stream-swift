@@ -28,6 +28,11 @@ final class CustomUser: User {
         try super.init(from: decoder)
     }
     
+    required init(id: String) {
+        name = ""
+        super.init(id: id)
+    }
+    
     override func encode(to encoder: Encoder) throws {
         var dataContainer = encoder.container(keyedBy: DataCodingKeys.self)
         var container = dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)

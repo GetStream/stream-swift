@@ -28,6 +28,11 @@ final class Food: CollectionObject {
         try super.init(from: decoder)
     }
     
+    required init(collectionName: String, id: String? = nil) {
+        name = ""
+        super.init(collectionName: collectionName, id: id)
+    }
+    
     override func encode(to encoder: Encoder) throws {
         var dataContainer = encoder.container(keyedBy: DataCodingKeys.self)
         var container = dataContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
