@@ -144,6 +144,11 @@ public struct EnrichingActivityError: LocalizedError, Decodable, CustomStringCon
     /// A reference type of the object.
     public let referenceType: String
     
+    /// Check is the error is a lost reference.
+    public var isReferenceNotFound: Bool {
+        return error == "ReferenceNotFound"
+    }
+    
     public var description: String {
         return "Enriching Activity Error \(id): \(error). Reference id: \(referenceId) type: \(referenceType)."
     }

@@ -16,7 +16,7 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
     private enum CodingKeys: String, CodingKey {
         case id
         case activityId = "activity_id"
-        case user
+        case safeUser = "user"
         case kind
         case created = "created_at"
         case updated = "updated_at"
@@ -31,8 +31,12 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
     public let id: String
     /// Activity id for the reaction.
     public let activityId: String
+    /// A wrapper for the user of the reaction.
+    public let safeUser: MissingReference<U>
     /// User of the reaction.
-    public let user: U
+    public var user: U {
+        return safeUser.value
+    }
     /// Type of reaction.
     public let kind: ReactionKind
     /// When the reaction was created.
@@ -54,7 +58,7 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         activityId = try container.decode(String.self, forKey: .activityId)
-        user = try container.decode(U.self, forKey: .user)
+        safeUser = try container.decode(MissingReference<U>.self, forKey: .safeUser)
         kind = try container.decode(String.self, forKey: .kind)
         created = try container.decode(Date.self, forKey: .created)
         updated = try container.decode(Date.self, forKey: .updated)

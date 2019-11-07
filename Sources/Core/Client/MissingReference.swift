@@ -12,12 +12,18 @@ import Foundation
 public struct MissingReference<T: Missable>: Codable {
     /// A decoded or missed value.
     public let value: T
+    /// True if the value was missed.
+    public let isMissed: Bool
+    /// A decoding error instead of missing reference case.
+    public let decodingError: Error?
     /// An enrichind activity error instead of object value.
-    public let error: EnrichingActivityError?
+    public let enrichingActivityError: EnrichingActivityError?
     
     init(_ value: T) {
         self.value = value
-        self.error = nil
+        isMissed = false
+        enrichingActivityError = nil
+        decodingError = nil
     }
     
     public init(from decoder: Decoder) throws {
@@ -25,23 +31,31 @@ public struct MissingReference<T: Missable>: Codable {
         
         do {
             value = try container.decode(T.self)
-            error = nil
+            isMissed = false
+            enrichingActivityError = nil
+            decodingError = nil
         } catch {
             value = T.missed()
             
             if let enrichingActivityError = try? container.decode(EnrichingActivityError.self) {
-                self.error = enrichingActivityError
+                self.enrichingActivityError = enrichingActivityError
+                
+                // The reference is missing.
+                if enrichingActivityError.isReferenceNotFound {
+                    isMissed = true
+                    decodingError = nil
+                    return
+                }
             } else {
-                self.error = nil
+                enrichingActivityError = nil
             }
             
-            guard error.localizedDescription.uppercased().contains("MISSINGREFERENCE") else {
-                return
-            }
+            isMissed = false
+            decodingError = error
             
             // Show the decoding error that wasn't related to the missing reference.
             if Client.keepBadDecodedObjectsAsMissed {
-                print("⚠️ Decoding was failed for type: \(T.self)", self.error, error)
+                print("⚠️ Decoding was failed for type: \(T.self)", self.enrichingActivityError, error)
             } else {
                 throw error
             }
