@@ -70,6 +70,11 @@ public struct MissingReference<T: Missable>: Codable {
         var container = encoder.singleValueContainer()
         try container.encode(value)
     }
+    
+    /// The default missed reference value.
+    public static func missed() -> MissingReference<T> {
+        return MissingReference(T.missed())
+    }
 }
 
 /// Missable is using to wrap objects with enrichment, where they was deleted and dependencies lost the link.

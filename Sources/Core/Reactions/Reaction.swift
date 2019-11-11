@@ -58,7 +58,7 @@ public final class Reaction<T: ReactionExtraDataProtocol, U: UserProtocol>: Reac
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         activityId = try container.decode(String.self, forKey: .activityId)
-        safeUser = try container.decode(MissingReference<U>.self, forKey: .safeUser)
+        safeUser = try container.decodeIfPresent(MissingReference<U>.self, forKey: .safeUser) ?? MissingReference<U>.missed()
         kind = try container.decode(String.self, forKey: .kind)
         created = try container.decode(Date.self, forKey: .created)
         updated = try container.decode(Date.self, forKey: .updated)
