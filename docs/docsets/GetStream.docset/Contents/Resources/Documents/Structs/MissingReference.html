@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>OGVideoResponse Structure Reference</title>
+    <title>MissingReference Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/OGVideoResponse" class="dashAnchor"></a>
-    <a title="OGVideoResponse Structure Reference"></a>
+    <a name="//apple_ref/swift/Struct/MissingReference" class="dashAnchor"></a>
+    <a title="MissingReference Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">GetStream Docs</a> (79% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">GetStream Reference</a>
         <img id="carat" src="../img/carat.png" />
-        OGVideoResponse Structure Reference
+        MissingReference Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -339,14 +339,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>OGVideoResponse</h1>
+            <h1>MissingReference</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">OGVideoResponse</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MissingReference</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Codable</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Missable.html">Missable</a></span></code></pre>
 
                 </div>
               </div>
-            <p>An Open Graph video response.</p>
+            <p>A wrapper for missing reference object.</p>
 
           </section>
           <section class="section task-group-section">
@@ -355,9 +355,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV5imageSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/image" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV5imageSSSgvp">image</a>
+                    <a name="/s:9GetStream16MissingReferenceV5valuexvp"></a>
+                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream16MissingReferenceV5valuexvp">value</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -365,14 +365,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A decoded or missed value.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">T</span></code></pre>
 
                         </div>
                       </div>
@@ -382,9 +382,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV3url10Foundation3URLVSgvp"></a>
-                    <a name="//apple_ref/swift/Property/url" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV3url10Foundation3URLVSgvp">url</a>
+                    <a name="/s:9GetStream16MissingReferenceV8isMissedSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isMissed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream16MissingReferenceV8isMissedSbvp">isMissed</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -392,14 +392,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>True if the value was missed.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">isMissed</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -409,9 +409,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV9secureURLSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/secureURL" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV9secureURLSSSgvp">secureURL</a>
+                    <a name="/s:9GetStream16MissingReferenceV13decodingErrors0F0_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/decodingError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream16MissingReferenceV13decodingErrors0F0_pSgvp">decodingError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -419,14 +419,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A decoding error instead of missing reference case.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">secureURL</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">decodingError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -436,9 +436,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV5widthAA11StringOrIntOSgvp"></a>
-                    <a name="//apple_ref/swift/Property/width" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV5widthAA11StringOrIntOSgvp">width</a>
+                    <a name="/s:9GetStream16MissingReferenceV22enrichingActivityErrorAA09EnrichingfG0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/enrichingActivityError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream16MissingReferenceV22enrichingActivityErrorAA09EnrichingfG0VSgvp">enrichingActivityError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -446,14 +446,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An enrichind activity error instead of object value.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">width</span><span class="p">:</span> <span class="kt"><a href="../Enums/StringOrInt.html">StringOrInt</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">enrichingActivityError</span><span class="p">:</span> <span class="kt"><a href="../Structs/EnrichingActivityError.html">EnrichingActivityError</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -463,9 +463,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV6heightAA11StringOrIntOSgvp"></a>
-                    <a name="//apple_ref/swift/Property/height" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV6heightAA11StringOrIntOSgvp">height</a>
+                    <a name="/s:Se4fromxs7Decoder_p_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Se4fromxs7Decoder_p_tKcfc">init(from:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -473,14 +473,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">height</span><span class="p">:</span> <span class="kt"><a href="../Enums/StringOrInt.html">StringOrInt</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">from</span> <span class="nv">decoder</span><span class="p">:</span> <span class="kt">Decoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -490,9 +489,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV4typeSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV4typeSSSgvp">type</a>
+                    <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -500,14 +499,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -517,9 +515,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV3altSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/alt" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV3altSSSgvp">alt</a>
+                    <a name="/s:9GetStream16MissingReferenceV6missedACyxGyFZ"></a>
+                    <a name="//apple_ref/swift/Method/missed()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream16MissingReferenceV6missedACyxGyFZ">missed()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -527,41 +525,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default missed reference value.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">alt</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream15OGVideoResponseV4sizeSo6CGSizeVvp"></a>
-                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV4sizeSo6CGSizeVvp">size</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">missed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">MissingReference</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>

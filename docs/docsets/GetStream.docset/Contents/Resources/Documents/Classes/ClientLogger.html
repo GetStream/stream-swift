@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>OGVideoResponse Structure Reference</title>
+    <title>ClientLogger Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/OGVideoResponse" class="dashAnchor"></a>
-    <a title="OGVideoResponse Structure Reference"></a>
+    <a name="//apple_ref/swift/Class/ClientLogger" class="dashAnchor"></a>
+    <a title="ClientLogger Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">GetStream Docs</a> (79% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">GetStream Reference</a>
         <img id="carat" src="../img/carat.png" />
-        OGVideoResponse Structure Reference
+        ClientLogger Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -339,14 +339,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>OGVideoResponse</h1>
+            <h1>ClientLogger</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">OGVideoResponse</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ClientLogger</span></code></pre>
 
                 </div>
               </div>
-            <p>An Open Graph video response.</p>
+            <p>A Client logger.</p>
 
           </section>
           <section class="section task-group-section">
@@ -355,9 +355,126 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV5imageSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/image" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV5imageSSSgvp">image</a>
+                    <a name="/s:9GetStream12ClientLoggerC6loggeryySS_S2StcvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/logger" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC6loggeryySS_S2StcvpZ">logger</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A customizable logger block.
+By default error messages will print to the console, but you can customize it to use own logger.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">logger</span><span class="p">:</span> <span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a small icon string like a tag for messages, e.g. 🦄</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dateAndTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a formatted string of date and time, could be empty.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a message.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream12ClientLoggerC4iconACSS_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(icon:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC4iconACSS_tcfc">init(icon:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Init a client logger.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">icon</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a string icon.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream12ClientLoggerC3logyy4Moya10TargetType_pF"></a>
+                    <a name="//apple_ref/swift/Method/log(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC3logyy4Moya10TargetType_pF">log(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -372,7 +489,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="n">_</span> <span class="nv">endpoint</span><span class="p">:</span> <span class="kt">TargetType</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -382,9 +499,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV3url10Foundation3URLVSgvp"></a>
-                    <a name="//apple_ref/swift/Property/url" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV3url10Foundation3URLVSgvp">url</a>
+                    <a name="/s:9GetStream12ClientLoggerC3log_4dataySo13NSURLResponseCSg_10Foundation4DataVSgtF"></a>
+                    <a name="//apple_ref/swift/Method/log(_:data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC3log_4dataySo13NSURLResponseCSg_10Foundation4DataVSgtF">log(_:data:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -392,16 +509,59 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Log URL response.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="n">_</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">URLResponse</span><span class="p">?,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>response</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an URL response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a response data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forceToShowData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>force to always log a data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -409,9 +569,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV9secureURLSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/secureURL" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV9secureURLSSSgvp">secureURL</a>
+                    <a name="/s:9GetStream12ClientLoggerC3log__7message8function4lineySS_s5Error_pSgSSSgSSSitFZ"></a>
+                    <a name="//apple_ref/swift/Method/log(_:_:message:function:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC3log__7message8function4lineySS_s5Error_pSgSSSgSSSitFZ">log(_:_:message:function:line:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -419,16 +579,87 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Log an error.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">secureURL</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="n">_</span> <span class="nv">icon</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span>
+                       <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?,</span>
+                       <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                       <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#function</span><span class="p">,</span>
+                       <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a string icon, e.g. emoji.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an error.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an additional message (optional).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>function</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a callee function (auto).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>line</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a callee line of a code in a function (auto).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -436,9 +667,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV5widthAA11StringOrIntOSgvp"></a>
-                    <a name="//apple_ref/swift/Property/width" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV5widthAA11StringOrIntOSgvp">width</a>
+                    <a name="/s:9GetStream12ClientLoggerC3logyySS_10Foundation4DataVSgtF"></a>
+                    <a name="//apple_ref/swift/Method/log(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC3logyySS_10Foundation4DataVSgtF">log(_:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -446,16 +677,47 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Log a data as a pretty printed JSON string.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">width</span><span class="p">:</span> <span class="kt"><a href="../Enums/StringOrInt.html">StringOrInt</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="n">_</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an identifier.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -463,9 +725,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV6heightAA11StringOrIntOSgvp"></a>
-                    <a name="//apple_ref/swift/Property/height" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV6heightAA11StringOrIntOSgvp">height</a>
+                    <a name="/s:9GetStream12ClientLoggerC3logyySS_SStF"></a>
+                    <a name="//apple_ref/swift/Method/log(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC3logyySS_SStF">log(_:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -473,16 +735,47 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Log a message with an identifier.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">height</span><span class="p">:</span> <span class="kt"><a href="../Enums/StringOrInt.html">StringOrInt</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="n">_</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an identifier.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a message.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -490,9 +783,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV4typeSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV4typeSSSgvp">type</a>
+                    <a name="/s:9GetStream12ClientLoggerC3logyySSF"></a>
+                    <a name="//apple_ref/swift/Method/log(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC3logyySSF">log(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -500,16 +793,35 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Log a message.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a message.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -517,9 +829,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream15OGVideoResponseV3altSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/alt" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV3altSSSgvp">alt</a>
+                    <a name="/s:9GetStream12ClientLoggerC3log_8dateTime_ySS_S2StFZ"></a>
+                    <a name="//apple_ref/swift/Method/log(_:dateTime:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream12ClientLoggerC3log_8dateTime_ySS_S2StFZ">log(_:dateTime:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -527,43 +839,59 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Log a message.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">alt</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="n">_</span> <span class="nv">icon</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">dateTime</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span> <span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream15OGVideoResponseV4sizeSo6CGSizeVvp"></a>
-                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream15OGVideoResponseV4sizeSo6CGSizeVvp">size</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a string icon, e.g. emoji.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dateTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a date time as a string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a message.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
