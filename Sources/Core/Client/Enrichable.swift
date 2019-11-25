@@ -23,7 +23,7 @@ extension String: Enrichable {
         return self
     }
     
-    public static func missed() -> Self {
+    public static func missed() -> String {
         return "!missed_reference"
     }
     
