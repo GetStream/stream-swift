@@ -12,7 +12,7 @@ public enum ClientError: LocalizedError, CustomStringConvertible {
     case unexpectedError(_ error: Error?)
     case unexpectedResponse(_ description: String)
     case unknownError(_ localizedDescription: String, _ error: Error?)
-    case parameterInvalid(_ name: AnyKeyPath)
+    case parameterInvalid(_ name: String)
     case jsonInvalid(_ description: String?)
     case jsonDecode(_ localizedDescription: String, _ error: Error?, _ data: Data)
     case jsonEncode(_ localizedDescription: String, _ error: Error?)

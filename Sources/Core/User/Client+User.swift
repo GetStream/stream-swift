@@ -71,7 +71,7 @@ extension Client {
     @discardableResult
     public func createCurrentUser(completion: UserCompletion<User>? = nil) -> Cancellable {
         guard let currentUserId = Client.shared.currentUserId else {
-            completion?(.failure(.parameterInvalid(\Client.currentUserId)))
+            completion?(.failure(.parameterInvalid("Client.currentUserId")))
             return SimpleCancellable()
         }
         
@@ -109,7 +109,7 @@ extension Client {
                                                 withFollowCounts: Bool = false,
                                                 completion: @escaping UserCompletion<T>) -> Cancellable {
         guard let userId = currentUserId else {
-            completion(.failure(.parameterInvalid(\Client.currentUserId)))
+            completion(.failure(.parameterInvalid("Client.currentUserId")))
             return SimpleCancellable()
         }
         

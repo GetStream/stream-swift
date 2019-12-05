@@ -74,12 +74,12 @@ extension Client {
     @discardableResult
     public func resizeImage(imageProcess: ImageProcess, completion: @escaping UploadCompletion) -> Cancellable {
         if imageProcess.height <= 0 {
-            callbackQueue.async { completion(.failure(.parameterInvalid(\ImageProcess.height))) }
+            callbackQueue.async { completion(.failure(.parameterInvalid("ImageProcess.height"))) }
             return SimpleCancellable()
         }
         
         if imageProcess.width <= 0 {
-            callbackQueue.async { completion(.failure(.parameterInvalid(\ImageProcess.width))) }
+            callbackQueue.async { completion(.failure(.parameterInvalid("ImageProcess.width"))) }
             return SimpleCancellable()
         }
         
