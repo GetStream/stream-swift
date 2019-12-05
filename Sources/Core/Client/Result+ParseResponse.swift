@@ -32,7 +32,7 @@ extension Result where Success == Moya.Response, Failure == ClientError {
     func parse<T: Decodable>(_ callbackQueue: DispatchQueue, _ completion: @escaping CompletionObject<T>) {
         parse(block: {
             let response = try get()
-            let object = try JSONDecoder.stream.decode(T.self, from: response.data)
+            let object = try JSONDecoder.default.decode(T.self, from: response.data)
             callbackQueue.async { completion(.success(object)) }
         }, catch: { error in
             callbackQueue.async { completion(.failure(error)) }
@@ -43,7 +43,7 @@ extension Result where Success == Moya.Response, Failure == ClientError {
     func parse<T: Decodable>(_ callbackQueue: DispatchQueue, _ completion: @escaping CompletionObjects<T>) {
         parse(block: {
             let moyaResponse = try get()
-            var response = try JSONDecoder.stream.decode(Response<T>.self, from: moyaResponse.data)
+            var response = try JSONDecoder.default.decode(Response<T>.self, from: moyaResponse.data)
             
             if let next = response.next, case .none = next {
                 response.next = nil

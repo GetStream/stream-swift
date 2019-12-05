@@ -11,8 +11,8 @@ import Moya
 @testable import GetStream
 
 final class ExtensionsTests: XCTestCase {
-    let decoder = JSONDecoder.stream
-    let encoder = JSONEncoder.stream
+    let decoder = JSONDecoder.default
+    let encoder = JSONEncoder.default
 
     let defaultData = """
 {

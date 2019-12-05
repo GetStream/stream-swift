@@ -30,7 +30,7 @@ extension FeedActivityEndpoint: StreamTargetType {
     var task: Task {
         switch self {
         case .add(let activity, feedId: _):
-            return .requestCustomJSONEncodable(activity, encoder: JSONEncoder.stream)
+            return .requestCustomJSONEncodable(activity, encoder: JSONEncoder.default)
         }
     }
     

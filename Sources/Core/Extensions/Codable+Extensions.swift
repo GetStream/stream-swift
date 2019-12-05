@@ -11,6 +11,9 @@ import Foundation
 // MARK: - JSONDecoder Stream
 
 extension JSONDecoder {
+    /// A default decoder.
+    public static var `default`: JSONDecoder = stream
+    
     /// A Stream decoder.
     public static let stream: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -38,6 +41,9 @@ extension JSONDecoder {
 // MARK: - JSONEncoder Stream
 
 extension JSONEncoder {
+    /// A default encoder.
+    public static var `default`: JSONEncoder = stream
+    
     /// A Stream encoder.
     public static let stream: JSONEncoder = {
         let encoder = JSONEncoder()

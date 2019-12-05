@@ -19,7 +19,7 @@ extension Result where Success == Moya.Response, Failure == ClientError {
                                                       _ completion: @escaping GroupCompletion<T, G>) {
         parse(block: {
             let moyaResponse = try get()
-            let response = try JSONDecoder.stream.decode(Response<G>.self, from: moyaResponse.data)
+            let response = try JSONDecoder.default.decode(Response<G>.self, from: moyaResponse.data)
             callbackQueue.async { completion(.success(response)) }
         }, catch: { error in
             callbackQueue.async { completion(.failure(error)) }

@@ -31,7 +31,7 @@ extension Result where Success == Moya.Response, Failure == ClientError {
                                                                       _ completion: @escaping ReactionCompletion<T, U>) {
         parse(block: {
             let response = try get()
-            let reaction = try JSONDecoder.stream.decode(Reaction<T, U>.self, from: response.data)
+            let reaction = try JSONDecoder.default.decode(Reaction<T, U>.self, from: response.data)
             callbackQueue.async { completion(.success(reaction)) }
         }, catch: { error in
             callbackQueue.async { completion(.failure(error)) }
@@ -43,7 +43,7 @@ extension Result where Success == Moya.Response, Failure == ClientError {
                                                                        _ completion: @escaping ReactionsCompletion<T, U>) {
         parse(block: {
             let response = try get()
-            let reactions = try JSONDecoder.stream.decode(Reactions<T, U>.self, from: response.data)
+            let reactions = try JSONDecoder.default.decode(Reactions<T, U>.self, from: response.data)
             callbackQueue.async { completion(.success(reactions)) }
         }, catch: { error in
             callbackQueue.async { completion(.failure(error)) }

@@ -30,7 +30,7 @@ extension Feed {
     /// - Returns: a `SubscribedChannel` keep the subscription util it will be deinit.
     ///            Store the object in a variable for the getting updates and then set it to nil to unsubscribe.
     public func subscribe<T: ActivityProtocol>(typeOf type: T.Type,
-                                               decoder: JSONDecoder = JSONDecoder.stream,
+                                               decoder: JSONDecoder = .default,
                                                subscription: @escaping Subscription<T>) -> SubscribedChannel {
         let channel = Channel(notificationChannelName, client: Client.fayeClient) { [weak self] data  in
             guard let self = self else {

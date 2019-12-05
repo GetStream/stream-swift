@@ -155,7 +155,7 @@ extension Client {
                                                urlParameters: parameters.merged(with: appKeyParameter))
             
         case let .requestJSONEncodable(encodable):
-            if let data = try? JSONEncoder.stream.encode(AnyEncodable(encodable)) {
+            if let data = try? JSONEncoder.default.encode(AnyEncodable(encodable)) {
                 if target.method == .get {
                     do {
                         if let json = (try JSONSerialization.jsonObject(with: data)) as? JSON {
@@ -200,7 +200,7 @@ extension Client {
 
 extension Task {
     static func requestJSONEncodable(_ encodable: Encodable,
-                                     encoder: JSONEncoder? = JSONEncoder.stream,
+                                     encoder: JSONEncoder? = JSONEncoder.default,
                                      urlParameters: JSON) -> Task {
         if let encoder = encoder, let data = try? encoder.encode(AnyEncodable(encodable)) {
             return .requestCompositeData(bodyData: data, urlParameters: urlParameters)
