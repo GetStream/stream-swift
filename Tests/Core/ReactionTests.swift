@@ -12,18 +12,18 @@ import XCTest
 class ReactionTests: TestCase {
     
     func testAdd() {
-        client.add(reactionTo: .test1, kindOf: .comment, extraData: Comment(text: "Hello!"), userTypeOf: User.self) {
+        Client.shared.add(reactionTo: .test1, kindOf: .comment, extraData: Comment(text: "Hello!"), userTypeOf: User.self) {
             let commentReaction = try! $0.get()
             XCTAssertEqual(commentReaction.kind, .comment)
             XCTAssertEqual(commentReaction.data.text, "Hello!")
             
-            self.client.add(reactionTo: .test1, parentReactionId: commentReaction.parentId, kindOf: .like) {
+            Client.shared.add(reactionTo: .test1, parentReactionId: commentReaction.parentId, kindOf: .like) {
                 let likeReaction = try! $0.get()
                 XCTAssertEqual(likeReaction.kind, .like)
                 XCTAssertEqual(likeReaction.parentId, commentReaction.id)
             }
             
-            self.client.add(reactionToParentReaction: commentReaction, kindOf: .like, userTypeOf: User.self) {
+            Client.shared.add(reactionToParentReaction: commentReaction, kindOf: .like, userTypeOf: User.self) {
                 let likeReaction = try! $0.get()
                 XCTAssertEqual(likeReaction.kind, .like)
                 XCTAssertEqual(likeReaction.parentId, commentReaction.id)
@@ -32,19 +32,19 @@ class ReactionTests: TestCase {
     }
     
     func testGet() {
-        client.get(reactionId: .test1) {
+        Client.shared.get(reactionId: .test1) {
             let reaction = try! $0.get()
             XCTAssertEqual(reaction.kind, .like)
             XCTAssertEqual(reaction.data, EmptyReactionExtraData.shared)
         }
         
-        client.get(reactionId: .test2, extraDataTypeOf: Comment.self, userTypeOf: User.self) {
+        Client.shared.get(reactionId: .test2, extraDataTypeOf: Comment.self, userTypeOf: User.self) {
             let reaction = try! $0.get()
             XCTAssertEqual(reaction.kind, .comment)
             XCTAssertEqual(reaction.data.text, "Hello!")
         }
         
-        client.get(reactionId: .test2) {
+        Client.shared.get(reactionId: .test2) {
             let reaction = try! $0.get()
             XCTAssertEqual(reaction.kind, .comment)
             XCTAssertEqual(reaction.data, EmptyReactionExtraData.shared)
@@ -52,7 +52,7 @@ class ReactionTests: TestCase {
     }
     
     func testUpdate() {
-        client.update(reactionId: .test2, extraData: ReactionExtraData.comment("Hi!"), userTypeOf: User.self) {
+        Client.shared.update(reactionId: .test2, extraData: ReactionExtraData.comment("Hi!"), userTypeOf: User.self) {
             let reaction = try! $0.get()
             XCTAssertEqual(reaction.kind, .comment)
             
@@ -76,18 +76,18 @@ class ReactionTests: TestCase {
     }
     
     func testDelete() {
-        client.delete(reactionId: .test1) {
+        Client.shared.delete(reactionId: .test1) {
             XCTAssertEqual(try! $0.get(), 200)
         }
     }
     
     func testFetchReactions() {
-        client.reactions(forUserId: "1") {
+        Client.shared.reactions(forUserId: "1") {
             let reactions = try! $0.get()
             XCTAssertEqual(reactions.reactions.count, 3)
         }
         
-        client.reactions(forUserId: "1", kindOf: .comment, extraDataTypeOf: ReactionExtraData.self, userTypeOf: User.self) {
+        Client.shared.reactions(forUserId: "1", kindOf: .comment, extraDataTypeOf: ReactionExtraData.self, userTypeOf: User.self) {
             let reactions = try! $0.get()
             XCTAssertEqual(reactions.reactions.count, 2)
             
@@ -100,12 +100,12 @@ class ReactionTests: TestCase {
             }
         }
         
-        client.reactions(forReactionId: "50539e71-d6bf-422d-ad21-c8717df0c325") {
+        Client.shared.reactions(forReactionId: "50539e71-d6bf-422d-ad21-c8717df0c325") {
             let reactions = try! $0.get()
             XCTAssertEqual(reactions.reactions.count, 2)
         }
         
-        client.reactions(forActivityId: "ce918867-0520-11e9-a11e-0a286b200b2e", withActivityData: true) {
+        Client.shared.reactions(forActivityId: "ce918867-0520-11e9-a11e-0a286b200b2e", withActivityData: true) {
             let reactions = try! $0.get()
             XCTAssertEqual(reactions.reactions.count, 3)
             XCTAssertNotNil(try? reactions.activity(typeOf: SimpleActivity.self))

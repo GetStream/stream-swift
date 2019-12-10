@@ -23,7 +23,7 @@ extension Feed {
         let activityCopyLimit = max(0, min(1000, activityCopyLimit))
         let endpoint = FeedEndpoint.follow(feedId, target: target, activityCopyLimit: activityCopyLimit)
         
-        return client.request(endpoint: endpoint) { [weak self] result in
+        return Client.shared.request(endpoint: endpoint) { [weak self] result in
             if let self = self {
                 result.parseStatusCode(self.callbackQueue, completion)
             }
@@ -39,12 +39,12 @@ extension Feed {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func unfollow(fromTarget target: FeedId, keepHistory: Bool = false, completion: @escaping StatusCodeCompletion) -> Cancellable {
-        return client.request(endpoint: FeedEndpoint.unfollow(feedId,
-                                                              target: target,
-                                                              keepHistory: keepHistory)) { [weak self] result in
-                                                                if let self = self {
-                                                                    result.parseStatusCode(self.callbackQueue, completion)
-                                                                }
+        return Client.shared.request(endpoint: FeedEndpoint.unfollow(feedId,
+                                                                     target: target,
+                                                                     keepHistory: keepHistory)) { [weak self] result in
+                                                                        if let self = self {
+                                                                            result.parseStatusCode(self.callbackQueue, completion)
+                                                                        }
         }
     }
     
@@ -61,7 +61,7 @@ extension Feed {
         let limit = max(0, min(500, limit))
         let offset = max(0, min(400, offset))
         
-        return client.request(endpoint: FeedEndpoint.followers(feedId, offset: offset, limit: limit)) { [weak self] result in
+        return Client.shared.request(endpoint: FeedEndpoint.followers(feedId, offset: offset, limit: limit)) { [weak self] result in
             if let self = self {
                 result.parse(self.callbackQueue, completion)
             }
@@ -85,13 +85,13 @@ extension Feed {
         let limit = max(0, min(500, limit))
         let offset = max(0, min(400, offset))
         
-        return client.request(endpoint: FeedEndpoint.following(feedId,
-                                                               filter: filter,
-                                                               offset: offset,
-                                                               limit: limit)) { [weak self] result in
-                                                                if let self = self {
-                                                                    result.parse(self.callbackQueue, completion)
-                                                                }
+        return Client.shared.request(endpoint: FeedEndpoint.following(feedId,
+                                                                      filter: filter,
+                                                                      offset: offset,
+                                                                      limit: limit)) { [weak self] result in
+                                                                        if let self = self {
+                                                                            result.parse(self.callbackQueue, completion)
+                                                                        }
         }
     }
 }

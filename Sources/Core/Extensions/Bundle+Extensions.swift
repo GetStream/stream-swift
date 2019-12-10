@@ -9,46 +9,25 @@
 import Foundation
 
 extension Bundle {
-    public enum StreamKey: String {
+    enum StreamKey: String {
         case streamAPIKey = "Stream API Key"
         case streamAppId = "Stream App Id"
         case streamToken = "Stream Token"
     }
     
-    /// A Stream Client setup block.
-    public typealias StreamClientSetup = (_ apiKey: String, _ appId: String, _ token: Token) -> Void
+    /// API key from the bundle.
+    public var streamAPIKey: String? {
+        return streamValue(for: .streamAPIKey)
+    }
     
-    /// Setup the Client with keys from the bundle.
-    ///
-    /// - Note: The example how to setup Client with enabled logs.
-    /// ```
-    /// Bundle.main.setupStreamClient {
-    ///     Client.config = .init(apiKey: $0, appId: $1, token: $2, logsEnabled: true)
-    /// }
-    /// ```
-    ///
-    /// - Parameters:
-    ///     - token: a token to use instead of a value from the Bundle.
-    ///              It's useful, when your app is getting Token from your backend.
-    ///     - setup: a block with Stream keys to setup the Client with custom parameters.
-    public func setupStreamClient(_ token: Token? = nil, logsEnabled: Bool = false, _ setup: StreamClientSetup? = nil) {
-        guard let apiKey = streamValue(for: .streamAPIKey),
-            let appId = streamValue(for: .streamAppId),
-            let token: Token = token ?? streamValue(for: .streamToken),
-            token.isValid else {
-                print("⚠️ Stream bundle keys not found. Check values:\n",
-                      StreamKey.streamAPIKey.rawValue, "-", streamValue(for: .streamAPIKey) ?? "🔴 <NotFound>", "\n",
-                      StreamKey.streamAppId.rawValue, "-", streamValue(for: .streamAppId) ?? "🔴 <NotFound>", "\n",
-                      StreamKey.streamToken.rawValue, "-", streamValue(for: .streamToken) ?? "🔴 <NotFound>", "\n",
-                      "Does Token valid?", (streamValue(for: .streamToken)?.isValid ?? "🔴 false"))
-                return
-        }
-        
-        if let setup = setup {
-            setup(apiKey, appId, token)
-        } else {
-            Client.config = .init(apiKey: apiKey, appId: appId, token: token, logsEnabled: logsEnabled)
-        }
+    /// App id from the bundle.
+    public var streamAppId: String? {
+        return streamValue(for: .streamAppId)
+    }
+    
+    /// Token from the bundle.
+    public var streamToken: String? {
+        return streamValue(for: .streamToken)
     }
     
     private func streamValue(for key: StreamKey) -> String? {

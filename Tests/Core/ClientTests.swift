@@ -16,11 +16,8 @@ final class ClientTests: TestCase {
     
     let feedId = FeedId(feedSlug: "test", userId: "123")
     
-    func testConstructor() {
-        let client = Client(apiKey: "", appId: "appId", token: "")
-        XCTAssertEqual(client.description, "GetStream Client v.\(Client.version) appId: appId")
-        _ = Client(apiKey: "", appId: "appId", token: "", logsEnabled: true)
-        _ = Client(apiKey: "", appId: "appId", token: "", callbackQueue: DispatchQueue.main)
+    func testSetup() {
+        XCTAssertEqual(Client.shared.description, "GetStream Client v.\(Client.version) appId: appId")
     }
     
     func testEndpointMapper() {
@@ -41,7 +38,7 @@ final class ClientTests: TestCase {
     
     func testFeedEndpointGet() {
         expect("feed") { test in
-            client.request(endpoint: FeedEndpoint.get(feedId, true, .none, "", .none, [])) { result in
+            Client.shared.request(endpoint: FeedEndpoint.get(feedId, true, .none, "", .none, [])) { result in
                 if case .success(let response) = result,
                     let json = (try? response.mapJSON()) as? JSON,
                     let activities = json["results"] as? [Any] {
@@ -56,7 +53,7 @@ final class ClientTests: TestCase {
         expect("add activity to the feed") { test in
             let activity = SimpleActivity(actor: "tester", verb: "test", object: "add activity")
             
-            client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
+            Client.shared.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
                 if case .success(let response) = result,
                     let json = (try? response.mapJSON()) as? JSON {
                     XCTAssertEqual(json["actor"] as! String, activity.actor)
@@ -75,7 +72,7 @@ final class ClientTests: TestCase {
     
     func testClientActivityGetByIds() {
         expect("get an enriched activity by id") { test in
-            client.get(enrich: true, typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
+            Client.shared.get(enrich: true, typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
                 if case .success(let response) = result {
                     XCTAssertEqual(response.results.count, 2)
                     XCTAssertEqual(response.results[0].actor.id, "eric")
@@ -89,7 +86,7 @@ final class ClientTests: TestCase {
     
     func testClientSimpleActivityGetByIds() {
         expect("get an activity by id") { test in
-            client.get(enrich: false, typeOf: SimpleActivity.self, activityIds: [.test1, .test2]) { result in
+            Client.shared.get(enrich: false, typeOf: SimpleActivity.self, activityIds: [.test1, .test2]) { result in
                 if case .success(let response) = result {
                     XCTAssertEqual(response.results.count, 2)
                     XCTAssertEqual(response.results[0].actor, "eric")
@@ -106,7 +103,7 @@ final class ClientTests: TestCase {
             let foreignIds = ["f1", "f2"]
             let times = [Date(timeIntervalSinceNow: -10), Date(timeIntervalSinceNow: -20)]
             
-            client.get(typeOf: SimpleActivity.self, foreignIds: foreignIds, times: times) { result in
+            Client.shared.get(typeOf: SimpleActivity.self, foreignIds: foreignIds, times: times) { result in
                 if case .success(let response) = result {
                     XCTAssertEqual(response.results.count, 2)
                     XCTAssertEqual(response.results[0].foreignId!, foreignIds[0])
@@ -123,7 +120,7 @@ final class ClientTests: TestCase {
         expect("activities updated") { test in
             let activity = SimpleActivity(actor: "tester", verb: "update", object: "activities")
             
-            client.update(activities: [activity]) { result in
+            Client.shared.update(activities: [activity]) { result in
                 if case .success(let statusCode) = result {
                     XCTAssertEqual(statusCode, 200)
                     test.fulfill()
@@ -134,7 +131,7 @@ final class ClientTests: TestCase {
     
     func testClientActivityUpdateById() {
         expect("an activity updated by id") { test in
-            client.updateActivity(typeOf: SimpleActivity.self,
+            Client.shared.updateActivity(typeOf: SimpleActivity.self,
                                   setProperties: ["object": "updated"],
                                   unsetPropertiesNames: ["image"],
                                   activityId: .test1) { result in
@@ -150,7 +147,7 @@ final class ClientTests: TestCase {
     func testClientActivityUpdateByForeignId() {
         expect("an activity updated by foreignId") { test in
             let time = Date()
-            client.updateActivity(typeOf: SimpleActivity.self,
+            Client.shared.updateActivity(typeOf: SimpleActivity.self,
                                   setProperties: ["object": "updated"],
                                   unsetPropertiesNames: ["image"],
                                   foreignId: "f1",
@@ -181,7 +178,7 @@ final class ClientTests: TestCase {
         expect(clientError.localizedDescription) { test in
             let activity = SimpleActivity(actor: clientError.localizedDescription, verb: "", object: "")
             
-            client.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
+            Client.shared.request(endpoint: FeedActivityEndpoint.add(activity, feedId: feedId)) { result in
                 if case .failure(let error) = result {
                     XCTAssertEqual(error.localizedDescription, clientError.localizedDescription)
                     test.fulfill()
@@ -277,7 +274,7 @@ final class ClientTests: TestCase {
     
     func testMoyaAuthPlugin() {
         let token: Token = "123"
-        let auth = AuthorizationMoyaPlugin(token: token)
+        let auth = AuthorizationMoyaPlugin(token)
         let request = URLRequest(url: URL(string: "https://getstream.io")!)
         let authRequest = auth.prepare(request, target: FeedEndpoint.deleteByForeignId("", feedId: FeedId.any))
         XCTAssertEqual(authRequest.allHTTPHeaderFields!["Stream-Auth-Type"], "jwt")

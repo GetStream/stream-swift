@@ -10,24 +10,27 @@ import XCTest
 @testable import GetStream
 
 class AggregatedFeedTests: TestCase {
-    lazy var aggregated = client.aggregatedFeed(feedSlug: "aggregated")
+    lazy var aggregated = Client.shared.aggregatedFeed(feedSlug: "aggregated")
 
     func testAggregated() {
         XCTAssertNotNil(aggregated)
-        XCTAssertEqual(aggregated!.feedId, client.aggregatedFeed(feedSlug: "aggregated", userId: "eric").feedId)
+        XCTAssertEqual(aggregated!.feedId, Client.shared.aggregatedFeed(feedSlug: "aggregated", userId: "eric").feedId)
         
         expect("get aggregated") { test in
             aggregated!.get(typeOf: SimpleActivity.self) { result in
-                let groups = try! result.get()
-                XCTAssertEqual(groups.results.count, 2)
-                XCTAssertEqual(groups.results.first!.verb, "verb")
-                XCTAssertEqual(groups.results.first!.activitiesCount, 2)
-                XCTAssertEqual(groups.results.first!.activities.count, 2)
-                XCTAssertEqual(groups.results.first!.actorsCount, 1)
-                XCTAssertTrue(groups.results.first!.group.hasPrefix("verb_"))
-                XCTAssertEqual(groups.results.first!.activities.first!.actor, "Me")
-                XCTAssertEqual(groups.results.first!.activities.first!.verb, "verb")
-                XCTAssertEqual(groups.results.first!.activities.first!.object, "Message")
+                if let groups = try? result.get() {
+                    XCTAssertEqual(groups.results.count, 2)
+                    XCTAssertEqual(groups.results.first!.verb, "verb")
+                    XCTAssertEqual(groups.results.first!.activitiesCount, 2)
+                    XCTAssertEqual(groups.results.first!.activities.count, 2)
+                    XCTAssertEqual(groups.results.first!.actorsCount, 1)
+                    XCTAssertTrue(groups.results.first!.group.hasPrefix("verb_"))
+                    XCTAssertEqual(groups.results.first!.activities.first!.actor, "Me")
+                    XCTAssertEqual(groups.results.first!.activities.first!.verb, "verb")
+                    XCTAssertEqual(groups.results.first!.activities.first!.object, "Message")
+                } else {
+                    XCTFail("Bad aggregated feed result: \(result)")
+                }
                 
                 test.fulfill()
             }
@@ -35,7 +38,7 @@ class AggregatedFeedTests: TestCase {
     }
     
     func testBadJSON() {
-        let aggregated = client.aggregatedFeed(feedSlug: "bad")
+        let aggregated = Client.shared.aggregatedFeed(feedSlug: "bad")
         
         expect("get bad aggregated") { test in
             aggregated!.get { result in

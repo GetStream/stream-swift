@@ -62,12 +62,12 @@ extension UserEndpoint: StreamTargetType {
         switch self {
         case .create, .get:
             return """
-            {"created_at":"2018-12-20T15:41:25.181144Z","updated_at":"2018-12-20T15:41:25.181144Z","id":"test","data":{"name":"Eric Test"},"duration":"2.10ms"}
+            {"created_at":"2018-12-20T15:41:25.181144Z","updated_at":"2018-12-20T15:41:25.181144Z","id":"eric","data":{"name":"Eric"},"duration":"2.10ms"}
             """
             
         case .update:
             return """
-            {"created_at":"2018-12-20T15:41:25.181144Z","updated_at":"2018-12-20T15:41:25.181144Z","id":"test","data":{"name":"Eric Updated"},"duration":"2.10ms"}
+            {"created_at":"2018-12-20T15:41:25.181144Z","updated_at":"2018-12-20T15:41:25.181144Z","id":"eric","data":{"name":"Eric Updated"},"duration":"2.10ms"}
             """
 
         case .delete:

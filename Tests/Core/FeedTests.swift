@@ -19,20 +19,14 @@ final class FeedTests: TestCase {
         XCTAssertEqual(feedId.together, "s1u1")
         XCTAssertEqual(FeedId(feedSlug: "empty", userId: "").togetherWithSlash, "empty")
         
-        XCTAssertEqual(Feed(feedId, client: client).description, "s1:u1")
-        XCTAssertEqual(client.flatFeed(feedSlug: "s2", userId: "u2").description, "s2:u2")
-        XCTAssertEqual(client.flatFeed(feedSlug: "flat")!.description, "flat:eric")
-        
-        XCTAssertNil(Client(apiKey: "1",
-                            appId: "2",
-                            token: "3",
-                            networkProvider: NetworkProvider(stubClosure: NetworkProvider.immediatelyStub))
-            .flatFeed(feedSlug: "flat"))
+        XCTAssertEqual(Feed(feedId).description, "s1:u1")
+        XCTAssertEqual(Client.shared.flatFeed(feedSlug: "s2", userId: "u2").description, "s2:u2")
+        XCTAssertEqual(Client.shared.flatFeed(feedSlug: "flat")!.description, "flat:eric")
     }
     
     func testFeedAdd() {
         expect("an activity") { test in
-            let feed = client.flatFeed(feedSlug: "s", userId: "u")
+            let feed = Client.shared.flatFeed(feedSlug: "s", userId: "u")
             let activity = SimpleActivity(actor: "tester", verb: "add", object: "activity")
             
             feed.add(activity) { result in
@@ -48,7 +42,7 @@ final class FeedTests: TestCase {
     
     func testFeedRemoveById() {
         expect("activity removed") { test in
-            let feed = client.flatFeed(feedSlug: "s", userId: "u")
+            let feed = Client.shared.flatFeed(feedSlug: "s", userId: "u")
             
             feed.remove(activityId: .test1) { result in
                 if case .success(let activityId) = result {
@@ -62,7 +56,7 @@ final class FeedTests: TestCase {
     
     func testFeedRemoveByForeignId() {
         expect("activity removed") { test in
-            let feed = client.flatFeed(feedSlug: "s", userId: "u")
+            let feed = Client.shared.flatFeed(feedSlug: "s", userId: "u")
             
             feed.remove(foreignId: "f1") { result in
                 if case .success(let foreignId) = result {
@@ -75,7 +69,7 @@ final class FeedTests: TestCase {
     
     func testFeedGet() {
         expect("activities") { test in
-            let feed = client.flatFeed(feedSlug: "s", userId: "u")
+            let feed = Client.shared.flatFeed(feedSlug: "s", userId: "u")
             
             feed.get(typeOf: SimpleActivity.self, pagination: .limit(1), ranking: "popularity") { result in
                 if case .success(let response) = result, response.results.count == 1 {
@@ -87,7 +81,7 @@ final class FeedTests: TestCase {
     
     func testAddEnrichedActivity() {
         expect("add an enriched activity") { test in
-            let feed = client.flatFeed(feedSlug: "s", userId: "u")
+            let feed = Client.shared.flatFeed(feedSlug: "s", userId: "u")
             let user = CustomUser(id: "eric", name: "Eric")
             let burger = Food(name: "Burger", id: "burger")
             let activity = UserFoodActivity(actor: user, verb: "eat", object: burger)
@@ -105,7 +99,7 @@ final class FeedTests: TestCase {
     
     func testGetEnrichedActivity() {
         expect("get an enriched activity") { test in
-            let feed = client.flatFeed(feedSlug: "enrich", userId: "u")
+            let feed = Client.shared.flatFeed(feedSlug: "enrich", userId: "u")
             
             feed.get(typeOf: UserFoodActivity.self) { result in
                 let activity = try! result.get().results.first!
@@ -121,7 +115,7 @@ final class FeedTests: TestCase {
     
     func testFeedFollow() {
         expect("a code status") { test in
-            let feed = client.flatFeed(feedSlug: "s1", userId: "u1")
+            let feed = Client.shared.flatFeed(feedSlug: "s1", userId: "u1")
             
             feed.follow(toTarget: FeedId(feedSlug: "s2", userId: "u2")) { result in
                 if case .success(let codeStatus) = result, codeStatus == 200 {
@@ -132,7 +126,7 @@ final class FeedTests: TestCase {
     }
     
     func testFeedUnfollow() {
-        let feed = client.flatFeed(feedSlug: "s1", userId: "u1")
+        let feed = Client.shared.flatFeed(feedSlug: "s1", userId: "u1")
         
         expect("a code status") { test in
             feed.unfollow(fromTarget: FeedId(feedSlug: "s2", userId: "u2")) { result in
@@ -154,14 +148,14 @@ final class FeedTests: TestCase {
     func testFeedFollowers() {
         expect("followers") { test in
             let feedId = FeedId(feedSlug: "s1", userId: "u1")
-            client.flatFeed(feedId).followers(completion: { self.followerFollowing(feedId: feedId, test: test, result: $0) })
+            Client.shared.flatFeed(feedId).followers(completion: { self.followerFollowing(feedId: feedId, test: test, result: $0) })
         }
     }
     
     func testFeedFollowing() {
         expect("following") { test in
             let feedId = FeedId(feedSlug: "s1", userId: "u1")
-            client.flatFeed(feedId).following(filter: [FeedId(feedSlug: "s2", userId: "u2")],
+            Client.shared.flatFeed(feedId).following(filter: [FeedId(feedSlug: "s2", userId: "u2")],
                                           completion: { self.followerFollowing(feedId: feedId, test: test, result: $0) })
         }
     }

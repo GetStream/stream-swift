@@ -18,7 +18,7 @@ class FilesTests: TestCase {
     func testUpload() {
         expect("upload file") { test in
             let file = File(name: "test", data: data)
-            client.upload(file: file) {
+            Client.shared.upload(file: file) {
                 XCTAssertEqual(try! $0.get(), URL(string: "http://uploaded.getstream.io/test")!)
                 test.fulfill()
             }
@@ -27,14 +27,14 @@ class FilesTests: TestCase {
     
     func testDelete() {
         expect("delete file") { test in
-            client.delete(fileURL: URL(string: "http://uploaded.getstream.io/test")!) {
+            Client.shared.delete(fileURL: URL(string: "http://uploaded.getstream.io/test")!) {
                 XCTAssertEqual(try! $0.get(), 200)
                 test.fulfill()
             }
         }
         
         expect("delete image") { test in
-            client.delete(imageURL: URL(string: "http://images.getstream.io/test")!) {
+            Client.shared.delete(imageURL: URL(string: "http://images.getstream.io/test")!) {
                 XCTAssertEqual(try! $0.get(), 200)
                 test.fulfill()
             }
@@ -44,11 +44,11 @@ class FilesTests: TestCase {
     func testUploadImage() {
         expect("upload image") { test in
             let file = File(name: "jpg", jpegImage: image)!
-            client.upload(image: file) {
+            Client.shared.upload(image: file) {
                 XCTAssertEqual(try! $0.get(), URL(string: "http://images.getstream.io/jpg")!)
                 
                 let file = File(name: "png", pngImage: self.image)!
-                self.client.upload(image: file) {
+                Client.shared.upload(image: file) {
                     XCTAssertEqual(try! $0.get(), URL(string: "http://images.getstream.io/png")!)
                     test.fulfill()
                 }
@@ -60,7 +60,7 @@ class FilesTests: TestCase {
         expect("process image") { test in
             let process = ImageProcess(url: URL(string: "http://images.getstream.io/jpg")!, width: 100, height: 100)
             
-            client.resizeImage(imageProcess: process, completion: {
+            Client.shared.resizeImage(imageProcess: process, completion: {
                 XCTAssertEqual(try! $0.get(), URL(string: "http://images.getstream.io/jpg?crop=center&h=100&w=100&resize=clip&url=http://images.getstream.io/jpg")!)
                 test.fulfill()
             })
@@ -69,7 +69,7 @@ class FilesTests: TestCase {
         expect("bad process image") { test in
             let process = ImageProcess(url: URL(string: "http://images.getstream.io/jpg")!, width: 1, height: 0)
             
-            client.resizeImage(imageProcess: process, completion: {
+            Client.shared.resizeImage(imageProcess: process, completion: {
                 if case .failure(let clientError) = $0, case .parameterInvalid = clientError {
                     test.fulfill()
                 }
@@ -79,7 +79,7 @@ class FilesTests: TestCase {
         expect("bad process image") { test in
             let process = ImageProcess(url: URL(string: "http://images.getstream.io/jpg")!, width: 0, height: 1)
             
-            client.resizeImage(imageProcess: process, completion: {
+            Client.shared.resizeImage(imageProcess: process, completion: {
                 if case .failure(let clientError) = $0, case .parameterInvalid = clientError {
                     test.fulfill()
                 }

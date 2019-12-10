@@ -9,15 +9,16 @@
 import Foundation
 
 public enum ClientError: LocalizedError, CustomStringConvertible {
-    case unexpectedError(_ error: Error?)
-    case unexpectedResponse(_ description: String)
+    case unexpectedError(Error?)
+    case unexpectedResponse(String)
     case unknownError(_ localizedDescription: String, _ error: Error?)
-    case parameterInvalid(_ name: String)
-    case jsonInvalid(_ description: String?)
+    case clientSetup(String)
+    case parameterInvalid(String)
+    case jsonInvalid(String?)
     case jsonDecode(_ localizedDescription: String, _ error: Error?, _ data: Data)
     case jsonEncode(_ localizedDescription: String, _ error: Error?)
     case network(_ description: String, _ error: Error?)
-    case server(_ info: Info)
+    case server(Info)
     
     public var description: String {
         switch self {
@@ -27,6 +28,8 @@ public enum ClientError: LocalizedError, CustomStringConvertible {
             return "Unexpected response"
         case .unknownError(let localizedDescription, _):
             return "Unexpected behaviour with error: \(localizedDescription)"
+        case .clientSetup(let description):
+            return "Client setup: \(description)"
         case .parameterInvalid(let name):
             return "Parameter is not valid: \(name)"
         case .jsonInvalid(let description):

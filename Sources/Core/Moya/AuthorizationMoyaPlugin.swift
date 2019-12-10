@@ -9,10 +9,18 @@
 import Foundation
 import Moya
 
-struct AuthorizationMoyaPlugin: PluginType {
-    let token: Token
+final class AuthorizationMoyaPlugin: PluginType {
+    var token: Token
+    
+    init(_ token: Token = "") {
+        self.token = token
+    }
     
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        if token.isEmpty {
+            return request
+        }
+        
         var request = request
         request.addValue("jwt", forHTTPHeaderField: "Stream-Auth-Type")
         request.addValue(token, forHTTPHeaderField: "Authorization")

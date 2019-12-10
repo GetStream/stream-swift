@@ -48,11 +48,15 @@ class CollectionTests: TestCase {
         XCTAssertEqual(burger.referenceId, "SO:food:123")
         
         expect("add collection object") { test in
-            client.add(collectionObject: burger) { result in
-                let addedBurger = try! result.get()
-                XCTAssertEqual(addedBurger.collectionName, "food")
-                XCTAssertEqual(addedBurger.foreignId, "food:123")
-                XCTAssertEqual(addedBurger.name, "Burger")
+            Client.shared.add(collectionObject: burger) { result in
+                if let addedBurger = try? result.get() {
+                    XCTAssertEqual(addedBurger.collectionName, "food")
+                    XCTAssertEqual(addedBurger.foreignId, "food:123")
+                    XCTAssertEqual(addedBurger.name, "Burger")
+                } else {
+                    XCTFail("Add collection object: \(result)")
+                }
+                
                 test.fulfill()
             }
         }
@@ -60,7 +64,7 @@ class CollectionTests: TestCase {
     
     func testGet() {
         expect("get collection object") { test in
-            client.get(typeOf: Food.self, collectionName: "test", collectionObjectId: "obj") { result in
+            Client.shared.get(typeOf: Food.self, collectionName: "test", collectionObjectId: "obj") { result in
                 let burger = try! result.get()
                 XCTAssertEqual(burger.id, "123")
                 XCTAssertEqual(burger.collectionName, "food")
@@ -74,7 +78,7 @@ class CollectionTests: TestCase {
         let burger = Food(name: "Burger2", id: "123")
         
         expect("update collection object") { test in
-            client.update(collectionObject: burger) { result in
+            Client.shared.update(collectionObject: burger) { result in
                 let addedBurger = try! result.get()
                 XCTAssertEqual(addedBurger.name, "Burger2")
                 test.fulfill()
@@ -86,7 +90,7 @@ class CollectionTests: TestCase {
         expect("bad delete collection object") { test in
             let burger = Food(name: "Burger")
             XCTAssertEqual(burger.referenceId, "SO:food")
-            client.delete(collectionObject: burger) { result in
+            Client.shared.delete(collectionObject: burger) { result in
                 if case .failure(let error) = result, case .jsonInvalid = error {
                     test.fulfill()
                 }
@@ -96,7 +100,7 @@ class CollectionTests: TestCase {
         expect("delete collection object") { test in
             let burger = Food(name: "Burger", id: "123")
             
-            client.delete(collectionObject: burger) { result in
+            Client.shared.delete(collectionObject: burger) { result in
                 let status = try! result.get()
                 XCTAssertEqual(status, 200)
                 test.fulfill()

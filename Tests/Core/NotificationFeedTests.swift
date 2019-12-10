@@ -10,7 +10,7 @@ import XCTest
 @testable import GetStream
 
 class NotificationFeedTests: TestCase {
-    lazy var notificationsFeed = client.notificationFeed(feedSlug: "notifications")
+    lazy var notificationsFeed = Client.shared.notificationFeed(feedSlug: "notifications")
 
     func testNotioficationsFeed() {
         expect("get notifications") { test in

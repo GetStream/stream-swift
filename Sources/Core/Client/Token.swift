@@ -30,6 +30,11 @@ extension Token {
         return nil
     }
     
+    /// A user id from the Token.
+    public var userId: String? {
+        return payload?["user_id"] as? String
+    }
+    
     private func jwtDecodeBase64(_ input: String) -> Data? {
         let removeEndingCount = input.count % 4
         let ending = removeEndingCount > 0 ? String(repeating: "=", count: 4 - removeEndingCount) : ""

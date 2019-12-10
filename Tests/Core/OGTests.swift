@@ -14,7 +14,7 @@ class OGTests: TestCase {
     func testOG() {
         expect("get OpenGraph data") { test in
             let url = URL(string: "http://www.imdb.com/title/tt2084970/")!
-            client.og(url: url) {
+            Client.shared.og(url: url) {
                 let data = try! $0.get()
                 XCTAssertEqual(data.title, "The Imitation Game (2014)")
                 XCTAssertEqual(data.url, url)

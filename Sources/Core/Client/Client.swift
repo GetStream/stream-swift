@@ -17,21 +17,28 @@ typealias NetworkProvider = MoyaProvider<MultiTarget>
 public final class Client {
     let apiKey: String
     let appId: String
-    let token: Token
+    let baseURL: BaseURL
     let callbackQueue: DispatchQueue
     let workingQueue: DispatchQueue
     
+    var token: Token = "" {
+        didSet {
+            networkAuthorization.token = token
+        }
+    }
+    
     private let networkProvider: NetworkProvider
+    private let networkAuthorization: AuthorizationMoyaPlugin
     private var consecutiveFailures = 0
     let logger: ClientLogger?
     
     /// The current user id from the Token.
-    public private(set) var currentUserId: String?
+    public internal(set) var currentUserId: String?
     /// The current user.
-    public var currentUser: UserProtocol?
+    public internal(set) var currentUser: UserProtocol?
     
     /// A configuration to initialize the shared Client.
-    public static var config = Config(apiKey: "", appId: "", token: "")
+    public static var config = Config(apiKey: "", appId: "")
     
     /// Enable this if you want to wrap any `Missable` bad decoded objects as missed.
     /// - Note: If it's enabled the parser will return a response with missed objects and print errors in logs.
@@ -48,65 +55,54 @@ public final class Client {
     /// ```
     public static let shared = Client(apiKey: Client.config.apiKey,
                                       appId: Client.config.appId,
-                                      token: Client.config.token,
                                       baseURL: Client.config.baseURL,
+                                      networkProvider: Client.config.networkProvider,
                                       callbackQueue: Client.config.callbackQueue,
                                       logsEnabled: Client.config.logsEnabled)
     
-    /// Checks if Stream keys are valid.
+    /// Checks if API key and App Id are valid.
     public var isValid: Bool {
-        return !apiKey.isEmpty && !appId.isEmpty && token.isValid
+        return !apiKey.isEmpty && !appId.isEmpty
     }
     
-    /// Create a GetStream client for making network requests.
-    ///
-    /// - Parameters:
-    ///     - apiKey: the Stream API key
-    ///     - appId: the Stream APP id
-    ///     - token: the client token
-    ///     - baseURL: the client URL
-    ///     - callbackQueue: a callback queue for completion requests.
-    ///     - logsEnabled: if enabled the client will show logs for requests.
-    public convenience init(apiKey: String,
-                            appId: String,
-                            token: Token,
-                            baseURL: BaseURL = BaseURL(),
-                            callbackQueue: DispatchQueue = .main,
-                            logsEnabled: Bool = false) {
-        let moyaPlugins: [PluginType] = [AuthorizationMoyaPlugin(token: token)]
-        let workingQueue = DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
-        let endpointClosure: NetworkProvider.EndpointClosure = { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) }
-        let moyaProvider = NetworkProvider(endpointClosure: endpointClosure, callbackQueue: workingQueue, plugins: moyaPlugins)
+    private init(apiKey: String,
+                 appId: String,
+                 baseURL: BaseURL = BaseURL(),
+                 networkProvider: NetworkProvider? = nil,
+                 callbackQueue: DispatchQueue = .main,
+                 logsEnabled: Bool = false) {
+        if !apiKey.isEmpty, logsEnabled {
+            ClientLogger.logger("📰", "", "Stream Feed v.\(Client.version)")
+            ClientLogger.logger("🔑", "", apiKey)
+            ClientLogger.logger("🔗", "", baseURL.description)
+        }
         
-        self.init(apiKey: apiKey,
-                  appId: appId,
-                  token: token,
-                  networkProvider: moyaProvider,
-                  workingQueue: workingQueue,
-                  callbackQueue: callbackQueue,
-                  logsEnabled: logsEnabled)
-    }
-    
-    init(apiKey: String,
-         appId: String,
-         token: Token,
-         networkProvider: NetworkProvider,
-         workingQueue: DispatchQueue = .global(),
-         callbackQueue: DispatchQueue = .main,
-         logsEnabled: Bool = false) {
         self.apiKey = apiKey
         self.appId = appId
-        self.token = token
-        self.networkProvider = networkProvider
-        self.workingQueue = workingQueue
+        self.baseURL = baseURL
         self.callbackQueue = callbackQueue
+        let workingQueue = DispatchQueue(label: "io.getstream.Client.\(baseURL.url.host ?? "")", qos: .userInitiated)
+        self.workingQueue = workingQueue
         logger = logsEnabled ? ClientLogger(icon: "🐴") : nil
-        parseUserId()
+        networkAuthorization = AuthorizationMoyaPlugin()
+        
+        if let networkProvider = networkProvider {
+            self.networkProvider = networkProvider
+        } else {
+            self.networkProvider =
+                NetworkProvider(endpointClosure: { Client.endpointMapping($0, apiKey: apiKey, baseURL: baseURL) },
+                                callbackQueue: workingQueue,
+                                plugins: [networkAuthorization])
+        }
+        
+        checkAPIKey()
     }
     
-    private func parseUserId() {
-        if let payloadJSON = token.payload, let userId = payloadJSON["user_id"] as? String {
-            currentUserId = userId
+    private func checkAPIKey() {
+        if apiKey.isEmpty {
+            ClientLogger.logger("❌❌❌", "", "The Stream Feed Client didn't setup properly. "
+                + "You are trying to use it before setup the API Key.")
+            Thread.callStackSymbols.forEach { ClientLogger.logger("", "", $0) }
         }
     }
 }
@@ -217,6 +213,11 @@ extension Client {
     /// Make a request with a given endpoint.
     @discardableResult
     func request(endpoint: TargetType, completion: @escaping ClientCompletion) -> Cancellable {
+        if token.isEmpty {
+            completion(.failure(.clientSetup("Network layer wasn't setup. Probably Token or User wasn't provided or it was bad.")))
+            return SimpleCancellable()
+        }
+        
         logger?.log(endpoint)
         
         return networkProvider.request(MultiTarget(endpoint)) { [weak self] result in
@@ -287,32 +288,44 @@ extension Client {
     public struct Config {
         let apiKey: String
         let appId: String
-        let token: Token
         let baseURL: BaseURL
         let callbackQueue: DispatchQueue
         let logsEnabled: Bool
+        let networkProvider: NetworkProvider?
         
         /// Setup a configuration for the shared Stream `Client`.
         ///
         /// - Parameters:
         ///     - apiKey: the Stream API key
         ///     - appId: the Stream APP id
-        ///     - token: the client token
         ///     - baseURL: the client URL
         ///     - callbackQueue: a callback queue for completion requests.
         ///     - logsEnabled: if enabled the client will show logs for requests.
         public init(apiKey: String,
                     appId: String,
-                    token: Token,
                     baseURL: BaseURL = BaseURL(),
                     callbackQueue: DispatchQueue = .main,
                     logsEnabled: Bool = false) {
+            self.init(apiKey: apiKey,
+                      appId: appId,
+                      baseURL: baseURL,
+                      callbackQueue: callbackQueue,
+                      logsEnabled: logsEnabled,
+                      networkProvider: nil)
+        }
+        
+        init(apiKey: String,
+             appId: String,
+             baseURL: BaseURL = BaseURL(),
+             callbackQueue: DispatchQueue = .main,
+             logsEnabled: Bool = false,
+             networkProvider: NetworkProvider?) {
             self.apiKey = apiKey
             self.appId = appId
-            self.token = token
             self.baseURL = baseURL
             self.callbackQueue = callbackQueue
             self.logsEnabled = logsEnabled
+            self.networkProvider = networkProvider
         }
     }
 }

@@ -48,7 +48,7 @@ public final class AggregatedFeed: Feed {
                                          includeReactions reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping GroupCompletion<T, Group<T>>) -> Cancellable {
         let endpoint = FeedEndpoint.get(feedId, enrich, pagination, "", .none, reactionsOptions)
-        return client.request(endpoint: endpoint) { [weak self] result in
+        return Client.shared.request(endpoint: endpoint) { [weak self] result in
             if let self = self {
                 result.parseGroup(self.callbackQueue, completion)
             }
@@ -80,6 +80,6 @@ extension Client {
     
     /// Get an aggregated feed with a given `feedId`.
     public func aggregatedFeed(_ feedId: FeedId) -> AggregatedFeed {
-        return AggregatedFeed(feedId, client: self)
+        return AggregatedFeed(feedId)
     }
 }

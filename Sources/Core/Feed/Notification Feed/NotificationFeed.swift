@@ -55,7 +55,7 @@ public final class NotificationFeed: Feed {
                                          includeReactions reactionsOptions: FeedReactionsOptions = [],
                                          completion: @escaping GroupCompletion<T, NotificationGroup<T>>) -> Cancellable {
         let endpoint = FeedEndpoint.get(feedId, enrich, pagination, "", markOption, reactionsOptions)
-        return client.request(endpoint: endpoint) { [weak self] result in
+        return Client.shared.request(endpoint: endpoint) { [weak self] result in
             if let self = self {
                 result.parseGroup(self.callbackQueue, completion)
             }
@@ -87,6 +87,6 @@ extension Client {
     
     /// Get a notification feed with a given `feedId`.
     public func notificationFeed(_ feedId: FeedId) -> NotificationFeed {
-        return NotificationFeed(feedId, client: self)
+        return NotificationFeed(feedId)
     }
 }

@@ -64,26 +64,6 @@ extension Client {
         }
     }
     
-    /// Setup the current user with a default `User` type.
-    ///
-    /// - Parameter completion: a completion block with an `User` object in the `Result`.
-    /// - Returns: an object to cancel the request.
-    @discardableResult
-    public func createCurrentUser(completion: UserCompletion<User>? = nil) -> Cancellable {
-        guard let currentUserId = Client.shared.currentUserId else {
-            completion?(.failure(.parameterInvalid("Client.currentUserId")))
-            return SimpleCancellable()
-        }
-        
-        return create(user: User(id: currentUserId)) { result in
-            Client.shared.currentUser = try? result.get()
-            
-            if let completion = completion {
-                completion(result)
-            }
-        }
-    }
-    
     /// Get the current user with a default `User` type.
     /// If request was sucessful the user would be assigned to the `client.currentUser` property.
     ///

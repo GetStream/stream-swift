@@ -52,7 +52,9 @@ extension Feed {
             }
         }
         
-        channel.ext = ["api_key": client.apiKey, "signature": client.token, "user_id": notificationChannelName]
+        channel.ext = ["api_key": Client.shared.apiKey,
+                       "signature": Client.shared.token,
+                       "user_id": notificationChannelName]
         
         do {
             try Client.fayeClient.subscribe(to: channel)
@@ -75,7 +77,7 @@ extension Feed {
     
     /// A notification channel name.
     var notificationChannelName: ChannelName {
-        return "site-\(client.appId)-feed-\(feedId.together)"
+        return "site-\(Client.shared.appId)-feed-\(feedId.together)"
     }
 }
 

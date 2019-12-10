@@ -84,6 +84,8 @@
 		8ABC207A21BAB8D10033EE8F /* Client+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207921BAB8D10033EE8F /* Client+Files.swift */; };
 		8ABC207C21BAB9150033EE8F /* FilesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */; };
 		8ABC207E21BE5D680033EE8F /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABC207D21BE5D680033EE8F /* ImageProcess.swift */; };
+		8ABF0CEE239E62BB00F0C529 /* Client+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF0CED239E62BB00F0C529 /* Client+Setup.swift */; };
+		8ABF0CF1239FEAD100F0C529 /* Result+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABF0CF0239FEAD100F0C529 /* Result+Extensions.swift */; };
 		8ACD0E8321BFEC9100B7CC4E /* Swime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACD0E8221BFEC9100B7CC4E /* Swime.framework */; };
 		8AD1A0FA21DCFEA800996BE6 /* Feed+Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1A0F921DCFEA800996BE6 /* Feed+Following.swift */; };
 		8AD458B921DE5605007C51B5 /* Client+Faye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE491A121B13FDA008F9036 /* Client+Faye.swift */; };
@@ -210,6 +212,8 @@
 		8ABC207921BAB8D10033EE8F /* Client+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Files.swift"; sourceTree = "<group>"; };
 		8ABC207B21BAB9150033EE8F /* FilesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesEndpoint.swift; sourceTree = "<group>"; };
 		8ABC207D21BE5D680033EE8F /* ImageProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcess.swift; sourceTree = "<group>"; };
+		8ABF0CED239E62BB00F0C529 /* Client+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+Setup.swift"; sourceTree = "<group>"; };
+		8ABF0CF0239FEAD100F0C529 /* Result+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Extensions.swift"; sourceTree = "<group>"; };
 		8ACD0E8221BFEC9100B7CC4E /* Swime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swime.framework; path = Carthage/Build/iOS/Swime.framework; sourceTree = "<group>"; };
 		8AD1A0F721DCF51800996BE6 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		8AD1A0F921DCFEA800996BE6 /* Feed+Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+Following.swift"; sourceTree = "<group>"; };
@@ -424,6 +428,7 @@
 		8A6283D52199AEE20002913D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8ABF0CF0239FEAD100F0C529 /* Result+Extensions.swift */,
 				8A6283D62199AEE20002913D /* Codable+Extensions.swift */,
 				8A6283D72199AEE20002913D /* Dictionary+Extensions.swift */,
 				8A2D83FF2227E29700795FAE /* Bundle+Extensions.swift */,
@@ -451,6 +456,7 @@
 			children = (
 				8A4B11F021DE368700D19ADB /* Token.swift */,
 				8A6283DF2199AEE20002913D /* Client.swift */,
+				8ABF0CED239E62BB00F0C529 /* Client+Setup.swift */,
 				8A6283E02199AEE20002913D /* ClientError.swift */,
 				8A7BCE0423702901000A30DE /* ClientLogger.swift */,
 				8AF44DCA21C294F500A3A7B4 /* Result+ParseResponse.swift */,
@@ -839,6 +845,7 @@
 				8AF44DC721C28D3A00A3A7B4 /* Result+ParseReaction.swift in Sources */,
 				8A6284142199CF9C0002913D /* FeedId.swift in Sources */,
 				8A2856E121BFF6A80091A977 /* Client+OpenGraph.swift in Sources */,
+				8ABF0CEE239E62BB00F0C529 /* Client+Setup.swift in Sources */,
 				8A411C3121C40495001BE61F /* UserProtocol.swift in Sources */,
 				8ADCEE88219ECF78001598C1 /* Client+Activity.swift in Sources */,
 				8AD1A0FA21DCFEA800996BE6 /* Feed+Following.swift in Sources */,
@@ -854,6 +861,7 @@
 				8A9A71562237D1FF004E6607 /* OriginalRepresentable.swift in Sources */,
 				8A2856E321BFF70A0091A977 /* OpenGraphEndpoint.swift in Sources */,
 				8A411C2D21C4047F001BE61F /* Client+User.swift in Sources */,
+				8ABF0CF1239FEAD100F0C529 /* Result+Extensions.swift in Sources */,
 				8A0AD18E21C9099F00A3167D /* CollectionObject.swift in Sources */,
 				8A6283FD2199AEE20002913D /* Feed.swift in Sources */,
 				8A0AD19921CBC9BD00A3167D /* FlatFeed.swift in Sources */,
