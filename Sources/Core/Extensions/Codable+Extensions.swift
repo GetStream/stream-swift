@@ -24,7 +24,7 @@ extension JSONDecoder {
             let string: String = try container.decode(String.self)
             
             if string.hasSuffix("Z") {
-                if let date = DateFormatter.Stream.iso8601Date(from: string) {
+                if let date = DateFormatter.Stream.iso8601DateFormatter.date(from: string) {
                     return date
                 }
             } else if let date = string.streamDate {
@@ -87,11 +87,11 @@ extension DateFormatter {
             return formatter
         }()
         
-        public static func iso8601Date(from string: String) -> Date? {
+        public static let iso8601DateFormatter: ISO8601DateFormatter = {
             if #available(iOS 11, macOS 10.13, *) {
-                let formatter = ISO8601DateFormatter()
+                let formatter = Foundation.ISO8601DateFormatter()
                 formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-                return formatter.date(from: string)
+                return formatter
             }
             
             let formatter = DateFormatter()
@@ -100,8 +100,8 @@ extension DateFormatter {
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
             
-            return formatter.date(from: string)
-        }
+            return formatter
+        }()
     }
 }
 
@@ -122,3 +122,13 @@ extension String {
         return DateFormatter.Stream.default.date(from: self)
     }
 }
+
+// MARK: - ISO8601 Date Formatter
+
+public protocol ISO8601DateFormatter {
+    func date(from: String) -> Date?
+}
+
+@available(iOS 10.0, macOS 10.13, *)
+extension Foundation.ISO8601DateFormatter: ISO8601DateFormatter {}
+extension DateFormatter: ISO8601DateFormatter {}
