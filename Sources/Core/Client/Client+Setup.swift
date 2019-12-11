@@ -8,7 +8,15 @@
 
 import Foundation
 import Moya
+
+#if canImport(Faye)
 import Faye
+#else
+extension Client {
+    struct FayeClient { func disconnect() {} }
+    static let fayeClient = FayeClient()
+}
+#endif
 
 // MARK: - Client User Setup
 
@@ -35,7 +43,10 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func setupUser<T: UserProtocol>(_ user: T, token: Token, completion: @escaping UserCompletion<T>) -> Cancellable {
-        Client.fayeClient.disconnect()
+        if NSClassFromString("Faye.Client") != nil {
+            Client.fayeClient.disconnect()
+        }
+        
         parseToken(token)
         
         guard let currentUserId = currentUserId else {
