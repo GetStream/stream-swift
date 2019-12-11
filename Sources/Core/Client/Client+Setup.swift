@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import Faye
 
 // MARK: - Client User Setup
 
