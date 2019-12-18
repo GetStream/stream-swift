@@ -43,10 +43,6 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func setupUser<T: UserProtocol>(_ user: T, token: Token, completion: @escaping UserCompletion<T>) -> Cancellable {
-        if NSClassFromString("Faye.Client") != nil {
-            Client.fayeClient.disconnect()
-        }
-        
         parseToken(token)
         
         guard let currentUserId = currentUserId else {
@@ -79,8 +75,7 @@ extension Client {
     }
     
     private func parseToken(_ token: Token) {
-        self.token = ""
-        currentUserId = nil
+        disconnect()
         
         if token.isEmpty {
             return
@@ -89,6 +84,21 @@ extension Client {
         if let userId = token.userId {
             self.token = token
             currentUserId = userId
+        }
+    }
+    
+    /// Disconnect from Stream and reset the current user.
+    ///
+    /// Resets and removes the user/token pair as well as relevant network connections.
+    /// - Note: To restore the connection, use `Client.setupUser` to set a valid user/token pair.
+    public func disconnect() {
+        logger?.log("🧹 Disconnect. Reset Client User, Token, URLSession and WebSocket. Old user id: \(currentUserId ?? "<Empty>").")
+        self.token = ""
+        currentUserId = nil
+        currentUser = nil
+        
+        if NSClassFromString("Faye.Client") != nil {
+            Client.fayeClient.disconnect()
         }
     }
 }
