@@ -1,7 +1,54 @@
+<a name="2.2.1"></a>
+# [2.2.1](https://github.com/GetStream/stream-swift/releases/tag/2.2.1) - 20 Dec 2019
+
+### ✅ Added
+- `Client.disconnect()` will disconnect from Stream and reset the current `User`.
+- Public `Comment.text`
+
+[Changes][2.2.1]
+
+
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/GetStream/stream-swift/releases/tag/2.2.0) - 20 Dec 2019
+
+### 💥 Breaking Changes
+The `Client` will always work as a shared instance and you can setup it without a user token:
+```swift
+Client.config = .init(apiKey: "<#ApiKey#>", appId: "<#AppId#>")
+```
+The user setup is more clear. You can easily manage user login/logout:
+```swift
+Client.shared.setupUser(token: token) { _ in 
+    // Do all your requests from here. Reload feeds and etc.
+}
+```
+No need to send to create a Stream user request for new users.
+
+You can use custom User type with an additional user parameter. For example:
+```swift
+let myUser = MyUser(id: "123", name: "John Doe", avatarURL: avatarURL)
+Client.shared.setupUser(myUser, token: token) { _ in 
+    print(MyUser.current)
+}
+```
+
+### ✅ Added
+- Custom JSON Encoder/Decoder. You can change `JSONDecoder.default` and `JSONEncoder.default`.
+
+### 🔄 Changed
+- `ClientError.parameterInvalid(AnyKeyPath)` > `ClientError.parameterInvalid(String)`
+
+### 🐞 Fixed
+- Xcode 10 support
+- Cached `ISO8601DateFormatter`.
+
+[Changes][2.2.0]
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/GetStream/stream-swift/releases/tag/2.1.0) - 12 Nov 2019
 
-## Added
+### Added
 - `MissingReference` a wrapper for activities, users, reactions and collection objects with missing references.
 - `Missable` protocol to implement a placeholder for missed objects.
 
@@ -103,7 +150,7 @@ Fixed dependencies.
 <a name="1.1.3"></a>
 # [1.1.3](https://github.com/GetStream/stream-swift/releases/tag/1.1.3) - 26 Feb 2019
 
-## Added
+### Added
 - A shared instance for the `Client`. Just setup `Client.config` before using it.
 ```
 // Setup a shared Stream client before using it.
@@ -115,7 +162,7 @@ let chrisFeed = Client.shared.flatFeed(feedSlug: "user", userId: "chris")
 - A new property `feedGroupId` for the `Activity`.
 - New properties `unseenCount` and `unreadCount` to the `Response`.
 
-## Fixes
+### Fixes
 - Hided logs from the Faye client.
 - Subscriptions for updates to keeping web socket connection.
 - Fixed a feed subscription callbackQueue.
@@ -194,6 +241,8 @@ The first public version.
 [Changes][1.0.0]
 
 
+[2.2.1]: https://github.com/GetStream/stream-swift/compare/2.2.0...2.2.1
+[2.2.0]: https://github.com/GetStream/stream-swift/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/GetStream/stream-swift/compare/2.0.1...2.1.0
 [2.0.1]: https://github.com/GetStream/stream-swift/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/GetStream/stream-swift/compare/1.2.2...2.0.0
