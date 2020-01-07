@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  release:
+    types:
+      - created
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Cache dependencies
+      uses: actions/cache@v1.1.0
+      with:
+        path: Carthage
+        key: ${{ runner.os }}-carthage-${{ hashFiles('**/Cartfile.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-carthage-
+    - name: Install Carthage dependencies
+      run: carthage update --platform iOS --new-resolver --no-use-binaries --cache-builds
+    - name: Clean and build the StreamChat scheme
+      run: xcodebuild clean test -project GetStream.xcodeproj -scheme GetStream-iOS -destination "platform=iOS Simulator,name=iPhone 11 Pro"
+    - name: Update code coverage
+      run: bash <(curl -s https://codecov.io/bash) -J 'GetStream-iOS'
+    
