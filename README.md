@@ -1,6 +1,6 @@
 # Stream Swift Client
 
-[![Build Status](https://travis-ci.com/GetStream/stream-swift.svg?branch=master)](https://travis-ci.com/GetStream/stream-swift)
+[![Build Status](https://github.com/GetStream/stream-swift/workflows/CI/badge.svg)](https://github.com/GetStream/stream-swift/actions)
 [![codecov.io](https://codecov.io/github/GetStream/stream-swift/coverage.svg?branch=master)](https://codecov.io/github/GetStream/stream-swift?branch=master)
 [![Language: Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)](https://swift.org)
 [![Documentation](https://github.com/GetStream/stream-swift/blob/master/docs/badge.svg)](https://getstream.github.io/stream-swift/)
