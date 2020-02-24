@@ -14,7 +14,7 @@
     <a title="Feed Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GetStream Docs</a> (79% documented)</p>
+        <p><a href="../index.html">GetStream Docs</a> (77% documented)</p>
         <p class="header-right"><a href="https://github.com/GetStream/stream-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -39,6 +39,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Client/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Client.html#/s:9GetStream6ClientC04FayeC0V">– FayeClient</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ClientLogger.html">ClientLogger</a>
@@ -117,10 +120,22 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Bundle.html">Bundle</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bundle/StreamKey.html">– StreamKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Client.html#/FayeClient">– FayeClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Date.html">Date</a>
@@ -132,6 +147,15 @@
                 <a href="../Extensions/DateFormatter/Stream.html">– Stream</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Dictionary.html">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/c:objc(cs)NSISO8601DateFormatter">Foundation.ISO8601DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/JSONDecoder.html">JSONDecoder</a>
               </li>
               <li class="nav-group-task">
@@ -141,10 +165,13 @@
                 <a href="../Extensions/ReactionKind.html">ReactionKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Swime.html">Swime</a>
+                <a href="../Extensions/Token.html">Token</a>
               </li>
             </ul>
           </li>
@@ -159,6 +186,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Enrichable.html">Enrichable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ISO8601DateFormatter.html">ISO8601DateFormatter</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Missable.html">Missable</a>
@@ -190,7 +220,7 @@
                 <a href="../Structs/BaseURL/Location.html">– Location</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs.html#/s:9GetStream7CommentV">Comment</a>
+                <a href="../Structs/Comment.html">Comment</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
@@ -382,33 +412,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream4FeedC6clientAA6ClientCvp"></a>
-                    <a name="//apple_ref/swift/Property/client" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream4FeedC6clientAA6ClientCvp">client</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A Stream client.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">client</span><span class="p">:</span> <span class="kt"><a href="../Classes/Client.html">Client</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:9GetStream4FeedC13callbackQueueSo17OS_dispatch_queueCvp"></a>
                     <a name="//apple_ref/swift/Property/callbackQueue" class="dashAnchor"></a>
                     <a class="token" href="#/s:9GetStream4FeedC13callbackQueueSo17OS_dispatch_queueCvp">callbackQueue</a>
@@ -463,9 +466,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream4FeedC_6client13callbackQueueAcA0C2IdV_AA6ClientCSo17OS_dispatch_queueCSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:client:callbackQueue:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream4FeedC_6client13callbackQueueAcA0C2IdV_AA6ClientCSo17OS_dispatch_queueCSgtcfc">init(_:client:callbackQueue:)</a>
+                    <a name="/s:9GetStream4FeedC_13callbackQueueAcA0C2IdV_So17OS_dispatch_queueCSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:callbackQueue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream4FeedC_13callbackQueueAcA0C2IdV_So17OS_dispatch_queueCSgtcfc">init(_:callbackQueue:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -480,7 +483,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">feedId</span><span class="p">:</span> <span class="kt"><a href="../Structs/FeedId.html">FeedId</a></span><span class="p">,</span> <span class="nv">client</span><span class="p">:</span> <span class="kt"><a href="../Classes/Client.html">Client</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">shared</span><span class="p">,</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">feedId</span><span class="p">:</span> <span class="kt"><a href="../Structs/FeedId.html">FeedId</a></span><span class="p">,</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -536,9 +539,11 @@
               <div class="task-name-container">
                 <a name="/Feed%20Activity"></a>
                 <a name="//apple_ref/swift/Section/Feed Activity" class="dashAnchor"></a>
-                <a href="#/Feed%20Activity">
-                  <h3 class="section-name">Feed Activity</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Feed%20Activity"></a>
+                  <h3 class="section-name"><p>Feed Activity</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -562,7 +567,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">activity</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ActivityCompletiona">ActivityCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">activity</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ActivityCompletiona">ActivityCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></span></code></pre>
 
                         </div>
                       </div>
@@ -736,9 +741,11 @@
               <div class="task-name-container">
                 <a name="/Feed%20Following"></a>
                 <a name="//apple_ref/swift/Section/Feed Following" class="dashAnchor"></a>
-                <a href="#/Feed%20Following">
-                  <h3 class="section-name">Feed Following</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Feed%20Following"></a>
+                  <h3 class="section-name"><p>Feed Following</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -1047,10 +1054,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1072,7 +1075,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">subscribe</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">typeOf</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
-                                           <span class="nv">decoder</span><span class="p">:</span> <span class="kt">JSONDecoder</span> <span class="o">=</span> <span class="kt">JSONDecoder</span><span class="o">.</span><span class="n">stream</span><span class="p">,</span>
+                                           <span class="nv">decoder</span><span class="p">:</span> <span class="kt">JSONDecoder</span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
                                            <span class="nv">subscription</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream12Subscriptiona">Subscription</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SubscribedChannel.html">SubscribedChannel</a></span></code></pre>
 
                         </div>
@@ -1129,13 +1132,40 @@
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9GetStream4FeedC23notificationChannelNameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/notificationChannelName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9GetStream4FeedC23notificationChannelNameSSvp">notificationChannelName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A notification channel name.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">notificationChannelName</span><span class="p">:</span> <span class="kt">ChannelName</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2019-11-12)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2020-02-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

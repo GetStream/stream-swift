@@ -1,3 +1,12 @@
+<a name="2.2.2"></a>
+# [2.2.2](https://github.com/GetStream/stream-swift/releases/tag/2.2.2) - 24 Feb 2020
+
+### 🐞 Fixed
+- `ISO8601DateFormatter.Options.withFractionalSeconds` option for `ISO8601DateFormatter` causes an exception in iOS11 (fixed in iOS11.2) [#24](https://github.com/GetStream/stream-swift/pull/24)
+
+[Changes][2.2.2]
+
+
 <a name="2.2.1"></a>
 # [2.2.1](https://github.com/GetStream/stream-swift/releases/tag/2.2.1) - 20 Dec 2019
 
@@ -240,7 +249,7 @@ The first public version.
 
 [Changes][1.0.0]
 
-
+[2.2.2]: https://github.com/GetStream/stream-swift/compare/2.2.1...2.2.2
 [2.2.1]: https://github.com/GetStream/stream-swift/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/GetStream/stream-swift/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/GetStream/stream-swift/compare/2.0.1...2.1.0

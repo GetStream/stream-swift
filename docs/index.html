@@ -13,7 +13,7 @@
     <a title="GetStream  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">GetStream Docs</a> (79% documented)</p>
+        <p><a href="index.html">GetStream Docs</a> (77% documented)</p>
         <p class="header-right"><a href="https://github.com/GetStream/stream-swift"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -38,6 +38,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Client/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Client.html#/s:9GetStream6ClientC04FayeC0V">– FayeClient</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ClientLogger.html">ClientLogger</a>
@@ -116,10 +119,22 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/Bundle.html">Bundle</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Bundle/StreamKey.html">– StreamKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Client.html#/FayeClient">– FayeClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Data.html">Data</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Date.html">Date</a>
@@ -131,6 +146,15 @@
                 <a href="Extensions/DateFormatter/Stream.html">– Stream</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/Dictionary.html">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions.html#/c:objc(cs)NSISO8601DateFormatter">Foundation.ISO8601DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/JSONDecoder.html">JSONDecoder</a>
               </li>
               <li class="nav-group-task">
@@ -140,10 +164,13 @@
                 <a href="Extensions/ReactionKind.html">ReactionKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/Swime.html">Swime</a>
+                <a href="Extensions/Token.html">Token</a>
               </li>
             </ul>
           </li>
@@ -158,6 +185,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/Enrichable.html">Enrichable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ISO8601DateFormatter.html">ISO8601DateFormatter</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/Missable.html">Missable</a>
@@ -189,7 +219,7 @@
                 <a href="Structs/BaseURL/Location.html">– Location</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs.html#/s:9GetStream7CommentV">Comment</a>
+                <a href="Structs/Comment.html">Comment</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
@@ -341,8 +371,8 @@
             
             <h1 id='stream-swift-client' class='heading'>Stream Swift Client</h1>
 
-<p><a href="https://travis-ci.com/GetStream/stream-swift"><img src="https://travis-ci.com/GetStream/stream-swift.svg?branch=master" alt="Build Status"></a>
-<a href="https://codecov.io/github/GetStream/stream-swift?branch=master"><img src="https://codecov.io/github/GetStream/stream-swift/coverage.svg?branch=master" alt="codecov.io"></a>
+<p><a href="https://github.com/GetStream/stream-swift/actions"><img src="https://github.com/GetStream/stream-swift/workflows/CI/badge.svg" alt="Build Status"></a>
+<a href="https://codecov.io/gh/GetStream/stream-swift"><img src="https://codecov.io/gh/GetStream/stream-swift/branch/master/graph/badge.svg" alt="Code Coverage"></a>
 <a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-4.2-orange.svg" alt="Language: Swift 4.2"></a>
 <a href="https://getstream.github.io/stream-swift/"><img src="https://github.com/GetStream/stream-swift/blob/master/docs/badge.svg" alt="Documentation"></a>
 <a href="https://cocoapods.org/pods/GetStream"><img src="https://img.shields.io/cocoapods/v/GetStream.svg" alt="CocoaPods compatible"></a>
@@ -433,13 +463,13 @@
 
 <p>Copyright &copy; 2016-2018 Stream.io Inc, and individual contributors. All rights reserved.</p>
 
-<p>See the file <q>[LICENSE](https://github.com/GetStream/stream-swift/blob/master/LICENSE)</q> for information on the history of this software, terms &amp; conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.</p>
+<p>See the file &ldquo;<a href="https://github.com/GetStream/stream-swift/blob/master/LICENSE">LICENSE</a>&rdquo; for information on the history of this software, terms &amp; conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2019-11-12)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2020-02-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

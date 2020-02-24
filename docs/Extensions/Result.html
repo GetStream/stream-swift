@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Result Extension Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Extension/Result" class="dashAnchor"></a>
+    <a title="Result Extension Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">GetStream Docs</a> (77% documented)</p>
+        <p class="header-right"><a href="https://github.com/GetStream/stream-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">GetStream Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Result Extension Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AggregatedFeed.html">AggregatedFeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Client/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Client.html#/s:9GetStream6ClientC04FayeC0V">– FayeClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ClientLogger.html">ClientLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CollectionObject.html">CollectionObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CollectionObject/CollectionObjectCodingKeys.html">– CollectionObjectCodingKeys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CollectionObject/DataCodingKeys.html">– DataCodingKeys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EnrichedActivity.html">EnrichedActivity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Feed.html">Feed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FlatFeed.html">FlatFeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Group.html">Group</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NotificationFeed.html">NotificationFeed</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NotificationGroup.html">NotificationGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Reaction.html">Reaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SubscribedChannel.html">SubscribedChannel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User/DataCodingKeys.html">– DataCodingKeys</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ClientError.html">ClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ClientError/Info.html">– Info</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/FeedMarkOption.html">FeedMarkOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Pagination.html">Pagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ReactionExtraData.html">ReactionExtraData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ReactionsError.html">ReactionsError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StringOrInt.html">StringOrInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SubscriptionError.html">SubscriptionError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Bundle.html">Bundle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Bundle/StreamKey.html">– StreamKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Client.html#/FayeClient">– FayeClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter.html">DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter/Stream.html">– Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Dictionary.html">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/c:objc(cs)NSISO8601DateFormatter">Foundation.ISO8601DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/JSONDecoder.html">JSONDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/JSONEncoder.html">JSONEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ReactionKind.html">ReactionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Token.html">Token</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CollectionObjectProtocol.html">CollectionObjectProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Enrichable.html">Enrichable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ISO8601DateFormatter.html">ISO8601DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Missable.html">Missable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/OriginalRepresentable.html">OriginalRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ReactionProtocol.html">ReactionProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Reactionable.html">Reactionable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/UserProtocol.html">UserProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BaseURL.html">BaseURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BaseURL/Service.html">– Service</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BaseURL/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Comment.html">Comment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrichingActivityError.html">EnrichingActivityError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FeedId.html">FeedId</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FeedReactionsOptions.html">FeedReactionsOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/File.html">File</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Follower.html">Follower</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ImageProcess.html">ImageProcess</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ImageProcess/ResizeStrategy.html">– ResizeStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ImageProcess/CropMode.html">– CropMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MissingReference.html">MissingReference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OGAudioResponse.html">OGAudioResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OGImageResponse.html">OGImageResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OGResponse.html">OGResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OGVideoResponse.html">OGVideoResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Reactions.html">Reactions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SubscriptionResponse.html">SubscriptionResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream20ActivitiesCompletiona">ActivitiesCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream8Activitya">Activity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream18ActivityCompletiona">ActivityCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream26CollectionObjectCompletiona">CollectionObjectCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream15DefaultReactiona">DefaultReaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream25DefaultReactionCompletiona">DefaultReactionCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream26DefaultReactionsCompletiona">DefaultReactionsCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream7FeedIdsa">FeedIds</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream19FollowersCompletiona">FollowersCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream15GroupCompletiona">GroupCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/Image">Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream5Imagea">Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream4JSONa">JSON</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream24MultipleUploadCompletiona">MultipleUploadCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream12OGCompletiona">OGCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream10Propertiesa">Properties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream12ReactionKinda">ReactionKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream17RemovedCompletiona">RemovedCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream20StatusCodeCompletiona">StatusCodeCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream12Subscriptiona">Subscription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream5Tokena">Token</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream16UploadCompletiona">UploadCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream14UserCompletiona">UserCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:9GetStream4Verba">Verb</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Result</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Result</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Result</span> <span class="k">where</span> <span class="kt">Success</span> <span class="o">==</span> <span class="kt">Moya</span><span class="o">.</span><span class="kt"><a href="../Structs/Response.html">Response</a></span><span class="p">,</span> <span class="kt">Failure</span> <span class="o">==</span> <span class="kt"><a href="../Enums/ClientError.html">ClientError</a></span></code></pre>
+
+                </div>
+              </div>
+            
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStreamE5errors5Error_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStreamE5errors5Error_pSgvp">error</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the error from the result if it failed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Success%60%20==%20%60Moya.Response%60,%20%60Failure%60%20==%20%60ClientError%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Success` == `Moya.Response`, `Failure` == `ClientError`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Success%60%20==%20%60Moya.Response%60,%20%60Failure%60%20==%20%60ClientError%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Success</code> == <code>Moya.Response</code>, <code>Failure</code> == <code><a href="../Enums/ClientError.html">ClientError</a></code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE15parseStatusCodeyySo17OS_dispatch_queueC_yABySiAHGctF"></a>
+                    <a name="//apple_ref/swift/Method/parseStatusCode(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE15parseStatusCodeyySo17OS_dispatch_queueC_yABySiAHGctF">parseStatusCode(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parse a response and return the status code.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">parseStatusCode</span><span class="p">(</span><span class="n">_</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream20StatusCodeCompletiona">StatusCodeCompletion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE5parseyySo17OS_dispatch_queueC_yAByqd__AHGctSeRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/parse(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE5parseyySo17OS_dispatch_queueC_yAByqd__AHGctSeRd__lF">parse(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parse a <code>Decodable</code> object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">parse</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">CompletionObject</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE5parseyySo17OS_dispatch_queueC_yAByAcEVyqd__GAHGctSeRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/parse(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE5parseyySo17OS_dispatch_queueC_yAByAcEVyqd__GAHGctSeRd__lF">parse(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parse <code>Decodable</code> objects with <code>ResultsContainer</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">parse</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">CompletionObjects</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE5parse5block5catchyyyKXE_yAHctF"></a>
+                    <a name="//apple_ref/swift/Method/parse(block:catch:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE5parse5block5catchyyyKXE_yAHctF">parse(block:catch:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Try to parse a block or catch and return an error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">parse</span><span class="p">(</span><span class="nv">block</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">,</span> <span class="k">catch</span> <span class="nv">errorBlock</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/ClientError.html">ClientError</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE10parseGroupyySo17OS_dispatch_queueC_yAByAcEVyqd_0_GAHGctAC16ActivityProtocolRd__AC0I0Cyqd__GRbd_0_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/parseGroup(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE10parseGroupyySo17OS_dispatch_queueC_yAByAcEVyqd_0_GAHGctAC16ActivityProtocolRd__AC0I0Cyqd__GRbd_0_r0_lF">parseGroup(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">parseGroup</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ActivityProtocol.html">ActivityProtocol</a></span><span class="p">,</span> <span class="kt">G</span><span class="p">:</span> <span class="kt"><a href="../Classes/Group.html">Group</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">,</span>
+                                                  <span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream15GroupCompletiona">GroupCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">G</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE12parseRemovedyySo17OS_dispatch_queueC_yABySSAHGctF"></a>
+                    <a name="//apple_ref/swift/Method/parseRemoved(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE12parseRemovedyySo17OS_dispatch_queueC_yABySSAHGctF">parseRemoved(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">parseRemoved</span><span class="p">(</span><span class="n">_</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream17RemovedCompletiona">RemovedCompletion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE11parseUploadyySo17OS_dispatch_queueC_yABy10Foundation3URLVAHGctF"></a>
+                    <a name="//apple_ref/swift/Method/parseUpload(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE11parseUploadyySo17OS_dispatch_queueC_yABy10Foundation3URLVAHGctF">parseUpload(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">parseUpload</span><span class="p">(</span><span class="n">_</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">,</span> <span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream16UploadCompletiona">UploadCompletion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE13parseReactionyySo17OS_dispatch_queueC_yAByAC0I0Cyqd__qd_0_GAHGctSeRd__SERd__AC12UserProtocolRd_0_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/parseReaction(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE13parseReactionyySo17OS_dispatch_queueC_yAByAC0I0Cyqd__qd_0_GAHGctSeRd__SERd__AC12UserProtocolRd_0_r0_lF">parseReaction(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parse the result with a given reaction completion block.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">parseReaction</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span> <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">,</span>
+                                                                  <span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream18ReactionCompletiona">ReactionCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE14parseReactionsyySo17OS_dispatch_queueC_yAByAC0I0Vyqd__qd_0_GAHGctSeRd__SERd__AC12UserProtocolRd_0_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/parseReactions(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s6ResultO9GetStream4Moya8ResponseCRszAC11ClientErrorORs_rlE14parseReactionsyySo17OS_dispatch_queueC_yAByAC0I0Vyqd__qd_0_GAHGctSeRd__SERd__AC12UserProtocolRd_0_r0_lF">parseReactions(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parse the result with a given reaction completion block.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">parseReactions</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream25ReactionExtraDataProtocola">ReactionExtraDataProtocol</a></span><span class="p">,</span> <span class="kt">U</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UserProtocol.html">UserProtocol</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">callbackQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="p">,</span>
+                                                                   <span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream19ReactionsCompletiona">ReactionsCompletion</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2020-02-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -14,7 +14,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">GetStream Docs</a> (79% documented)</p>
+        <p><a href="index.html">GetStream Docs</a> (77% documented)</p>
         <p class="header-right"><a href="https://github.com/GetStream/stream-swift"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -39,6 +39,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Client/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Client.html#/s:9GetStream6ClientC04FayeC0V">– FayeClient</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ClientLogger.html">ClientLogger</a>
@@ -117,10 +120,22 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/Bundle.html">Bundle</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Bundle/StreamKey.html">– StreamKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Client.html#/FayeClient">– FayeClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Data.html">Data</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Date.html">Date</a>
@@ -132,6 +147,15 @@
                 <a href="Extensions/DateFormatter/Stream.html">– Stream</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/Dictionary.html">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions.html#/c:objc(cs)NSISO8601DateFormatter">Foundation.ISO8601DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/JSONDecoder.html">JSONDecoder</a>
               </li>
               <li class="nav-group-task">
@@ -141,10 +165,13 @@
                 <a href="Extensions/ReactionKind.html">ReactionKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/Swime.html">Swime</a>
+                <a href="Extensions/Token.html">Token</a>
               </li>
             </ul>
           </li>
@@ -159,6 +186,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/Enrichable.html">Enrichable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ISO8601DateFormatter.html">ISO8601DateFormatter</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/Missable.html">Missable</a>
@@ -190,7 +220,7 @@
                 <a href="Structs/BaseURL/Location.html">– Location</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs.html#/s:9GetStream7CommentV">Comment</a>
+                <a href="Structs/Comment.html">Comment</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/EmptyReactionExtraData.html">EmptyReactionExtraData</a>
@@ -368,16 +398,13 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Client</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Client</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -400,16 +427,13 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">EnrichedActivity</span><span class="o">&lt;</span><span class="kt">ActorType</span><span class="p">,</span> <span class="kt">ObjectType</span><span class="p">,</span> <span class="kt">ReactionType</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ActivityProtocol.html">ActivityProtocol</a></span> <span class="k">where</span> <span class="kt">ActorType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Enrichable.html">Enrichable</a></span><span class="p">,</span> <span class="kt">ObjectType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Enrichable.html">Enrichable</a></span><span class="p">,</span> <span class="kt">ReactionType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ReactionProtocol.html">ReactionProtocol</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">EnrichedActivity</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -438,10 +462,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -476,10 +496,6 @@ You can inherit this class with extra properties on your own <code>CollectionObj
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -493,7 +509,7 @@ You can inherit this class with extra properties on your own <code>CollectionObj
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>AggregatedFeed</code> are good for consuming activities in an <q>aggregated</q>-like manner. You cannot follow an aggregated feed,
+                        <p><code>AggregatedFeed</code> are good for consuming activities in an &ldquo;aggregated&rdquo;-like manner. You cannot follow an aggregated feed,
 but you may on occasion want to add activities to one.</p>
 
                         <a href="Classes/AggregatedFeed.html" class="slightly-smaller">See more</a>
@@ -509,10 +525,6 @@ but you may on occasion want to add activities to one.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -541,10 +553,6 @@ but you may on occasion want to add activities to one.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -573,10 +581,6 @@ but you may on occasion want to add activities to one.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -591,7 +595,7 @@ but you may on occasion want to add activities to one.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p><code>FlatFeed</code> are the only feeds that can be followed, and therefore are a good type to setup for adding activities.
-<code>FlatFeed</code> can also be used to consume activities from other feeds - in a <q>timeline</q>-like manner.</p>
+<code>FlatFeed</code> can also be used to consume activities from other feeds - in a &ldquo;timeline&rdquo;-like manner.</p>
 
                         <a href="Classes/FlatFeed.html" class="slightly-smaller">See more</a>
                       </div>
@@ -606,10 +610,6 @@ but you may on occasion want to add activities to one.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -639,10 +639,6 @@ but you can write directly to a Notification feed.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -671,10 +667,6 @@ but you can write directly to a Notification feed.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -703,10 +695,6 @@ but you can write directly to a Notification feed.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -735,6 +723,7 @@ You can inherit this class with extra properties on your own User type.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">User</span> <span class="p">:</span> <span class="kt"><a href="Protocols/UserProtocol.html">UserProtocol</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -747,9 +736,11 @@ You can inherit this class with extra properties on your own User type.</p>
               <div class="task-name-container">
                 <a name="/Subscribed%20Channel"></a>
                 <a name="//apple_ref/swift/Section/Subscribed Channel" class="dashAnchor"></a>
-                <a href="#/Subscribed%20Channel">
-                  <h3 class="section-name">Subscribed Channel</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Subscribed%20Channel"></a>
+                  <h3 class="section-name"><p>Subscribed Channel</p>
+</h3>
+                </div>
               </div>
               <ul>
                 <li class="item">
@@ -785,8 +776,8 @@ You can inherit this class with extra properties on your own User type.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2019-11-12)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2020-02-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
