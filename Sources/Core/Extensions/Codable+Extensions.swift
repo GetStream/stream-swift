@@ -88,7 +88,7 @@ extension DateFormatter {
         }()
         
         public static let iso8601DateFormatter: ISO8601DateFormatter = {
-            if #available(iOS 11, macOS 10.13, *) {
+            if #available(iOS 11.2, macOS 10.13, *) {
                 let formatter = Foundation.ISO8601DateFormatter()
                 formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
                 return formatter
