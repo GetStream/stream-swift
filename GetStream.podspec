@@ -7,14 +7,14 @@ Pod::Spec.new do |s|
   s.author = { "Alexey Bukhtin" => "alexey@getstream.io" }
   s.social_media_url = "https://getstream.io"
   s.swift_version = "5.0"
-  s.platform = :ios, "9.0"
+  s.platform = :ios, "11.0"
   s.source = { :git => "https://github.com/GetStream/stream-swift.git", :tag => s.version.to_s }
   s.default_subspecs = "Core", "Faye"
   
   s.subspec "Core" do |ss|
     ss.source_files = "Sources/Core/**/*"
     ss.framework = "Foundation"
-    ss.dependency "Moya", "~> 13.0"
+    ss.dependency "Moya", "~> 14.0"
     ss.dependency "Swime", "~> 3.0"
   end
   
