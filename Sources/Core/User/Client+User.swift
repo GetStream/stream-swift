@@ -41,7 +41,7 @@ extension Client {
     /// - Returns: an object to cancel the request.
     @discardableResult
     public func get(userId: String, withFollowCounts: Bool = false, completion: @escaping UserCompletion<User>) -> Cancellable {
-        return get(typeOf: User.self, userId: userId, completion: completion)
+        return get(typeOf: User.self, userId: userId, withFollowCounts: withFollowCounts, completion: completion)
     }
     
     /// Get an user with a given `userId`.
