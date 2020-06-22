@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ImageProcess Structure Reference</title>
+    <title>MoyaError Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/ImageProcess" class="dashAnchor"></a>
-    <a title="ImageProcess Structure Reference"></a>
+    <a name="//apple_ref/swift/Extension/MoyaError" class="dashAnchor"></a>
+    <a title="MoyaError Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">GetStream Docs</a> (77% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">GetStream Reference</a>
         <img id="carat" src="../img/carat.png" />
-        ImageProcess Structure Reference
+        MoyaError Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -378,15 +378,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>ImageProcess</h1>
+            <h1>MoyaError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ImageProcess</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">MoyaError</span></code></pre>
 
                 </div>
               </div>
-            <p>An image process option type.</p>
-
+            
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -394,9 +393,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream12ImageProcessV3url6resize4crop5width6heightAC10Foundation3URLV_AC14ResizeStrategyOAC8CropModeVS2itcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(url:resize:crop:width:height:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream12ImageProcessV3url6resize4crop5width6heightAC10Foundation3URLV_AC14ResizeStrategyOAC8CropModeVS2itcfc">init(url:resize:crop:width:height:)</a>
+                    <a name="/s:4Moya0A5ErrorO9GetStreamE06clientB0AD06ClientB0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/clientError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4Moya0A5ErrorO9GetStreamE06clientB0AD06ClientB0Ovp">clientError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -411,63 +410,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">resize</span><span class="p">:</span> <span class="kt"><a href="../Structs/ImageProcess/ResizeStrategy.html">ResizeStrategy</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">clip</span><span class="p">,</span> <span class="nv">crop</span><span class="p">:</span> <span class="kt"><a href="../Structs/ImageProcess/CropMode.html">CropMode</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream12ImageProcessV14ResizeStrategyO"></a>
-                    <a name="//apple_ref/swift/Enum/ResizeStrategy" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream12ImageProcessV14ResizeStrategyO">ResizeStrategy</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="../Structs/ImageProcess/ResizeStrategy.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ResizeStrategy</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream12ImageProcessV8CropModeV"></a>
-                    <a name="//apple_ref/swift/Struct/CropMode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream12ImageProcessV8CropModeV">CropMode</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                        <a href="../Structs/ImageProcess/CropMode.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CropMode</span> <span class="p">:</span> <span class="kt">OptionSet</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">clientError</span><span class="p">:</span> <span class="kt"><a href="../Enums/ClientError.html">ClientError</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
