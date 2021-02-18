@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Struct/FeedId" class="dashAnchor"></a>
     <a title="FeedId Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GetStream Docs</a> (77% documented)</p>
+        <p><a href="../index.html">GetStream 2.2.4 Docs</a> (79% documented)</p>
         <p class="header-right"><a href="https://github.com/GetStream/stream-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -39,9 +47,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Client/Config.html">– Config</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/Client.html#/s:9GetStream6ClientC04FayeC0V">– FayeClient</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ClientLogger.html">ClientLogger</a>
@@ -120,22 +125,7 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Array.html">Array</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/Bundle.html">Bundle</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Bundle/StreamKey.html">– StreamKey</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Client.html">Client</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Client.html#/FayeClient">– FayeClient</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Data.html">Data</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Date.html">Date</a>
@@ -147,22 +137,13 @@
                 <a href="../Extensions/DateFormatter/Stream.html">– Stream</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Dictionary.html">Dictionary</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions.html#/c:objc(cs)NSISO8601DateFormatter">Foundation.ISO8601DateFormatter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Image.html">Image</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/JSONDecoder.html">JSONDecoder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/JSONEncoder.html">JSONEncoder</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/MoyaError.html">MoyaError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/ReactionKind.html">ReactionKind</a>
@@ -175,9 +156,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Swime.html">Swime</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Task.html">Task</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Token.html">Token</a>
@@ -381,6 +359,7 @@
             <h1>FeedId</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FeedId</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">FeedId</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
@@ -558,7 +537,7 @@
                     <code>
                     <a name="/s:9GetStream6FeedIdV8feedSlug04userD0ACSS_SStcfc"></a>
                     <a name="//apple_ref/swift/Method/init(feedSlug:userId:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6FeedIdV8feedSlug04userD0ACSS_SStcfc">init(feedSlug:userId:)</a>
+                    <a class="token" href="#/s:9GetStream6FeedIdV8feedSlug04userD0ACSS_SStcfc">init(feedSlug:<wbr>userId:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -585,7 +564,7 @@
                     <code>
                     <a name="/s:9GetStream6FeedIdV8feedSlugACSgSS_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(feedSlug:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6FeedIdV8feedSlugACSgSS_tcfc">init(feedSlug:)</a>
+                    <a class="token" href="#/s:9GetStream6FeedIdV8feedSlugACSgSS_tcfc">init(feedSlug:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -612,7 +591,7 @@
                     <code>
                     <a name="/s:Se4fromxs7Decoder_p_tKcfc"></a>
                     <a name="//apple_ref/swift/Method/init(from:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Se4fromxs7Decoder_p_tKcfc">init(from:)</a>
+                    <a class="token" href="#/s:Se4fromxs7Decoder_p_tKcfc">init(from:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -638,7 +617,7 @@
                     <code>
                     <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
                     <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:)</a>
+                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -664,7 +643,7 @@
                     <code>
                     <a name="/s:SQ2eeoiySbx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -798,7 +777,7 @@
                     <code>
                     <a name="/s:9GetStream6FeedIdV4user4withACSS_tFZ"></a>
                     <a name="//apple_ref/swift/Method/user(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6FeedIdV4user4withACSS_tFZ">user(with:)</a>
+                    <a class="token" href="#/s:9GetStream6FeedIdV4user4withACSS_tFZ">user(with:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -825,8 +804,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2020-06-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2021-02-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

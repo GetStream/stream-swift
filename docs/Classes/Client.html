@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/Client" class="dashAnchor"></a>
     <a title="Client Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">GetStream Docs</a> (77% documented)</p>
+        <p><a href="../index.html">GetStream 2.2.4 Docs</a> (79% documented)</p>
         <p class="header-right"><a href="https://github.com/GetStream/stream-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -39,9 +47,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Client/Config.html">– Config</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/Client.html#/s:9GetStream6ClientC04FayeC0V">– FayeClient</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/ClientLogger.html">ClientLogger</a>
@@ -120,22 +125,7 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Array.html">Array</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/Bundle.html">Bundle</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Bundle/StreamKey.html">– StreamKey</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Client.html">Client</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Client.html#/FayeClient">– FayeClient</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Data.html">Data</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Date.html">Date</a>
@@ -147,22 +137,13 @@
                 <a href="../Extensions/DateFormatter/Stream.html">– Stream</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Dictionary.html">Dictionary</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions.html#/c:objc(cs)NSISO8601DateFormatter">Foundation.ISO8601DateFormatter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Image.html">Image</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/JSONDecoder.html">JSONDecoder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/JSONEncoder.html">JSONEncoder</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/MoyaError.html">MoyaError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/ReactionKind.html">ReactionKind</a>
@@ -175,9 +156,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Swime.html">Swime</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Task.html">Task</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Token.html">Token</a>
@@ -381,6 +359,7 @@
             <h1>Client</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Client</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Client</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
@@ -589,7 +568,7 @@ let chrisFeed = Client.shared.flatFeed(feedSlug: &ldquo;user&rdquo;, userId: &ld
                     <code>
                     <a name="/s:9GetStream6ClientC3get6enrich6typeOf11activityIds10completion4Moya11Cancellable_pSb_xmSaySSGys6ResultOyAA8ResponseVyxGAA0C5ErrorOGctAA16ActivityProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/get(enrich:typeOf:activityIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get6enrich6typeOf11activityIds10completion4Moya11Cancellable_pSb_xmSaySSGys6ResultOyAA8ResponseVyxGAA0C5ErrorOGctAA16ActivityProtocolRzlF">get(enrich:typeOf:activityIds:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get6enrich6typeOf11activityIds10completion4Moya11Cancellable_pSb_xmSaySSGys6ResultOyAA8ResponseVyxGAA0C5ErrorOGctAA16ActivityProtocolRzlF">get(enrich:<wbr>typeOf:<wbr>activityIds:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -625,7 +604,7 @@ let chrisFeed = Client.shared.flatFeed(feedSlug: &ldquo;user&rdquo;, userId: &ld
                     <code>
                     <a name="/s:9GetStream6ClientC3get6enrich6typeOf10foreignIds5times10completion4Moya11Cancellable_pSb_xmSaySSGSay10Foundation4DateVGys6ResultOyAA8ResponseVyxGAA0C5ErrorOGctAA16ActivityProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/get(enrich:typeOf:foreignIds:times:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get6enrich6typeOf10foreignIds5times10completion4Moya11Cancellable_pSb_xmSaySSGSay10Foundation4DateVGys6ResultOyAA8ResponseVyxGAA0C5ErrorOGctAA16ActivityProtocolRzlF">get(enrich:typeOf:foreignIds:times:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get6enrich6typeOf10foreignIds5times10completion4Moya11Cancellable_pSb_xmSaySSGSay10Foundation4DateVGys6ResultOyAA8ResponseVyxGAA0C5ErrorOGctAA16ActivityProtocolRzlF">get(enrich:<wbr>typeOf:<wbr>foreignIds:<wbr>times:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -662,7 +641,7 @@ let chrisFeed = Client.shared.flatFeed(feedSlug: &ldquo;user&rdquo;, userId: &ld
                     <code>
                     <a name="/s:9GetStream6ClientC6update10activities10completion4Moya11Cancellable_pSayxG_ys6ResultOySiAA0C5ErrorOGctAA16ActivityProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/update(activities:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6update10activities10completion4Moya11Cancellable_pSayxG_ys6ResultOySiAA0C5ErrorOGctAA16ActivityProtocolRzlF">update(activities:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6update10activities10completion4Moya11Cancellable_pSayxG_ys6ResultOySiAA0C5ErrorOGctAA16ActivityProtocolRzlF">update(activities:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -708,7 +687,7 @@ let chrisFeed = Client.shared.flatFeed(feedSlug: &ldquo;user&rdquo;, userId: &ld
                     <code>
                     <a name="/s:9GetStream6ClientC14updateActivity6typeOf13setProperties05unsetI5Names10activityId10completion4Moya11Cancellable_pxm_SDySSSE_pGSgSaySSGSgSSys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/updateActivity(typeOf:setProperties:unsetPropertiesNames:activityId:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC14updateActivity6typeOf13setProperties05unsetI5Names10activityId10completion4Moya11Cancellable_pxm_SDySSSE_pGSgSaySSGSgSSys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF">updateActivity(typeOf:setProperties:unsetPropertiesNames:activityId:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC14updateActivity6typeOf13setProperties05unsetI5Names10activityId10completion4Moya11Cancellable_pxm_SDySSSE_pGSgSaySSGSgSSys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF">updateActivity(typeOf:<wbr>setProperties:<wbr>unsetPropertiesNames:<wbr>activityId:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -764,7 +743,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC14updateActivity6typeOf13setProperties05unsetI5Names9foreignId4time10completion4Moya11Cancellable_pxm_SDySSSE_pGSgSaySSGSgSS10Foundation4DateVys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/updateActivity(typeOf:setProperties:unsetPropertiesNames:foreignId:time:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC14updateActivity6typeOf13setProperties05unsetI5Names9foreignId4time10completion4Moya11Cancellable_pxm_SDySSSE_pGSgSaySSGSgSS10Foundation4DateVys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF">updateActivity(typeOf:setProperties:unsetPropertiesNames:foreignId:time:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC14updateActivity6typeOf13setProperties05unsetI5Names9foreignId4time10completion4Moya11Cancellable_pxm_SDySSSE_pGSgSaySSGSgSS10Foundation4DateVys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF">updateActivity(typeOf:<wbr>setProperties:<wbr>unsetPropertiesNames:<wbr>foreignId:<wbr>time:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -834,7 +813,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC9setupUser5token10completion4Moya11Cancellable_pSS_ys6ResultOyAA0E0CAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/setupUser(token:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9setupUser5token10completion4Moya11Cancellable_pSS_ys6ResultOyAA0E0CAA0C5ErrorOGctF">setupUser(token:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9setupUser5token10completion4Moya11Cancellable_pSS_ys6ResultOyAA0E0CAA0C5ErrorOGctF">setupUser(token:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -897,7 +876,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC9setupUser_5token10completion4Moya11Cancellable_px_SSys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/setupUser(_:token:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9setupUser_5token10completion4Moya11Cancellable_px_SSys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF">setupUser(_:token:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9setupUser_5token10completion4Moya11Cancellable_px_SSys6ResultOyxAA0C5ErrorOGctAA0E8ProtocolRzlF">setupUser(_:<wbr>token:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1031,33 +1010,6 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9GetStream6ClientC7headersSDyS2SGvpZ"></a>
-                    <a name="//apple_ref/swift/Variable/headers" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC7headersSDyS2SGvpZ">headers</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Default headers.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:s23CustomStringConvertibleP11descriptionSSvp"></a>
                     <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
                     <a class="token" href="#/s:s23CustomStringConvertibleP11descriptionSSvp">description</a>
@@ -1075,87 +1027,6 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Endpoint%20Request%20Parameters%20Mapping"></a>
-                <a name="//apple_ref/swift/Section/Endpoint Request Parameters Mapping" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Endpoint%20Request%20Parameters%20Mapping"></a>
-                  <h3 class="section-name"><p>Endpoint Request Parameters Mapping</p>
-</h3>
-                </div>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream6ClientC15endpointMapping_6apiKey7baseURL4Moya8EndpointCAG11MultiTargetO_SSAA04BaseI0VtFZ"></a>
-                    <a name="//apple_ref/swift/Method/endpointMapping(_:apiKey:baseURL:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC15endpointMapping_6apiKey7baseURL4Moya8EndpointCAG11MultiTargetO_SSAA04BaseI0VtFZ">endpointMapping(_:apiKey:baseURL:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Add the app key parameter as an URL parameter for each request.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">endpointMapping</span><span class="p">(</span><span class="n">_</span> <span class="nv">target</span><span class="p">:</span> <span class="kt">MultiTarget</span><span class="p">,</span> <span class="nv">apiKey</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">baseURL</span><span class="p">:</span> <span class="kt"><a href="../Structs/BaseURL.html">BaseURL</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Endpoint</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Requests"></a>
-                <a name="//apple_ref/swift/Section/Requests" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Requests"></a>
-                  <h3 class="section-name"><p>Requests</p>
-</h3>
-                </div>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream6ClientC7request8endpoint10completion4Moya11Cancellable_pAG10TargetType_p_ys6ResultOyAG8ResponseCAA0C5ErrorOGctF"></a>
-                    <a name="//apple_ref/swift/Method/request(endpoint:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC7request8endpoint10completion4Moya11Cancellable_pAG10TargetType_p_ys6ResultOyAG8ResponseCAA0C5ErrorOGctF">request(endpoint:completion:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Make a request with a given endpoint.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">func</span> <span class="nf">request</span><span class="p">(</span><span class="nv">endpoint</span><span class="p">:</span> <span class="kt">TargetType</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">ClientCompletion</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:9GetStream11Cancellablea">Cancellable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1221,7 +1092,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3add16collectionObject10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/add(collectionObject:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add16collectionObject10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF">add(collectionObject:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add16collectionObject10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF">add(collectionObject:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1285,7 +1156,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3get6typeOf14collectionName0G8ObjectId10completion4Moya11Cancellable_pxm_S2Sys6ResultOyxAA0C5ErrorOGctAA010CollectionI8ProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/get(typeOf:collectionName:collectionObjectId:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get6typeOf14collectionName0G8ObjectId10completion4Moya11Cancellable_pxm_S2Sys6ResultOyxAA0C5ErrorOGctAA010CollectionI8ProtocolRzlF">get(typeOf:collectionName:collectionObjectId:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get6typeOf14collectionName0G8ObjectId10completion4Moya11Cancellable_pxm_S2Sys6ResultOyxAA0C5ErrorOGctAA010CollectionI8ProtocolRzlF">get(typeOf:<wbr>collectionName:<wbr>collectionObjectId:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1375,7 +1246,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6update16collectionObject10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/update(collectionObject:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6update16collectionObject10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF">update(collectionObject:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6update16collectionObject10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF">update(collectionObject:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1439,7 +1310,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6delete16collectionObject10completion4Moya11Cancellable_px_ys6ResultOySiAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/delete(collectionObject:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6delete16collectionObject10completion4Moya11Cancellable_px_ys6ResultOySiAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF">delete(collectionObject:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6delete16collectionObject10completion4Moya11Cancellable_px_ys6ResultOySiAA0C5ErrorOGctAA010CollectionF8ProtocolRzlF">delete(collectionObject:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1503,7 +1374,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6delete14collectionName0E8ObjectId10completion4Moya11Cancellable_pSS_SSys6ResultOySiAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/delete(collectionName:collectionObjectId:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6delete14collectionName0E8ObjectId10completion4Moya11Cancellable_pSS_SSys6ResultOySiAA0C5ErrorOGctF">delete(collectionName:collectionObjectId:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6delete14collectionName0E8ObjectId10completion4Moya11Cancellable_pSS_SSys6ResultOySiAA0C5ErrorOGctF">delete(collectionName:<wbr>collectionObjectId:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1593,7 +1464,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC14aggregatedFeed8feedSlug6userIdAA010AggregatedE0CSS_SStF"></a>
                     <a name="//apple_ref/swift/Method/aggregatedFeed(feedSlug:userId:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC14aggregatedFeed8feedSlug6userIdAA010AggregatedE0CSS_SStF">aggregatedFeed(feedSlug:userId:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC14aggregatedFeed8feedSlug6userIdAA010AggregatedE0CSS_SStF">aggregatedFeed(feedSlug:<wbr>userId:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1620,7 +1491,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC14aggregatedFeed8feedSlugAA010AggregatedE0CSgSS_tF"></a>
                     <a name="//apple_ref/swift/Method/aggregatedFeed(feedSlug:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC14aggregatedFeed8feedSlugAA010AggregatedE0CSgSS_tF">aggregatedFeed(feedSlug:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC14aggregatedFeed8feedSlugAA010AggregatedE0CSgSS_tF">aggregatedFeed(feedSlug:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1671,7 +1542,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC14aggregatedFeedyAA010AggregatedE0CAA0E2IdVF"></a>
                     <a name="//apple_ref/swift/Method/aggregatedFeed(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC14aggregatedFeedyAA010AggregatedE0CAA0E2IdVF">aggregatedFeed(_:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC14aggregatedFeedyAA010AggregatedE0CAA0E2IdVF">aggregatedFeed(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1711,7 +1582,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC8flatFeed8feedSlug6userIdAA04FlatE0CSS_SStF"></a>
                     <a name="//apple_ref/swift/Method/flatFeed(feedSlug:userId:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC8flatFeed8feedSlug6userIdAA04FlatE0CSS_SStF">flatFeed(feedSlug:userId:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC8flatFeed8feedSlug6userIdAA04FlatE0CSS_SStF">flatFeed(feedSlug:<wbr>userId:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1738,7 +1609,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC8flatFeed8feedSlugAA04FlatE0CSgSS_tF"></a>
                     <a name="//apple_ref/swift/Method/flatFeed(feedSlug:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC8flatFeed8feedSlugAA04FlatE0CSgSS_tF">flatFeed(feedSlug:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC8flatFeed8feedSlugAA04FlatE0CSgSS_tF">flatFeed(feedSlug:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1789,7 +1660,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC8flatFeedyAA04FlatE0CAA0E2IdVF"></a>
                     <a name="//apple_ref/swift/Method/flatFeed(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC8flatFeedyAA04FlatE0CAA0E2IdVF">flatFeed(_:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC8flatFeedyAA04FlatE0CAA0E2IdVF">flatFeed(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1829,7 +1700,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC16notificationFeed8feedSlug6userIdAA012NotificationE0CSS_SStF"></a>
                     <a name="//apple_ref/swift/Method/notificationFeed(feedSlug:userId:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC16notificationFeed8feedSlug6userIdAA012NotificationE0CSS_SStF">notificationFeed(feedSlug:userId:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC16notificationFeed8feedSlug6userIdAA012NotificationE0CSS_SStF">notificationFeed(feedSlug:<wbr>userId:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1856,7 +1727,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC16notificationFeed8feedSlugAA012NotificationE0CSgSS_tF"></a>
                     <a name="//apple_ref/swift/Method/notificationFeed(feedSlug:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC16notificationFeed8feedSlugAA012NotificationE0CSgSS_tF">notificationFeed(feedSlug:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC16notificationFeed8feedSlugAA012NotificationE0CSgSS_tF">notificationFeed(feedSlug:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1907,7 +1778,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC16notificationFeedyAA012NotificationE0CAA0E2IdVF"></a>
                     <a name="//apple_ref/swift/Method/notificationFeed(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC16notificationFeedyAA012NotificationE0CAA0E2IdVF">notificationFeed(_:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC16notificationFeedyAA012NotificationE0CAA0E2IdVF">notificationFeed(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1947,7 +1818,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6upload4file10completion4Moya11Cancellable_pAA4FileV_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/upload(file:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6upload4file10completion4Moya11Cancellable_pAA4FileV_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF">upload(file:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6upload4file10completion4Moya11Cancellable_pAA4FileV_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF">upload(file:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1975,7 +1846,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6upload5files10completion4Moya11Cancellable_pSayAA4FileVG_ys6ResultOySay10Foundation3URLVGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/upload(files:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6upload5files10completion4Moya11Cancellable_pSayAA4FileVG_ys6ResultOySay10Foundation3URLVGAA0C5ErrorOGctF">upload(files:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6upload5files10completion4Moya11Cancellable_pSayAA4FileVG_ys6ResultOySay10Foundation3URLVGAA0C5ErrorOGctF">upload(files:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2003,7 +1874,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6delete7fileURL10completion4Moya11Cancellable_p10Foundation0F0V_ys6ResultOySiAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/delete(fileURL:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6delete7fileURL10completion4Moya11Cancellable_p10Foundation0F0V_ys6ResultOySiAA0C5ErrorOGctF">delete(fileURL:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6delete7fileURL10completion4Moya11Cancellable_p10Foundation0F0V_ys6ResultOySiAA0C5ErrorOGctF">delete(fileURL:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2044,7 +1915,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6upload5image10completion4Moya11Cancellable_pAA4FileV_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/upload(image:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6upload5image10completion4Moya11Cancellable_pAA4FileV_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF">upload(image:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6upload5image10completion4Moya11Cancellable_pAA4FileV_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF">upload(image:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2072,7 +1943,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6upload6images10completion4Moya11Cancellable_pSayAA4FileVG_ys6ResultOySay10Foundation3URLVGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/upload(images:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6upload6images10completion4Moya11Cancellable_pSayAA4FileVG_ys6ResultOySay10Foundation3URLVGAA0C5ErrorOGctF">upload(images:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6upload6images10completion4Moya11Cancellable_pSayAA4FileVG_ys6ResultOySay10Foundation3URLVGAA0C5ErrorOGctF">upload(images:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2100,7 +1971,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6delete8imageURL10completion4Moya11Cancellable_p10Foundation0F0V_ys6ResultOySiAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/delete(imageURL:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6delete8imageURL10completion4Moya11Cancellable_p10Foundation0F0V_ys6ResultOySiAA0C5ErrorOGctF">delete(imageURL:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6delete8imageURL10completion4Moya11Cancellable_p10Foundation0F0V_ys6ResultOySiAA0C5ErrorOGctF">delete(imageURL:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2128,7 +1999,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC11resizeImage12imageProcess10completion4Moya11Cancellable_pAA0eG0V_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/resizeImage(imageProcess:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC11resizeImage12imageProcess10completion4Moya11Cancellable_pAA0eG0V_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF">resizeImage(imageProcess:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC11resizeImage12imageProcess10completion4Moya11Cancellable_pAA0eG0V_ys6ResultOy10Foundation3URLVAA0C5ErrorOGctF">resizeImage(imageProcess:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2169,7 +2040,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC2og3url10completion4Moya11Cancellable_p10Foundation3URLV_ys6ResultOyAA10OGResponseVAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/og(url:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC2og3url10completion4Moya11Cancellable_p10Foundation3URLV_ys6ResultOyAA10OGResponseVAA0C5ErrorOGctF">og(url:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC2og3url10completion4Moya11Cancellable_p10Foundation3URLV_ys6ResultOyAA10OGResponseVAA0C5ErrorOGctF">og(url:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2229,7 +2100,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSSayAA0mI0VGys6ResultOyAA0H0CyAA05EmptyH9ExtraDataVAA4UserCGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/add(reactionTo:parentReactionId:kindOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSSayAA0mI0VGys6ResultOyAA0H0CyAA05EmptyH9ExtraDataVAA4UserCGAA0C5ErrorOGctF">add(reactionTo:parentReactionId:kindOf:targetsFeedIds:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf14targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSSayAA0mI0VGys6ResultOyAA0H0CyAA05EmptyH9ExtraDataVAA4UserCGAA0C5ErrorOGctF">add(reactionTo:<wbr>parentReactionId:<wbr>kindOf:<wbr>targetsFeedIds:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2332,7 +2203,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf9extraData08userTypeK014targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSxq_mSayAA0qI0VGys6ResultOyAA0H0Cyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
                     <a name="//apple_ref/swift/Method/add(reactionTo:parentReactionId:kindOf:extraData:userTypeOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf9extraData08userTypeK014targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSxq_mSayAA0qI0VGys6ResultOyAA0H0Cyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">add(reactionTo:parentReactionId:kindOf:extraData:userTypeOf:targetsFeedIds:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add10reactionTo16parentReactionId6kindOf9extraData08userTypeK014targetsFeedIds10completion4Moya11Cancellable_pSS_SSSgSSxq_mSayAA0qI0VGys6ResultOyAA0H0Cyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">add(reactionTo:<wbr>parentReactionId:<wbr>kindOf:<wbr>extraData:<wbr>userTypeOf:<wbr>targetsFeedIds:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2461,7 +2332,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyxq_G_SSq_mSayAA0N2IdVGys6ResultOyAMyAA05EmptyH9ExtraDataVq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
                     <a name="//apple_ref/swift/Method/add(reactionToParentReaction:kindOf:userTypeOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyxq_G_SSq_mSayAA0N2IdVGys6ResultOyAMyAA05EmptyH9ExtraDataVq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">add(reactionToParentReaction:kindOf:userTypeOf:targetsFeedIds:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyxq_G_SSq_mSayAA0N2IdVGys6ResultOyAMyAA05EmptyH9ExtraDataVq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">add(reactionToParentReaction:<wbr>kindOf:<wbr>userTypeOf:<wbr>targetsFeedIds:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2565,7 +2436,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf9extraData08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyq_q0_G_SSxq0_mSayAA0P2IdVGys6ResultOyANyxq0_GAA0C5ErrorOGctSeRzSERzSeR_SER_AA12UserProtocolR0_r1_lF"></a>
                     <a name="//apple_ref/swift/Method/add(reactionToParentReaction:kindOf:extraData:userTypeOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf9extraData08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyq_q0_G_SSxq0_mSayAA0P2IdVGys6ResultOyANyxq0_GAA0C5ErrorOGctSeRzSERzSeR_SER_AA12UserProtocolR0_r1_lF">add(reactionToParentReaction:kindOf:extraData:userTypeOf:targetsFeedIds:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3add24reactionToParentReaction6kindOf9extraData08userTypeJ014targetsFeedIds10completion4Moya11Cancellable_pAA0H0Cyq_q0_G_SSxq0_mSayAA0P2IdVGys6ResultOyANyxq0_GAA0C5ErrorOGctSeRzSERzSeR_SER_AA12UserProtocolR0_r1_lF">add(reactionToParentReaction:<wbr>kindOf:<wbr>extraData:<wbr>userTypeOf:<wbr>targetsFeedIds:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2683,7 +2554,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3get10reactionId10completion4Moya11Cancellable_pSS_ys6ResultOyAA8ReactionCyAA05EmptyK9ExtraDataVAA4UserCGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/get(reactionId:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get10reactionId10completion4Moya11Cancellable_pSS_ys6ResultOyAA8ReactionCyAA05EmptyK9ExtraDataVAA4UserCGAA0C5ErrorOGctF">get(reactionId:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get10reactionId10completion4Moya11Cancellable_pSS_ys6ResultOyAA8ReactionCyAA05EmptyK9ExtraDataVAA4UserCGAA0C5ErrorOGctF">get(reactionId:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2746,7 +2617,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3get10reactionId15extraDataTypeOf04useriJ010completion4Moya11Cancellable_pSS_xmq_mys6ResultOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
                     <a name="//apple_ref/swift/Method/get(reactionId:extraDataTypeOf:userTypeOf:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get10reactionId15extraDataTypeOf04useriJ010completion4Moya11Cancellable_pSS_xmq_mys6ResultOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">get(reactionId:extraDataTypeOf:userTypeOf:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get10reactionId15extraDataTypeOf04useriJ010completion4Moya11Cancellable_pSS_xmq_mys6ResultOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">get(reactionId:<wbr>extraDataTypeOf:<wbr>userTypeOf:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2836,7 +2707,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6update10reactionId9extraData10userTypeOf14targetsFeedIds10completion4Moya11Cancellable_pSS_xq_mSayAA0mF0VGys6ResultOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
                     <a name="//apple_ref/swift/Method/update(reactionId:extraData:userTypeOf:targetsFeedIds:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6update10reactionId9extraData10userTypeOf14targetsFeedIds10completion4Moya11Cancellable_pSS_xq_mSayAA0mF0VGys6ResultOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">update(reactionId:extraData:userTypeOf:targetsFeedIds:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6update10reactionId9extraData10userTypeOf14targetsFeedIds10completion4Moya11Cancellable_pSS_xq_mSayAA0mF0VGys6ResultOyAA8ReactionCyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">update(reactionId:<wbr>extraData:<wbr>userTypeOf:<wbr>targetsFeedIds:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2940,7 +2811,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6delete10reactionId10completion4Moya11Cancellable_pSS_ys6ResultOySiAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/delete(reactionId:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6delete10reactionId10completion4Moya11Cancellable_pSS_ys6ResultOySiAA0C5ErrorOGctF">delete(reactionId:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6delete10reactionId10completion4Moya11Cancellable_pSS_ys6ResultOySiAA0C5ErrorOGctF">delete(reactionId:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3003,7 +2874,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC9reactions13forActivityId6kindOf10pagination04withF4Data10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOSbys6ResultOyAA9ReactionsVyAA018EmptyReactionExtraL0VAA4UserCGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forActivityId:kindOf:pagination:withActivityData:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forActivityId6kindOf10pagination04withF4Data10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOSbys6ResultOyAA9ReactionsVyAA018EmptyReactionExtraL0VAA4UserCGAA0C5ErrorOGctF">reactions(forActivityId:kindOf:pagination:withActivityData:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forActivityId6kindOf10pagination04withF4Data10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOSbys6ResultOyAA9ReactionsVyAA018EmptyReactionExtraL0VAA4UserCGAA0C5ErrorOGctF">reactions(forActivityId:<wbr>kindOf:<wbr>pagination:<wbr>withActivityData:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3106,7 +2977,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC9reactions13forActivityId6kindOf013extraDataTypeI004userlI010pagination04withfK010completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOSbys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forActivityId:kindOf:extraDataTypeOf:userTypeOf:pagination:withActivityData:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forActivityId6kindOf013extraDataTypeI004userlI010pagination04withfK010completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOSbys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">reactions(forActivityId:kindOf:extraDataTypeOf:userTypeOf:pagination:withActivityData:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forActivityId6kindOf013extraDataTypeI004userlI010pagination04withfK010completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOSbys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">reactions(forActivityId:<wbr>kindOf:<wbr>extraDataTypeOf:<wbr>userTypeOf:<wbr>pagination:<wbr>withActivityData:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3236,7 +3107,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC9reactions13forReactionId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOys6ResultOyAA9ReactionsVyAA05EmptyF9ExtraDataVAA4UserCGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forReactionId:kindOf:pagination:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forReactionId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOys6ResultOyAA9ReactionsVyAA05EmptyF9ExtraDataVAA4UserCGAA0C5ErrorOGctF">reactions(forReactionId:kindOf:pagination:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forReactionId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOys6ResultOyAA9ReactionsVyAA05EmptyF9ExtraDataVAA4UserCGAA0C5ErrorOGctF">reactions(forReactionId:<wbr>kindOf:<wbr>pagination:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3326,7 +3197,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC9reactions13forReactionId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forReactionId:kindOf:extraDataTypeOf:userTypeOf:pagination:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forReactionId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">reactions(forReactionId:kindOf:extraDataTypeOf:userTypeOf:pagination:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions13forReactionId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA12UserProtocolR_r0_lF">reactions(forReactionId:<wbr>kindOf:<wbr>extraDataTypeOf:<wbr>userTypeOf:<wbr>pagination:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3443,7 +3314,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC9reactions9forUserId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOys6ResultOyAA9ReactionsVyAA22EmptyReactionExtraDataVAA0F0CGAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forUserId:kindOf:pagination:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions9forUserId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOys6ResultOyAA9ReactionsVyAA22EmptyReactionExtraDataVAA0F0CGAA0C5ErrorOGctF">reactions(forUserId:kindOf:pagination:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions9forUserId6kindOf10pagination10completion4Moya11Cancellable_pSS_SSSgAA10PaginationOys6ResultOyAA9ReactionsVyAA22EmptyReactionExtraDataVAA0F0CGAA0C5ErrorOGctF">reactions(forUserId:<wbr>kindOf:<wbr>pagination:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3533,7 +3404,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC9reactions9forUserId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA0F8ProtocolR_r0_lF"></a>
                     <a name="//apple_ref/swift/Method/reactions(forUserId:kindOf:extraDataTypeOf:userTypeOf:pagination:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC9reactions9forUserId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA0F8ProtocolR_r0_lF">reactions(forUserId:kindOf:extraDataTypeOf:userTypeOf:pagination:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC9reactions9forUserId6kindOf013extraDataTypeI004userlI010pagination10completion4Moya11Cancellable_pSS_SSSgxmq_mAA10PaginationOys6ResultOyAA9ReactionsVyxq_GAA0C5ErrorOGctSeRzSERzAA0F8ProtocolR_r0_lF">reactions(forUserId:<wbr>kindOf:<wbr>extraDataTypeOf:<wbr>userTypeOf:<wbr>pagination:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3663,7 +3534,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC6create4user11getOrCreate10completion4Moya11Cancellable_px_Sbys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/create(user:getOrCreate:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6create4user11getOrCreate10completion4Moya11Cancellable_px_Sbys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF">create(user:getOrCreate:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6create4user11getOrCreate10completion4Moya11Cancellable_px_Sbys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF">create(user:<wbr>getOrCreate:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3739,7 +3610,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3get6userId16withFollowCounts10completion4Moya11Cancellable_pSS_Sbys6ResultOyAA4UserCAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/get(userId:withFollowCounts:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get6userId16withFollowCounts10completion4Moya11Cancellable_pSS_Sbys6ResultOyAA4UserCAA0C5ErrorOGctF">get(userId:withFollowCounts:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get6userId16withFollowCounts10completion4Moya11Cancellable_pSS_Sbys6ResultOyAA4UserCAA0C5ErrorOGctF">get(userId:<wbr>withFollowCounts:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3814,7 +3685,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC3get6typeOf6userId16withFollowCounts10completion4Moya11Cancellable_pxm_SSSbys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/get(typeOf:userId:withFollowCounts:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC3get6typeOf6userId16withFollowCounts10completion4Moya11Cancellable_pxm_SSSbys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF">get(typeOf:userId:withFollowCounts:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC3get6typeOf6userId16withFollowCounts10completion4Moya11Cancellable_pxm_SSSbys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF">get(typeOf:<wbr>userId:<wbr>withFollowCounts:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3904,7 +3775,7 @@ You can think of it as a quick &ldquo;patching operation&rdquo;.</p>
                     <code>
                     <a name="/s:9GetStream6ClientC14getCurrentUser16withFollowCounts10completion4Moya11Cancellable_pSb_ys6ResultOyAA0F0CAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/getCurrentUser(withFollowCounts:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC14getCurrentUser16withFollowCounts10completion4Moya11Cancellable_pSb_ys6ResultOyAA0F0CAA0C5ErrorOGctF">getCurrentUser(withFollowCounts:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC14getCurrentUser16withFollowCounts10completion4Moya11Cancellable_pSb_ys6ResultOyAA0F0CAA0C5ErrorOGctF">getCurrentUser(withFollowCounts:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -3968,7 +3839,7 @@ If request was sucessful the user would be assigned to the <code>client.currentU
                     <code>
                     <a name="/s:9GetStream6ClientC14getCurrentUser6typeOf16withFollowCounts10completion4Moya11Cancellable_pxm_Sbys6ResultOyxAA0C5ErrorOGctAA0F8ProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/getCurrentUser(typeOf:withFollowCounts:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC14getCurrentUser6typeOf16withFollowCounts10completion4Moya11Cancellable_pxm_Sbys6ResultOyxAA0C5ErrorOGctAA0F8ProtocolRzlF">getCurrentUser(typeOf:withFollowCounts:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC14getCurrentUser6typeOf16withFollowCounts10completion4Moya11Cancellable_pxm_Sbys6ResultOyxAA0C5ErrorOGctAA0F8ProtocolRzlF">getCurrentUser(typeOf:<wbr>withFollowCounts:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4046,7 +3917,7 @@ If request was sucessful the user would be assigned to the <code>client.currentU
                     <code>
                     <a name="/s:9GetStream6ClientC6update4user10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF"></a>
                     <a name="//apple_ref/swift/Method/update(user:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6update4user10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF">update(user:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6update4user10completion4Moya11Cancellable_px_ys6ResultOyxAA0C5ErrorOGctAA12UserProtocolRzlF">update(user:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4109,7 +3980,7 @@ If request was sucessful the user would be assigned to the <code>client.currentU
                     <code>
                     <a name="/s:9GetStream6ClientC6delete6userId10completion4Moya11Cancellable_pSS_ys6ResultOySiAA0C5ErrorOGctF"></a>
                     <a name="//apple_ref/swift/Method/delete(userId:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC6delete6userId10completion4Moya11Cancellable_pSS_ys6ResultOySiAA0C5ErrorOGctF">delete(userId:completion:)</a>
+                    <a class="token" href="#/s:9GetStream6ClientC6delete6userId10completion4Moya11Cancellable_pSS_ys6ResultOySiAA0C5ErrorOGctF">delete(userId:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -4167,94 +4038,13 @@ If request was sucessful the user would be assigned to the <code>client.currentU
                     </section>
                   </div>
                 </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream6ClientC04fayeC04FayeABCvpZ"></a>
-                    <a name="//apple_ref/swift/Variable/fayeClient" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC04fayeC04FayeABCvpZ">fayeClient</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Setup a Faye client.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">var</span> <span class="nv">fayeClient</span><span class="p">:</span> <span class="kt">Faye</span><span class="o">.</span><span class="kt">Client</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream6ClientC04FayeC0V"></a>
-                    <a name="//apple_ref/swift/Struct/FayeClient" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC04FayeC0V">FayeClient</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">FayeClient</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9GetStream6ClientC04fayeC0AC04FayeC0VvpZ"></a>
-                    <a name="//apple_ref/swift/Variable/fayeClient" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9GetStream6ClientC04fayeC0AC04FayeC0VvpZ">fayeClient</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">fayeClient</span><span class="p">:</span> <span class="kt">Client</span><span class="o">.</span><span class="kt"><a href="../Classes/Client.html#/s:9GetStream6ClientC04FayeC0V">FayeClient</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2020-06-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="getstream.io" target="_blank" rel="external">GetStream.io</a>. All rights reserved. (Last updated: 2021-02-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

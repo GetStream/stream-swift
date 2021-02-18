@@ -23,12 +23,14 @@ public final class Client {
     private var clientId: String?
     private var advice: Advice?
     
+    private var isWebSocketConnected = false
+    
     private lazy var handshakeTimer = RepeatingTimer(timeInterval: .seconds(30), queue: webSocket.callbackQueue) { [weak self] in
         self?.ping()
     }
     
     public var isConnected: Bool {
-        return clientId != nil && webSocket.isConnected
+        return clientId != nil && isWebSocketConnected
     }
     
     /// A configuration to initialize the shared Client.
@@ -60,10 +62,11 @@ public final class Client {
     ///     - callbackQueue: a DispatchQueue for requests.
     public init(urlRequest: URLRequest,
                 callbackQueue: DispatchQueue = DispatchQueue(label: "io.getstream.Faye", qos: .userInitiated)) {
-        webSocket = WebSocket(request: urlRequest, protocols: ["faye"])
+        var request = urlRequest
+        request.setValue("faye", forHTTPHeaderField: "Sec-WebSocket-Protocol")
+        webSocket = WebSocket(request: request)
         webSocket.callbackQueue = callbackQueue
         webSocket.delegate = self
-        webSocket.pongDelegate = self
     }
     
     deinit {
@@ -93,6 +96,7 @@ extension Client {
             return
         }
         
+        log("Connecting WS...")
         self.webSocket.connect()
     }
     
@@ -137,38 +141,53 @@ extension Client {
 // MARK: - Connection
 
 extension Client: WebSocketDelegate {
-    
-    public func websocketDidConnect(socket: WebSocketClient) {
-        do {
-            try webSocketWrite(.handshake)
-            attemptsToReconnect = 0
-            handshakeTimer.resume()
-        } catch {
-            log("❌", error)
+    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+        switch event {
+        case .connected(let headers):
+            isWebSocketConnected = true
+            do {
+                try webSocketWrite(.handshake)
+                attemptsToReconnect = 0
+                handshakeTimer.resume()
+            } catch {
+                log("❌ WS Connect error:", error)
+                applyAdvice()
+            }
+        case .disconnected(let reason, let code):
+            isWebSocketConnected = false
+            log()
+            handshakeTimer.suspend()
+            clientId = nil
+            
+            log("❌ WS Disconnect: \(reason), \(code)")
+            
             applyAdvice()
+        case .text(let string):
+            guard let data = string.data(using: .utf8) else {
+                log("❌", "Bad data encoding")
+                return
+            }
+            
+            log("<---", string)
+            websocketDidReceiveData(socket: webSocket, data: data)
+        case .binary(let data):
+            websocketDidReceiveData(socket: webSocket, data: data)
+        case .ping(_):
+            break
+        case .pong(let data):
+            log("<--- 🏓", data)
+        case .viabilityChanged(_):
+            break
+        case .reconnectSuggested(_):
+            break
+        case .cancelled:
+            isWebSocketConnected = false
+            log("❌ WS Disconnect: CANCELLED")
+        case .error(let error):
+            isWebSocketConnected = false
+            log("❌ WS Disconnect with error: \(error)")
+            //handleError(error)
         }
-    }
-    
-    public func websocketDidDisconnect(socket: WebSocketClient, error: Swift.Error?) {
-        log()
-        handshakeTimer.suspend()
-        clientId = nil
-        
-        if let error = error {
-            log("❌", error)
-        }
-        
-        applyAdvice()
-    }
-    
-    private func retryReconnect(after timeInterval: DispatchTimeInterval = .seconds(2)) {
-        guard attemptsToReconnect < Client.maxAttemptsToReconnect else {
-            attemptsToReconnect = 0
-            return
-        }
-        
-        log()
-        webSocket.callbackQueue.asyncAfter(deadline: .now() + timeInterval) { [weak self] in self?.connect() }
     }
 }
 
@@ -178,7 +197,7 @@ extension Client {
     private func webSocketWrite(_ bayeuxChannel: BayeuxChannel,
                                 _ channel: Channel? = nil,
                                 completion: ClientWriteDataCompletion? = nil) throws {
-        guard webSocket.isConnected else {
+        guard isWebSocketConnected else {
             throw Error.notConnected
         }
         
@@ -196,16 +215,6 @@ extension Client {
 // MARK: - Receiving
 
 extension Client {
-    public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        guard let data = text.data(using: .utf8) else {
-            log("❌", "Bad data encoding")
-            return
-        }
-        
-        log("<---", text)
-        websocketDidReceiveData(socket: socket, data: data)
-    }
-    
     public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         do {
             guard let json = try JSONSerialization.jsonObject(with: data) as? [JSON] else {
@@ -270,14 +279,10 @@ extension Client {
 
 // MARK: - Ping/Pong
 
-extension Client: WebSocketPongDelegate {
+extension Client {
     public func ping() {
         log("🏓 --->")
         webSocket.write(ping: Data())
-    }
-    
-    public func websocketDidReceivePong(socket: WebSocketClient, data: Data?) {
-        log("<--- 🏓", data)
     }
 }
 
@@ -305,6 +310,17 @@ extension Client {
         
         self.advice = nil
     }
+    
+    private func retryReconnect(after timeInterval: DispatchTimeInterval = .seconds(2)) {
+        guard attemptsToReconnect < Client.maxAttemptsToReconnect else {
+            attemptsToReconnect = 0
+            return
+        }
+        
+        log()
+        webSocket.callbackQueue.asyncAfter(deadline: .now() + timeInterval) { [weak self] in self?.connect() }
+    }
+
 }
 
 // MARK: - Error

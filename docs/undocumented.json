@@ -1,27 +1,6 @@
 {
   "warnings": [
     {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Activity/ActivityEndpoint.swift",
-      "line": 73,
-      "symbol": "ActivityEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Activity/ActivityEndpoint.swift",
-      "line": 73,
-      "symbol": "ActivityEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Activity/ActivityEndpoint.swift",
-      "line": 73,
-      "symbol": "ActivityEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Activity/ActivityProtocol.swift",
       "line": 17,
       "symbol": "ActivityProtocol.ActorType",
@@ -229,41 +208,6 @@
       "line": 50,
       "symbol": "BaseURL.Location.singapore",
       "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Client+Setup.swift",
-      "line": 16,
-      "symbol": "Client.FayeClient",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Client+Setup.swift",
-      "line": 17,
-      "symbol": "Client.fayeClient",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 198,
-      "symbol": "Task.requestJSONEncodable(_:encoder:urlParameters:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 198,
-      "symbol": "Task.requestJSONEncodable(_:encoder:urlParameters:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Client.swift",
-      "line": 198,
-      "symbol": "Task.requestJSONEncodable(_:encoder:urlParameters:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
@@ -666,132 +610,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/ClientLogger.swift",
-      "line": 166,
-      "symbol": "Data.prettyPrintedJSONString()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/ClientLogger.swift",
-      "line": 166,
-      "symbol": "Data.prettyPrintedJSONString()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/ClientLogger.swift",
-      "line": 166,
-      "symbol": "Data.prettyPrintedJSONString()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/ClientLogger.swift",
-      "line": 172,
-      "symbol": "Data.append(_:encoding:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/ClientLogger.swift",
-      "line": 172,
-      "symbol": "Data.append(_:encoding:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/ClientLogger.swift",
-      "line": 172,
-      "symbol": "Data.append(_:encoding:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/StreamTargetType.swift",
-      "line": 25,
-      "symbol": "StreamTargetType.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/StreamTargetType.swift",
-      "line": 25,
-      "symbol": "StreamTargetType.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/StreamTargetType.swift",
-      "line": 25,
-      "symbol": "StreamTargetType.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Token.swift",
-      "line": 17,
-      "symbol": "Token.isValid",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Token.swift",
-      "line": 17,
-      "symbol": "Token.isValid",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Token.swift",
-      "line": 17,
-      "symbol": "Token.isValid",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Token.swift",
-      "line": 21,
-      "symbol": "Token.payload",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Token.swift",
-      "line": 21,
-      "symbol": "Token.payload",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Client/Token.swift",
-      "line": 21,
-      "symbol": "Token.payload",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Collection/CollectionEndpoint.swift",
-      "line": 56,
-      "symbol": "CollectionEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Collection/CollectionEndpoint.swift",
-      "line": 56,
-      "symbol": "CollectionEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Collection/CollectionEndpoint.swift",
-      "line": 56,
-      "symbol": "CollectionEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Collection/CollectionObject.swift",
       "line": 15,
       "symbol": "CollectionObject.CollectionObjectCodingKeys",
@@ -981,90 +799,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 12,
-      "symbol": "Bundle.StreamKey",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 12,
-      "symbol": "Bundle.StreamKey",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 12,
-      "symbol": "Bundle.StreamKey",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 13,
-      "symbol": "Bundle.StreamKey.streamAPIKey",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 13,
-      "symbol": "Bundle.StreamKey.streamAPIKey",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 13,
-      "symbol": "Bundle.StreamKey.streamAPIKey",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 14,
-      "symbol": "Bundle.StreamKey.streamAppId",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 14,
-      "symbol": "Bundle.StreamKey.streamAppId",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 14,
-      "symbol": "Bundle.StreamKey.streamAppId",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 15,
-      "symbol": "Bundle.StreamKey.streamToken",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 15,
-      "symbol": "Bundle.StreamKey.streamToken",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Bundle+Extensions.swift",
-      "line": 15,
-      "symbol": "Bundle.StreamKey.streamToken",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Codable+Extensions.swift",
       "line": 80,
       "symbol": "DateFormatter.Stream.default",
@@ -1146,90 +880,6 @@
       "line": 129,
       "symbol": "ISO8601DateFormatter.date(from:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Dictionary+Extensions.swift",
-      "line": 15,
-      "symbol": "Dictionary.merged(with:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Dictionary+Extensions.swift",
-      "line": 15,
-      "symbol": "Dictionary.merged(with:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Extensions/Dictionary+Extensions.swift",
-      "line": 15,
-      "symbol": "Dictionary.merged(with:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/Aggregated Feed/Result+ParseGroup.swift",
-      "line": 18,
-      "symbol": "Result.parseGroup(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/Aggregated Feed/Result+ParseGroup.swift",
-      "line": 18,
-      "symbol": "Result.parseGroup(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/Aggregated Feed/Result+ParseGroup.swift",
-      "line": 18,
-      "symbol": "Result.parseGroup(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 37,
-      "symbol": "FeedActivityEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 37,
-      "symbol": "FeedActivityEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 37,
-      "symbol": "FeedActivityEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 195,
-      "symbol": "FeedEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 195,
-      "symbol": "FeedEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedEndpoint.swift",
-      "line": 195,
-      "symbol": "FeedEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -1506,27 +1156,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedId.swift",
-      "line": 108,
-      "symbol": "Array.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedId.swift",
-      "line": 108,
-      "symbol": "Array.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/FeedId.swift",
-      "line": 108,
-      "symbol": "Array.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
       "line": 23,
       "symbol": "NotificationGroup.init(from:)",
@@ -1544,27 +1173,6 @@
       "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/Notification Feed/NotificationGroup.swift",
       "line": 23,
       "symbol": "NotificationGroup.init(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/Result+ParseFeed.swift",
-      "line": 18,
-      "symbol": "Result.parseRemoved(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/Result+ParseFeed.swift",
-      "line": 18,
-      "symbol": "Result.parseRemoved(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Feed/Result+ParseFeed.swift",
-      "line": 18,
-      "symbol": "Result.parseRemoved(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -1587,48 +1195,6 @@
       "line": 14,
       "symbol": "Image",
       "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/FilesEndpoint.swift",
-      "line": 67,
-      "symbol": "FilesEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/FilesEndpoint.swift",
-      "line": 67,
-      "symbol": "FilesEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/FilesEndpoint.swift",
-      "line": 67,
-      "symbol": "FilesEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/FilesEndpoint.swift",
-      "line": 94,
-      "symbol": "FilesEndpoint.mimeType",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/FilesEndpoint.swift",
-      "line": 94,
-      "symbol": "FilesEndpoint.mimeType",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/FilesEndpoint.swift",
-      "line": 94,
-      "symbol": "FilesEndpoint.mimeType",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -1884,27 +1450,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/Result+ParseUpload.swift",
-      "line": 20,
-      "symbol": "Result.parseUpload(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/Result+ParseUpload.swift",
-      "line": 20,
-      "symbol": "Result.parseUpload(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Files and Images/Result+ParseUpload.swift",
-      "line": 20,
-      "symbol": "Result.parseUpload(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/bahadir/stream/stream-swift/Sources/Core/GetStream.swift",
       "line": 12,
       "symbol": "JSON",
@@ -1965,27 +1510,6 @@
       "line": 14,
       "symbol": "Cancellable",
       "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Moya/MoyaError+ClientError.swift",
-      "line": 15,
-      "symbol": "MoyaError.clientError",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Moya/MoyaError+ClientError.swift",
-      "line": 15,
-      "symbol": "MoyaError.clientError",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Moya/MoyaError+ClientError.swift",
-      "line": 15,
-      "symbol": "MoyaError.clientError",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -2430,48 +1954,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Open Graph/OpenGraphEndpoint.swift",
-      "line": 33,
-      "symbol": "OpenGraphEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Open Graph/OpenGraphEndpoint.swift",
-      "line": 33,
-      "symbol": "OpenGraphEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Open Graph/OpenGraphEndpoint.swift",
-      "line": 33,
-      "symbol": "OpenGraphEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Reactions/ReactionEndpoint.swift",
-      "line": 87,
-      "symbol": "ReactionEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Reactions/ReactionEndpoint.swift",
-      "line": 87,
-      "symbol": "ReactionEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Reactions/ReactionEndpoint.swift",
-      "line": 87,
-      "symbol": "ReactionEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/bahadir/stream/stream-swift/Sources/Core/Reactions/ReactionExtraDataProtocol.swift",
       "line": 26,
       "symbol": "Comment.text",
@@ -2679,27 +2161,6 @@
       "line": 25,
       "symbol": "User.DataCodingKeys.data",
       "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/User/UserEndpoint.swift",
-      "line": 61,
-      "symbol": "UserEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/User/UserEndpoint.swift",
-      "line": 61,
-      "symbol": "UserEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bahadir/stream/stream-swift/Sources/Core/User/UserEndpoint.swift",
-      "line": 61,
-      "symbol": "UserEndpoint.sampleJSON",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
