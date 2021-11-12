@@ -17,6 +17,7 @@ final class AuthorizationMoyaPlugin: PluginType {
     }
     
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        let token = self.token
         if token.isEmpty {
             return request
         }
