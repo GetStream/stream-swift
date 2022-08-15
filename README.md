@@ -23,13 +23,17 @@ You can sign up for a Stream account at https://getstream.io/get_started.
 For Stream, use the following entry in your `Podfile`:
 
 for Swift 5:
+
 ```
 pod 'GetStream', '~> 2.0'
 ```
+
 for Swift 4.2:
+
 ```
 pod 'GetStream', '~> 1.0'
 ```
+
 Then run `pod install`.
 
 In any file you'd like to use Stream in, don't forget to import the framework with `import GetStream`.
@@ -37,6 +41,7 @@ In any file you'd like to use Stream in, don't forget to import the framework wi
 ### Swift Package Manager
 
 To integrate using Apple's Swift package manager, add the following as a dependency to your `Package.swift`:
+
 ```
 .package(url: "https://github.com/GetStream/stream-swift.git", .upToNextMajor(from: "1.0.0"))
 ```
@@ -44,9 +49,11 @@ To integrate using Apple's Swift package manager, add the following as a depende
 ### Carthage
 
 Make the following entry in your Cartfile:
+
 ```
 github "GetStream/stream-swift"
 ```
+
 Then run `carthage update`.
 
 ## Quick start
@@ -56,7 +63,7 @@ Then run `carthage update`.
 Client.config = .init(apiKey: "<#ApiKey#>", appId: "<#AppId#>", token: "<#Token#>")
 
 // Setup a Stream current user with the userId from the Token.
-Client.shared.createCurrentUser() { _ in 
+Client.shared.createCurrentUser() { _ in
     // Do all your requests from here. Reload feeds and etc.
 }
 
@@ -94,7 +101,11 @@ userFeed?.remove(foreignId: "picture:10") { result in
 
 ## Credits & Contributors
 
-Project is maintained by [Alexey Bukhtin](https://github.com/buh).
+This repository is no longer actively maintained by Stream.
+
+A Feeds integration includes a combination of server-side and client-side code and the interface can vary widely which is why we are no longer focussing on supporting this SDK.
+
+This is by no means a reflection of our commitment to maintaining and improving the Feeds API which will always be a product that we support.
 
 We continue to welcome pull requests from community members.
 
