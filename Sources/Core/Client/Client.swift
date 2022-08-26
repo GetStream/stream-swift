@@ -23,7 +23,7 @@ public final class Client {
     
     var token: Token = "" {
         didSet {
-            networkAuthorization.token = token
+            networkAuthorization.updateToken(token)
         }
     }
     
