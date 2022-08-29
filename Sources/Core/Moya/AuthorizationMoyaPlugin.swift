@@ -10,22 +10,30 @@ import Foundation
 import Moya
 
 final class AuthorizationMoyaPlugin: PluginType {
-    var token: Token
-    
+    private let serialQueue = DispatchQueue(label: "com.getstream.io.AuthorizationMoyaPlugin")
+    private var token: Token
+
     init(_ token: Token = "") {
         self.token = token
     }
-    
+
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
-        let token = self.token
+        let token = serialQueue.sync { self.token }
+
         if token.isEmpty {
             return request
         }
-        
+
         var request = request
         request.addValue("jwt", forHTTPHeaderField: "Stream-Auth-Type")
         request.addValue(token, forHTTPHeaderField: "Authorization")
-        
+
         return request
+    }
+
+    func updateToken(_ token: Token) {
+        serialQueue.async {
+            self.token = token
+        }
     }
 }
