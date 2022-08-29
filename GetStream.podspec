@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "GetStream"
-  s.version = "2.2.4"
+  s.version = "2.2.5"
   s.summary = "Swift Client - Build Activity Feeds & Streams with GetStream.io https://getstream.io"
   s.homepage = "https://github.com/GetStream/stream-swift"
   s.license = { :type => "BSD-3", :file => "LICENSE" }
