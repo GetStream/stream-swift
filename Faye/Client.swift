@@ -187,6 +187,9 @@ extension Client: WebSocketDelegate {
             isWebSocketConnected = false
             log("❌ WS Disconnect with error: \(error)")
             //handleError(error)
+        case .peerClosed:
+            isWebSocketConnected = false
+            log("❌ WS Disconnect: Connection closed")
         }
     }
 }
