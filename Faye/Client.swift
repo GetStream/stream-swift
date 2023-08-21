@@ -141,7 +141,7 @@ extension Client {
 // MARK: - Connection
 
 extension Client: WebSocketDelegate {
-    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+    public func didReceive(event: WebSocketEvent, client: WebSocketClient) {
         switch event {
         case .connected(let headers):
             isWebSocketConnected = true
@@ -187,6 +187,9 @@ extension Client: WebSocketDelegate {
             isWebSocketConnected = false
             log("❌ WS Disconnect with error: \(error)")
             //handleError(error)
+        case .peerClosed:
+            isWebSocketConnected = false
+            log("❌ WS Disconnect: Connection closed")
         }
     }
 }
