@@ -66,10 +66,45 @@ final class ClientTests: TestCase {
     }
     
     func testActivityBaseURL() {
-        let endpoint = ActivityEndpoint<SimpleActivity>.getByIds(true, [.test1])
+        let endpoint = ActivityEndpoint<SimpleActivity>.getByIds(true, [.test1], [])
         XCTAssertEqual(endpoint.baseURL, BaseURL.placeholderURL)
     }
     
+    func testActivityWithReactionOption() {
+        var endpoint = ActivityEndpoint<SimpleActivity>.getByIds(true, [.test1], [.all])
+        switch endpoint.task {
+        case .requestParameters(let parameter, _):
+            XCTAssertEqual(parameter[ActivityEndpointParameters.ids.rawValue] as? String, .test1)
+            XCTAssertEqual(parameter[ActivityEndpointParameters.withRecentReactions.rawValue] as? Bool, true)
+            XCTAssertEqual(parameter[ActivityEndpointParameters.withOwnReactions.rawValue] as? Bool, true)
+            XCTAssertEqual(parameter[ActivityEndpointParameters.withReactionCounts.rawValue] as? Bool, true)
+        default:
+            XCTFail("Should be request parameter")
+        }
+
+        endpoint = ActivityEndpoint<SimpleActivity>.getByIds(true, [.test1], [.counts])
+        switch endpoint.task {
+        case .requestParameters(let parameter, _):
+            XCTAssertEqual(parameter[ActivityEndpointParameters.ids.rawValue] as? String, .test1)
+            XCTAssertNil(parameter[ActivityEndpointParameters.withRecentReactions.rawValue])
+            XCTAssertNil(parameter[ActivityEndpointParameters.withOwnReactions.rawValue] )
+            XCTAssertEqual(parameter[ActivityEndpointParameters.withReactionCounts.rawValue] as? Bool, true)
+        default:
+            XCTFail("Should be request parameter")
+        }
+
+        endpoint = ActivityEndpoint<SimpleActivity>.getByIds(true, [.test1], [.counts, .latest])
+        switch endpoint.task {
+        case .requestParameters(let parameter, _):
+            XCTAssertEqual(parameter[ActivityEndpointParameters.ids.rawValue] as? String, .test1)
+            XCTAssertEqual(parameter[ActivityEndpointParameters.withRecentReactions.rawValue] as? Bool, true)
+            XCTAssertNil(parameter[ActivityEndpointParameters.withOwnReactions.rawValue])
+            XCTAssertEqual(parameter[ActivityEndpointParameters.withReactionCounts.rawValue] as? Bool, true)
+        default:
+            XCTFail("Should be request parameter")
+        }
+    }
+
     func testClientActivityGetByIds() {
         expect("get an enriched activity by id") { test in
             Client.shared.get(enrich: true, typeOf: Activity.self, activityIds: [.test1, .test2]) { result in
