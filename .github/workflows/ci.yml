@@ -11,6 +11,11 @@ on:
     types:
       - created
 
+permissions:
+  actions: write
+  contents: read
+  pull-requests: read
+
 jobs:
   build-and-test:
     runs-on: macos-latest
