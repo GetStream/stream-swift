@@ -11,13 +11,17 @@ on:
     types:
       - created
 
+permissions:
+  actions: write
+  contents: read
+
 jobs:
   build-and-test:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
     - name: Cache dependencies
-      uses: actions/cache@v1.1.0
+      uses: actions/cache@v4.1.0
       id: carthage-cache
       with:
         path: Carthage
