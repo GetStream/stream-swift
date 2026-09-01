@@ -1,4 +1,9 @@
 <a name="2.2.2"></a>
+# [2.2.6](https://github.com/GetStream/stream-swift/releases/tag/2.2.3) - 16 Nov 2022
+
+### ✅ Added
+- Add `ActivityReactionsOptions` in `Client.get<T: ActivityProtocol>`. Enable ability to get activities with reaction data.
+
 # [2.2.2](https://github.com/GetStream/stream-swift/releases/tag/2.2.2) - 24 Feb 2020
 
 ### 🐞 Fixed

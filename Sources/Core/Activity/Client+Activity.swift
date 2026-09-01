@@ -18,14 +18,20 @@ public typealias ActivitiesCompletion<T: Decodable> = (_ result: Result<Response
 extension Client {
     
     /// Receive activities by activity ids with a custom activity type.
-    ///
+    /// - Parameters:
+    ///     - enrich: when using collections, you can request to enrich activities to include them.
+    ///     - typeOf: custom activity type to decode to
+    ///     - activityIds: activity ids
+    ///     - reactionsOptions: options to include reactions to activities. Check options in docs for `ActivityReactionsOptions`
+    ///     - completion: a completion handler with an array of the `Activity` type.
     /// - Note: A maximum length of list of activityIds is 100.
     @discardableResult
     public func get<T: ActivityProtocol>(enrich: Bool = true,
                                          typeOf type: T.Type,
                                          activityIds: [String],
+                                         includeReactions reactionsOptions: ActivityReactionsOptions = [],
                                          completion: @escaping ActivitiesCompletion<T>) -> Cancellable {
-        return request(endpoint: ActivityEndpoint<T>.getByIds(enrich, activityIds)) { [weak self] result in
+        return request(endpoint: ActivityEndpoint<T>.getByIds(enrich, activityIds, reactionsOptions)) { [weak self] result in
             if let self = self {
                 result.parse(self.callbackQueue, completion)
             }
