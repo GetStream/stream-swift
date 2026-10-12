@@ -1,3 +1,5 @@
+> **`stream-swift` is no longer maintained and is archived.** It was the Feeds v2 Swift client. New projects should use Feeds v3 with [`stream-feeds-swift`](https://github.com/GetStream/stream-feeds-swift). See https://getstream.io/activity-feeds/sdk/ios/
+
 # Stream Swift Client
 
 [![Build Status](https://github.com/GetStream/stream-swift/workflows/CI/badge.svg)](https://github.com/GetStream/stream-swift/actions)
